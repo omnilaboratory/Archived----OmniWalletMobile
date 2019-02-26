@@ -13,7 +13,7 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          physics: new NeverScrollableScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             SizedBox(height: 120.0),
@@ -31,7 +31,7 @@ class _StartPageState extends State<StartPage> {
                   textColor: Colors.white,
                   onPressed: () {
                     // TODO: Show the create new wallet page.
-                    print('Current page: $context');
+                    // print('Current page: $context');
                     Navigator.push(context, new MaterialPageRoute( 
                       builder: (context) => new CreateAccount()) );
                   },
@@ -48,7 +48,7 @@ class _StartPageState extends State<StartPage> {
               ],
             ),
 
-            // Select language.
+            // TODO: Select language.
 
           ],
         ),

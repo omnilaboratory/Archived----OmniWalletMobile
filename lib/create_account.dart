@@ -15,7 +15,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
       body: SafeArea(
         child: ListView(
-          physics: new NeverScrollableScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             SizedBox(height: 50.0), // spacer - 空位符
