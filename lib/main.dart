@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_index.dart';
+import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 
 import 'start.dart';
 import 'welcome_page_1.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 
 class BackupWalletIndex extends StatelessWidget {
 
@@ -33,8 +34,11 @@ class BackupWalletIndex extends StatelessWidget {
                 child: Text('任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',textAlign: TextAlign.center,),
               ),
               InkWell(
+                radius: MediaQuery.of(context).size.width*0.5,
+                splashColor:Colors.blue,
                 onTap: (){
                   Navigator.of(context).pop();
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletWords()));
                 },
                 child: Container(
                   child: Padding(
@@ -69,8 +73,9 @@ class BackupWalletIndex extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 30,left: 20,right: 20),
-            child: Image.network(
-              'https://imags.geoparker.cn/20170417_58f4acab9fd3c.jpg',
+            child: Image.asset(
+              'assets/LunarX_Logo.jpg',
+//              'https://imags.geoparker.cn/20170417_58f4acab9fd3c.jpg',
               fit: BoxFit.cover,
             ),
           ),
