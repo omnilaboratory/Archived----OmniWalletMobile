@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    debugPaintSizeEnabled = true;
+//    debugPaintSizeEnabled = true;
 
     return MaterialApp(
       title: 'LunarX_Omni Wallet',
