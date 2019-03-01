@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter/rendering.dart';
+=======
+import 'package:wallet_app/backupwallet/backup_wallet_index.dart';
+>>>>>>> 7ede514ed1475d576d9bfa42103753a7c1d281d6
 
 import 'start.dart';
 import 'welcome_page_1.dart';
@@ -17,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LunarX_Omni Wallet',
       // home: StartPage(),
-      home: WelcomePageOne(),
+      home: BackupWalletIndex(),
+//      home: WelcomePageOne(),
     );
   }
 }
