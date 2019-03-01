@@ -71,26 +71,28 @@ class _StartPageState extends State<StartPage> {
 
   // TODO: Select language.
   Widget _selectLanguage() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Icon(Icons.language),
-        Text('Language'),
-        Text('English'),
-        Icon(Icons.arrow_forward_ios),
-      ],
-    );
-  }
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: Row(
+        children: <Widget>[
+          Icon(Icons.language),
+          SizedBox(width: 20),
+          Text('Language'),
+          
+          Expanded(
+            child: Text(
+              'English',
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
 
-  Widget temp() {
-    return ListTile(
-      leading: Icon(Icons.language),
-      title: Text('Language'),
-      trailing: Icon(Icons.arrow_forward_ios),
-      onTap: () {
-        Navigator.push(context,
-          new MaterialPageRoute(builder: (context) => new CreateAccount()));
-      },
+          SizedBox(width: 15),
+          Icon(Icons.arrow_forward_ios),
+        ],
+      ),
     );
   }
 
