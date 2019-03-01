@@ -13,12 +13,13 @@ class WelcomePageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
-          
-          children: <Widget>[
-            _childColumn(context),
-          ],
+        body: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+            children: <Widget>[
+              _childColumn(context),
+            ],
+          ),
         )
     );
   }
@@ -97,7 +98,7 @@ class WelcomePageTwo extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
-            // Show the welcome page three page.
+            // Show the welcome page three.
             // print('Current page: $context');
             Navigator.push(context,
                 new MaterialPageRoute(builder: (context) => new WelcomePageThree()));

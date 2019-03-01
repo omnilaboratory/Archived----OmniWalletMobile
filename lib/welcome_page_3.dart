@@ -15,12 +15,13 @@ class WelcomePageThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
-          
-          children: <Widget>[
-            _childColumn(context),
-          ],
+        body: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+            children: <Widget>[
+              _childColumn(context),
+            ],
+          ),
         )
     );
   }

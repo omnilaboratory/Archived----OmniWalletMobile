@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'create_account.dart';
 
 class StartPage extends StatefulWidget {
@@ -12,47 +12,86 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          physics: NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+        child: Column(
           children: <Widget>[
-            SizedBox(height: 120.0),
-            Column(
-              children: <Widget>[
-                Image.asset('assets/LunarX_Logo.jpg'),
-                SizedBox(height: 16.0),
-                Text('LunarX_Omni Wallet'),
-
-                // Button - Create new wallet
-                SizedBox(height: 100.0),
-                RaisedButton(
-                  child: Text('Create new wallet'),
-                  color: Colors.lightBlue,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    // TODO: Show the create new wallet page.
-                    // print('Current page: $context');
-                    Navigator.push(context, new MaterialPageRoute( 
-                      builder: (context) => new CreateAccount()) );
-                  },
-                ),
-
-                // Button - Restore wallet
-                SizedBox(height: 10.0),
-                RaisedButton(
-                  child: Text('   Restore wallet   '),
-                  onPressed: () {
-                    // TODO: Show the restore wallet page.
-                  },
-                ),
-              ],
-            ),
-
-            // TODO: Select language.
-
+            _showSwiper(),            
+            _showContent(),
+            _selectLanguage(),
           ],
         ),
+      )
+    );
+  }
+
+  // Swiper
+  Widget _showSwiper() {
+    return Container(
+      height: 300,
+      child: Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          return Image.network("http://via.placeholder.com/350x150",fit: BoxFit.fill,);
+        },
+        itemCount: 4,
+        pagination: SwiperPagination(),
+        control: SwiperControl(),
       ),
     );
   }
+
+  // Swiper
+  Widget _showContent() {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // Button - Get Started
+          RaisedButton(
+            child: Text('     Get Started     '),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              // TODO: Show the create new wallet page.
+              Navigator.push(context, new MaterialPageRoute( 
+                builder: (context) => new CreateAccount()) );
+            },
+          ),
+
+          // Button - Restore wallet
+          SizedBox(height: 20),
+          RaisedButton(
+            child: Text('   Restore wallet   '),
+            onPressed: () {
+              // TODO: Show the restore wallet page.
+            },
+          ),
+        ],
+      ),
+    ); 
+  }
+
+  // TODO: Select language.
+  Widget _selectLanguage() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Icon(Icons.language),
+        Text('Language'),
+        Text('English'),
+        Icon(Icons.arrow_forward_ios),
+      ],
+    );
+  }
+
+  Widget temp() {
+    return ListTile(
+      leading: Icon(Icons.language),
+      title: Text('Language'),
+      trailing: Icon(Icons.arrow_forward_ios),
+      onTap: () {
+        Navigator.push(context,
+          new MaterialPageRoute(builder: (context) => new CreateAccount()));
+      },
+    );
+  }
+
 }
