@@ -43,6 +43,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
               print(index);
               setState(() {
                 words[index].visible=true;
+                this.resultWords.add(words[index].content);
               });
           },
         );
@@ -51,7 +52,18 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
   }
 
 
+  List<String> resultWords=[];
+  List<Widget> resultWordBulid(){
+    List<Widget> results= [];
+    for(var item in this.resultWords){
+      results.add(
+          Chip(label: Text(item))
+      );
+    }
+    return results;
+  }
   Widget pageCentent(BuildContext context){
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +80,18 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
             height: 90,
             child:wordBulid(context),
           ),
-          Expanded(child: Container(),flex: 2,),
+          Expanded(child: Container(),flex: 1),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+            child: Align(
+              alignment: Alignment(-1, -1),
+              child: Wrap(
+                spacing: 4,
+                runSpacing: 4,
+                children: resultWordBulid()),
+            ),
+          ),
+          Expanded(child: Container(),flex: 1,),
           RaisedButton(
             onPressed: (){
 
