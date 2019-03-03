@@ -30,7 +30,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 8,
         mainAxisSpacing: 12.0,
-        crossAxisSpacing: 6.0,
+        crossAxisSpacing: 4.0,
         childAspectRatio: 2
       ),
       itemCount: 16,
