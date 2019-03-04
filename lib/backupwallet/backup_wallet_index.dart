@@ -129,21 +129,14 @@ class BackupWalletIndex extends StatelessWidget {
     );
   }
   void onTouchLang(BuildContext context) async  {
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool flag = prefs.getBool('langSwitch');
-    if(flag==null){
-      flag = true;
-    }
-    Locale locale = Locale('zh',"CH");
-    if(flag){
-      locale = Locale('zh',"CH");
-    }else{
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//    bool flag = prefs.getBool('langSwitch');
+    Locale locale =  Localizations.localeOf(context);
+    if(locale.languageCode=='zh'){
       locale = Locale('en',"US");
+    }else {
+      locale = Locale('zh',"CH");
     }
     MyApp.setLocale(context,locale);
-    freeLocalizationStateKey.currentState.changeLocale(locale);
-    flag = !flag;
-    await prefs.setBool('langSwitch', flag);
   }
 }

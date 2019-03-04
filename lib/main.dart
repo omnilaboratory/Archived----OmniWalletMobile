@@ -11,9 +11,6 @@ import 'welcome_page_1.dart';
 
 void main() => runApp(MyApp());
 
-GlobalKey<_FreeLocalizations> freeLocalizationStateKey = new GlobalKey<_FreeLocalizations>();
-
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -46,43 +43,7 @@ class _MyAppState extends State<MyApp> {
         const Locale('zh','CH'),
         const Locale('en','US'),
       ],
-      home: new Builder(builder: (context){
-        return new FreeLocalizations(
-          key: freeLocalizationStateKey,
-          child: BackupWalletIndex(),
-        );
-      }),
-    );
-  }
-}
-
-class FreeLocalizations extends StatefulWidget{
-
-  final Widget child;
-  FreeLocalizations({Key key,this.child}):super(key:key);
-
-  @override
-  State<FreeLocalizations> createState() {
-    return new _FreeLocalizations();
-  }
-}
-
-class _FreeLocalizations extends State<FreeLocalizations>{
-
-  Locale _locale = const Locale('zh','CH');
-
-  changeLocale(Locale locale){
-    setState((){
-      _locale = locale;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Localizations.override(
-      context: context,
-      locale: _locale,
-      child: widget.child,
+      home: BackupWalletIndex(),
     );
   }
 }
