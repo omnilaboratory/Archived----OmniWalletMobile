@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/main.dart';
 
 class BackupWalletIndex extends StatelessWidget {
-
-  final String content =  '注意：请备份你的钱包账户，Omni Wallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。';
 
   Widget buildDialogWindow(BuildContext context){
     return SimpleDialog(
@@ -59,7 +59,15 @@ class BackupWalletIndex extends StatelessWidget {
       ],
     );
   }
+  bool flag = false;
   void onTouchBtn(BuildContext context){
+//    if(flag){
+//      freeLocalizationStateKey.currentState.changeLocale(const Locale('zh',"CH"));
+//    }else{
+//      freeLocalizationStateKey.currentState.changeLocale(const Locale('en',"US"));
+//    }
+//    flag = !flag;
+
     showDialog(
       context: context,
       builder:buildDialogWindow,
@@ -85,7 +93,7 @@ class BackupWalletIndex extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
                     child: Text(
-                      content,
+                      WalletLocalizations.of(context).backup_index_tips,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
