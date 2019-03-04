@@ -13,24 +13,36 @@ void main() => runApp(MyApp());
 
 GlobalKey<_FreeLocalizations> freeLocalizationStateKey = new GlobalKey<_FreeLocalizations>();
 
-class MyApp extends StatelessWidget {
-  
-  // This widget is the root of your application.
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+    state.setState(() {
+      state.locale = newLocale;
+    });
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+
+  Locale locale=Locale('zh','CH');
+
   @override
   Widget build(BuildContext context) {
-
-//    debugPaintSizeEnabled = true;
-
     return MaterialApp(
+      locale: this.locale,
       onGenerateTitle: (context){
-          return WalletLocalizations.of(context).main_index_title;
+        return WalletLocalizations.of(context).main_index_title;
       },
-      localizationsDelegates: [                             //此处
+      localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         WalletLocalizationsDelegate.delegate,
       ],
-      supportedLocales: [                                   //此处
+      supportedLocales: [
         const Locale('zh','CH'),
         const Locale('en','US'),
       ],
@@ -40,8 +52,6 @@ class MyApp extends StatelessWidget {
           child: BackupWalletIndex(),
         );
       }),
-      // home: StartPage(),
-//      home: WelcomePageOne(),
     );
   }
 }

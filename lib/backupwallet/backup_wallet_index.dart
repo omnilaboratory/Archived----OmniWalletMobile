@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BackupWalletIndex extends StatelessWidget {
 
@@ -59,15 +60,7 @@ class BackupWalletIndex extends StatelessWidget {
       ],
     );
   }
-  bool flag = false;
   void onTouchBtn(BuildContext context){
-//    if(flag){
-//      freeLocalizationStateKey.currentState.changeLocale(const Locale('zh',"CH"));
-//    }else{
-//      freeLocalizationStateKey.currentState.changeLocale(const Locale('en',"US"));
-//    }
-//    flag = !flag;
-
     showDialog(
       context: context,
       builder:buildDialogWindow,
@@ -114,6 +107,15 @@ class BackupWalletIndex extends StatelessWidget {
                 }
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(bottom: 80),
+            child: RaisedButton(
+              child: Text('切换语言'),
+                onPressed: (){
+                 this.onTouchLang(context);
+                }
+            ),
+          ),
         ],
       );
     }
@@ -125,5 +127,23 @@ class BackupWalletIndex extends StatelessWidget {
         body: pageContent(),
       ),
     );
+  }
+  void onTouchLang(BuildContext context) async  {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool flag = prefs.getBool('langSwitch');
+    if(flag==null){
+      flag = true;
+    }
+    Locale locale = Locale('zh',"CH");
+    if(flag){
+      locale = Locale('zh',"CH");
+    }else{
+      locale = Locale('en',"US");
+    }
+    MyApp.setLocale(context,locale);
+    freeLocalizationStateKey.currentState.changeLocale(locale);
+    flag = !flag;
+    await prefs.setBool('langSwitch', flag);
   }
 }

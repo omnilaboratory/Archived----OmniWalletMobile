@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_word_order.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 
 
 class WordInfo{
@@ -65,7 +66,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-              child: Text('下一步',style: TextStyle(fontSize: 16),),
+              child: Text(WalletLocalizations.of(context).backup_words_next,style: TextStyle(fontSize: 16),),
             ),
           ),
           Expanded(child: Container(),flex: 3,),
