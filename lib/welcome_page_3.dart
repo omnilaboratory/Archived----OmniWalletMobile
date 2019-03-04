@@ -106,9 +106,10 @@ class WelcomePageThree extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
-            // Show the Start page.
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => new StartPage()));
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => StartPage()), 
+              (route) => route == null
+            );
           },
         ),
       ],

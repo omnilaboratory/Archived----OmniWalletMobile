@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LunarX_Omni Wallet',
       // home: StartPage(),
-      home: BackupWalletIndex(),
-//      home: WelcomePageOne(),
+      // home: BackupWalletIndex(),
+      home: WelcomePageOne(),
     );
   }
 }

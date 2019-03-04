@@ -9,8 +9,8 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text('Create New Account'),
+      appBar: AppBar(
+        title: Text('Create New Account'),
       ),
 
       body: SafeArea(
