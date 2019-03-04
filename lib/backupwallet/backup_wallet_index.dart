@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BackupWalletIndex extends StatelessWidget {
-
-  final String content =  '注意：请备份你的钱包账户，Omni Wallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。';
 
   Widget buildDialogWindow(BuildContext context){
     return SimpleDialog(
@@ -33,8 +35,11 @@ class BackupWalletIndex extends StatelessWidget {
                 child: Text('任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',textAlign: TextAlign.center,),
               ),
               InkWell(
+                radius: MediaQuery.of(context).size.width*0.5,
+                splashColor:Colors.blue,
                 onTap: (){
                   Navigator.of(context).pop();
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletWords()));
                 },
                 child: Container(
                   child: Padding(
@@ -69,8 +74,9 @@ class BackupWalletIndex extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 30,left: 20,right: 20),
-            child: Image.network(
-              'https://imags.geoparker.cn/20170417_58f4acab9fd3c.jpg',
+            child: Image.asset(
+              'assets/LunarX_Logo.jpg',
+//              'https://imags.geoparker.cn/20170417_58f4acab9fd3c.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -80,7 +86,7 @@ class BackupWalletIndex extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40.0),
                     child: Text(
-                      content,
+                      WalletLocalizations.of(context).backup_index_tips,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -101,6 +107,15 @@ class BackupWalletIndex extends StatelessWidget {
                 }
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(bottom: 80),
+            child: RaisedButton(
+              child: Text('切换语言'),
+                onPressed: (){
+                 this.onTouchLang(context);
+                }
+            ),
+          ),
         ],
       );
     }
@@ -112,5 +127,16 @@ class BackupWalletIndex extends StatelessWidget {
         body: pageContent(),
       ),
     );
+  }
+  void onTouchLang(BuildContext context) async  {
+//    SharedPreferences prefs = await SharedPreferences.getInstance();
+//    bool flag = prefs.getBool('langSwitch');
+    Locale locale =  Localizations.localeOf(context);
+    if(locale.languageCode=='zh'){
+      locale = Locale('en',"US");
+    }else {
+      locale = Locale('zh',"CH");
+    }
+    MyApp.setLocale(context,locale);
   }
 }
