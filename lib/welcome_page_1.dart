@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'welcome_page_2.dart';
+import 'l10n/WalletLocalizations.dart';
 
 class WelcomePageOne extends StatelessWidget {
   @override
@@ -21,7 +22,8 @@ class WelcomePageOne extends StatelessWidget {
       children: <Widget>[
         // Title
         Text(
-          'Welcome to the Omni Platform!',
+          // 'Welcome to the Omni Platform!',
+          WalletLocalizations.of(context).welcome_1_title,
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,

@@ -25,7 +25,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  Locale locale=Locale('zh','CH');
+  Locale locale = null;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,8 @@ class _MyAppState extends State<MyApp> {
       // home: StartPage(),
       // home: BackupWalletIndex(),
       home: WelcomePageOne(),
-      locale: this.locale,
+
+      locale: this.locale ?? locale,
       onGenerateTitle: (context){
         return WalletLocalizations.of(context).main_index_title;
       },
