@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// 参看 https://www.jianshu.com/p/8356a3bc8f6c
-
 class WalletLocalizations{
   
   final Locale locale;
