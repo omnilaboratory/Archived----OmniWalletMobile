@@ -44,50 +44,25 @@ class WalletLocalizations{
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
     }
   };
+  get welcomePageOneTitle =>_localizedValues[locale.languageCode]['welcomePageOneTitle'];
 
-  get welcomePageOneTitle{
-    return _localizedValues[locale.languageCode]['welcomePageOneTitle'];
-  }
-  get backup_index_prompt_title{
-    return _localizedValues[locale.languageCode]['backup_index_prompt_title'];
-  }
-  get backup_words_order_title{
-    return _localizedValues[locale.languageCode]['backup_words_order_title'];
-  }
-  get backup_words_order_content{
-    return _localizedValues[locale.languageCode]['backup_words_order_content'];
-  }
-  get backup_words_order_finish{
-    return _localizedValues[locale.languageCode]['backup_words_order_finish'];
-  }
-  get backup_words_title{
-    return _localizedValues[locale.languageCode]['backup_words_title'];
-  }
-  get backup_words_content{
-    return _localizedValues[locale.languageCode]['backup_words_content'];
-  }
-  get backup_index_btn{
-    return _localizedValues[locale.languageCode]['backup_index_btn'];
-  }
-  get backup_index_prompt_tips{
-    return _localizedValues[locale.languageCode]['backup_index_prompt_tips'];
-  }
-  get backup_index_prompt_btn{
-    return _localizedValues[locale.languageCode]['backup_index_prompt_btn'];
-  }
+  get main_index_title => _localizedValues[locale.languageCode]['main_index_title'];
 
-  get backup_index_title{
-    return _localizedValues[locale.languageCode]['backup_index_title'];
-  }
-  get main_index_title{
-    return _localizedValues[locale.languageCode]['main_index_title'];
-  }
-  get backup_index_tips{
-    return _localizedValues[locale.languageCode]['backup_index_tips'];
-  }
-  get backup_words_next{
-    return _localizedValues[locale.languageCode]['backup_words_next'];
-  }
+  get backup_index_title => _localizedValues[locale.languageCode]['backup_index_title'];
+  get backup_index_tips => _localizedValues[locale.languageCode]['backup_index_tips'];
+  get backup_index_btn => _localizedValues[locale.languageCode]['backup_index_btn'];
+  get backup_index_prompt_title => _localizedValues[locale.languageCode]['backup_index_prompt_title'];
+  get backup_index_prompt_tips => _localizedValues[locale.languageCode]['backup_index_prompt_tips'];
+  get backup_index_prompt_btn => _localizedValues[locale.languageCode]['backup_index_prompt_btn'];
+
+  get backup_words_title => _localizedValues[locale.languageCode]['backup_words_title'];
+  get backup_words_content => _localizedValues[locale.languageCode]['backup_words_content'];
+  get backup_words_next => _localizedValues[locale.languageCode]['backup_words_next'];
+
+  get backup_words_order_title => _localizedValues[locale.languageCode]['backup_words_order_title'];
+  get backup_words_order_content => _localizedValues[locale.languageCode]['backup_words_order_content'];
+  get backup_words_order_finish => _localizedValues[locale.languageCode]['backup_words_order_finish'];
+
 
   static WalletLocalizations of (BuildContext context){
     return Localizations.of(context, WalletLocalizations);
