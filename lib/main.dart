@@ -24,18 +24,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  Locale locale = null;
+  Locale locale;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LunarX_Omni Wallet',
       // home: StartPage(),
-      // home: BackupWalletIndex(),
-      home: WelcomePageOne(),
-
-      locale: this.locale ?? locale,
+       home: BackupWalletIndex(),
+//      home: WelcomePageOne(),
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        if (this.locale == null) {
+          this.locale = deviceLocale;
+        }
+        return this.locale;
+      },
+      locale: this.locale,
       onGenerateTitle: (context){
         return WalletLocalizations.of(context).main_index_title;
       },
