@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 
 
 class WordInfo{
@@ -69,7 +70,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(child: Container(),flex: 3,),
-          Text('请按顺序点击助记词，以确认您\n正确备份。'),
+          Text(WalletLocalizations.of(context).backup_words_order_content),
           Expanded(child: Container(),flex: 1),
           Container(
             decoration: BoxDecoration(
@@ -98,7 +99,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-              child: Text('完成',style: TextStyle(fontSize: 16),),
+              child: Text(WalletLocalizations.of(context).backup_words_order_finish,style: TextStyle(fontSize: 16),),
             ),
           ),
           Expanded(child: Container(),flex: 3,),
@@ -110,7 +111,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('确认助记词'),
+        title: Text(WalletLocalizations.of(context).backup_words_order_title),
 //        leading: Icon(Icons.arrow_back_ios),
       ),
       body: pageCentent(context),

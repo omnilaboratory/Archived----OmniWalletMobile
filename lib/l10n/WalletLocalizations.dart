@@ -11,24 +11,69 @@ class WalletLocalizations{
 
     'zh': {
       'main_index_title': 'LunarX_Omni钱包',
-      'backup_index_title': 'Flutter 示例',
+      'backup_index_prompt_btn': '知道了',
+      'backup_index_title': '备份钱包',
+      'backup_index_btn': '备份钱包助记词',
       'backup_index_tips': '注意：请备份你的钱包账户，Omni Wallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。',
+      'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
+      'backup_index_prompt_title': '不要截屏',
+      'backup_words_title': '备份助记词',
       'backup_words_next': '下一步',
+      'backup_words_content': '请仔细抄写下方助记词，我们将在\n下一步验证。',
+      'backup_words_order_title': '确认助记词',
+      'backup_words_order_content': '请按顺序点击助记词，以确认您\n正确备份。',
+      'backup_words_order_finish': '完成',
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
       // 'welcome_1_title' : '',
     },
 
     'en': {
       'main_index_title': 'LunarX_Omni Wallet',
-      'backup_index_title': 'Flutter Demo',
-      'backup_index_tips': 'Note：safe。',
+      'backup_index_prompt_btn': 'I got it',
+      'backup_index_title': 'Backup the wallet',
+      'backup_index_btn': 'Backup wallet mnemonic',
+      'backup_index_tips': 'Note: please back up your Wallet account, Omni Wallet does not access your account, cannot restore private key, reset password. You are in control of your own wallet and asset security.',
+      'backup_index_prompt_tips': 'Anyone who gets your mnemonic will get your assets. Please copy on the paper for safekeeping.',
+      'backup_index_prompt_title': "Don't screenshots",
+      'backup_words_title': 'Back up your mnemonic',
       'backup_words_next': 'next',
+      'backup_words_content': "Please copy the mnemonic word carefully,\nwe will verify it in the next step.",
+      'backup_words_order_title': 'Confirm mnemonic words',
+      'backup_words_order_content': 'Please click mnemonic word in order to \nmake sure that you backup correctly',
+      'backup_words_order_finish': 'Finish',
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
     }
   };
 
   get welcomePageOneTitle{
     return _localizedValues[locale.languageCode]['welcomePageOneTitle'];
+  }
+  get backup_index_prompt_title{
+    return _localizedValues[locale.languageCode]['backup_index_prompt_title'];
+  }
+  get backup_words_order_title{
+    return _localizedValues[locale.languageCode]['backup_words_order_title'];
+  }
+  get backup_words_order_content{
+    return _localizedValues[locale.languageCode]['backup_words_order_content'];
+  }
+  get backup_words_order_finish{
+    return _localizedValues[locale.languageCode]['backup_words_order_finish'];
+  }
+  get backup_words_title{
+    return _localizedValues[locale.languageCode]['backup_words_title'];
+  }
+  get backup_words_content{
+    return _localizedValues[locale.languageCode]['backup_words_content'];
+  }
+  get backup_index_btn{
+    return _localizedValues[locale.languageCode]['backup_index_btn'];
+  }
+  get backup_index_prompt_tips{
+    return _localizedValues[locale.languageCode]['backup_index_prompt_tips'];
+  }
+  get backup_index_prompt_btn{
+    return _localizedValues[locale.languageCode]['backup_index_prompt_btn'];
   }
 
   get backup_index_title{

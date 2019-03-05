@@ -23,7 +23,7 @@ class BackupWalletIndex extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Text(
-                    '不要截屏',
+                    WalletLocalizations.of(context).backup_index_prompt_title,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -31,8 +31,8 @@ class BackupWalletIndex extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 20),
-                child: Text('任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',textAlign: TextAlign.center,),
+                padding: const EdgeInsets.only(left: 12,right: 12,top: 10,bottom: 20),
+                child: Text(WalletLocalizations.of(context).backup_index_prompt_tips,textAlign: TextAlign.center,),
               ),
               InkWell(
                 radius: MediaQuery.of(context).size.width*0.5,
@@ -44,7 +44,7 @@ class BackupWalletIndex extends StatelessWidget {
                 child: Container(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10,bottom: 10),
-                    child: Text('知道了',textAlign: TextAlign.center,
+                    child: Text(WalletLocalizations.of(context).backup_index_prompt_btn,textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white
@@ -101,7 +101,7 @@ class BackupWalletIndex extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: 80),
             child: RaisedButton(
-              child: Text('备份钱包助记词'),
+              child: Text(WalletLocalizations.of(context).backup_index_btn),
                 onPressed: (){
                   this.onTouchBtn(context);
                 }
@@ -112,7 +112,7 @@ class BackupWalletIndex extends StatelessWidget {
             child: RaisedButton(
               child: Text('切换语言'),
                 onPressed: (){
-                 this.onTouchLang(context);
+                  this.onTouchLang(context);
                 }
             ),
           ),
@@ -121,7 +121,7 @@ class BackupWalletIndex extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('备份钱包'),
+        title: Text(WalletLocalizations.of(context).backup_index_title),
       ),
       body: Scaffold(
         body: pageContent(),

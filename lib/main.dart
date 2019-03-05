@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       localeResolutionCallback: (deviceLocale, supportedLocales) {
         if (this.locale == null) {
           this.locale = deviceLocale;
@@ -48,14 +47,11 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         WalletLocalizationsDelegate.delegate,
       ],
-
       supportedLocales: [
         const Locale('zh','CH'),
         const Locale('en','US'),
       ],
-
-      home: WelcomePageOne(),
-      // home: BackupWalletIndex(),
+       home: BackupWalletIndex(),
     );
   }
 }

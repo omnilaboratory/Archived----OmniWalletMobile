@@ -48,7 +48,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(child: Container(),flex: 3,),
-          Text('请仔细抄写下方助记词，我们将在\n下一步验证。'),
+          Text(WalletLocalizations.of(context).backup_words_content),
           Expanded(child: Container(),flex: 1),
           Container(
             decoration: BoxDecoration(
@@ -78,7 +78,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('备份助记词'),
+        title: Text(WalletLocalizations.of(context).backup_words_title),
 //        leading: Icon(Icons.arrow_back_ios),
       ),
       body: pageCentent(context),
