@@ -23,7 +23,7 @@ class WelcomePageOne extends StatelessWidget {
         // Title
         Text(
           // 'Welcome to the Omni Platform!',
-          WalletLocalizations.of(context).welcome_1_title,
+          WalletLocalizations.of(context).welcomePageOneTitle,
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,

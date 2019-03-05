@@ -29,29 +29,32 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LunarX_Omni Wallet',
-      // home: StartPage(),
-       home: BackupWalletIndex(),
-//      home: WelcomePageOne(),
+      
       localeResolutionCallback: (deviceLocale, supportedLocales) {
         if (this.locale == null) {
           this.locale = deviceLocale;
         }
         return this.locale;
       },
+
       locale: this.locale,
-      onGenerateTitle: (context){
-        return WalletLocalizations.of(context).main_index_title;
-      },
+
+      // onGenerateTitle: (context){
+      //   return WalletLocalizations.of(context).main_index_title;
+      // },
+
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         WalletLocalizationsDelegate.delegate,
       ],
+
       supportedLocales: [
         const Locale('zh','CH'),
         const Locale('en','US'),
       ],
+
+      home: WelcomePageOne(),
       // home: BackupWalletIndex(),
     );
   }
