@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BackupWalletIndex extends StatelessWidget {
@@ -19,6 +20,7 @@ class BackupWalletIndex extends StatelessWidget {
                   Icons.camera_enhance,
                   size: 60,
                 ),
+
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
@@ -74,10 +76,10 @@ class BackupWalletIndex extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 30,left: 20,right: 20),
-            child: Image.asset(
-              'assets/LunarX_Logo.jpg',
-//              'https://imags.geoparker.cn/20170417_58f4acab9fd3c.jpg',
-              fit: BoxFit.cover,
+            child: CachedNetworkImage(
+              placeholder: (context, url) => new CircularProgressIndicator(),
+              errorWidget: (context, url, error) => new Icon(Icons.error),
+              imageUrl: 'http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg',
             ),
           ),
           Expanded(
