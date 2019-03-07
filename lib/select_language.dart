@@ -1,51 +1,63 @@
+/// Switch language display of app page.
+/// [author] Kevin Zhang
+/// [time] 2019-3-5
+
 import 'package:flutter/material.dart';
 
+import 'model/select_language_model.dart';
+import 'main.dart';
+
 class SelectLanguage extends StatefulWidget {
-
-  // App current language.
-  final String currentLanguage;
-  SelectLanguage(this.currentLanguage);
-
   @override
   _SelectLanguageState createState() => _SelectLanguageState();
 }
 
 class _SelectLanguageState extends State<SelectLanguage> {
   
+  String strClickItem = '';
+
   // List content.
   List<Widget> _list = List();
   List<String> items = <String> [
     'English', '简体中文',
   ];
 
-  // Build list tile.
-  Widget _buildListData(BuildContext context, String item) {
+  /// Build list data.
+  /// [item] is list tile content.
+  /// [setLanguage] is current selected item.
+  Widget _buildListData(BuildContext context, String item, String setLanguage) {
 
-    if (item == widget.currentLanguage) {
-      print(widget.currentLanguage);
-      return ListTile(
-        title: Text(item),
-        trailing: Icon(Icons.check),
-        onTap: () {
-          print('click tile.');
-        },
-      );
-
+    bool isSelected;
+    if (item == setLanguage) {
+      isSelected = true;
     } else {
-      return ListTile(
-        title: Text(item),
-        onTap: () {
-          print('click tile.');
-        },
-      );
+      isSelected = false;
     }
+
+    return ListTile(
+      title: Text(item),
+      trailing: Icon( isSelected ? Icons.check : null ),
+      onTap: () { 
+        setState(() {
+          strClickItem = item;
+        });
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     
+    final langModel = SelectLanguageModel().of(context);
+    String setLanguage = langModel.getSelectedLanguage;
+    
+    if (strClickItem != '') {
+      setLanguage = strClickItem;
+    }
+
+    _list.clear();
     for (int i = 0; i < items.length; i++) {
-      _list.add(_buildListData(context, items[i]));
+      _list.add(_buildListData(context, items[i], setLanguage));
     }
 
     var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
@@ -57,6 +69,20 @@ class _SelectLanguageState extends State<SelectLanguage> {
           IconButton(
             icon: Icon(Icons.save),
             onPressed: () {
+              print('strClickItem = $strClickItem');
+              if (strClickItem != '') {
+                langModel.setSelectedLanguage(strClickItem);
+
+                // Set language.
+                Locale locale =  Localizations.localeOf(context);
+                if (strClickItem == 'English') {
+                  locale = Locale('en',"US");
+                } else {
+                  locale = Locale('zh',"CH");
+                }
+                MyApp.setLocale(context,locale);
+              }
+             
               Navigator.pop(context);
             },
           ),

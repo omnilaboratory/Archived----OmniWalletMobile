@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
 import 'create_account.dart';
 import 'select_language.dart';
+import 'model/select_language_model.dart';
+import 'l10n/WalletLocalizations.dart';
 
 class StartPage extends StatefulWidget {
   @override
@@ -14,7 +17,7 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Omni Wallet'),
+        title: Text(WalletLocalizations.of(context).startPageAppBarTitle),
       ),
 
       body: SafeArea(
@@ -22,7 +25,7 @@ class _StartPageState extends State<StartPage> {
           children: <Widget>[
             _showSwiper(),            
             _showContent(),
-            _selectLanguage(),
+            _selectLanguage(context),
           ],
         ),
       )
@@ -52,7 +55,7 @@ class _StartPageState extends State<StartPage> {
         children: <Widget>[
           // Button - Get Started
           RaisedButton(
-            child: Text('     Get Started     '),
+            child: Text(WalletLocalizations.of(context).startPageButtonFirst),
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
@@ -69,7 +72,7 @@ class _StartPageState extends State<StartPage> {
           // Button - Restore wallet
           SizedBox(height: 20),
           RaisedButton(
-            child: Text('   Restore wallet   '),
+            child: Text(WalletLocalizations.of(context).startPageButtonSecond),
             onPressed: () {
               // TODO: Show the restore wallet page.
             },
@@ -80,21 +83,29 @@ class _StartPageState extends State<StartPage> {
   }
 
   // Select language bar.
-  Widget _selectLanguage() {
+  Widget _selectLanguage(BuildContext context) {
 
-    String currentLanguage = 'English';
+    // Set value by model.
+    final langModel = SelectLanguageModel().of(context);
+    String setLanguage = langModel.getSelectedLanguage;
 
+    if (setLanguage == '') {
+      // TODO: Use system language
+      String systemLanguage = 'English';
+      langModel.setSelectedLanguage(systemLanguage);
+    }
+    
     return InkWell(
       splashColor: Colors.blue[100],
       highlightColor: Colors.blue[100],
 
       onTap: () {
-        // TODO: Show the select language page.
+        // Show the select language page.
         Navigator.push(
           context, 
           MaterialPageRoute(
-            builder: (context) => SelectLanguage(currentLanguage)
-          ) 
+            builder: (context) => SelectLanguage(),
+          ), 
         );
       },
           
@@ -104,11 +115,13 @@ class _StartPageState extends State<StartPage> {
           children: <Widget>[
             Icon(Icons.language),
             SizedBox(width: 15),
-            Text('Language'),
+            Text(WalletLocalizations.of(context).startPageLanguageBarTitle),
             
             Expanded(
               child: Text(
-                currentLanguage,
+                // Get value by model.
+                langModel.getSelectedLanguage,
+                // currentLanguage,
                 textAlign: TextAlign.right,
                 style: TextStyle(
                   color: Colors.grey,
@@ -126,5 +139,4 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   }
-
 }

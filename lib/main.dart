@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:scoped_model/scoped_model.dart';
+
 import 'package:wallet_app/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -8,6 +10,7 @@ import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 
 import 'start.dart';
 import 'welcome_page_1.dart';
+import 'model/select_language_model.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,34 +27,44 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  // Create the model.
+  SelectLanguageModel selectLanguageModel = SelectLanguageModel();
+
   Locale locale;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localeResolutionCallback: (deviceLocale, supportedLocales) {
-        if (this.locale == null) {
-          this.locale = deviceLocale;
-        }
-        return this.locale;
-      },
+    return ScopedModel<SelectLanguageModel>(
+      model: selectLanguageModel,
+      child: MaterialApp(
+        localeResolutionCallback: (deviceLocale, supportedLocales) {
+          if (this.locale == null) {
+            this.locale = deviceLocale;
+          }
+          return this.locale;
+        },
 
-      locale: this.locale,
+        locale: this.locale,
 
-      // onGenerateTitle: (context){
-      //   return WalletLocalizations.of(context).main_index_title;
-      // },
+        // onGenerateTitle: (context){
+        //   return WalletLocalizations.of(context).main_index_title;
+        // },
 
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        WalletLocalizationsDelegate.delegate,
-      ],
-      supportedLocales: [
-        const Locale('zh','CH'),
-        const Locale('en','US'),
-      ],
-       home: BackupWalletIndex(),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          WalletLocalizationsDelegate.delegate,
+        ],
+        supportedLocales: [
+          const Locale('zh','CH'),
+          const Locale('en','US'),
+        ],
+
+        // home: BackupWalletIndex(),
+        // home: StartPage(),
+        home: WelcomePageOne(),
+      ),
     );
   }
 }
