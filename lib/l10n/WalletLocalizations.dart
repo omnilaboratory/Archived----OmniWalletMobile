@@ -21,8 +21,44 @@ class WalletLocalizations{
       'backup_words_order_title': '确认助记词',
       'backup_words_order_content': '请按顺序点击助记词，以确认您\n正确备份。',
       'backup_words_order_finish': '完成',
+
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
-      // 'welcome_1_title' : '',
+      'welcomePageOneContent' : "为了您的安全，请您抽时间来了解一些重要信息。\n\n"
+          "如果您访问了钓鱼网站或丢失备份短语（SEED短语），我们无法恢复您的资金或冻结您的帐户。\n\n"
+          "如您愿意继续使用我们的平台，您同意接受与您SEED损失相关的所有风险。如果您丢失了SEED，"
+          "您同意并承认 Omni 平台不会对此造成的负面后果承担责任。",
+      'welcomePageOneButton' : '您需要知道的关于您的SEED信息',
+      
+      'welcomePageTwoTitle' : '您需要知道关于您的SEED的信息',
+      'welcomePageTwoContentOne' : "注册您的账户时，您要保存您的密码（SEED）并使用密码来保护您的账户。"
+          "用普通的中央服务器上，您特别注意密码, 而且您可以通过电子邮件更改和重置密码。然而，Omni 与众不同 — "
+          "该钱包安全地储存在您使用的设备上 ：",
+      'welcomePageTwoContentTwo' : "您匿名地使用您的钱包，指的是您的账户未连接到电子邮件账户或任何其他识别数据。",
+      'welcomePageTwoContentThree' : "用某个设备或浏览器时，您的密码可以保护您的账户，"
+          "为了确保您的密码短语不被保存在存储器中。",
+      'welcomePageTwoContentFour' : "如果您忘记了密码，您可以通过您的密码短语使用账户恢复表单并轻松创建"
+          "一个新密码。但是，如果您遗失了密码，您将无法访问您的帐户。",
+      'welcomePageTwoContentFive' : "你不能改变你的秘密短语。如果您不小心将其发送给某人或怀疑诈骗者已将"
+          "其移交给他人，请立即创建一个新的 Omni 钱包并将资金转入其中。",
+      'welcomePageTwoButtonBack' : '    返回    ',
+      'welcomePageTwoButtonNext' : '    保护自己    ',
+
+      'welcomePageThreeTitle' : '如何防止网络钓鱼攻击',
+      'welcomePageThreeContentOne' : "诈骗最常见的攻击方式之一是网络钓鱼，一般钓鱼者在Facebook或其他类"
+          "似于真实的网站上创建假社群。",
+      'welcomePageThreeContentTwo' : "请总是检查URL: https://www.lunarx_omni.com",
+      'welcomePageThreeContentThree' : "访问您的账户时请不要使用具有扩展程序或插件的浏览器。",
+      'welcomePageThreeContentFour' : "请不要打开来自未知发件人的电子邮件或链接。",
+      'welcomePageThreeContentFive' : "请您定期更新您的浏览器和操作系统。",
+      'welcomePageThreeContentSix' : "请您使用官方安全软件。请不要安装会被黑客攻击的未知软件。",
+      'welcomePageThreeContentSeven' : "使用公共Wi-Fi或其他人的设备时请勿访问您的钱包。",
+      'welcomePageThreeButtonBack' : '    返回    ',
+      'welcomePageThreeButtonNext' : '    我了解    ',
+
+      'startPageAppBarTitle' : 'Omni 钱包',
+      'startPageButtonFirst' : '      开始使用      ',
+      'startPageButtonSecond' : '      恢复钱包      ',
+      'startPageLanguageBarTitle' : '语言',
     },
 
     'en': {
@@ -39,10 +75,94 @@ class WalletLocalizations{
       'backup_words_order_title': 'Confirm mnemonic words',
       'backup_words_order_content': 'Please click mnemonic word in order to \nmake sure that you backup correctly',
       'backup_words_order_finish': 'Finish',
+
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
+      'welcomePageOneContent' : "Please take some time to understand some "
+          "important things for your own safety. \n\nWe cannot recover your "
+          "funds or freeze your account if you visit a phishing site or lose "
+          "your backup phrase (aka SEED phrase).  \n\nBy continuing to use our "
+          "platform, you agree to accept all risks associated with the loss of "
+          "your SEED, including but not limited to the inability to obtain your "
+          "funds and dispose of them. In case you lose your SEED, you agree and "
+          "acknowledge that the Omni Platform would not be responsible for the "
+          "negative consequences of this.",
+      'welcomePageOneButton' : 'What you need to know about your SEED',
+
+      'welcomePageTwoTitle' : 'What you need to know \nabout your SEED',
+      'welcomePageTwoContentOne' : "When registering your account, you will be asked "
+          "to save your secret phrase (SEED) and to protect your account with a password. "
+          "On normal centralized servers, special attention is paid to the password, which "
+          "can be changed and reset via email, if the need arises. However, on decentralized "
+          "platforms such as Omni, everything is arranged differently:",
+      'welcomePageTwoContentTwo' : "You use your wallet anonymously, meaning your account "
+          "is not connected to an email account or any other identifying data.",
+      'welcomePageTwoContentThree' : "Your password protects your account when working on "
+          "a certain device or browser. It is needed in order to ensure that your secret "
+          "phrase is not saved in storage.",
+      'welcomePageTwoContentFour' : "If you forget your password, you can easily create a "
+          "new one by using the account recovery form via your secret phrase. If you lose "
+          "your secret phrase, however, you will have no way to access your account.",
+      'welcomePageTwoContentFive' : "You cannot change your secret phrase. If you "
+          "accidentally sent it to someone or suspect that scammers have taken it over, "
+          "then create a new Omni wallet immediately and transfer your funds to it.",
+      'welcomePageTwoButtonBack' : 'Go Back',
+      'welcomePageTwoButtonNext' : 'Protect Yourself',
+
+      'welcomePageThreeTitle' : 'How To Protect Yourself from Phishers',
+      'welcomePageThreeContentOne' : "One of the most common forms of scamming is "
+          "phishing, which is when scammers create fake communities on Facebook or "
+          "other websites that look similar to the authentic ones.",
+      'welcomePageThreeContentTwo' : "Always check the URL: https://www.lunarx_omni.com",
+      'welcomePageThreeContentThree' : "Do not use browsers that have extensions or "
+          "plugins to access your account.",
+      'welcomePageThreeContentFour' : "Do not open emails or links from unknown senders.",
+      'welcomePageThreeContentFive' : "Regularly update your browser and operating system.",
+      'welcomePageThreeContentSix' : "Use official security software. Do not install "
+          "unknown software which could be hacked.",
+      'welcomePageThreeContentSeven' : "Do not access your wallet when using public "
+          "Wi-Fi or someone else’s device.",
+      'welcomePageThreeButtonBack' : 'Go Back',
+      'welcomePageThreeButtonNext' : 'I Understand',
+
+      'startPageAppBarTitle' : 'Omni Wallet',
+      'startPageButtonFirst' : '     Get Started     ',
+      'startPageButtonSecond' : '   Restore wallet   ',
+      'startPageLanguageBarTitle' : 'Language',
     }
   };
-  get welcomePageOneTitle =>_localizedValues[locale.languageCode]['welcomePageOneTitle'];
+
+  // Start Page.
+  get startPageAppBarTitle => _localizedValues[locale.languageCode]['startPageAppBarTitle'];
+  get startPageButtonFirst => _localizedValues[locale.languageCode]['startPageButtonFirst'];
+  get startPageButtonSecond => _localizedValues[locale.languageCode]['startPageButtonSecond'];
+  get startPageLanguageBarTitle => _localizedValues[locale.languageCode]['startPageLanguageBarTitle'];
+
+  // Welcome Page One.
+  get welcomePageOneTitle => _localizedValues[locale.languageCode]['welcomePageOneTitle'];
+  get welcomePageOneContent => _localizedValues[locale.languageCode]['welcomePageOneContent'];
+  get welcomePageOneButton => _localizedValues[locale.languageCode]['welcomePageOneButton'];
+
+  // Welcome Page Two.
+  get welcomePageTwoTitle => _localizedValues[locale.languageCode]['welcomePageTwoTitle'];
+  get welcomePageTwoContentOne => _localizedValues[locale.languageCode]['welcomePageTwoContentOne'];
+  get welcomePageTwoContentTwo => _localizedValues[locale.languageCode]['welcomePageTwoContentTwo'];
+  get welcomePageTwoContentThree => _localizedValues[locale.languageCode]['welcomePageTwoContentThree'];
+  get welcomePageTwoContentFour => _localizedValues[locale.languageCode]['welcomePageTwoContentFour'];
+  get welcomePageTwoContentFive => _localizedValues[locale.languageCode]['welcomePageTwoContentFive'];
+  get welcomePageTwoButtonBack => _localizedValues[locale.languageCode]['welcomePageTwoButtonBack'];
+  get welcomePageTwoButtonNext => _localizedValues[locale.languageCode]['welcomePageTwoButtonNext'];
+
+  // Welcome Page Three.
+  get welcomePageThreeTitle => _localizedValues[locale.languageCode]['welcomePageThreeTitle'];
+  get welcomePageThreeContentOne => _localizedValues[locale.languageCode]['welcomePageThreeContentOne'];
+  get welcomePageThreeContentTwo => _localizedValues[locale.languageCode]['welcomePageThreeContentTwo'];
+  get welcomePageThreeContentThree => _localizedValues[locale.languageCode]['welcomePageThreeContentThree'];
+  get welcomePageThreeContentFour => _localizedValues[locale.languageCode]['welcomePageThreeContentFour'];
+  get welcomePageThreeContentFive => _localizedValues[locale.languageCode]['welcomePageThreeContentFive'];
+  get welcomePageThreeContentSix => _localizedValues[locale.languageCode]['welcomePageThreeContentSix'];
+  get welcomePageThreeContentSeven => _localizedValues[locale.languageCode]['welcomePageThreeContentSeven'];
+  get welcomePageThreeButtonBack => _localizedValues[locale.languageCode]['welcomePageThreeButtonBack'];
+  get welcomePageThreeButtonNext => _localizedValues[locale.languageCode]['welcomePageThreeButtonNext'];
 
   get main_index_title => _localizedValues[locale.languageCode]['main_index_title'];
 

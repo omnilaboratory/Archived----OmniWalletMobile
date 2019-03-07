@@ -22,7 +22,6 @@ class WelcomePageOne extends StatelessWidget {
       children: <Widget>[
         // Title
         Text(
-          // 'Welcome to the Omni Platform!',
           WalletLocalizations.of(context).welcomePageOneTitle,
           style: TextStyle(
             fontSize: 20.0,
@@ -35,21 +34,24 @@ class WelcomePageOne extends StatelessWidget {
 
         // Introduction content.
         Text(
-          'Please take some time to understand some important things for your own safety. \n\nWe cannot recover your funds or freeze your account if you visit a phishing site or lose your backup phrase (aka SEED phrase).  \n\nBy continuing to use our platform, you agree to accept all risks associated with the loss of your SEED, including but not limited to the inability to obtain your funds and dispose of them. In case you lose your SEED, you agree and acknowledge that the Waves Platform would not be responsible for the negative consequences of this.',
+          WalletLocalizations.of(context).welcomePageOneContent,
           textAlign: TextAlign.left,
           style: TextStyle(color: Colors.grey[700]),
         ),
 
         // Next button.
         RaisedButton(
-          child: Text('What you need to know about your SEED'),
+          child: Text(WalletLocalizations.of(context).welcomePageOneButton),
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
             // Show the welcome page two.
-            // print('Current page: $context');
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => new WelcomePageTwo()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WelcomePageTwo()
+              )
+            );
           },
         ),
       ],

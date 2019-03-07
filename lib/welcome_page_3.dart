@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+
+import 'l10n/WalletLocalizations.dart';
 import 'start.dart';
 
 class WelcomePageThree extends StatelessWidget {
 
   // Assets
   final String img_1 = 'assets/LunarX_Logo.jpg';
-  final String txt_1 = 'Always check the URL: https://www.lunarx_omni.com';
-  final String txt_2 = 'Do not use browsers that have extensions or plugins to access your account.';
-  final String txt_3 = 'Do not open emails or links from unknown senders.';
-  final String txt_4 = 'Regularly update your browser and operating system.';
-  final String txt_5 = 'Use official security software. Do not install unknown software which could be hacked.';
-  final String txt_6 = 'Do not access your wallet when using public Wi-Fi or someone else’s device.';
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +28,7 @@ class WelcomePageThree extends StatelessWidget {
       children: <Widget>[
         // Title
         Text(
-          'How To Protect Yourself \nfrom Phishers',
+          WalletLocalizations.of(context).welcomePageThreeTitle,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.0,
@@ -43,28 +39,28 @@ class WelcomePageThree extends StatelessWidget {
         // Introduction content.
         SizedBox(height: 40),
         Text(
-          'One of the most common forms of scamming is phishing, which is when scammers create fake communities on Facebook or other websites that look similar to the authentic ones.',
+          WalletLocalizations.of(context).welcomePageThreeContentOne,
           style: TextStyle(color: Colors.grey[700]),
         ),
 
         // List content.
         SizedBox(height: 40),
-        _listContent(img_1, txt_1),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentTwo),
 
         SizedBox(height: 20),
-        _listContent(img_1, txt_2),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentThree),
 
         SizedBox(height: 20),
-        _listContent(img_1, txt_3),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFour),
 
         SizedBox(height: 20),
-        _listContent(img_1, txt_4),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFive),
 
         SizedBox(height: 20),
-        _listContent(img_1, txt_5),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSix),
 
         SizedBox(height: 20),
-        _listContent(img_1, txt_6),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSeven),
 
         SizedBox(height: 40),
         _bottomButton(context),
@@ -96,13 +92,13 @@ class WelcomePageThree extends StatelessWidget {
       children: <Widget>[
         // Back button.
         RaisedButton(
-          child: Text('Go Back'),
+          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonBack),
           onPressed: () { Navigator.pop(context); },
         ),
 
         // Next button.
         RaisedButton(
-          child: Text('I Understand'),
+          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonNext),
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
