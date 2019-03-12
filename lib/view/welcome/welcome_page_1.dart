@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'welcome_page_2.dart';
-import 'l10n/WalletLocalizations.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/main_view/main_page.dart';
+import 'package:wallet_app/view/welcome/welcome_page_2.dart';
 
 class WelcomePageOne extends StatelessWidget {
   @override
@@ -52,6 +53,13 @@ class WelcomePageOne extends StatelessWidget {
                 builder: (context) => WelcomePageTwo()
               )
             );
+          },
+        ),
+        FlatButton(
+          child: Text(WalletLocalizations.of(context).common_btn_skip),
+          textColor: Colors.grey,
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MainPage()));
           },
         ),
       ],

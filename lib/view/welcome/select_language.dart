@@ -3,9 +3,8 @@
 /// [time] 2019-3-5
 
 import 'package:flutter/material.dart';
-
-import 'model/select_language_model.dart';
-import 'main.dart';
+import 'package:wallet_app/main.dart';
+import 'package:wallet_app/view_model/select_language_model.dart';
 
 class SelectLanguage extends StatefulWidget {
   @override

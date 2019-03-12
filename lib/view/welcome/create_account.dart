@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -50,6 +51,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   textColor: Colors.white,
                   onPressed: () {
                     // TODO: next page.
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletIndex()));
                   },
                 ),
               ],

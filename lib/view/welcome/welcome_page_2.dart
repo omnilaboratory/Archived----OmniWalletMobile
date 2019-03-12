@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 
-import 'l10n/WalletLocalizations.dart';
-import 'start.dart';
+import 'package:wallet_app/view/welcome/welcome_page_3.dart';
 
-class WelcomePageThree extends StatelessWidget {
+class WelcomePageTwo extends StatelessWidget {
 
   // Assets
   final String img_1 = 'assets/LunarX_Logo.jpg';
@@ -28,7 +28,7 @@ class WelcomePageThree extends StatelessWidget {
       children: <Widget>[
         // Title
         Text(
-          WalletLocalizations.of(context).welcomePageThreeTitle,
+          WalletLocalizations.of(context).welcomePageTwoTitle,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.0,
@@ -39,28 +39,22 @@ class WelcomePageThree extends StatelessWidget {
         // Introduction content.
         SizedBox(height: 40),
         Text(
-          WalletLocalizations.of(context).welcomePageThreeContentOne,
+          WalletLocalizations.of(context).welcomePageTwoContentOne,
           style: TextStyle(color: Colors.grey[700]),
         ),
 
         // List content.
         SizedBox(height: 40),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentTwo),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentTwo),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentThree),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentThree),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFour),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentFour),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFive),
-
-        SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSix),
-
-        SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSeven),
+        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentFive),
 
         SizedBox(height: 40),
         _bottomButton(context),
@@ -92,20 +86,19 @@ class WelcomePageThree extends StatelessWidget {
       children: <Widget>[
         // Back button.
         RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonBack),
+          child: Text(WalletLocalizations.of(context).welcomePageTwoButtonBack),
           onPressed: () { Navigator.pop(context); },
         ),
 
         // Next button.
         RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonNext),
+          child: Text(WalletLocalizations.of(context).welcomePageTwoButtonNext),
           color: Colors.blue,
           textColor: Colors.white,
           onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => StartPage()), 
-              (route) => route == null
-            );
+            // Show the welcome page three.
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => WelcomePageThree()));
           },
         ),
       ],

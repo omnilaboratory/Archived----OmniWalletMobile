@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 
-import 'create_account.dart';
-import 'select_language.dart';
-import 'model/select_language_model.dart';
-import 'l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/welcome/create_account.dart';
+import 'package:wallet_app/view/welcome/select_language.dart';
+import 'package:wallet_app/view_model/select_language_model.dart';
 
 class StartPage extends StatefulWidget {
   @override

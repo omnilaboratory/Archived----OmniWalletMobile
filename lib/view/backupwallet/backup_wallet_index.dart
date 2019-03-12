@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
+import 'package:wallet_app/view/main_view/main_page.dart';
 
 class BackupWalletIndex extends StatelessWidget {
+
+
 
   Widget buildDialogWindow(BuildContext context){
     return SimpleDialog(
@@ -124,6 +127,14 @@ class BackupWalletIndex extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_index_title),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MainPage()));
+            },
+            child: Text(WalletLocalizations.of(context).backup_index_laterbackup),
+          )
+        ],
       ),
       body: Scaffold(
         body: pageContent(),

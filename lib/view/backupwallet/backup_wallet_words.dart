@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/backupwallet/backup_wallet_word_order.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_word_order.dart';
 
 
 class WordInfo{

@@ -3,14 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:wallet_app/backupwallet/backup_wallet_index.dart';
-import 'package:wallet_app/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 
-import 'start.dart';
-import 'welcome_page_1.dart';
-import 'model/select_language_model.dart';
+import 'package:wallet_app/view/welcome/start.dart';
+import 'package:wallet_app/view/welcome/welcome_page_1.dart';
+import 'package:wallet_app/view_model/select_language_model.dart';
 
 void main() => runApp(MyApp());
 
