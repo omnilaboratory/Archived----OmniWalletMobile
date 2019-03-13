@@ -63,6 +63,12 @@ class WalletLocalizations{
 
       'main_page_title' : '钱包',
       'common_btn_skip' : '跳过',
+
+      'marketPageAppBarTitle' : '行情',
+      'marketPageFav' : '自选',
+      'marketPageAll' : '全部',
+      'marketPagePrice' : '价格',
+      'marketPageChange' : '涨跌幅',
     },
 
     'en': {
@@ -136,8 +142,21 @@ class WalletLocalizations{
 
       'main_page_title' : 'Wallet',
       'common_btn_skip' : 'Skip',
+
+      'marketPageAppBarTitle' : 'Quotation',
+      'marketPageFav' : 'Favorites',
+      'marketPageAll' : 'All',
+      'marketPagePrice' : 'Price',
+      'marketPageChange' : 'Change',
     }
   };
+
+  // Market Page
+  get marketPageAppBarTitle => _localizedValues[locale.languageCode]['marketPageAppBarTitle'];
+  get marketPageFav => _localizedValues[locale.languageCode]['marketPageFav'];
+  get marketPageAll => _localizedValues[locale.languageCode]['marketPageAll'];
+  get marketPagePrice => _localizedValues[locale.languageCode]['marketPagePrice'];
+  get marketPageChange => _localizedValues[locale.languageCode]['marketPageChange'];
 
   // Start Page.
   get startPageAppBarTitle => _localizedValues[locale.languageCode]['startPageAppBarTitle'];
