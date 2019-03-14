@@ -8,7 +8,4 @@ class SelectLanguageModel extends Model {
     _selectedLanguage = setLanguage;
     notifyListeners();
   }
-
-  SelectLanguageModel of(context) => 
-    ScopedModel.of<SelectLanguageModel>(context, rebuildOnChange: true);
 }
