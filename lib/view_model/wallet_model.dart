@@ -26,9 +26,11 @@ class WalletModel extends Model{
   List<WalletInfo> get  walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
-      for(int i=0;i<4;i++){
+      int walletCount = 1+Random().nextInt(10);
+      for(int i=0;i<walletCount;i++){
         List<AccountInfo> accountInfo = [];
-        for(int j=0;j<6;j++){
+        int accountCount = 1+Random().nextInt(10);
+        for(int j=0;j<accountCount;j++){
           accountInfo.add(AccountInfo(name: '币种${j+1}',amount:Random().nextDouble(),legalTender: Random().nextDouble()));
         }
         WalletInfo info = WalletInfo(name: '钱包${i+1}',address: "address${i+1}",totalLegalTender: Random().nextDouble(),note: "note${i+1}",accountInfoes: accountInfo);
