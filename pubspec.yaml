@@ -32,6 +32,9 @@ dependencies:
 
   # State management
   scoped_model: ^1.0.1
+
+  # Auto size for text
+  auto_size_text: ^1.1.0
   #------------------------
 
 dev_dependencies:
