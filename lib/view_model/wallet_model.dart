@@ -37,6 +37,7 @@ class WalletModel extends Model{
         _walletInfoes.add(info);
       }
     }
+
     notifyListeners();
     return this._walletInfoes;
   }
