@@ -5,6 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+import 'package:wallet_app/view/main_view/main_page.dart';
 
 import 'package:wallet_app/view/welcome/start.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
@@ -60,8 +61,7 @@ class _MyAppState extends State<MyApp> {
         ],
 
         // home: BackupWalletIndex(),
-        // home: StartPage(),
-        home: WelcomePageOne(),
+         home: WelcomePageOne(),
       ),
     );
   }
