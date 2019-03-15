@@ -30,10 +30,13 @@ class WalletModel extends Model{
       for(int i=0;i<walletCount;i++){
         List<AccountInfo> accountInfo = [];
         int accountCount = 1+Random().nextInt(10);
+        num totalMoney = 0;
         for(int j=0;j<accountCount;j++){
-          accountInfo.add(AccountInfo(name: '币种${j+1}',amount:Random().nextDouble(),legalTender: Random().nextDouble()));
+          num money = Random().nextDouble();
+          accountInfo.add(AccountInfo(name: '币种${j+1}',amount:Random().nextDouble(),legalTender:money ));
+          totalMoney+=money;
         }
-        WalletInfo info = WalletInfo(name: '钱包${i+1}',address: "address${i+1}",totalLegalTender: Random().nextDouble(),note: "note${i+1}",accountInfoes: accountInfo);
+        WalletInfo info = WalletInfo(name: '钱包${i+1}',address: "address${i+1}",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
         _walletInfoes.add(info);
       }
     }
