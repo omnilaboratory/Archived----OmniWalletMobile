@@ -1,25 +1,33 @@
-/// Market quotatio main page.
+/// Market detail info page.
 /// [author] Kevin Zhang
-/// [time] 2019-3-13
+/// [time] 2019-3-18
 
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'market_detail.dart';
 
-class MarketPage extends StatefulWidget {
+class MarketDetail extends StatefulWidget {
   @override
-  _MarketPageState createState() => _MarketPageState();
+  _MarketDetailState createState() => _MarketDetailState();
 }
 
-class _MarketPageState extends State<MarketPage> {
+class _MarketDetailState extends State<MarketDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: null,
-        title: Text(WalletLocalizations.of(context).marketPageAppBarTitle),
+        title: _appBarTitle(),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            tooltip: 'Add Favorite',
+            onPressed: () {
+              print('Favorite asset is:  ');
+             
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
 
       body: SafeArea(
@@ -31,6 +39,57 @@ class _MarketPageState extends State<MarketPage> {
 
           ], 
         ),
+      ),
+    );
+  }
+
+  // AppBar Title
+  Widget _appBarTitle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(Icons.attach_money),
+          SizedBox(width: 20),
+
+          Column( // Trade pair and exchange
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text( // Trade pair first part
+                    'LX',
+                    style: TextStyle(
+                      fontFamily: 'Arial',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  Text( // Trade pair second part
+                    ' / USDT',
+                    style: TextStyle(
+                      fontFamily: 'Arial',
+                      fontSize: 13,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 5),
+
+              Text( // exchange name
+                'Binance',
+                style: TextStyle(
+                  color: Colors.grey[300],
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -110,12 +169,12 @@ class _MarketPageState extends State<MarketPage> {
       
       onTap: () {
         // Show detail page.
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => MarketDetail(),
-          ), 
-        );
+        // Navigator.push(
+        //   context, 
+        //   MaterialPageRoute(
+        //     builder: (context) => SelectLanguage(),
+        //   ), 
+        // );
       },
           
       child: Container(

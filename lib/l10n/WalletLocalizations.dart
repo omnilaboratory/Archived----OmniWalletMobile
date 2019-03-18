@@ -56,7 +56,7 @@ class WalletLocalizations{
       'welcomePageThreeButtonBack' : '    返回    ',
       'welcomePageThreeButtonNext' : '    我了解    ',
 
-      'startPageAppBarTitle' : 'Omni 钱包',
+      'startPageAppBarTitle' : 'LunarX Omniwallet',
       'startPageButtonFirst' : '      开始使用      ',
       'startPageButtonSecond' : '      恢复钱包      ',
       'startPageLanguageBarTitle' : '语言',
@@ -135,7 +135,7 @@ class WalletLocalizations{
       'welcomePageThreeButtonBack' : 'Go Back',
       'welcomePageThreeButtonNext' : 'I Understand',
 
-      'startPageAppBarTitle' : 'Omniwallet',
+      'startPageAppBarTitle' : 'LunarX Omniwallet',
       'startPageButtonFirst' : '     Get Started     ',
       'startPageButtonSecond' : '   Restore wallet   ',
       'startPageLanguageBarTitle' : 'Language',
