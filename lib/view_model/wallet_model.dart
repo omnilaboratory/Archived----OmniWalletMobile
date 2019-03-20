@@ -39,6 +39,16 @@ class WalletModel extends Model{
     return _currAccountIndex;
   }
 
+
+  TradeInfo _currTradeInfo;
+  set currTradeInfo(TradeInfo info){
+    this._currTradeInfo = info;
+    notifyListeners();
+  }
+  TradeInfo get currTradeInfo{
+    return _currTradeInfo;
+  }
+
   List<WalletInfo> get  walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];

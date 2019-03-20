@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/view/main_view/home/account_info_detail.dart';
+import 'package:wallet_app/view/main_view/home/receive_page.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class WalletDetailContent extends StatefulWidget {
@@ -16,7 +18,6 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
 
   @override void initState() {
     super.initState();
-
   }
 
   @override
@@ -26,35 +27,24 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
     walletInfo = stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
 
-    return Stack(
-      fit:StackFit.expand,
+    return Column(
       children: <Widget>[
         buildHeader(),
-        Positioned(top: 100, child: buildBodyHeader()),
-        Positioned(
-          top: 200,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height-380,
-            child: ListView.builder(
-                itemCount:tradeInfoes.length,
-                itemBuilder: (BuildContext context, int index){
-                  return detailTile(context,index);
-                }),
-          ),
+        buildBodyHeader(),
+        Expanded(
+          child: ListView.builder(
+              itemCount:tradeInfoes.length,
+              itemBuilder: (BuildContext context, int index){
+                return detailTile(context,index);
+              }),
         ),
-        Positioned(
-            bottom: 0,
-            child: buildFooter()
-        )
+        buildFooter()
       ],
     );
   }
 
   Widget buildBodyHeader() {
     return Container(
-      height: 110,
-      width: MediaQuery.of(context).size.width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -107,11 +97,16 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
   Widget detailTile(BuildContext context, int index){
     TradeInfo tradeInfo = tradeInfoes[index];
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        stateModel.currTradeInfo = tradeInfo;
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+          return AccountInfoDetail();
+        }));
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10,vertical: 6),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey)
+          border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor))
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -139,15 +134,12 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
         ),
       ),
     );
-
   }
 
   //头部 112
   Container buildHeader() {
     return Container(
-        width: double.infinity,
-        height: 140,
-        padding: EdgeInsets.only(top: 40,bottom: 20),
+        padding: EdgeInsets.only(top: 30,bottom: 20),
         child: Column(
           children: <Widget>[
             Padding(
@@ -169,22 +161,24 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
       );
   }
 
-  //脚部 25+12+30=70
-  Container buildFooter() {
+  Widget buildFooter() {
     return Container(
-        width: MediaQuery.of(context).size.width,
-        height: 80,
-        margin: EdgeInsets.only(top: 5,bottom: 0),
+        margin: EdgeInsets.only(top: 15,bottom: 20),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             RaisedButton(
-              onPressed: (){},
+              onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                    return ReceivePage();
+                  }));
+              },
               child: Text('收款'),
               padding: EdgeInsets.symmetric(horizontal: 60,vertical:6),
             ),
             RaisedButton(
-              onPressed: (){},
+              onPressed: (){
+              },
               child: Text('转账'),
               padding: EdgeInsets.symmetric(horizontal: 60,vertical:6)
             ),
@@ -193,7 +187,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
       );
   }
 }
-//交易记录的那四个按钮模板 18+20=38
+//交易记录的那四个按钮模板
 class CustomButtonForCategory extends StatelessWidget {
   final String name;
   final Function callback;
