@@ -45,12 +45,52 @@ class _MarketDetailState extends State<MarketDetail> {
       ),
 
       body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              _showQuotation(),
+              _showVolume(),
+              _showKLineChart(),
+              _kLineControlButton(),
+
+              // Other exchange's quotation
+              Text(
+                'Other exchanges',
+                // textAlign: TextAlign.start,
+                style: TextStyle(color: Colors.grey),
+              ),
+
+              _quotationList(),
+            ],
+          ),
+        ),
+
+        /*
+        child: ListView(
+          children: <Widget>[
+            _showQuotation(),
+            _showVolume(),
+            _showKLineChart(),
+            _kLineControlButton(),
+
+            // Other exchange's quotation
+            Text(
+              'Other exchanges',
+              // textAlign: TextAlign.start,
+              style: TextStyle(color: Colors.grey),
+            ),
+
+            _quotationList(),
+          ],
+        ),*/
+
+        /*
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _showQuotation(),
             _showVolume(),
-            _testKLine(), // testing
+            _showKLineChart(),
             _kLineControlButton(),
 
             // Other exchange's quotation
@@ -63,44 +103,9 @@ class _MarketDetailState extends State<MarketDetail> {
             _quotationList(),
 
           ], 
-        ),
+        ),*/
       ),
-    );
-  }
-
-  // temp
-  Widget _testKLine11() {
-    return LineChart(
       
-        lines: [
-          Line< List<String>, String, String >(
-            data: myData,
-            xFn: (datum) => datum[0],
-            yFn: (datum) => datum[1],
-          )
-        ],
-
-        chartPadding: EdgeInsets.fromLTRB(30.0, 10.0, 10.0, 30.0),
-      );
-  }
-
-  // _testKLine
-  Widget _testKLine() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-      // color: Colors.yellow,
-      height: 200,
-      child: LineChart(
-        lines: [
-          Line< List<String>, String, String >(
-            data: myData,
-            xFn: (datum) => datum[0],
-            yFn: (datum) => datum[1],
-          )
-        ],
-
-        chartPadding: EdgeInsets.fromLTRB(30.0, 10.0, 10.0, 30.0),
-      ),
     );
   }
 
@@ -237,18 +242,30 @@ class _MarketDetailState extends State<MarketDetail> {
     );
   }
 
-  
   // K-line Chart
   Widget _showKLineChart() {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      // color: Colors.yellow,
+      height: 200,
+      child: LineChart(
+        lines: [
+          Line< List<String>, String, String >(
+            data: myData,
+            xFn: (datum) => datum[0],
+            yFn: (datum) => datum[1],
+          )
+        ],
 
+        chartPadding: EdgeInsets.fromLTRB(30.0, 10.0, 10.0, 30.0),
+      ),
     );
   }
 
   // K-line Chart Control Button
   Widget _kLineControlButton() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -274,13 +291,13 @@ class _MarketDetailState extends State<MarketDetail> {
 
   // 
   Widget _quotationList() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return _quotationItem();
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      physics:NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return _quotationItem();
+      },
     );
   }
 
