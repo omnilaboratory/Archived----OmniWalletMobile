@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:fcharts/fcharts.dart';
 
 class MarketDetail extends StatefulWidget {
   @override
@@ -12,6 +13,19 @@ class MarketDetail extends StatefulWidget {
 }
 
 class _MarketDetailState extends State<MarketDetail> {
+
+  // test data
+  // X value -> Y value
+  static const myData = [
+    ["A", "✔"],
+    ["B", "❓"],
+    ["C", "✖"],
+    ["D", "❓"],
+    ["E", "✖"],
+    ["F", "✖"],
+    ["G", "✔"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +46,60 @@ class _MarketDetailState extends State<MarketDetail> {
 
       body: SafeArea(
         child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _showExchange(),
-            _showTitle(),
+            _showQuotation(),
+            _showVolume(),
+            _testKLine(), // testing
+            _kLineControlButton(),
+
+            // Other exchange's quotation
+            Text(
+              'Other exchanges',
+              // textAlign: TextAlign.start,
+              style: TextStyle(color: Colors.grey),
+            ),
+
             _quotationList(),
 
           ], 
         ),
+      ),
+    );
+  }
+
+  // temp
+  Widget _testKLine11() {
+    return LineChart(
+      
+        lines: [
+          Line< List<String>, String, String >(
+            data: myData,
+            xFn: (datum) => datum[0],
+            yFn: (datum) => datum[1],
+          )
+        ],
+
+        chartPadding: EdgeInsets.fromLTRB(30.0, 10.0, 10.0, 30.0),
+      );
+  }
+
+  // _testKLine
+  Widget _testKLine() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+      // color: Colors.yellow,
+      height: 200,
+      child: LineChart(
+        lines: [
+          Line< List<String>, String, String >(
+            data: myData,
+            xFn: (datum) => datum[0],
+            yFn: (datum) => datum[1],
+          )
+        ],
+
+        chartPadding: EdgeInsets.fromLTRB(30.0, 10.0, 10.0, 30.0),
       ),
     );
   }
@@ -94,58 +155,120 @@ class _MarketDetailState extends State<MarketDetail> {
     );
   }
 
-  // Exchanges
-  Widget _showExchange() {
-    return Row(
-      children: <Widget>[
-        FlatButton(  // Favorites button
-          child: Text(WalletLocalizations.of(context).marketPageFav),
-          textColor: Colors.grey,
-          onPressed: () {
-            // TODO: Show favorite assets quotation.
-          },
-        ),
+  // Quotation
+  Widget _showQuotation() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column( 
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AutoSizeText( // Assets price
+                  '0.12345678',
+                  style: TextStyle(
+                    fontFamily: 'Tahoma',
+                    fontSize: 22,
+                  ),
+                  minFontSize: 10,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
 
-        FlatButton( // Binance exchange button
-          child: Text('Binance'),
-          textColor: Colors.grey,
-          onPressed: () {
-            // TODO: Show Binance exchange quotation.
-          },
-        ),
-      ],
+                SizedBox(height: 10),
+
+                Text( // Assets value
+                  '\$ 0.12',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container( // Quote change
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+            width: 70, height: 30,
+            decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            
+            child: AutoSizeText(
+              '+8.12%',
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+              minFontSize: 9,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  // Quotation title.
-  Widget _showTitle() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        FlatButton(  // All button
-          child: Text(WalletLocalizations.of(context).marketPageAll),
-          textColor: Colors.grey,
-          onPressed: () {
-            // TODO: select assets that want to show.
-          },
-        ),
+  // Quotation
+  Widget _showVolume() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text( // Assets Volume
+            'Volume: 123',
+            style: TextStyle(color: Colors.grey),
+          ),
 
-        FlatButton( // Price button
-          child: Text(WalletLocalizations.of(context).marketPagePrice),
-          textColor: Colors.grey,
-          onPressed: () {
-            // TODO: Assets amount and value.
-          },
-        ),
+          Text( // Assets Low Volume
+            'Low: 123',
+            style: TextStyle(color: Colors.grey),
+          ),
 
-        FlatButton( // Change button
-          child: Text(WalletLocalizations.of(context).marketPageChange),
-          textColor: Colors.grey,
-          onPressed: () {
-            // TODO: Quote change.
-          },
-        ),
-      ],
+          Text( // Assets High Volume
+            'High: 123',
+            style: TextStyle(color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+
+  
+  // K-line Chart
+  Widget _showKLineChart() {
+    return Container(
+
+    );
+  }
+
+  // K-line Chart Control Button
+  Widget _kLineControlButton() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FlatButton(  // Hour button
+            child: Text('Hour'),
+            textColor: Colors.grey,
+            onPressed: () {
+              // TODO: show K-line chart in hour model.
+            },
+          ),
+
+          FlatButton(  // Day button
+            child: Text('Day'),
+            textColor: Colors.grey,
+            onPressed: () {
+              // TODO: show K-line chart in Day model.
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -153,7 +276,7 @@ class _MarketDetailState extends State<MarketDetail> {
   Widget _quotationList() {
     return Expanded(
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return _quotationItem();
         },
