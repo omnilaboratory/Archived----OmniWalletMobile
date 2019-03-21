@@ -12,9 +12,6 @@ class _WebViewPageState extends State<WebViewPage> {
       url: "https://www.omnigroup.com/",
       appBar: new AppBar(
         title: new Text("omnigroup"),
-//        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-//          Navigator.of(context).pop();
-//        }),
       ),
     );
   }

@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail_content.dart';
 import 'package:wallet_app/view_model/main_model.dart';

@@ -2,24 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:wallet_app/demo/ColumnDemo.dart';
-import 'package:wallet_app/demo/ListViewDemo02.dart';
-import 'package:wallet_app/demo/WebViewDemo.dart';
-
-import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
-import 'package:wallet_app/view/main_view/main_page.dart';
-
-import 'package:wallet_app/view/welcome/start.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 void main() {
-<<<<<<< HEAD
   // debugPaintSizeEnabled = true;
-=======
-//  debugPaintSizeEnabled = true;
->>>>>>> f449426e821d625c88a0cd9410e5d8492ed213fa
   runApp(MyApp());
 }
 
