@@ -4,7 +4,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:fcharts/fcharts.dart';
 
 class MarketDetail extends StatefulWidget {

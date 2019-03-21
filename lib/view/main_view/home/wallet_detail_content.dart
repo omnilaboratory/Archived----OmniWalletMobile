@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/model/wallet_info.dart';
-import 'package:wallet_app/view/main_view/home/account_info_detail.dart';
+import 'package:wallet_app/view/main_view/home/trade_info_detail.dart';
 import 'package:wallet_app/view/main_view/home/receive_page.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
@@ -101,7 +101,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
       onTap: (){
         stateModel.currTradeInfo = tradeInfo;
         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-          return AccountInfoDetail();
+          return TradeInfoDetail();
         }));
       },
       child: Container(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/main_page_content.dart';
-import 'package:wallet_app/view_model/main_model.dart';
 
 class HomePage extends StatefulWidget {
   @override

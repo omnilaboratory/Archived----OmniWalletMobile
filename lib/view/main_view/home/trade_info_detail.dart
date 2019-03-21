@@ -5,7 +5,7 @@ import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/omni_website.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
-class AccountInfoDetail extends StatelessWidget {
+class TradeInfoDetail extends StatelessWidget {
   MainStateModel stateModel = null;
   TradeInfo tradeInfo = null;
 
@@ -58,30 +58,34 @@ class AccountInfoDetail extends StatelessWidget {
               ],
             );
 
-    return ListView(
-        padding: EdgeInsets.only(left: 20,top: 20),
-        children: <Widget>[
-          line1,
-          line("状态",tradeInfo.state==0?'交易中':'完成'),
-          line("备注",tradeInfo.note),
-          line("交易Id",tradeInfo.txId),
-          line("确认Block",tradeInfo.blockId.toString()),
-          line("确认数量",tradeInfo.confirmAmount.toString()),
-          Padding(
-            padding: const EdgeInsets.only( top: 20,left: 100,right: 120),
-            child: RaisedButton(
-              onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                  return WebViewPage();
-                }));
-              },
-              child: Text('浏览Omni网站'),
-            ),
-          )
-      ],
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(top: 20,left: 20),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              line1,
+              line("状态",tradeInfo.state==0?'交易中':'完成'),
+              line("备注",tradeInfo.note),
+              line("交易Id",tradeInfo.txId),
+              line("确认Block",tradeInfo.blockId.toString()),
+              line("确认数量",tradeInfo.confirmAmount.toString()),
+              Padding(
+                padding: const EdgeInsets.only( top: 20,left: 100,right: 120),
+                child: RaisedButton(
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return WebViewPage();
+                    }));
+                  },
+                  child: Text('浏览Omni网站'),
+                ),
+              )
+          ],
+        ),
+      ),
     );
   }
-
   Widget line(String title,String content) {
     return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

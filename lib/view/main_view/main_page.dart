@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/main_view/home/home_page.dart';
 import 'package:wallet_app/view/main_view/market_page.dart';
 import 'package:wallet_app/view/main_view/my_page.dart';
