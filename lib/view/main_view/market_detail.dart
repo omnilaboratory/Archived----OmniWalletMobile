@@ -45,67 +45,26 @@ class _MarketDetailState extends State<MarketDetail> {
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              _showQuotation(),
-              _showVolume(),
-              _showKLineChart(),
-              _kLineControlButton(),
-
-              // Other exchange's quotation
-              Text(
-                'Other exchanges',
-                // textAlign: TextAlign.start,
-                style: TextStyle(color: Colors.grey),
-              ),
-
-              _quotationList(),
-            ],
-          ),
-        ),
-
-        /*
         child: ListView(
           children: <Widget>[
             _showQuotation(),
             _showVolume(),
             _showKLineChart(),
             _kLineControlButton(),
-
-            // Other exchange's quotation
-            Text(
-              'Other exchanges',
-              // textAlign: TextAlign.start,
-              style: TextStyle(color: Colors.grey),
-            ),
-
+            _otherExchangesTitle(),
             _quotationList(),
           ],
-        ),*/
-
-        /*
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _showQuotation(),
-            _showVolume(),
-            _showKLineChart(),
-            _kLineControlButton(),
-
-            // Other exchange's quotation
-            Text(
-              'Other exchanges',
-              // textAlign: TextAlign.start,
-              style: TextStyle(color: Colors.grey),
-            ),
-
-            _quotationList(),
-
-          ], 
-        ),*/
+        ),
       ),
-      
+    );
+  }
+
+  // _otherExchangesTitle
+  Widget _otherExchangesTitle() {
+    return Text(
+      'Other exchanges',
+      // textAlign: TextAlign.start,
+      style: TextStyle(color: Colors.grey),
     );
   }
 
