@@ -15,11 +15,7 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 void main() {
-<<<<<<< HEAD
   // debugPaintSizeEnabled = true;
-=======
-//  debugPaintSizeEnabled = true;
->>>>>>> f449426e821d625c88a0cd9410e5d8492ed213fa
   runApp(MyApp());
 }
 
