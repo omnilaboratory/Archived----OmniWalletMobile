@@ -16,18 +16,64 @@ class _Demo02State extends State<Demo02> {
     );
   }
   Widget content(){
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          Container(height: 200,color: Colors.black,),
+          ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 20,
+              itemBuilder: (BuildContext context, int index){
+                return ListTile(title: Text('title${index}'),);
+              }
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget content1(){
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+          ListTile(title: Text('title'),),
+        ],
+      ),
+    );
+  }
+
+
+  Widget content2(){
     return Column(
       children: <Widget>[
-        Container(height: 200,color: Colors.grey,),
+        Container(height: 200,color: Colors.black,),
         Expanded(
           child: ListView.builder(
+              shrinkWrap: true,
               itemCount: 20,
               itemBuilder: (BuildContext context, int index){
                 return ListTile(title: Text('title${index}'),);
               }
           ),
         ),
-        Container(height: 200,color: Colors.grey,),
       ],
     );
   }

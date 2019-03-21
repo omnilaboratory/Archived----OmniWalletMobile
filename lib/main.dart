@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:wallet_app/demo/ListViewDemo02.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
@@ -60,7 +61,6 @@ class _MyAppState extends State<MyApp> {
         ],
         // home: BackupWalletIndex(),
          home: WelcomePageOne(),
-//         home: WebViewDemo(),
       ),
     );
   }

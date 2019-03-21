@@ -121,8 +121,10 @@ class BackupWalletIndex extends StatelessWidget {
         actions: <Widget>[
           FlatButton(
             onPressed: (){
-              Navigator.of(context).pop();
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MainPage()));
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                      (route) => route == null
+              );
             },
             child: Text(WalletLocalizations.of(context).backup_index_laterbackup),
           )

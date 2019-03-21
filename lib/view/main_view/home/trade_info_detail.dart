@@ -70,8 +70,7 @@ class TradeInfoDetail extends StatelessWidget {
               line("交易Id",tradeInfo.txId),
               line("确认Block",tradeInfo.blockId.toString()),
               line("确认数量",tradeInfo.confirmAmount.toString()),
-              Padding(
-                padding: const EdgeInsets.only( top: 20,left: 100,right: 120),
+              Center(
                 child: RaisedButton(
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
