@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/account_info_detail.dart';
 import 'package:wallet_app/view/main_view/home/receive_page.dart';
@@ -128,7 +129,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
             Icon(Icons.arrow_upward),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: Text(tradeInfo.tradeDate.toIso8601String()),
+              child: Text(DateFormat('yyyy-MM-dd kk:mm').format(tradeInfo.tradeDate)),
             )
           ],
         ),
