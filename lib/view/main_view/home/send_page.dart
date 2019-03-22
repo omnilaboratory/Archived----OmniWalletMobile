@@ -17,6 +17,25 @@ class _WalletSendState extends State<WalletSend> {
   final key = new GlobalKey<ScaffoldState>();
 
 
+  var minerFee = 0.0001;
+  var _feeGroup = 0;
+  void _setvalue2(int value) => setState(() {
+      if(value==0){
+        this.minerFee = 0.0001 ;
+      }
+      if(value==1){
+        this.minerFee = 0.0002 ;
+      }
+      if(value==2){
+        this.minerFee = 0.0003 ;
+      }
+      if(value==-1){
+        this.minerFee = 0.0004 ;
+      }
+
+      _feeGroup = value;
+  });
+
   @override
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
@@ -29,8 +48,58 @@ class _WalletSendState extends State<WalletSend> {
     );
   }
 
-  Widget body(){
+  Widget makeRadioTiles() {
+    List<Widget> list = new List<Widget>();
+    list.add(RadioListTile<int>(value: 0,title: Text('慢速    0.00001 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    list.add(RadioListTile<int>(value: 1,title: Text('中速    0.00002 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    list.add(RadioListTile<int>(value: 2,title: Text('快速    0.00003 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    var row = Row(children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Text('自定义'),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only (left: 20,right: 20),
+            child: TextField(
+              onChanged: (value){
+                if(value.length>0){
+                  setState(() {
+                    _feeGroup = -1;
+                    this.minerFee = double.parse(value);
+                  });
+                }
+                if(value.length==0){
+                  setState(() {
+                    _feeGroup = 0;
+                    this.minerFee = double.parse('0.0001');
+                  });
+                }
+              },
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 8, top: 10, bottom: 10),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  hintText: '选填',
+                  hintStyle: TextStyle(fontSize: 14)
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+    list.add(Container(child: row));
+    return Container(
+        margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.42),
+        child: Column(
+          children: list,
+        )
+    );
+  }
 
+
+  Widget body(){
     var line1 = Padding(
       padding: EdgeInsets.only(left: 30,top: 30,right: 30),
       child: Column(
@@ -122,12 +191,35 @@ class _WalletSendState extends State<WalletSend> {
         )
     );
 
+
+    var line4 = ExpansionTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('矿工费用'),
+                Expanded(child: Container()),
+                Text(this.minerFee.toStringAsFixed(8))
+            ],),
+
+            children: <Widget>[
+              makeRadioTiles()
+            ],
+          );
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           line1,
           line2,
-          line3
+          line3,
+          line4,
+          Padding(
+            padding: const EdgeInsets.only(top: 20,bottom: 50),
+            child: RaisedButton(
+                onPressed: (){
+                },
+              child: Text('下一步'),
+            ),
+          )
         ],
       ),
     );
