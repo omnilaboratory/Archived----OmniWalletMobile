@@ -62,6 +62,7 @@ class _WalletSendState extends State<WalletSend> {
           child: Padding(
             padding: const EdgeInsets.only (left: 20,right: 20),
             child: TextField(
+              keyboardType: TextInputType.number,
               onChanged: (value){
                 if(value.length>0){
                   setState(() {
