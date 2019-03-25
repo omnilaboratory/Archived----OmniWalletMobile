@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 /**
@@ -255,6 +256,8 @@ class _WalletSendState extends State<WalletSend> {
                       print(this._amount);
                       print(this._note);
                       print(this.minerFee);
+                      stateModel.sendInfo = SendInfo(toAddress: this._toAddress,amount: this._amount,note: this._note,minerFee: this.minerFee);
+                      Navigator.of(context).pushNamed(SendConfirm.tag);
                     }
                   },
                 child: Text('下一步'),

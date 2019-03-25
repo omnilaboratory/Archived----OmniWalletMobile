@@ -68,5 +68,17 @@ class TradeInfo extends BaseInfo{
     this.blockId,
     this.tradeType
   });
+}
+class SendInfo{
+  String toAddress;
+  num amount;
+  String note;
+  num minerFee;
 
+  SendInfo({
+      this.toAddress,
+      this.amount,
+      this.note,
+      this.minerFee
+  });
 }
