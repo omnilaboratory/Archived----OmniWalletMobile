@@ -70,12 +70,18 @@ class WalletLocalizations{
       'marketPagePrice' : '价格',
       'marketPageChange' : '涨跌幅',
 
-      'myProfilePageMenu1' : '使用设置',
+      'myProfilePageMenu1' : '设置',
       'myProfilePageMenu2' : '钱包地址本',
       'myProfilePageMenu3' : '帮助与反馈',
       'myProfilePageMenu4' : '服务条款',
       'myProfilePageMenu5' : '备份钱包',
       'myProfilePageMenu6' : '关于我们',
+
+      'settingsPageTitle' : '设置',
+      'settingsPageItem_1_Title' : '语言',
+      'settingsPageItem_1_Content' : '',
+      'settingsPageItem_2_Title' : '货币',
+      'settingsPageItem_2_Content' : '',
     },
 
     'en': {
@@ -162,8 +168,19 @@ class WalletLocalizations{
       'myProfilePageMenu4' : 'Service Terms',
       'myProfilePageMenu5' : 'Backup Wallet',
       'myProfilePageMenu6' : 'About Us',
+
+      'settingsPageTitle' : 'Settings',
+      'settingsPageItem_1_Title' : 'Language',
+      'settingsPageItem_1_Content' : '',
+      'settingsPageItem_2_Title' : 'Currency',
+      'settingsPageItem_2_Content' : '',
     }
   };
+
+  // Setting page
+  get settingsPageTitle => _localizedValues[locale.languageCode]['settingsPageTitle'];
+  get settingsPageItem_1_Title => _localizedValues[locale.languageCode]['settingsPageItem_1_Title'];
+  get settingsPageItem_2_Title => _localizedValues[locale.languageCode]['settingsPageItem_2_Title'];
 
   // My profile page
   get myProfilePageMenu1 => _localizedValues[locale.languageCode]['myProfilePageMenu1'];

@@ -8,6 +8,7 @@ import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
+import 'package:wallet_app/view/main_view/settings.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -35,6 +36,7 @@ class _MyAppState extends State<MyApp> {
 
   final routes = <String, WidgetBuilder>{
     SendConfirm.tag: (context) => SendConfirm(),
+    Settings.tag: (context) => Settings(),
   };
 
   @override
@@ -69,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         ],
         routes: routes,
         // home: BackupWalletIndex(),
-         home: WelcomePageOne(),
+        home: WelcomePageOne(),
       ),
     );
   }

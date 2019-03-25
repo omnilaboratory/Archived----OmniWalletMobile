@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/main_view/settings.dart';
 
 class UserCenter extends StatefulWidget {
   @override
@@ -75,9 +76,14 @@ class _UserCenterState extends State<UserCenter> {
       WalletLocalizations.of(context).myProfilePageMenu5,
       WalletLocalizations.of(context).myProfilePageMenu6,
     ];
-  
+
+    // Page routes
+    List<String> routes = <String> [
+      Settings.tag, '', '','','','',
+    ];
+
     for (int i = 0; i < items.length; i++) {
-      _list.add(_menuItem(leading_icons[i], items[i]));
+      _list.add(_menuItem(leading_icons[i], items[i], routes[i]));
     }
 
     var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
@@ -106,7 +112,7 @@ class _UserCenterState extends State<UserCenter> {
   }
 
   //
-  Widget _menuItem(Icon icon, String item) {
+  Widget _menuItem(Icon icon, String item, String route) {
     return Material(
       child: ListTile(
         leading: icon,
@@ -115,6 +121,7 @@ class _UserCenterState extends State<UserCenter> {
         onTap: () { 
           // TODO: show next page.
           print('menu list');
+          Navigator.of(context).pushNamed(route);
         },
       ),
     );
