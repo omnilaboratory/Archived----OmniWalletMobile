@@ -17,6 +17,13 @@ class _WalletSendState extends State<WalletSend> {
   final key = new GlobalKey<ScaffoldState>();
 
 
+  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  String _toAddress;
+  num _amount;
+  num _fee;
+  String _note;
+
+
   var minerFee = 0.0001;
   var _feeGroup = 0;
   void _setvalue2(int value) => setState(() {
@@ -38,6 +45,7 @@ class _WalletSendState extends State<WalletSend> {
 
   @override
   Widget build(BuildContext context) {
+
     stateModel = MainStateModel().of(context);
     walletInfo = stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
@@ -118,7 +126,15 @@ class _WalletSendState extends State<WalletSend> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12),
-            child: TextField(
+            child: TextFormField(
+              validator: (val){
+                if(val==null||val.length==0){
+                  return "wrong address";
+                }
+              },
+              onSaved: (val){
+                this._toAddress = val;
+              },
               scrollPadding: EdgeInsets.only(top: 10),
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 8,top: 20,bottom:10),
@@ -149,7 +165,16 @@ class _WalletSendState extends State<WalletSend> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 12),
-              child: TextField(
+              child: TextFormField(
+                validator: (val){
+                    if(val==null||val.length==0){
+                      return "wrong amount";
+                    }
+                },
+                onSaved: (val){
+                  print(val);
+                  this._amount = num.parse(val);
+                },
                 keyboardType:TextInputType.number ,
                 scrollPadding: EdgeInsets.only(top: 0),
                 decoration: InputDecoration(
@@ -176,7 +201,10 @@ class _WalletSendState extends State<WalletSend> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(left: 20),
-                child: TextField(
+                child: TextFormField(
+                  onSaved: (val){
+                    this._note = val;
+                  },
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 8,top: 20,bottom:10),
                       border: OutlineInputBorder(
@@ -206,22 +234,34 @@ class _WalletSendState extends State<WalletSend> {
               makeRadioTiles()
             ],
           );
+
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          line1,
-          line2,
-          line3,
-          line4,
-          Padding(
-            padding: const EdgeInsets.only(top: 20,bottom: 50),
-            child: RaisedButton(
-                onPressed: (){
-                },
-              child: Text('下一步'),
-            ),
-          )
-        ],
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
+            line1,
+            line2,
+            line3,
+            line4,
+            Padding(
+              padding: const EdgeInsets.only(top: 20,bottom: 50),
+              child: RaisedButton(
+                  onPressed: (){
+                    var _form = _formKey.currentState;
+                    if (_form.validate()) {
+                      _form.save();
+                      print(this._toAddress);
+                      print(this._amount);
+                      print(this._note);
+                      print(this.minerFee);
+                    }
+                  },
+                child: Text('下一步'),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
