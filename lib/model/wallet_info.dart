@@ -70,10 +70,10 @@ class TradeInfo extends BaseInfo{
   });
 }
 class SendInfo{
-  String toAddress;
-  num amount;
-  String note;
-  num minerFee;
+  String toAddress='';
+  num amount=0;
+  String note='';
+  num minerFee=0;
 
   SendInfo({
       this.toAddress,

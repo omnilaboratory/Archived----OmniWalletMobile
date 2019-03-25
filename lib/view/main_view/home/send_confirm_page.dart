@@ -10,6 +10,7 @@ class SendConfirm extends StatelessWidget {
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     this._sendInfo = stateModel.sendInfo;
+    print(this._sendInfo);
     return Scaffold(
       appBar: AppBar(
         title: Text(SendConfirm.tag),
@@ -31,7 +32,7 @@ class SendConfirm extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
-                Text(_sendInfo.toAddress,style: TextStyle(fontWeight: FontWeight.w500),)
+                Text('${_sendInfo.toAddress==null?'':_sendInfo.toAddress}',style: TextStyle(fontWeight: FontWeight.w500),)
               ],
             ),
           ),
@@ -44,7 +45,7 @@ class SendConfirm extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
-                Text("${_sendInfo.amount} BTC",style: TextStyle(fontWeight: FontWeight.w500),)
+                Text("${_sendInfo.amount==null?0:_sendInfo.amount} BTC",style: TextStyle(fontWeight: FontWeight.w500),)
               ],
             ),
           ),
@@ -57,7 +58,7 @@ class SendConfirm extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
-                Text("${_sendInfo.minerFee} BTC",style: TextStyle(fontWeight: FontWeight.w500),)
+                Text("${_sendInfo.minerFee==null?0:_sendInfo.minerFee} BTC",style: TextStyle(fontWeight: FontWeight.w500),)
               ],
             ),
           ),
@@ -70,7 +71,7 @@ class SendConfirm extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
-                Text("${_sendInfo.note}",style: TextStyle(fontWeight: FontWeight.w500),)
+                Text("${_sendInfo.note==null?'':_sendInfo.note}",style: TextStyle(fontWeight: FontWeight.w500),)
               ],
             ),
           ),

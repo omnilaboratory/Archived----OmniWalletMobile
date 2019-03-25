@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/omni_website.dart';
+import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class TradeInfoDetail extends StatelessWidget {
