@@ -3,7 +3,7 @@ import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class SendConfirm extends StatelessWidget {
-  static String tag = "SendConfirm";
+  static String tag = "Send Confirm";
   MainStateModel stateModel = null;
   SendInfo _sendInfo ;
   @override
@@ -12,12 +12,12 @@ class SendConfirm extends StatelessWidget {
     this._sendInfo = stateModel.sendInfo;
     return Scaffold(
       appBar: AppBar(
-        title: Text('SendConfirm'),
+        title: Text(SendConfirm.tag),
       ),
-      body: this.body(),
+      body: this.body(context),
     );
   }
-  Widget body(){
+  Widget body(BuildContext context){
     return Container(
       margin: EdgeInsets.only(top: 30,left: 20,right: 20),
       child: Column(
@@ -74,6 +74,17 @@ class SendConfirm extends StatelessWidget {
               ],
             ),
           ),
+          Expanded(child: Container()),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            child: RaisedButton(
+              color: Colors.lightBlue[300],
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.35,vertical: 20),
+                onPressed: (){
+             },
+              child: Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
+            ),
+          )
         ],
       ),
     );

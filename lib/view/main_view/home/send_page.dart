@@ -171,6 +171,11 @@ class _WalletSendState extends State<WalletSend> {
                     if(val==null||val.length==0){
                       return "wrong amount";
                     }
+                    if(num.tryParse(val) is num){
+
+                    }else{
+                      return "wrong input";
+                    }
                 },
                 onSaved: (val){
                   print(val);
@@ -252,10 +257,6 @@ class _WalletSendState extends State<WalletSend> {
                     var _form = _formKey.currentState;
                     if (_form.validate()) {
                       _form.save();
-                      print(this._toAddress);
-                      print(this._amount);
-                      print(this._note);
-                      print(this.minerFee);
                       stateModel.sendInfo = SendInfo(toAddress: this._toAddress,amount: this._amount,note: this._note,minerFee: this.minerFee);
                       Navigator.of(context).pushNamed(SendConfirm.tag);
                     }

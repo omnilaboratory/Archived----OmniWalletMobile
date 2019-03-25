@@ -43,6 +43,8 @@ class _MyAppState extends State<MyApp> {
       model: mainStateModel,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+        ),
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {
             this.locale = deviceLocale;
