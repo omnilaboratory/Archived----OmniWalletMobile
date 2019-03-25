@@ -43,6 +43,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Colors.blue,
         icon: Icon(
           Icons.filter_drama,
           color: _bottomNavigationColor,
@@ -52,6 +53,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Colors.blue,
         icon: Icon(
           Icons.pages,
           color: _bottomNavigationColor,
@@ -61,6 +63,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Colors.blue,
         icon: Icon(
           Icons.my_location,
           color: _bottomNavigationColor,
