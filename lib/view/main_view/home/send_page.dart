@@ -59,9 +59,15 @@ class _WalletSendState extends State<WalletSend> {
 
   Widget makeRadioTiles() {
     List<Widget> list = new List<Widget>();
-    list.add(RadioListTile<int>(value: 0,title: Text('慢速    0.00001 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
-    list.add(RadioListTile<int>(value: 1,title: Text('中速    0.00002 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
-    list.add(RadioListTile<int>(value: 2,title: Text('快速    0.00003 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+
+    //-------------
+    // TODO: Miner fees will be modified based on 
+    // calculate dynamically in future development.
+    list.add(RadioListTile<int>(value: 0,title: Text('Slow    0.00001 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    list.add(RadioListTile<int>(value: 1,title: Text('Middle  0.00002 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    list.add(RadioListTile<int>(value: 2,title: Text('Fast    0.00003 btc'), groupValue: _feeGroup, onChanged: _setvalue2));
+    //-------------
+
     var row = Row(children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 20),
