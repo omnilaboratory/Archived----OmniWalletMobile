@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:wallet_app/demo/CustomScrollViewDemo.dart';
-import 'package:wallet_app/demo/ListViewDemo02.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
+import 'package:wallet_app/view/main_view/home/send_page.dart';
+import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
-import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -36,7 +35,9 @@ class _MyAppState extends State<MyApp> {
 
   final routes = <String, WidgetBuilder>{
     SendConfirm.tag: (context) => SendConfirm(),
+    WalletSend.tag: (context) => WalletSend(),
     Settings.tag: (context) => Settings(),
+    AddressBook.tag: (context) => AddressBook(),
   };
 
   @override
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: Colors.white,
         ),
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {
