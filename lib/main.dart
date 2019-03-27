@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+import 'package:wallet_app/view/main_view/help.dart';
+import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
@@ -37,6 +39,8 @@ class _MyAppState extends State<MyApp> {
     SendConfirm.tag: (context) => SendConfirm(),
     WalletSend.tag: (context) => WalletSend(),
     Settings.tag: (context) => Settings(),
+    Help.tag: (context) => Help(),
+    SubmitFeedback.tag: (context) => SubmitFeedback(),
     AddressBook.tag: (context) => AddressBook(),
   };
 

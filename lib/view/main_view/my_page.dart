@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 
 class UserCenter extends StatefulWidget {
@@ -79,7 +80,7 @@ class _UserCenterState extends State<UserCenter> {
 
     // Page routes
     List<String> routes = <String> [
-      Settings.tag, '', '','','','',
+      Settings.tag, '', Help.tag, '','','',
     ];
 
     for (int i = 0; i < items.length; i++) {
@@ -117,7 +118,7 @@ class _UserCenterState extends State<UserCenter> {
       child: ListTile(
         leading: icon,
         title: Text(item),
-        trailing: Icon(Icons.chevron_right),
+        trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () { 
           // TODO: show next page.
           print('menu list');

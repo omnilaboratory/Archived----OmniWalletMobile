@@ -38,7 +38,11 @@ dependencies:
 
   # chart library 
   fcharts: ^0.0.10
+
+  # Add features to the Android / iOS keyboard
+  keyboard_actions: ^1.0.3
   #------------------------
+  
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
   qr_flutter: ^2.0.0+51
   #------------------------
