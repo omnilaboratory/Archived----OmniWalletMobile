@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   TabController controller;
   List<Tab> tabs=[
-    Tab(text: '钱包',icon: Icon(Icons.home)),
+    Tab(text: '钱包',icon: Icon(Icons.home,)),
     Tab(text: '市场',icon: Icon(Icons.filter_drama)),
     Tab(text: 'OmniDe',icon: Icon(Icons.wb_sunny)),
     Tab(text: '我的',icon: Icon(Icons.my_location)),

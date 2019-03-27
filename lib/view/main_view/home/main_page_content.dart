@@ -25,7 +25,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.grey[300])
           ),
           child: ExpansionTile(
             title: buildFirstLevelHeader(index),
@@ -39,14 +38,18 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     WalletInfo dataInfo = walletInfoes[index];
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 8,top: 8),
-          child: Icon(
-            dataInfo.iconUrl??Icons.ac_unit,
-            size: 28,
-            color: Colors.blue,
+          padding: const EdgeInsets.only(right: 10,bottom: 20,top: 20),
+          child: CircleAvatar(
+            radius: 24,
+            backgroundColor: Colors.lightBlue[50],
+            child: Icon(
+              dataInfo.iconUrl??Icons.ac_unit,
+              size: 30,
+              color: Colors.blue,
+            ),
           ),
         ),
         Expanded(
@@ -57,7 +60,12 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                 children: <Widget>[
                   Text(dataInfo.name),
                   Expanded(child: Container()),
-                  Text(dataInfo.note)
+                  Text(
+                    '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  )
               ],),
               SizedBox(height: 10,),
               Text(
@@ -67,16 +75,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
                 ),
               ),
-              SizedBox(height: 10,),
-              Align(
-                alignment: Alignment(1.3, 0),
-                child: Text(
-                   '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
-                ),
-              ) ,
             ],
           ),
         ),
@@ -85,28 +83,15 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
   }
   List<Widget> buildItemes(BuildContext context, int index) {
     WalletInfo dataInfo = walletInfoes[index];
-
     List<Widget> list = List();
-    list.add(Container(height: 1,color: Colors.red,));
-    list.add(
-        Align(
-          alignment: Alignment(-1, 0),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 60,top: 10,bottom: 10),
-            child: Text(
-              dataInfo.name+"-资产",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-        )
-    );
+    list.add(Container(height: 1,color: Colors.grey[100],));
     for (int i = 0; i < dataInfo.accountInfoes.length; i++) {
       AccountInfo accountInfo = dataInfo.accountInfoes[i];
       list.add(
         Container(
-          margin: EdgeInsets.only(left: 60,bottom: 8),
+          margin: EdgeInsets.only(left: 16,bottom: 12,top: 12),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey)
+            border: Border(bottom: BorderSide(color: Colors.grey[100]))
           ),
           child: InkWell(
             onTap: (){ this.onClickItem(index,i);},
@@ -114,7 +99,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               margin: EdgeInsets.all(6),
               child: Row(
                 children: <Widget>[
-                  Icon(accountInfo.iconUrl??Icons.add,size: 40,),
+                  CircleAvatar(backgroundColor: Colors.lightBlue[50], child: Icon(accountInfo.iconUrl??Icons.add,size: 40,)),
                   Container(
                     margin: EdgeInsets.only(left: 16),
                       child: Text('${accountInfo.name}',style: TextStyle(fontSize: 18),)
@@ -143,7 +128,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
         )
       );
     }
-    list.add(SizedBox(height: 30,));
+    list.add(SizedBox(height: 20,));
     return list;
   }
   //点击item
