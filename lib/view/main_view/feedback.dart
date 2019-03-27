@@ -22,37 +22,16 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).feedbackPageTitle),
+        elevation: 0,
       ),
 
       body: FormKeyboardActions(
         actions: _keyboardActions(),
-        
         child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              TextField( // title
-                decoration: InputDecoration(
-                  filled: true, 
-                  labelText: WalletLocalizations.of(context).feedbackPageInputTitleTooltip,
-                ),
-
-                // keyboardType: TextInputType.number,
-                focusNode: _nodeText1,
-              ),
-
-              TextField( // content
-                decoration: InputDecoration(
-                  filled: true, 
-                  labelText: WalletLocalizations.of(context).feedbackPageContentTooltip,
-                ),
-
-                maxLines: 2,
-                focusNode: _nodeText2,
-              ),
-            ],
-          ),
+          child: _content(),
         ),
       ),
     );
@@ -82,35 +61,64 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     return actions;
   }
   
-  // Build FAQ list
-  List<Widget> _buildFAQList() {
-    // list tile
-    List<Widget> _list = List();
-
-    // FAQ list
-    List<String> faqList = <String> [
-      'Q-1','Q-2','Q-3',
-    ];
-
-    for (int i = 0; i < faqList.length; i++) {
-      _list.add(_faqItem(faqList[i]));
-    }
-
-    var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
-
-    return divideList;
-  }
-
   //
-  Widget _faqItem(String item) {
-    return ListTile(
-      title: Text(item),
-      trailing: Icon(Icons.keyboard_arrow_right),
-      onTap: () { 
-        // TODO: show next page.
-        print('menu list');
-        Navigator.of(context).pushNamed('routeName');
-      },
+  Widget _content() {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        children: <Widget>[
+          TextField( // title
+            decoration: InputDecoration(
+              labelText: WalletLocalizations.of(context).feedbackPageInputTitleTooltip,
+              labelStyle: TextStyle(
+                color: Colors.blue,
+              ),
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true, 
+            ),
+
+            focusNode: _nodeText1,
+          ),
+
+          SizedBox(height: 20),
+
+          TextField( // content
+            decoration: InputDecoration(
+              labelText: WalletLocalizations.of(context).feedbackPageContentTooltip,
+              labelStyle: TextStyle(
+                color: Colors.blue,
+              ),
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true, 
+            ),
+
+            maxLines: null,
+            focusNode: _nodeText2,
+          ),
+
+          // Upload Picture Title
+          Text(WalletLocalizations.of(context).feedbackPageUploadPicTitle),
+          
+          Material(  // Upload Picture Button
+            // elevation: 4.0,
+            shape: CircleBorder(),
+            color: Colors.transparent,
+            child: Ink.image(
+              image: AssetImage('assets/upload_picture.png'),
+              fit: BoxFit.cover,
+              width: 120.0,
+              height: 120.0,
+              child: InkWell(
+                onTap: () {},
+                child: null,
+              ),
+            ),
+          )
+
+        ],
+      ),
     );
   }
 }

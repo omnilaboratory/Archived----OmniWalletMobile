@@ -22,7 +22,7 @@ class _HelpState extends State<Help> {
         actions: <Widget>[
           FlatButton(  // feedback button
             child: Text(WalletLocalizations.of(context).helpPageFeedback),
-            textColor: Colors.white70,
+            textColor: Colors.blue,
             onPressed: () {
               // TODO: submit feedback
               Navigator.of(context).pushNamed(SubmitFeedback.tag);
