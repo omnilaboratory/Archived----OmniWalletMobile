@@ -82,3 +82,12 @@ class SendInfo{
       this.minerFee
   });
 }
+/**
+ * 用户常用地址
+ */
+class UsualAddressInfo extends BaseInfo{
+  String address;
+  String note;
+  UsualAddressInfo({String name, this.address,this.note}):super(name:name);
+}
+

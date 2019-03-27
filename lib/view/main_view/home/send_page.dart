@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
-import 'package:wallet_app/view_model/main_model.dart';
+import 'package:wallet_app/view/main_view/wallet_address_book.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 /**
  * 钱包转账
  */
 class WalletSend extends StatefulWidget {
+  static String tag = 'WalletSend';
   @override
   _WalletSendState createState() => _WalletSendState();
 }
 class _WalletSendState extends State<WalletSend> {
 
+  TextEditingController addressController ;
+
   MainStateModel stateModel = null;
   WalletInfo walletInfo;
   AccountInfo accountInfo;
+  UsualAddressInfo _usualAddressInfo;
   final key = new GlobalKey<ScaffoldState>();
 
 
@@ -46,13 +50,16 @@ class _WalletSendState extends State<WalletSend> {
 
   @override
   Widget build(BuildContext context) {
-
     stateModel = MainStateModel().of(context);
     walletInfo = stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
+    _usualAddressInfo = stateModel.currSelectedUsualAddress;
+
+     addressController = TextEditingController();
+
     return Scaffold(
         key: this.key,
-        appBar: AppBar(title: Text(accountInfo.name+"转账"),),
+        appBar: AppBar(title: Text(accountInfo.name + "转账"),),
         body: this.body()
     );
   }
@@ -116,6 +123,7 @@ class _WalletSendState extends State<WalletSend> {
 
 
   Widget body(){
+
     var line1 = Padding(
       padding: EdgeInsets.only(left: 30,top: 30,right: 30),
       child: Column(
@@ -127,13 +135,15 @@ class _WalletSendState extends State<WalletSend> {
               Text('转账地址',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),),
               Expanded(child: Container()),
               InkWell(child: Text('常用地址'),onTap: (){
-
+                Navigator.of(context).pushNamed(AddressBook.tag);
               },)
             ],
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12),
             child: TextFormField(
+              controller: addressController,
+//              initialValue: _usualAddressInfo==null?'enmpty':_usualAddressInfo.address,
               validator: (val){
                 if(val==null||val.length==0){
                   return "wrong address";
@@ -143,14 +153,14 @@ class _WalletSendState extends State<WalletSend> {
                 this._toAddress = val;
               },
               scrollPadding: EdgeInsets.only(top: 10),
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8,top: 20,bottom:10),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    labelText:'请输入地址',
-                    labelStyle: TextStyle(fontSize: 14)
-                ),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 8,top: 20,bottom:10),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  labelText:'请输入地址',
+                  labelStyle: TextStyle(fontSize: 14)
+              ),
             ),
           ),
         ],
@@ -246,7 +256,9 @@ class _WalletSendState extends State<WalletSend> {
               makeRadioTiles()
             ],
           );
-
+    if(_usualAddressInfo!=null&&addressController!=null){
+        addressController.text =_usualAddressInfo.address;
+    }
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
