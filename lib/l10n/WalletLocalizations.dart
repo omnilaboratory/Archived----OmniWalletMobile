@@ -153,7 +153,7 @@ class WalletLocalizations{
       'startPageButtonSecond' : '   Restore wallet   ',
       'startPageLanguageBarTitle' : 'Language',
 
-      'main_page_title' : 'Wallet',
+      'main_page_title' : 'My Wallet',
       'common_btn_skip' : 'Skip',
 
       'marketPageAppBarTitle' : 'Quotation',

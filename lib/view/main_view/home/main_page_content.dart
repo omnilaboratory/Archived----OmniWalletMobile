@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
-import 'package:wallet_app/view_model/main_model.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 
 class BodyContentWidget extends StatefulWidget {
@@ -20,23 +18,21 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     walletInfoes = stateModel.walletInfoes;
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: ListView.builder(
-        itemCount: walletInfoes.length,
-        itemBuilder: (BuildContext context, int index){
-          return Container(
-            margin: EdgeInsets.only(bottom: 10),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey[300])
-            ),
-            child: ExpansionTile(
-              title: buildFirstLevelHeader(index),
-              children: buildItemes(context,index),
-            ),
-          );
-      }),
-    );
+    return ListView.builder(
+      itemCount: walletInfoes.length,
+      itemBuilder: (BuildContext context, int index){
+        return Container(
+          margin: EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey[300])
+          ),
+          child: ExpansionTile(
+            title: buildFirstLevelHeader(index),
+            children: buildItemes(context,index),
+          ),
+        );
+    });
   }
 
   Widget buildFirstLevelHeader(int index) {

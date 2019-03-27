@@ -15,13 +15,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: null,
-        title: Center(child: Text(WalletLocalizations.of(context).main_page_title)),
+        elevation: 0,
+        centerTitle: true,
+        title: Text(WalletLocalizations.of(context).main_page_title),
         actions: <Widget>[
-          FlatButton(onPressed: (){
-            this.showCreateWalletPage(context);
-          }, child: Text('创建钱包'))
+          IconButton(
+              onPressed: (){
+                this.showCreateWalletPage(context);
+              },
+              icon: Icon(
+                Icons.add_circle_outline,
+                size: 30,
+                color: Colors.grey[900],
+              ))
         ],
       ),
       body: new BodyContentWidget(),

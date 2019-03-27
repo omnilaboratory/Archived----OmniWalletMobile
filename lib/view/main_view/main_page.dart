@@ -15,8 +15,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   TabController controller;
   List<Tab> tabs=[
     Tab(text: '钱包',icon: Icon(Icons.home)),
-//    Tab(text: '市场',icon: Icon(Icons.filter_drama)),
-//    Tab(text: 'OmniDe',icon: Icon(Icons.wb_sunny)),
+    Tab(text: '市场',icon: Icon(Icons.filter_drama)),
+    Tab(text: 'OmniDe',icon: Icon(Icons.wb_sunny)),
     Tab(text: '我的',icon: Icon(Icons.my_location)),
   ];
 
@@ -37,6 +37,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   List<BottomNavigationBarItem>  bulidTabBars(){
     List<BottomNavigationBarItem> list = [];
     list.add(BottomNavigationBarItem(
+        backgroundColor: Color(0xffEAEAEA),
         icon: Icon(
           Icons.home,
           color: _bottomNavigationColor,
@@ -50,6 +51,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Color(0xffEAEAEA),
         icon: Icon(
           Icons.filter_drama,
           color: _bottomNavigationColor,
@@ -63,6 +65,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Color(0xffEAEAEA),
         icon: Icon(
           Icons.pages,
           color: _bottomNavigationColor,
@@ -76,6 +79,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           style: TextStyle(color: _bottomNavigationColor),
         )));
     list.add(BottomNavigationBarItem(
+        backgroundColor: Color(0xffEAEAEA),
         icon: Icon(
           Icons.my_location,
           color: _bottomNavigationColor,
@@ -101,17 +105,29 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: bulidTabBars(),
-          currentIndex: _currentIndex,
-          onTap: (int index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-        ),
-        body: pages[_currentIndex],
+//        bottomNavigationBar: BottomNavigationBar(
+//          items: bulidTabBars(),
+//          currentIndex: _currentIndex,
+//          onTap: (int index) {
+//            setState(() {
+//              _currentIndex = index;
+//            });
+//          },
+//          type: BottomNavigationBarType.fixed,
+//          iconSize: 20,
+//        ),
+//      body: pages[_currentIndex],
+      bottomNavigationBar: Material(
+        color: Colors.white,
+        child: TabBar(
+            indicatorWeight: 1,
+            controller: controller,
+            tabs:tabs),
+      ),
+      body: TabBarView(
+          controller: controller,
+          children: this.pages
+      ),
     );
   }
 }
