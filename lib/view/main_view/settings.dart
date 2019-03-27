@@ -23,22 +23,54 @@ class _SettingsState extends State<Settings> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(WalletLocalizations.of(context).settingsPageItem_1_Title),
-                Text(
-                  'English',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    color: Colors.grey,
+            ListTile(
+              title: Text(WalletLocalizations.of(context).settingsPageItem_1_Title),
+
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'English',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.chevron_right, 
-                  color: Colors.grey,
-                ),
-              ],
+                  SizedBox(width: 15),
+                  Icon(Icons.keyboard_arrow_right),
+                ],
+              ),
+
+              onTap: () {
+                // TODO: show next page.
+                // Navigator.of(context).pushNamed(route);
+              },
             ),
+
+            // Item 2
+            ListTile(
+              title: Text(WalletLocalizations.of(context).settingsPageItem_2_Title),
+
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'CNY',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(width: 15),
+                  Icon(Icons.keyboard_arrow_right),
+                ],
+              ),
+
+              onTap: () {
+                // TODO: show next page.
+                // Navigator.of(context).pushNamed(route);
+              },
+            )
+
+            
           ],
         ),
       ),

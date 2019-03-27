@@ -5,6 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/demo/CustomScrollViewDemo.dart';
 import 'package:wallet_app/demo/ListViewDemo02.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+import 'package:wallet_app/view/main_view/help.dart';
+import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
@@ -37,6 +39,8 @@ class _MyAppState extends State<MyApp> {
   final routes = <String, WidgetBuilder>{
     SendConfirm.tag: (context) => SendConfirm(),
     Settings.tag: (context) => Settings(),
+    Help.tag: (context) => Help(),
+    SubmitFeedback.tag: (context) => SubmitFeedback(),
   };
 
   @override

@@ -72,7 +72,7 @@ class WalletLocalizations{
 
       'myProfilePageMenu1' : '设置',
       'myProfilePageMenu2' : '钱包地址本',
-      'myProfilePageMenu3' : '帮助与反馈',
+      'myProfilePageMenu3' : '帮助和反馈',
       'myProfilePageMenu4' : '服务条款',
       'myProfilePageMenu5' : '备份钱包',
       'myProfilePageMenu6' : '关于我们',
@@ -82,6 +82,17 @@ class WalletLocalizations{
       'settingsPageItem_1_Content' : '',
       'settingsPageItem_2_Title' : '货币',
       'settingsPageItem_2_Content' : '',
+
+      'helpPageTitle' : '帮助',
+      'helpPageItemTitle' : '常见问题',
+      'helpPageFeedback' : '提交反馈',
+
+      'feedbackPageTitle' : '提交反馈',
+      'feedbackPageInputTitleTooltip' : '标题',
+      'feedbackPageContentTooltip' : '内容',
+      'feedbackPageEmailTooltip' : '电子邮件地址',
+      'feedbackPageUploadPicTitle' : '上传图片',
+      'feedbackPageSubmitButton' : '提交',
     },
 
     'en': {
@@ -164,7 +175,7 @@ class WalletLocalizations{
 
       'myProfilePageMenu1' : 'Settings',
       'myProfilePageMenu2' : 'Address Book',
-      'myProfilePageMenu3' : 'Help and Feed back',
+      'myProfilePageMenu3' : 'Help and Feedback',
       'myProfilePageMenu4' : 'Service Terms',
       'myProfilePageMenu5' : 'Backup Wallet',
       'myProfilePageMenu6' : 'About Us',
@@ -174,8 +185,32 @@ class WalletLocalizations{
       'settingsPageItem_1_Content' : '',
       'settingsPageItem_2_Title' : 'Currency',
       'settingsPageItem_2_Content' : '',
+
+      'helpPageTitle' : 'Help',
+      'helpPageItemTitle' : 'FAQ',
+      'helpPageFeedback' : 'Feedback',
+
+      'feedbackPageTitle' : 'Submit Feedback',
+      'feedbackPageInputTitleTooltip' : 'Title',
+      'feedbackPageContentTooltip' : 'Content',
+      'feedbackPageEmailTooltip' : 'E-mail address',
+      'feedbackPageUploadPicTitle' : 'Upload Picture',
+      'feedbackPageSubmitButton' : 'Submit',
     }
   };
+
+  // Submit Feedback page
+  get feedbackPageTitle => _localizedValues[locale.languageCode]['feedbackPageTitle'];
+  get feedbackPageInputTitleTooltip => _localizedValues[locale.languageCode]['feedbackPageInputTitleTooltip'];
+  get feedbackPageContentTooltip => _localizedValues[locale.languageCode]['feedbackPageContentTooltip'];
+  get feedbackPageEmailTooltip => _localizedValues[locale.languageCode]['feedbackPageEmailTooltip'];
+  get feedbackPageUploadPicTitle => _localizedValues[locale.languageCode]['feedbackPageUploadPicTitle'];
+  get feedbackPageSubmitButton => _localizedValues[locale.languageCode]['feedbackPageSubmitButton'];
+
+  // Help and Feedback page
+  get helpPageTitle => _localizedValues[locale.languageCode]['helpPageTitle'];
+  get helpPageItemTitle => _localizedValues[locale.languageCode]['helpPageItemTitle'];
+  get helpPageFeedback => _localizedValues[locale.languageCode]['helpPageFeedback'];
 
   // Setting page
   get settingsPageTitle => _localizedValues[locale.languageCode]['settingsPageTitle'];
