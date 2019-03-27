@@ -72,7 +72,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                 dataInfo.address,
                 maxLines: 1,
                 style: TextStyle(
-
+                  color: Colors.grey
                 ),
               ),
             ],
@@ -99,7 +99,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               margin: EdgeInsets.all(6),
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(backgroundColor: Colors.lightBlue[50], child: Icon(accountInfo.iconUrl??Icons.add,size: 40,)),
+                  CircleAvatar(backgroundColor: Colors.lightBlue[50], child: Icon(accountInfo.iconUrl??Icons.add,size: 30,color: Colors.green,)),
                   Container(
                     margin: EdgeInsets.only(left: 16),
                       child: Text('${accountInfo.name}',style: TextStyle(fontSize: 18),)
@@ -112,11 +112,19 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
-                          child: Text('${accountInfo.amount.toStringAsFixed(8)}',textAlign: TextAlign.right,style: TextStyle(fontSize: 18),),
+                          child: Text(
+                            '${accountInfo.amount.toStringAsFixed(8)}',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
-                          child: Text('\$'+accountInfo.legalTender.toStringAsFixed(2),textAlign: TextAlign.right,),
+                          child: Text(
+                            '\$'+accountInfo.legalTender.toStringAsFixed(2),
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 18,color: Colors.grey),
+                          ),
                         ),
                       ],
                     ),

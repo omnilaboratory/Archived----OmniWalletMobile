@@ -117,8 +117,16 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 //          iconSize: 20,
 //        ),
 //      body: pages[_currentIndex],
-      bottomNavigationBar: Material(
-        color: Colors.white,
+      bottomNavigationBar: Container(
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(top: BorderSide(
+              color: Theme.of(context).dividerColor,
+            width: 1
+          ),
+          )
+        ),
         child: TabBar(
             indicatorWeight: 1,
             controller: controller,
