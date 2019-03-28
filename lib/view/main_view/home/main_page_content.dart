@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
+import 'package:wallet_app/view/widgets/custom_expansion_tile.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 
@@ -26,7 +27,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
           decoration: BoxDecoration(
             color: Colors.white,
           ),
-          child: ExpansionTile(
+          child: CustemExpansionTile(
             title: buildFirstLevelHeader(index),
             children: buildItemes(context,index),
           ),

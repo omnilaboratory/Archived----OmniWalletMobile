@@ -14,10 +14,39 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   TabController controller;
   List<Tab> tabs=[
-    Tab(text: '钱包',icon: Icon(Icons.home,)),
-    Tab(text: '市场',icon: Icon(Icons.filter_drama)),
-    Tab(text: 'OmniDe',icon: Icon(Icons.wb_sunny)),
-    Tab(text: '我的',icon: Icon(Icons.my_location)),
+//    Tab(text: '钱包',icon: Icon(Icons.home,)),
+    Tab(
+      child: Column(
+      children: <Widget>[
+          Icon(Icons.home),
+          Text('钱包'),
+        ],
+      ),
+    ),
+    Tab(
+      child: Column(
+      children: <Widget>[
+          Icon(Icons.filter_drama),
+          Text('市场'),
+        ],
+      ),
+    ),
+    Tab(
+      child: Column(
+      children: <Widget>[
+          Icon(Icons.wb_sunny),
+          Text('OmniDe'),
+        ],
+      ),
+    ),
+    Tab(
+      child: Column(
+      children: <Widget>[
+          Icon(Icons.my_location),
+          Text('我的'),
+        ],
+      ),
+    ),
   ];
 
   int _currentIndex = 0;
