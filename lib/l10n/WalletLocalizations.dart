@@ -93,6 +93,12 @@ class WalletLocalizations{
       'feedbackPageEmailTooltip' : '电子邮件地址',
       'feedbackPageUploadPicTitle' : '上传图片',
       'feedbackPageSubmitButton' : '提交',
+
+      "createNewAddress_title":"创建新的地址",
+      "createNewAddress_hint1":"地址名称",
+       "createNewAddress_Add":"添加",
+      "createNewAddress_Cancel":"取消",
+      "createNewAddress_WrongAddress":"请输入地址名称",
     },
 
     'en': {
@@ -196,8 +202,22 @@ class WalletLocalizations{
       'feedbackPageEmailTooltip' : 'E-mail address',
       'feedbackPageUploadPicTitle' : 'Upload Picture',
       'feedbackPageSubmitButton' : 'Submit',
+
+      "createNewAddress_title":"Create New Address",
+      "createNewAddress_hint1":"Address Name",
+      "createNewAddress_Add":"Add",
+      "createNewAddress_Cancel":"Cancel",
+      "createNewAddress_WrongAddress":"Please input address name",
+
     }
   };
+
+  //wallet page createNewAddress dialog
+  get createNewAddress_title => _localizedValues[locale.languageCode]['createNewAddress_title'];
+  get createNewAddress_hint1 => _localizedValues[locale.languageCode]['createNewAddress_hint1'];
+  get createNewAddress_Add => _localizedValues[locale.languageCode]['createNewAddress_Add'];
+  get createNewAddress_Cancel => _localizedValues[locale.languageCode]['createNewAddress_Cancel'];
+  get createNewAddress_WrongAddress => _localizedValues[locale.languageCode]['createNewAddress_WrongAddress'];
 
   // Submit Feedback page
   get feedbackPageTitle => _localizedValues[locale.languageCode]['feedbackPageTitle'];
