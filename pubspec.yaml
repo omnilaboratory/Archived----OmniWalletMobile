@@ -50,7 +50,6 @@ dependencies:
 
   flutter_slidable: "^0.4.9"
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
