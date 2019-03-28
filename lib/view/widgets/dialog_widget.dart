@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 /**
  * 创建新的钱包地址 钱包页面的右上角的点击事件
@@ -117,7 +118,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                       WalletLocalizations.of(context).createNewAddress_Cancel,
                                     style: TextStyle(color: Color(0xFF6B93F9)),
                                   ),
-                                  color: Color(0xFFE4ECFF),
+                                  color: AppCustomColor.btnCancel,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 50, vertical: 14),
                                 ),
@@ -133,7 +134,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                   },
                                   child: Text(WalletLocalizations.of(context).createNewAddress_Add,
                                       style: TextStyle(color: Colors.white)),
-                                  color: Color(0xFF6690F9),
+                                  color: AppCustomColor.btnConfirm,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 60, vertical: 14),
                                 ),
