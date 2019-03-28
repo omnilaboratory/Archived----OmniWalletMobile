@@ -110,33 +110,39 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                 left: 20, right: 20, top: 36),
                             child: Row(
                               children: <Widget>[
-                                RaisedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                      WalletLocalizations.of(context).createNewAddress_Cancel,
-                                    style: TextStyle(color: Color(0xFF6B93F9)),
-                                  ),
-                                  color: AppCustomColor.btnCancel,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 50, vertical: 14),
-                                ),
-                                Expanded(child: Container()),
-                                RaisedButton(
-                                  onPressed: () {
-                                    var _form = _formKey.currentState;
-                                    if(_form.validate()){
-                                      _form.save();
-                                      widget.callback(_addressName);
+                                Expanded(
+                                  flex: 3,
+                                  child: RaisedButton(
+                                    onPressed: () {
                                       Navigator.pop(context);
-                                    }
-                                  },
-                                  child: Text(WalletLocalizations.of(context).createNewAddress_Add,
-                                      style: TextStyle(color: Colors.white)),
-                                  color: AppCustomColor.btnConfirm,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 60, vertical: 14),
+                                    },
+                                    child: Text(
+                                        WalletLocalizations.of(context).createNewAddress_Cancel,
+                                      style: TextStyle(color: Color(0xFF6B93F9)),
+                                    ),
+                                    color: AppCustomColor.btnCancel,
+                                    padding: EdgeInsets.symmetric(
+                                         vertical: 14),
+                                  ),
+                                ),
+                                Expanded(flex: 1, child: Container()),
+                                Expanded(
+                                  flex: 3,
+                                  child: RaisedButton(
+                                    onPressed: () {
+                                      var _form = _formKey.currentState;
+                                      if(_form.validate()){
+                                        _form.save();
+                                        widget.callback(_addressName);
+                                        Navigator.pop(context);
+                                      }
+                                    },
+                                    child: Text(WalletLocalizations.of(context).createNewAddress_Add,
+                                        style: TextStyle(color: Colors.white)),
+                                    color: AppCustomColor.btnConfirm,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 14),
+                                  ),
                                 ),
                               ],
                             ),
