@@ -18,6 +18,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   //
   FocusNode _nodeText1 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
+  FocusNode _nodeText3 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,14 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
           child: Icon(Icons.close),
         )
       ),
+
+      KeyboardAction(
+        focusNode: _nodeText3,
+        closeWidget: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(Icons.close),
+        )
+      ),
     ];
 
     return actions;
@@ -66,6 +75,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextField( // title
             decoration: InputDecoration(
@@ -99,23 +109,48 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
           ),
 
           // Upload Picture Title
-          Text(WalletLocalizations.of(context).feedbackPageUploadPicTitle),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              WalletLocalizations.of(context).feedbackPageUploadPicTitle,
+            ),
+          ),
           
-          Material(  // Upload Picture Button
-            // elevation: 4.0,
-            shape: CircleBorder(),
-            color: Colors.transparent,
-            child: Ink.image(
-              image: AssetImage('assets/upload_picture.png'),
-              fit: BoxFit.cover,
-              width: 120.0,
-              height: 120.0,
-              child: InkWell(
-                onTap: () {},
-                child: null,
+          Container(  // Upload Picture Button
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Material(
+              // elevation: 4.0,
+              shape: CircleBorder(),
+              color: Colors.transparent,
+              child: Ink.image(
+                image: AssetImage('assets/upload_picture.png'),
+                fit: BoxFit.cover,
+                width: 80,
+                height: 80,
+                child: InkWell(
+                  onTap: () {},
+                  child: null,
+                ),
               ),
             ),
-          )
+          ),
+
+          SizedBox(height: 20),
+
+          TextField( // Email
+            decoration: InputDecoration(
+              labelText: WalletLocalizations.of(context).feedbackPageEmailTooltip,
+              labelStyle: TextStyle(
+                color: Colors.blue,
+              ),
+              border: InputBorder.none,
+              fillColor: Colors.white,
+              filled: true, 
+            ),
+
+            focusNode: _nodeText3,
+            keyboardType: TextInputType.emailAddress,
+          ),
 
         ],
       ),
