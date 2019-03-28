@@ -90,7 +90,7 @@ class WalletLocalizations{
       'feedbackPageTitle' : '提交反馈',
       'feedbackPageInputTitleTooltip' : '标题',
       'feedbackPageContentTooltip' : '内容',
-      'feedbackPageEmailTooltip' : '电子邮件地址',
+      'feedbackPageEmailTooltip' : '电子邮件',
       'feedbackPageUploadPicTitle' : '上传图片',
       'feedbackPageSubmitButton' : '提交',
 
@@ -199,7 +199,7 @@ class WalletLocalizations{
       'feedbackPageTitle' : 'Submit Feedback',
       'feedbackPageInputTitleTooltip' : 'Title',
       'feedbackPageContentTooltip' : 'Content',
-      'feedbackPageEmailTooltip' : 'E-mail address',
+      'feedbackPageEmailTooltip' : 'E-mail',
       'feedbackPageUploadPicTitle' : 'Upload Picture',
       'feedbackPageSubmitButton' : 'Submit',
 
