@@ -29,22 +29,17 @@ class _UserCenterState extends State<UserCenter> {
       ),
 
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('data'),
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,  // shadow
-        // ),
-        
         backgroundColor: Colors.transparent,
-        
         body: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              _bannerArea(),
-              _menuArea(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                _bannerArea(),
+                _menuArea(),
+              ],
+            ),
           ),
-        )
+        ),
       ),
     );
   }
@@ -135,11 +130,7 @@ class _UserCenterState extends State<UserCenter> {
         leading: icon,
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () { 
-          // TODO: show next page.
-          print('menu list');
-          Navigator.of(context).pushNamed(route);
-        },
+        onTap: () {Navigator.of(context).pushNamed(route);},
       ),
     );
   }

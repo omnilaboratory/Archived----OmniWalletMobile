@@ -17,6 +17,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(WalletLocalizations.of(context).settingsPageTitle),
       ),
 

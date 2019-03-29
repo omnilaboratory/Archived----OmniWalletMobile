@@ -25,8 +25,8 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(WalletLocalizations.of(context).feedbackPageTitle),
         elevation: 0,
+        title: Text(WalletLocalizations.of(context).feedbackPageTitle),
       ),
 
       body: FormKeyboardActions(

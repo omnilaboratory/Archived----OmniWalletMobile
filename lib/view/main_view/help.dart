@@ -18,6 +18,7 @@ class _HelpState extends State<Help> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(WalletLocalizations.of(context).helpPageTitle),
         actions: <Widget>[
           FlatButton(  // feedback button

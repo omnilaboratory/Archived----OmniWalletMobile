@@ -106,6 +106,9 @@ class WalletLocalizations{
       'aboutPageAppBarTitle' : '关于',
 
       'userInfoPageAppBarTitle' : '用户信息',
+      'userInfoPageItem_1_Title' : '头像',
+      'userInfoPageItem_2_Title' : '用户名',
+      'userInfoPageButton' : '删除当前钱包',
     },
 
     'en': {
@@ -222,11 +225,17 @@ class WalletLocalizations{
       'aboutPageAppBarTitle' : 'About',
 
       'userInfoPageAppBarTitle' : 'User Information',
+      'userInfoPageItem_1_Title' : 'Avatar',
+      'userInfoPageItem_2_Title' : 'User Name',
+      'userInfoPageButton' : 'Delete Current Wallet',
     }
   };
 
   // User Information page
   get userInfoPageAppBarTitle => _localizedValues[locale.languageCode]['userInfoPageAppBarTitle'];
+  get userInfoPageItem_1_Title => _localizedValues[locale.languageCode]['userInfoPageItem_1_Title'];
+  get userInfoPageItem_2_Title => _localizedValues[locale.languageCode]['userInfoPageItem_2_Title'];
+  get userInfoPageButton => _localizedValues[locale.languageCode]['userInfoPageButton'];
 
   // Service Terms page
   get serviceTermsPageAppBarTitle => _localizedValues[locale.languageCode]['serviceTermsPageAppBarTitle'];
