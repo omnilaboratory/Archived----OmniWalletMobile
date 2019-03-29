@@ -134,36 +134,29 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//        bottomNavigationBar: BottomNavigationBar(
-//          items: bulidTabBars(),
-//          currentIndex: _currentIndex,
-//          onTap: (int index) {
-//            setState(() {
-//              _currentIndex = index;
-//            });
-//          },
-//          type: BottomNavigationBarType.fixed,
-//          iconSize: 20,
-//        ),
-//      body: pages[_currentIndex],
-      bottomNavigationBar: Container(
-        height: 60,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(
-              color: Theme.of(context).dividerColor,
-            width: 1
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 60,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(top: BorderSide(
+                color: Theme.of(context).dividerColor,
+              width: 1
+            ),
+            )
           ),
-          )
-        ),
-        child: TabBar(
+
+          child: TabBar(
             indicatorWeight: 1,
             controller: controller,
-            tabs:tabs),
+            tabs:tabs,
+          ),
+        ),
       ),
+
       body: TabBarView(
-          controller: controller,
-          children: this.pages
+        controller: controller,
+        children: this.pages,
       ),
     );
   }

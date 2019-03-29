@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 class SubmitFeedback extends StatefulWidget {
   static String tag = "SubmitFeedback";
@@ -23,7 +24,6 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).feedbackPageTitle),
         elevation: 0,
@@ -150,6 +150,28 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
 
             focusNode: _nodeText3,
             keyboardType: TextInputType.emailAddress,
+          ),
+
+          Container(  // submit button
+            padding: EdgeInsets.symmetric(vertical: 80, horizontal: 30),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                    child: Text(
+                      WalletLocalizations.of(context).feedbackPageSubmitButton,
+                      style: TextStyle(color: Colors.white),
+                    ),
+
+                    color: AppCustomColor.btnConfirm,
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    onPressed: () {
+                      // print(_btnWidth - 27);
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
 
         ],

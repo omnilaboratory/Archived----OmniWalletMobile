@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
 class UserCenter extends StatefulWidget {
   @override
@@ -80,7 +81,7 @@ class _UserCenterState extends State<UserCenter> {
 
     // Page routes
     List<String> routes = <String> [
-      Settings.tag, '', Help.tag, '','','',
+      Settings.tag, AddressBook.tag, Help.tag, '','','',
     ];
 
     for (int i = 0; i < items.length; i++) {
