@@ -6,6 +6,7 @@ import 'package:wallet_app/view/main_view/my_page.dart';
 import 'package:wallet_app/view/main_view/omni_page.dart';
 
 class MainPage extends StatefulWidget {
+  static String tag = 'MainPage';
   @override
   _MainPageState createState() => _MainPageState();
 }

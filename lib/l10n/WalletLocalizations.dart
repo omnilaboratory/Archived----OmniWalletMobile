@@ -13,6 +13,7 @@ class WalletLocalizations{
       'backup_index_title': '备份钱包',
       'backup_index_laterbackup': '稍后备份',
       'backup_index_btn': '备份钱包助记词',
+      'backup_index_tips_title': '请立即备份您的钱包!',
       'backup_index_tips': '注意：请备份你的钱包账户，Omniwallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。',
       'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
       'backup_index_prompt_title': '不要截屏',
@@ -110,10 +111,11 @@ class WalletLocalizations{
     'en': {
       'main_index_title': 'LunarX Omniwallet',
       'backup_index_prompt_btn': 'I got it',
-      'backup_index_title': 'Backup the wallet',
-      'backup_index_laterbackup': 'Backup later',
+      'backup_index_title': 'Backup wallet',
+      'backup_index_laterbackup': 'later',
       'backup_index_btn': 'Backup wallet mnemonic',
-      'backup_index_tips': 'Note: please backup your Wallet account. Omniwallet does not access your account, cannot restore any private keys, or reset your password. You are in control of your own wallet and asset security.',
+      'backup_index_tips_title': 'Backup your wallet now!',
+      'backup_index_tips': 'Notice: please backup your wallet, Omni will never visit your account, can not restore your private key or reset your password. You will manage your wallet on your own, and make sure the safety of your asset.',
       'backup_index_prompt_tips': 'Anyone who gets access to your mnemonic will have access to your assets. Please copy it onto paper and store securely for safekeeping.',
       'backup_index_prompt_title': "Do Not Use Screenshots!",
       'backup_words_title': 'Back up your mnemonic',
@@ -309,6 +311,7 @@ class WalletLocalizations{
 
   get backup_index_title => _localizedValues[locale.languageCode]['backup_index_title'];
   get backup_index_laterbackup => _localizedValues[locale.languageCode]['backup_index_laterbackup'];
+  get backup_index_tips_title => _localizedValues[locale.languageCode]['backup_index_tips_title'];
   get backup_index_tips => _localizedValues[locale.languageCode]['backup_index_tips'];
   get backup_index_btn => _localizedValues[locale.languageCode]['backup_index_btn'];
   get backup_index_prompt_title => _localizedValues[locale.languageCode]['backup_index_prompt_title'];

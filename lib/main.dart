@@ -2,21 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+<<<<<<< HEAD
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/about.dart';
+=======
+import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
+>>>>>>> cec124a6cd573134d13bf13e93657837997e191c
 import 'package:wallet_app/view/main_view/help.dart';
 import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
+<<<<<<< HEAD
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
+=======
+import 'package:wallet_app/view/main_view/main_page.dart';
+>>>>>>> cec124a6cd573134d13bf13e93657837997e191c
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true;
+//   debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -50,6 +58,8 @@ class _MyAppState extends State<MyApp> {
     BackupWalletIndex.tag: (context)   => BackupWalletIndex(),
     About.tag: (context)               => About(),
     UserInfo.tag: (context)            => UserInfo(),
+    BackupWalletWords.tag: (context)   => BackupWalletWords(),
+    MainPage.tag: (context)            => MainPage(),
   };
 
   @override
