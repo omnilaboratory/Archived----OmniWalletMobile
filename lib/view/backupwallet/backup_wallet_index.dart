@@ -6,7 +6,6 @@ import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 
 class BackupWalletIndex extends StatelessWidget {
-<<<<<<< HEAD
 
   static String tag = "BackupWallet";
 
@@ -65,9 +64,7 @@ class BackupWalletIndex extends StatelessWidget {
       ],
     );
   }
-=======
   static String tag='BackupWalletIndex';
->>>>>>> cec124a6cd573134d13bf13e93657837997e191c
   void onTouchBtn(BuildContext context){
     Navigator.pushNamed(context, BackupWalletWords.tag);
   }
