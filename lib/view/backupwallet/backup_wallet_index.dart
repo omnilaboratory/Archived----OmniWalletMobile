@@ -64,7 +64,6 @@ class BackupWalletIndex extends StatelessWidget {
       ],
     );
   }
-  static String tag='BackupWalletIndex';
   void onTouchBtn(BuildContext context){
     Navigator.pushNamed(context, BackupWalletWords.tag);
   }
