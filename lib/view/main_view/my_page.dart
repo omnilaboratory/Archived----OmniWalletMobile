@@ -4,8 +4,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
+import 'package:wallet_app/view/main_view/about.dart';
+import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
 class UserCenter extends StatefulWidget {
@@ -81,7 +85,12 @@ class _UserCenterState extends State<UserCenter> {
 
     // Page routes
     List<String> routes = <String> [
-      Settings.tag, AddressBook.tag, Help.tag, '','','',
+      Settings.tag, 
+      AddressBook.tag, 
+      Help.tag, 
+      ServiceTerms.tag,
+      BackupWalletIndex.tag,
+      About.tag,
     ];
 
     for (int i = 0; i < items.length; i++) {
@@ -95,20 +104,26 @@ class _UserCenterState extends State<UserCenter> {
 
   // AppBar Title
   Widget _bannerArea() {
-    return Container(
-      height: 200,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          // user avatar.
-          Image.asset('assets/logo-png.png', width: 70, height: 70),
-          SizedBox(height: 20),
-          // user nick name
-          Text(
-            'Nick Name',
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(UserInfo.tag);
+      },
+
+      child: Container(
+        height: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // user avatar.
+            Image.asset('assets/logo-png.png', width: 70, height: 70),
+            SizedBox(height: 10),
+            
+            Text(  // user nick name
+              'Nick Name',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -75,7 +75,7 @@ class WalletLocalizations{
       'myProfilePageMenu3' : '帮助和反馈',
       'myProfilePageMenu4' : '服务条款',
       'myProfilePageMenu5' : '备份钱包',
-      'myProfilePageMenu6' : '关于我们',
+      'myProfilePageMenu6' : '关于',
 
       'settingsPageTitle' : '设置',
       'settingsPageItem_1_Title' : '语言',
@@ -96,9 +96,15 @@ class WalletLocalizations{
 
       "createNewAddress_title":"创建新的地址",
       "createNewAddress_hint1":"地址名称",
-       "createNewAddress_Add":"添加",
+      "createNewAddress_Add":"添加",
       "createNewAddress_Cancel":"取消",
       "createNewAddress_WrongAddress":"请输入地址名称",
+
+      'serviceTermsPageAppBarTitle' : '服务条款',
+
+      'aboutPageAppBarTitle' : '关于',
+
+      'userInfoPageAppBarTitle' : '用户信息',
     },
 
     'en': {
@@ -184,7 +190,7 @@ class WalletLocalizations{
       'myProfilePageMenu3' : 'Help and Feedback',
       'myProfilePageMenu4' : 'Service Terms',
       'myProfilePageMenu5' : 'Backup Wallet',
-      'myProfilePageMenu6' : 'About Us',
+      'myProfilePageMenu6' : 'About',
 
       'settingsPageTitle' : 'Settings',
       'settingsPageItem_1_Title' : 'Language',
@@ -209,8 +215,22 @@ class WalletLocalizations{
       "createNewAddress_Cancel":"Cancel",
       "createNewAddress_WrongAddress":"Please input address name",
 
+      'serviceTermsPageAppBarTitle' : 'Service Terms',
+
+      'aboutPageAppBarTitle' : 'About',
+
+      'userInfoPageAppBarTitle' : 'User Information',
     }
   };
+
+  // User Information page
+  get userInfoPageAppBarTitle => _localizedValues[locale.languageCode]['userInfoPageAppBarTitle'];
+
+  // Service Terms page
+  get serviceTermsPageAppBarTitle => _localizedValues[locale.languageCode]['serviceTermsPageAppBarTitle'];
+
+  // About page
+  get aboutPageAppBarTitle => _localizedValues[locale.languageCode]['aboutPageAppBarTitle'];
 
   //wallet page createNewAddress dialog
   get createNewAddress_title => _localizedValues[locale.languageCode]['createNewAddress_title'];

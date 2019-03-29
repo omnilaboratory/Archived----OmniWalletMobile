@@ -6,7 +6,7 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 
 class BackupWalletIndex extends StatelessWidget {
 
-
+  static String tag = "BackupWallet";
 
   Widget buildDialogWindow(BuildContext context){
     return SimpleDialog(

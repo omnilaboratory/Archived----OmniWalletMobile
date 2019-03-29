@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
+import 'package:wallet_app/view/main_view/about.dart';
 import 'package:wallet_app/view/main_view/help.dart';
 import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
+import 'package:wallet_app/view/main_view/service_terms.dart';
+import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
@@ -35,13 +39,17 @@ class _MyAppState extends State<MyApp> {
 
   Locale locale;
 
-  final routes = <String, WidgetBuilder>{
-    SendConfirm.tag: (context) => SendConfirm(),
-    WalletSend.tag: (context) => WalletSend(),
-    Settings.tag: (context) => Settings(),
-    Help.tag: (context) => Help(),
-    SubmitFeedback.tag: (context) => SubmitFeedback(),
-    AddressBook.tag: (context) => AddressBook(),
+  final routes = <String, WidgetBuilder> {
+    SendConfirm.tag: (context)         => SendConfirm(),
+    WalletSend.tag: (context)          => WalletSend(),
+    Settings.tag: (context)            => Settings(),
+    Help.tag: (context)                => Help(),
+    SubmitFeedback.tag: (context)      => SubmitFeedback(),
+    AddressBook.tag: (context)         => AddressBook(),
+    ServiceTerms.tag: (context)        => ServiceTerms(),
+    BackupWalletIndex.tag: (context)   => BackupWalletIndex(),
+    About.tag: (context)               => About(),
+    UserInfo.tag: (context)            => UserInfo(),
   };
 
   @override
