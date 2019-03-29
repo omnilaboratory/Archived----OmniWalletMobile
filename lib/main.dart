@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/help.dart';
 import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
+import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true;
+//   debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -42,6 +44,8 @@ class _MyAppState extends State<MyApp> {
     Help.tag: (context) => Help(),
     SubmitFeedback.tag: (context) => SubmitFeedback(),
     AddressBook.tag: (context) => AddressBook(),
+    BackupWalletWords.tag: (context) => BackupWalletWords(),
+    MainPage.tag: (context) => MainPage(),
   };
 
   @override

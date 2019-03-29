@@ -20,30 +20,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Material(
-            type: MaterialType.transparency,
-            child: GestureDetector(
-              onTap: () {
-                debugPrint('blue');
-              },
-              child: Align(
-                alignment: Alignment(0, -0.05),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.37,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          Container(
+    var header = Container(
                             height: 70,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
@@ -77,8 +54,8 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                     )))
                               ],
                             ),
-                          ),
-                          Container(
+                          );
+    var body = Container(
                             margin: EdgeInsets.only(left: 20, top: 20),
                             child: TextFormField(
                               validator: (val){
@@ -97,15 +74,8 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                   hintStyle: TextStyle(
                                       color: Colors.grey, fontSize: 14)),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20, right: 20, top: 8),
-                            child: Divider(
-                              height: 1,
-                            ),
-                          ),
-                          Padding(
+                          );
+    var footer = Padding(
                             padding: const EdgeInsets.only(
                                 left: 20, right: 20, top: 36),
                             child: Row(
@@ -146,13 +116,47 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                                 ),
                               ],
                             ),
-                          )
+                          );
+    return GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Material(
+            type: MaterialType.transparency,
+            child: GestureDetector(
+              onTap: () {
+              },
+              child: Align(
+                alignment: Alignment(0, -0.05),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.37,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          header,
+                          body,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 20, top: 8),
+                            child: Divider(
+                              height: 1,
+                            ),
+                          ),
+                          footer
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-            )));
+            )
+        )
+    );
   }
 }

@@ -11,6 +11,7 @@ class WordInfo{
 
 
 class BackupWalletWords extends StatefulWidget {
+  static String  tag = 'BackupWalletWords';
   @override
   _BackupWalletWordsState createState() => _BackupWalletWordsState();
 }
