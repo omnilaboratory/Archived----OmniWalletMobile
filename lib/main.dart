@@ -63,6 +63,10 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            elevation: 0,
+            color: Colors.white,
+          )
         ),
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {

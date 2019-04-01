@@ -6,70 +6,17 @@ import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 
 class BackupWalletIndex extends StatelessWidget {
+  Object param;
+  BackupWalletIndex({Key key,this.param}):super(key:key);
 
   static String tag = "BackupWallet";
-
-  Widget buildDialogWindow(BuildContext context){
-    return SimpleDialog(
-      contentPadding: const EdgeInsets.all(0.0),
-      children: <Widget>[
-        Center(
-          child:Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Icon(
-                  Icons.camera_enhance,
-                  size: 60,
-                ),
-
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: Text(
-                    WalletLocalizations.of(context).backup_index_prompt_title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 12,right: 12,top: 10,bottom: 20),
-                child: Text(WalletLocalizations.of(context).backup_index_prompt_tips,textAlign: TextAlign.center,),
-              ),
-              InkWell(
-                radius: MediaQuery.of(context).size.width*0.5,
-                splashColor:Colors.blue,
-                onTap: (){
-                  Navigator.of(context).pop();
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletWords()));
-                },
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10,bottom: 10),
-                    child: Text(WalletLocalizations.of(context).backup_index_prompt_btn,textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white
-                    ),),
-                  ),
-                  width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.red),
-                ),
-              ),
-            ],
-          )
-        )
-      ],
-    );
-  }
   void onTouchBtn(BuildContext context){
     Navigator.pushNamed(context, BackupWalletWords.tag);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(this.param);
     Widget pageContent(){
       return Column(
         mainAxisSize: MainAxisSize.max,
@@ -140,18 +87,24 @@ class BackupWalletIndex extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_index_title),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: <Widget>[
-          FlatButton(
-            onPressed: (){
-              Navigator.of(context).pushNamedAndRemoveUntil(MainPage.tag,(route) => route == null);
-            },
-            child: Text(WalletLocalizations.of(context).backup_index_laterbackup,style: TextStyle(color: AppCustomColor.btnConfirm),),
-          )
-        ],
+        actions: this.getActions(context),
       ),
       body: pageContent(),
     );
   }
+
+  List<Widget> getActions(BuildContext context){
+    if(this.param!=null&&this.param==1){
+      List<Widget> list = [];
+      list.add(FlatButton(
+        onPressed: (){
+          Navigator.of(context).pushNamedAndRemoveUntil(MainPage.tag,(route) => route == null);
+        },
+        child: Text(WalletLocalizations.of(context).backup_index_laterbackup,style: TextStyle(color: AppCustomColor.btnConfirm),),
+      ));
+      return list;
+    }
+    return null;
+  }
+
 }
