@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/about.dart';
@@ -31,6 +32,15 @@ class MyApp extends StatefulWidget {
       state.locale = newLocale;
     });
   }
+
+  static void setThemeColor(BuildContext context, Brightness brightness) {
+    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+    state.setState(() {
+      state.brightness = brightness;
+      AppCustomColor.themeFrontColor =brightness==Brightness.dark?Colors.white:Colors.black;
+      AppCustomColor.themeBackgroudColor =brightness==Brightness.dark?Colors.black:Colors.white;
+    });
+  }
 }
 
 class _MyAppState extends State<MyApp> {
@@ -54,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
   };
-  final Brightness brightness = Brightness.dark;
+  Brightness brightness = Brightness.light;
 
   @override
   Widget build(BuildContext context) {
