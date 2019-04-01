@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/home_page.dart';
 import 'package:wallet_app/view/main_view/market_page.dart';
@@ -113,7 +114,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             ),
             )
           ),
-
           child: TabBar(
             indicatorWeight: 1,
             controller: controller,
@@ -135,7 +135,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Icon(Icons.home,color: AppCustomColor.themeFrontColor,),
-            Text('钱包',style: TextStyle(color: AppCustomColor.themeFrontColor),),
+            Text(WalletLocalizations.of(context).buttom_tab1_name ,style: TextStyle(color: AppCustomColor.themeFrontColor),),
           ],
         ),
       ),
@@ -143,7 +143,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Icon(Icons.filter_drama,color: AppCustomColor.themeFrontColor,),
-            Text('市场',style: TextStyle(color: AppCustomColor.themeFrontColor),),
+            Text(WalletLocalizations.of(context).buttom_tab2_name,style: TextStyle(color: AppCustomColor.themeFrontColor),),
           ],
         ),
       ),
@@ -151,7 +151,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Icon(Icons.wb_sunny,color: AppCustomColor.themeFrontColor),
-            Text('OmniDe',style: TextStyle(color: AppCustomColor.themeFrontColor)),
+            Text(WalletLocalizations.of(context).buttom_tab3_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
           ],
         ),
       ),
@@ -159,7 +159,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Icon(Icons.my_location,color: AppCustomColor.themeFrontColor),
-            Text('我的',style: TextStyle(color: AppCustomColor.themeFrontColor)),
+            Text(WalletLocalizations.of(context).buttom_tab4_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
           ],
         ),
       ),

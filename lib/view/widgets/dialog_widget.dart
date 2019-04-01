@@ -20,41 +20,44 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var header = Container(
-                            height: 70,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Color(0xFF78A9FA),
-                                      Color(0xFF6690F9),
-                                    ]),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5))),
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 0, top: 8),
-                                  child: Icon(
-                                    Icons.fiber_new,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Container(
-                                    width: double.infinity,
-                                    child: Center(
-                                      child: Text(
-                                        WalletLocalizations.of(context).createNewAddress_title,
-                                        style: TextStyle(
-                                          color: Colors.white70, fontSize: 20),
-                                    )))
-                              ],
-                            ),
-                          );
+    var header = Container
+      (
+        height: 70,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xFF78A9FA),
+                  Color(0xFF6690F9),
+                ]),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5),
+                topRight: Radius.circular(5))),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+//                                Padding(
+//                                  padding:
+//                                      const EdgeInsets.only(bottom: 0, top: 8),
+//                                  child: Icon(
+//                                    Icons.fiber_new,
+//                                    size: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+            Container(
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    WalletLocalizations.of(context).createNewAddress_title,
+                    style: TextStyle(
+                      color: Colors.white70, fontSize: 20),
+                  ),
+                ))
+          ],
+        ),
+      );
     var body = Container(
                             margin: EdgeInsets.only(left: 20, top: 20,right: 20),
                             child: TextFormField(
