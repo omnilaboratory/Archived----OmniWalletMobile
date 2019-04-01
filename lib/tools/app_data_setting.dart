@@ -14,4 +14,14 @@ class AppCustomColor{
    */
   static Color btnCancel =  Color(0xFFE4ECFF);
 
+  /**
+   * 主题前景颜色
+   */
+  static Color themeFrontColor =  Colors.black;
+
+  /**
+   * 主题背景颜色
+   */
+  static Color themeBackgroudColor =  Colors.white;
+
 }

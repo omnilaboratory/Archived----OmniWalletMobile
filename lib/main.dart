@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> {
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
   };
+  final Brightness brightness = Brightness.dark;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +63,15 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.white,
+          brightness:brightness,
+//          primaryColor: Colors.white,
           appBarTheme: AppBarTheme(
-            elevation: 0,
-            color: Colors.white,
+            elevation:   0,
+            color: brightness==Brightness.dark? Colors.black:Colors.white,
+            textTheme: brightness==Brightness.dark?
+                TextTheme(title: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))
+                :TextTheme(title: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)),
+            iconTheme: brightness==Brightness.dark?IconThemeData(color: Colors.white):IconThemeData(color: Colors.black)
           )
         ),
         localeResolutionCallback: (deviceLocale, supportedLocales) {
