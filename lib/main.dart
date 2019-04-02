@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
@@ -20,6 +21,11 @@ import 'package:wallet_app/view_model/state_lib.dart';
 void main() {
 //   debugPaintSizeEnabled = true;
   runApp(MyApp());
+
+  SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarColor:Colors.transparent,
+  );
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 }
 
 class MyApp extends StatefulWidget {
@@ -64,7 +70,7 @@ class _MyAppState extends State<MyApp> {
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
   };
-  Brightness brightness = Brightness.light;
+  Brightness brightness = Brightness.dark;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +80,10 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness:brightness,
-//          primaryColor: Colors.white,
           appBarTheme: AppBarTheme(
             elevation:   0,
             color: brightness==Brightness.dark? Colors.black:Colors.white,
+            brightness: brightness,
             textTheme: brightness==Brightness.dark?
                 TextTheme(title: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.normal))
                 :TextTheme(title: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.normal)),
