@@ -20,6 +20,7 @@ class WalletLocalizations{
       'backup_words_title': '备份助记词',
       'backup_words_next': '继续',
       'backup_words_content': '请仔细抄写下方助记词，我们将在\n下一步验证。',
+      'backup_words_warn': "不要和他人分享你的助记词，保护好他们",
       'backup_words_order_title': '确认助记词',
       'backup_words_order_content': '请按顺序点击助记词，以确认您\n正确备份。',
       'backup_words_order_finish': '完成',
@@ -64,6 +65,7 @@ class WalletLocalizations{
 
       'main_page_title' : '钱包',
       'common_btn_skip' : '跳过',
+      'common_btn_copy' : '复制',
 
       'marketPageAppBarTitle' : '行情',
       'marketPageFav' : '自选',
@@ -133,8 +135,10 @@ class WalletLocalizations{
       'backup_index_prompt_tips': 'Anyone who gets access to your mnemonic will have access to your assets. Please copy it onto paper and store securely for safekeeping.',
       'backup_index_prompt_title': "Do Not Use Screenshots!",
       'backup_words_title': 'Back Up Mnemonic Phrase',
-      'backup_words_next': 'Continue',
-      'backup_words_content': "Please copy the mnemonic words carefully,\nwe will verify them in the next step.",
+      'backup_words_next': 'Next',
+      'backup_words_content': "Write down or copy these words in the right order and save them somewhere safe.",
+      'backup_words_warn': "Never share recovery phrase with anyone,store it securely!",
+
       'backup_words_order_title': 'Confirm mnemonic words',
       'backup_words_order_content': 'Please click mnemonic words in order to \nmake sure that you backup correctly',
       'backup_words_order_finish': 'Finish',
@@ -194,6 +198,7 @@ class WalletLocalizations{
 
       'main_page_title' : 'My Wallet',
       'common_btn_skip' : 'Skip',
+      'common_btn_copy' : 'Copy',
 
       'marketPageAppBarTitle' : 'Quotation',
       'marketPageFav' : 'Favorites',
@@ -366,6 +371,7 @@ class WalletLocalizations{
   get backup_words_title => _localizedValues[locale.languageCode]['backup_words_title'];
   get backup_words_content => _localizedValues[locale.languageCode]['backup_words_content'];
   get backup_words_next => _localizedValues[locale.languageCode]['backup_words_next'];
+  get backup_words_warn => _localizedValues[locale.languageCode]['backup_words_warn'];
 
   get backup_words_order_title => _localizedValues[locale.languageCode]['backup_words_order_title'];
   get backup_words_order_content => _localizedValues[locale.languageCode]['backup_words_order_content'];
@@ -374,6 +380,7 @@ class WalletLocalizations{
   String get main_page_title => _localizedValues[locale.languageCode]['main_page_title'];
 
   String get common_btn_skip => _localizedValues[locale.languageCode]['common_btn_skip'];
+  String get common_btn_copy => _localizedValues[locale.languageCode]['common_btn_copy'];
 
 
   static WalletLocalizations of (BuildContext context){

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/backup_wallet.dart';
-
-
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 class BackupWalletWordsOrder extends StatefulWidget {
   @override
@@ -17,6 +16,16 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
     WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),
     WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' )
   ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(WalletLocalizations.of(context).backup_words_order_title),
+      ),
+      backgroundColor: Colors.white,
+      body: pageCentent(context),
+    );
+  }
 
   Widget wordBulid(BuildContext context){
     return GridView.builder(
@@ -59,7 +68,6 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
     return results;
   }
   Widget pageCentent(BuildContext context){
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -100,16 +108,6 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
           Expanded(child: Container(),flex: 3,),
         ],
       ),
-    );
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(WalletLocalizations.of(context).backup_words_order_title),
-//        leading: Icon(Icons.arrow_back_ios),
-      ),
-      body: pageCentent(context),
     );
   }
 }

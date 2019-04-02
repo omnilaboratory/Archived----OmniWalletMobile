@@ -16,7 +16,6 @@ class BackupWalletIndex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.param);
     Widget pageContent(){
       return Column(
         mainAxisSize: MainAxisSize.max,
@@ -89,6 +88,7 @@ class BackupWalletIndex extends StatelessWidget {
         title: Text(WalletLocalizations.of(context).backup_index_title),
         actions: this.getActions(context),
       ),
+      backgroundColor: AppCustomColor.themeBackgroudColor,
       body: pageContent(),
     );
   }

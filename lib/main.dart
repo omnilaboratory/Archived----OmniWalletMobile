@@ -22,10 +22,10 @@ void main() {
 //   debugPaintSizeEnabled = true;
   runApp(MyApp());
 
-  SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-      statusBarColor:Colors.transparent,
-  );
-  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  //set status bar color
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor:Colors.transparent
+  ));
 }
 
 class MyApp extends StatefulWidget {
