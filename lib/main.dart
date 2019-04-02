@@ -22,10 +22,10 @@ void main() {
 //   debugPaintSizeEnabled = true;
   runApp(MyApp());
 
-  SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-      statusBarColor:Colors.transparent,
-  );
-  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  //set status bar color
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor:Colors.transparent
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
   };
-  Brightness brightness = Brightness.dark;
+  Brightness brightness = Brightness.light;
 
   @override
   Widget build(BuildContext context) {
