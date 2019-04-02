@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/home_page.dart';
 import 'package:wallet_app/view/main_view/market_page.dart';
 import 'package:wallet_app/view/main_view/my_page.dart';
@@ -14,42 +16,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
 
   TabController controller;
-  List<Tab> tabs=[
-//    Tab(text: '钱包',icon: Icon(Icons.home,)),
-    Tab(
-      child: Column(
-      children: <Widget>[
-          Icon(Icons.home),
-          Text('钱包'),
-        ],
-      ),
-    ),
-    Tab(
-      child: Column(
-      children: <Widget>[
-          Icon(Icons.filter_drama),
-          Text('市场'),
-        ],
-      ),
-    ),
-    Tab(
-      child: Column(
-      children: <Widget>[
-          Icon(Icons.wb_sunny),
-          Text('OmniDe'),
-        ],
-      ),
-    ),
-    Tab(
-      child: Column(
-      children: <Widget>[
-          Icon(Icons.my_location),
-          Text('我的'),
-        ],
-      ),
-    ),
-  ];
-
+  Brightness brightness ;
   int _currentIndex = 0;
   final _bottomNavigationColor = Colors.grey;
   final _bottomNavigationActiveColor = Colors.blue;
@@ -57,6 +24,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   @override void initState() {
     super.initState();
+
     pages..add(HomePage())
       ..add(MarketPage())
       ..add(OmniPage())
@@ -125,32 +93,31 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     return list;
   }
 
-
-
   @override void dispose() {
     controller.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
+    this.brightness = Theme.of(context).brightness;
+    AppCustomColor.themeFrontColor =this.brightness==Brightness.dark?Colors.white:Colors.black;
+    AppCustomColor.themeBackgroudColor =this.brightness==Brightness.dark?Colors.black:Colors.white;
     return Scaffold(
       bottomNavigationBar: SafeArea(
         child: Container(
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: this.brightness==Brightness.dark?Colors.black:Colors.white,
             border: Border(top: BorderSide(
                 color: Theme.of(context).dividerColor,
               width: 1
             ),
             )
           ),
-
           child: TabBar(
             indicatorWeight: 1,
             controller: controller,
-            tabs:tabs,
+            tabs:createTabs(),
           ),
         ),
       ),
@@ -161,4 +128,43 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       ),
     );
   }
+
+  createTabs(){
+     List<Tab> tabs=[
+      Tab(
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.home,color: AppCustomColor.themeFrontColor,),
+            Text(WalletLocalizations.of(context).buttom_tab1_name ,style: TextStyle(color: AppCustomColor.themeFrontColor),),
+          ],
+        ),
+      ),
+      Tab(
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.filter_drama,color: AppCustomColor.themeFrontColor,),
+            Text(WalletLocalizations.of(context).buttom_tab2_name,style: TextStyle(color: AppCustomColor.themeFrontColor),),
+          ],
+        ),
+      ),
+      Tab(
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.wb_sunny,color: AppCustomColor.themeFrontColor),
+            Text(WalletLocalizations.of(context).buttom_tab3_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
+          ],
+        ),
+      ),
+      Tab(
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.my_location,color: AppCustomColor.themeFrontColor),
+            Text(WalletLocalizations.of(context).buttom_tab4_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
+          ],
+        ),
+      ),
+    ];
+    return tabs;
+  }
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
 import 'package:wallet_app/view/widgets/custom_expansion_tile.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -25,7 +26,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
         return Container(
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppCustomColor.themeBackgroudColor,
           ),
           child: CustemExpansionTile(
             title: buildFirstLevelHeader(index),

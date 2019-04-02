@@ -20,43 +20,46 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
 
   @override
   Widget build(BuildContext context) {
-    var header = Container(
-                            height: 70,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: [
-                                      Color(0xFF78A9FA),
-                                      Color(0xFF6690F9),
-                                    ]),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5))),
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 0, top: 8),
-                                  child: Icon(
-                                    Icons.fiber_new,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Container(
-                                    width: double.infinity,
-                                    child: Center(
-                                      child: Text(
-                                        WalletLocalizations.of(context).createNewAddress_title,
-                                        style: TextStyle(
-                                          color: Colors.white70, fontSize: 20),
-                                    )))
-                              ],
-                            ),
-                          );
+    var header = Container
+      (
+        height: 70,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xFF78A9FA),
+                  Color(0xFF6690F9),
+                ]),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5),
+                topRight: Radius.circular(5))),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+//                                Padding(
+//                                  padding:
+//                                      const EdgeInsets.only(bottom: 0, top: 8),
+//                                  child: Icon(
+//                                    Icons.fiber_new,
+//                                    size: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+            Container(
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    WalletLocalizations.of(context).createNewAddress_title,
+                    style: TextStyle(
+                      color: Colors.white70, fontSize: 20),
+                  ),
+                ))
+          ],
+        ),
+      );
     var body = Container(
-                            margin: EdgeInsets.only(left: 20, top: 20),
+                            margin: EdgeInsets.only(left: 20, top: 20,right: 20),
                             child: TextFormField(
                               validator: (val){
                                 if(val==null||val.trim().length==0){
@@ -68,8 +71,8 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                               },
                               style: TextStyle(fontSize: 20),
                               decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(bottom: 2,top: 8),
+                                  border: AppCustomColor.themeBackgroudColor==Colors.black?OutlineInputBorder():InputBorder.none,
+                                  contentPadding: EdgeInsets.only(left: 4,bottom: 2,top: 8),
                                   hintText: WalletLocalizations.of(context).createNewAddress_hint1,
                                   hintStyle: TextStyle(
                                       color: Colors.grey, fontSize: 14)),
@@ -133,7 +136,8 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                   height: MediaQuery.of(context).size.height * 0.37,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        color: AppCustomColor.themeBackgroudColor,
                         borderRadius: BorderRadius.circular(5)),
                     child: Form(
                       key: _formKey,

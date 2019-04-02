@@ -50,8 +50,12 @@ class _CreateAccountState extends State<CreateAccount> {
                   color: Colors.lightBlue,
                   textColor: Colors.white,
                   onPressed: () {
-                    // TODO: next page.
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletIndex()));
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (BuildContext context){
+                              return BackupWalletIndex(param: 1,);
+                            }),
+                            (route) => route == null);
                   },
                 ),
               ],

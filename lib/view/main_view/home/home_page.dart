@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/main_page_content.dart';
 import 'package:wallet_app/view/widgets/dialog_widget.dart';
 
@@ -16,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         centerTitle: true,
         title: Text(WalletLocalizations.of(context).main_page_title),
         actions: <Widget>[
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(
                 Icons.add_circle_outline,
                 size: 30,
-                color: Colors.grey[900],
+                color: AppCustomColor.themeFrontColor,
               ))
         ],
       ),

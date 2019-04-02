@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/model/backup_wallet.dart';
 
-
-class WordInfo{
-  String content;
-  bool visible;
-  WordInfo({@required this.content,this.visible=false});
-}
 
 
 class BackupWalletWordsOrder extends StatefulWidget {
