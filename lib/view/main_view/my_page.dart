@@ -3,6 +3,7 @@
 /// [time] 2019-3-21
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
@@ -13,13 +14,20 @@ import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
 class UserCenter extends StatefulWidget {
+  
   @override
   _UserCenterState createState() => _UserCenterState();
 }
 
 class _UserCenterState extends State<UserCenter> {
+  
   @override
   Widget build(BuildContext context) {
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      // statusBarColor:Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+  );
+  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(

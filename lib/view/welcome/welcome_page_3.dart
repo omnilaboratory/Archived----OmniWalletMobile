@@ -12,7 +12,7 @@ class WelcomePageThree extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
           child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             children: <Widget>[
               _childColumn(context),
             ],
@@ -36,14 +36,14 @@ class WelcomePageThree extends StatelessWidget {
         ),
 
         // Introduction content.
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageThreeContentOne,
           style: TextStyle(color: Colors.grey[700]),
         ),
 
         // List content.
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentTwo),
 
         SizedBox(height: 20),
@@ -61,7 +61,7 @@ class WelcomePageThree extends StatelessWidget {
         SizedBox(height: 20),
         _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSeven),
 
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         _bottomButton(context),
       ],
     );

@@ -7,19 +7,30 @@ class WelcomePageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      // ),
+
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: _childColumn(context),
         ),
+
+        // child: Container(
+        //   // padding: EdgeInsets.only(bottom: 30, left: 30, right: 30),
+        //   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
+        //   child: _childColumn(context),
+        // ),
       )
     );
   }
 
   // Child content.
   Widget _childColumn(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return ListView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         // Title
         Text(
@@ -31,9 +42,11 @@ class WelcomePageOne extends StatelessWidget {
         ),
 
         // Image for welcome.
-        Image.asset('assets/LunarX_Logo.jpg'),
+        SizedBox(height: 30),
+        Image.asset('assets/logo-png.png', width: 120, height: 120),
 
         // Introduction content.
+        SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageOneContent,
           textAlign: TextAlign.left,
@@ -41,6 +54,7 @@ class WelcomePageOne extends StatelessWidget {
         ),
 
         // Next button.
+        SizedBox(height: 30),
         RaisedButton(
           child: Text(WalletLocalizations.of(context).welcomePageOneButton),
           color: Colors.blue,
@@ -55,6 +69,7 @@ class WelcomePageOne extends StatelessWidget {
             );
           },
         ),
+
         FlatButton(
           child: Text(WalletLocalizations.of(context).common_btn_skip),
           textColor: Colors.grey,
