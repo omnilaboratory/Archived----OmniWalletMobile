@@ -79,8 +79,8 @@ class _MyAppState extends State<MyApp> {
             elevation:   0,
             color: brightness==Brightness.dark? Colors.black:Colors.white,
             textTheme: brightness==Brightness.dark?
-                TextTheme(title: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))
-                :TextTheme(title: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold)),
+                TextTheme(title: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.normal))
+                :TextTheme(title: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.normal)),
             iconTheme: brightness==Brightness.dark?IconThemeData(color: Colors.white):IconThemeData(color: Colors.black)
           )
         ),

@@ -18,7 +18,7 @@ class WalletLocalizations{
       'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
       'backup_index_prompt_title': '不要截屏',
       'backup_words_title': '备份助记词',
-      'backup_words_next': '下一步',
+      'backup_words_next': '继续',
       'backup_words_content': '请仔细抄写下方助记词，我们将在\n下一步验证。',
       'backup_words_order_title': '确认助记词',
       'backup_words_order_content': '请按顺序点击助记词，以确认您\n正确备份。',
@@ -118,22 +118,22 @@ class WalletLocalizations{
 
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
-      'buttom_tab3_name' : 'Omni',
+      'buttom_tab3_name' : 'DEX',
       'buttom_tab4_name' : '我的',
     },
 
     'en': {
       'main_index_title': 'LunarX Omniwallet',
       'backup_index_prompt_btn': 'I got it',
-      'backup_index_title': 'Backup wallet',
-      'backup_index_laterbackup': 'later',
-      'backup_index_btn': 'Backup Mnemonic Phrase',
-      'backup_index_tips_title': 'Backup your wallet now!',
-      'backup_index_tips': 'Notice: please backup your wallet, Omni will never visit your account, can not restore your private key or reset your password. You will manage your wallet on your own, and make sure the safety of your asset.',
+      'backup_index_title': 'Back Up Wallet',
+      'backup_index_laterbackup': 'Later',
+      'backup_index_btn': 'Back Up Mnemonic Phrase',
+      'backup_index_tips_title': 'Back up your wallet now!',
+      'backup_index_tips': 'Notice: please back up your wallet, Omni will never visit your account, can not restore your private key or reset your password. You will manage your wallet on your own, and make sure the safety of your asset.',
       'backup_index_prompt_tips': 'Anyone who gets access to your mnemonic will have access to your assets. Please copy it onto paper and store securely for safekeeping.',
       'backup_index_prompt_title': "Do Not Use Screenshots!",
-      'backup_words_title': 'Backup Mnemonic Phrase',
-      'backup_words_next': 'next',
+      'backup_words_title': 'Back Up Mnemonic Phrase',
+      'backup_words_next': 'Continue',
       'backup_words_content': "Please copy the mnemonic words carefully,\nwe will verify them in the next step.",
       'backup_words_order_title': 'Confirm mnemonic words',
       'backup_words_order_content': 'Please click mnemonic words in order to \nmake sure that you backup correctly',
@@ -205,7 +205,7 @@ class WalletLocalizations{
       'myProfilePageMenu2' : 'Address Book',
       'myProfilePageMenu3' : 'Help and Feedback',
       'myProfilePageMenu4' : 'Service Terms',
-      'myProfilePageMenu5' : 'Backup Wallet',
+      'myProfilePageMenu5' : 'Back Up Wallet',
       'myProfilePageMenu6' : 'About',
 
       'settingsPageTitle' : 'Settings',
@@ -249,8 +249,8 @@ class WalletLocalizations{
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
-      'buttom_tab3_name' : 'Omni',
-      'buttom_tab4_name' : 'My',
+      'buttom_tab3_name' : 'DEX',
+      'buttom_tab4_name' : 'Me',
     }
   };
 
