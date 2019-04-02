@@ -23,9 +23,9 @@ class _UserInfoState extends State<UserInfo> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 15),
-            Container(
-              // color: Colors.white,
+            SizedBox(height: 10),
+            Ink(
+              color: Colors.white,
               child: ListTile(  // Item 1
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_1_Title),
                 trailing: Row(
@@ -44,9 +44,9 @@ class _UserInfoState extends State<UserInfo> {
               ),
             ),
             
-            Divider(height: 2, indent: 15),
+            Divider(height: 0, indent: 15),
 
-            Container(
+            Ink(
               color: Colors.white,
               child: ListTile(  // Item 2
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_2_Title),
@@ -69,8 +69,27 @@ class _UserInfoState extends State<UserInfo> {
                   // Navigator.of(context).pushNamed(route);
                 },
               ),
-            )
+            ),
             
+            SizedBox(height: 10),
+            
+            Ink( // delete account button
+              color: Colors.white,
+              child: ListTile(
+                title: Text(
+                  WalletLocalizations.of(context).userInfoPageButton,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+
+                onTap: () {
+                  // TODO: show next page.
+                  // Navigator.of(context).pushNamed(route);
+                },
+              ),
+            ),
           ],
         ),
       ),

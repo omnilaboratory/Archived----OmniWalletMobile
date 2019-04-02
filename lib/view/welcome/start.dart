@@ -96,8 +96,8 @@ class _StartPageState extends State<StartPage> {
     }
     
     return InkWell(
-      splashColor: Colors.blue[100],
-      highlightColor: Colors.blue[100],
+      // splashColor: Colors.blue[100],
+      // highlightColor: Colors.blue[100],
 
       onTap: () {
         // Show the select language page.
@@ -109,8 +109,10 @@ class _StartPageState extends State<StartPage> {
         );
       },
           
-      child: Container(
+      child: Ink(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        color: Colors.white,
+        
         child: Row(
           children: <Widget>[
             Icon(Icons.language),
@@ -130,8 +132,9 @@ class _StartPageState extends State<StartPage> {
             ),
 
             SizedBox(width: 15),
+
             Icon(
-              Icons.chevron_right, 
+              Icons.keyboard_arrow_right, 
               color: Colors.grey,
             ),
           ],

@@ -90,11 +90,12 @@ class _UserCenterState extends State<UserCenter> {
 
     for (int i = 0; i < items.length; i++) {
       _list.add(_menuItem(leading_icons[i], items[i], routes[i]));
+      _list.add(Divider(height: 0, indent: 15));
     }
 
-    var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
+    // var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
 
-    return divideList;
+    return _list;
   }
 
   // AppBar Title
@@ -125,7 +126,8 @@ class _UserCenterState extends State<UserCenter> {
 
   //
   Widget _menuItem(Icon icon, String item, String route) {
-    return Material(
+    return Ink(
+      color: Colors.white,
       child: ListTile(
         leading: icon,
         title: Text(item),

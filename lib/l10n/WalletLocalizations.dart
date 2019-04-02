@@ -60,7 +60,7 @@ class WalletLocalizations{
       'startPageAppBarTitle' : 'LunarX Omniwallet',
       'startPageButtonFirst' : '      开始使用      ',
       'startPageButtonSecond' : '      恢复钱包      ',
-      'startPageLanguageBarTitle' : '语言',
+      'startPageLanguageBarTitle' : '多语言',
 
       'main_page_title' : '钱包',
       'common_btn_skip' : '跳过',
@@ -79,10 +79,9 @@ class WalletLocalizations{
       'myProfilePageMenu6' : '关于',
 
       'settingsPageTitle' : '设置',
-      'settingsPageItem_1_Title' : '语言',
-      'settingsPageItem_1_Content' : '',
+      'settingsPageItem_1_Title' : '多语言',
       'settingsPageItem_2_Title' : '货币',
-      'settingsPageItem_2_Content' : '',
+      'settingsPageItem_3_Title' : '主题颜色',
 
       'helpPageTitle' : '帮助',
       'helpPageItemTitle' : '常见问题',
@@ -104,6 +103,13 @@ class WalletLocalizations{
       'serviceTermsPageAppBarTitle' : '服务条款',
 
       'aboutPageAppBarTitle' : '关于',
+      'aboutPageAppName' : 'Omni 钱包',
+      'aboutPageItem_1' : '版本日志',
+      'aboutPageItem_2' : '官方网站',
+      'aboutPageItem_3' : '推特',
+      'aboutPageItem_4' : '微信',
+      'aboutPageItem_5' : '电报群',
+      'aboutPageButton' : '版本更新',
 
       'userInfoPageAppBarTitle' : '用户信息',
       'userInfoPageItem_1_Title' : '头像',
@@ -199,9 +205,8 @@ class WalletLocalizations{
 
       'settingsPageTitle' : 'Settings',
       'settingsPageItem_1_Title' : 'Language',
-      'settingsPageItem_1_Content' : '',
       'settingsPageItem_2_Title' : 'Currency',
-      'settingsPageItem_2_Content' : '',
+      'settingsPageItem_3_Title' : 'Theme',
 
       'helpPageTitle' : 'Help',
       'helpPageItemTitle' : 'FAQ',
@@ -223,6 +228,13 @@ class WalletLocalizations{
       'serviceTermsPageAppBarTitle' : 'Service Terms',
 
       'aboutPageAppBarTitle' : 'About',
+      'aboutPageAppName' : 'Omni Wallet',
+      'aboutPageItem_1' : 'Version History',
+      'aboutPageItem_2' : 'Website',
+      'aboutPageItem_3' : 'Twitter',
+      'aboutPageItem_4' : 'Wechat',
+      'aboutPageItem_5' : 'Telegram',
+      'aboutPageButton' : 'Version Update',
 
       'userInfoPageAppBarTitle' : 'User Information',
       'userInfoPageItem_1_Title' : 'Avatar',
@@ -242,6 +254,13 @@ class WalletLocalizations{
 
   // About page
   get aboutPageAppBarTitle => _localizedValues[locale.languageCode]['aboutPageAppBarTitle'];
+  get aboutPageAppName => _localizedValues[locale.languageCode]['aboutPageAppName'];
+  get aboutPageItem_1 => _localizedValues[locale.languageCode]['aboutPageItem_1'];
+  get aboutPageItem_2 => _localizedValues[locale.languageCode]['aboutPageItem_2'];
+  get aboutPageItem_3 => _localizedValues[locale.languageCode]['aboutPageItem_3'];
+  get aboutPageItem_4 => _localizedValues[locale.languageCode]['aboutPageItem_4'];
+  get aboutPageItem_5 => _localizedValues[locale.languageCode]['aboutPageItem_5'];
+  get aboutPageButton => _localizedValues[locale.languageCode]['aboutPageButton'];
 
   //wallet page createNewAddress dialog
   get createNewAddress_title => _localizedValues[locale.languageCode]['createNewAddress_title'];
@@ -267,6 +286,7 @@ class WalletLocalizations{
   get settingsPageTitle => _localizedValues[locale.languageCode]['settingsPageTitle'];
   get settingsPageItem_1_Title => _localizedValues[locale.languageCode]['settingsPageItem_1_Title'];
   get settingsPageItem_2_Title => _localizedValues[locale.languageCode]['settingsPageItem_2_Title'];
+  get settingsPageItem_3_Title => _localizedValues[locale.languageCode]['settingsPageItem_3_Title'];
 
   // My profile page
   get myProfilePageMenu1 => _localizedValues[locale.languageCode]['myProfilePageMenu1'];

@@ -33,25 +33,28 @@ class _HelpState extends State<Help> {
       ),
 
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container( // Title
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                'FAQ List',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container( // Title
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                child: Text(
+                  'FAQ',
+                  style: TextStyle(
+                    fontSize: 18,
+                    // fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
 
-            ListView(
-              shrinkWrap: true,
-              // physics: NeverScrollableScrollPhysics(),
-              children: _buildFAQList(),
-            ),
-          ],
+              ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: _buildFAQList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -69,23 +72,27 @@ class _HelpState extends State<Help> {
 
     for (int i = 0; i < faqList.length; i++) {
       _list.add(_faqItem(faqList[i]));
+      _list.add(Divider(height: 0, indent: 15));
     }
 
-    var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
+    // var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
 
-    return divideList;
+    return _list;
   }
 
   //
   Widget _faqItem(String item) {
-    return ListTile(
-      title: Text(item),
-      trailing: Icon(Icons.keyboard_arrow_right),
-      onTap: () { 
-        // TODO: show next page.
-        print('menu list');
-        Navigator.of(context).pushNamed('routeName');
-      },
+    return Ink(
+      color: Colors.white,
+      child: ListTile(
+        title: Text(item),
+        trailing: Icon(Icons.keyboard_arrow_right),
+        onTap: () { 
+          // TODO: show next page.
+          print('menu list');
+          // Navigator.of(context).pushNamed('routeName');
+        },
+      ),
     );
   }
 }

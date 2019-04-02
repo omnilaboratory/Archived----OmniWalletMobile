@@ -22,58 +22,69 @@ class _SettingsState extends State<Settings> {
       ),
 
       body: SafeArea(
-        child: Column(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(top: 10),
+          child: ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: _buildMenuList(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Build menu list
+  List<Widget> _buildMenuList() {
+    // list tile
+    List<Widget> _list = List();
+
+    // item content
+    List<String> items = <String> [
+      WalletLocalizations.of(context).settingsPageItem_1_Title,
+      WalletLocalizations.of(context).settingsPageItem_2_Title,
+      WalletLocalizations.of(context).settingsPageItem_3_Title,
+    ];
+
+    // item content
+    List<String> values = <String> [
+      'English', 'CNY', 'Light'
+    ];
+
+    // Page routes
+    List<String> routes = <String> [
+      '','',''
+    ];
+
+    for (int i = 0; i < items.length; i++) {
+      _list.add(_menuItem(items[i], values[i], routes[i]));
+      _list.add(Divider(height: 0, indent: 15));
+    }
+
+    return _list;
+  }
+
+  //
+  Widget _menuItem(String strTitle, String strValue, String route) {
+    return Ink(
+      color: Colors.white,
+      child: ListTile(
+        title: Text(strTitle),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ListTile(
-              title: Text(WalletLocalizations.of(context).settingsPageItem_1_Title),
-
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'English',
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Icon(Icons.keyboard_arrow_right),
-                ],
+            Text(
+              strValue,
+              style: TextStyle(
+                color: Colors.grey,
               ),
-
-              onTap: () {
-                // TODO: show next page.
-                // Navigator.of(context).pushNamed(route);
-              },
             ),
-
-            // Item 2
-            ListTile(
-              title: Text(WalletLocalizations.of(context).settingsPageItem_2_Title),
-
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    'CNY',
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SizedBox(width: 15),
-                  Icon(Icons.keyboard_arrow_right),
-                ],
-              ),
-
-              onTap: () {
-                // TODO: show next page.
-                // Navigator.of(context).pushNamed(route);
-              },
-            )
-
-            
+            SizedBox(width: 15),
+            Icon(Icons.keyboard_arrow_right),
           ],
         ),
+
+        onTap: () {Navigator.of(context).pushNamed(route);},
       ),
     );
   }
