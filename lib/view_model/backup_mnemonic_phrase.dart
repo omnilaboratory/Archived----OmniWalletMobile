@@ -1,4 +1,5 @@
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'dart:math';
 
 class BackupMnemonicPhrase extends Model{
 
@@ -9,10 +10,12 @@ class BackupMnemonicPhrase extends Model{
       this.wordList.clear();
     }
     this.wordList = [
-      WordInfo(content: 'word1word1' ),WordInfo(content: 'word2word1' ),WordInfo(content: 'wordword13' ),WordInfo(content: 'word4' ),
-      WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),
-      WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),
-      WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' )
+      WordInfo(content: 'word1' ,seqNum: 0),WordInfo(content: 'word2' ,seqNum: 1 ),
+      WordInfo(content: 'word3' ,seqNum: 2),WordInfo(content: 'word4' ,seqNum: 3),
+      WordInfo(content: 'word5' ,seqNum: 4 ),WordInfo(content: 'word6' ,seqNum: 5),
+      WordInfo(content: 'word7' ,seqNum: 6 ),WordInfo(content: 'word8' ,seqNum: 7),
+      WordInfo(content: 'word9' ,seqNum: 8 ),WordInfo(content: 'word10' ,seqNum: 9),
+      WordInfo(content: 'word11' ,seqNum: 10 ),WordInfo(content: 'word12' ,seqNum: 11),
     ];
     return this.wordList;
   }
@@ -23,6 +26,16 @@ class BackupMnemonicPhrase extends Model{
     }
     return this.wordList;
   }
+
+  List<WordInfo> get randomSortMnemonicPhrases{
+    var temp = this.wordList.sublist(0);
+    for(var item in temp){
+      item.visible=true;
+    }
+    temp.shuffle();
+    return temp;
+  }
+
   String get mnemonicPhraseString{
     if(this.wordList==null){
       createNewWords();

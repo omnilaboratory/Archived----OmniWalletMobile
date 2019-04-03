@@ -23,6 +23,7 @@ class WalletLocalizations{
       'backup_words_warn': "不要和他人分享你的助记词，保护好他们",
       'backup_words_order_title': '确认助记词',
       'backup_words_order_content': '请按顺序点击助记词，以确认您\n正确备份。',
+      'backup_words_order_error': '顺序错误，重试一次！',
       'backup_words_order_finish': '完成',
 
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
@@ -140,7 +141,8 @@ class WalletLocalizations{
       'backup_words_warn': "Never share recovery phrase with anyone,store it securely!",
 
       'backup_words_order_title': 'Confirm mnemonic words',
-      'backup_words_order_content': 'Please click mnemonic words in order to \nmake sure that you backup correctly',
+      'backup_words_order_content': 'Click the following 12-word phrase in exact sequence, to make sure you have a correct backup.',
+      'backup_words_order_error': 'Invalid order.Try again!',
       'backup_words_order_finish': 'Finish',
 
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
@@ -375,6 +377,7 @@ class WalletLocalizations{
 
   get backup_words_order_title => _localizedValues[locale.languageCode]['backup_words_order_title'];
   get backup_words_order_content => _localizedValues[locale.languageCode]['backup_words_order_content'];
+  get backup_words_order_error => _localizedValues[locale.languageCode]['backup_words_order_error'];
   get backup_words_order_finish => _localizedValues[locale.languageCode]['backup_words_order_finish'];
 
   String get main_page_title => _localizedValues[locale.languageCode]['main_page_title'];

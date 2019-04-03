@@ -16,7 +16,6 @@ class BackupWalletWords extends StatefulWidget {
 class _BackupWalletWordsState extends State<BackupWalletWords> {
 
   List<WordInfo> words=null;
-
   MainStateModel stateModel = null;
 
   @override
