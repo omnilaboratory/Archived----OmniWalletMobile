@@ -49,15 +49,19 @@ class _WalletSendState extends State<WalletSend> {
   });
 
   @override
+  void initState() {
+    super.initState();
+    addressController = TextEditingController();
+  }
+
+  @override
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     walletInfo = stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
     _usualAddressInfo = stateModel.currSelectedUsualAddress;
-
-     addressController = TextEditingController();
-
     return Scaffold(
+        backgroundColor: Colors.white,
         key: this.key,
         appBar: AppBar(title: Text(accountInfo.name + "转账"),),
         body: this.body()
@@ -143,7 +147,6 @@ class _WalletSendState extends State<WalletSend> {
             padding: const EdgeInsets.only(top: 12),
             child: TextFormField(
               controller: addressController,
-//              initialValue: _usualAddressInfo==null?'enmpty':_usualAddressInfo.address,
               validator: (val){
                 if(val==null||val.length==0){
                   return "wrong address";
@@ -256,8 +259,11 @@ class _WalletSendState extends State<WalletSend> {
               makeRadioTiles()
             ],
           );
-    if(_usualAddressInfo!=null&&addressController!=null){
-        addressController.text =_usualAddressInfo.address;
+
+    if(_usualAddressInfo!=null){
+        if(addressController.text.length==0){
+          addressController.text =_usualAddressInfo.address;
+        }
     }
     return SingleChildScrollView(
       child: Form(

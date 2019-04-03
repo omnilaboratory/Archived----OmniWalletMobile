@@ -12,6 +12,7 @@ class SendConfirm extends StatelessWidget {
     this._sendInfo = stateModel.sendInfo;
     print(this._sendInfo);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(SendConfirm.tag),
       ),
@@ -20,11 +21,11 @@ class SendConfirm extends StatelessWidget {
   }
   Widget body(BuildContext context){
     return Container(
-      margin: EdgeInsets.only(top: 30,left: 20,right: 20),
+      margin: EdgeInsets.only(top: 10,left: 20,right: 20),
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.only(bottom: 20),
             child: Row(
               children: <Widget>[
                 Text(

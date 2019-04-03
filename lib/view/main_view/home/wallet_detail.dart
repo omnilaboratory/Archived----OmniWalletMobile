@@ -32,7 +32,7 @@ class _WalletDetailState extends State<WalletDetail> {
     return Stack(
       children: <Widget>[
         Container(color: AppCustomColor.themeBackgroudColor,),
-        Image.asset('assets/asset_detail_headerBg.png',fit: BoxFit.cover,height: 260,width: MediaQuery.of(context).size.width,),
+        Image.asset('assets/asset_detail_headerBg.png',fit: BoxFit.cover,height: 240,width: MediaQuery.of(context).size.width,),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(

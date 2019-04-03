@@ -23,6 +23,7 @@ class _ReceivePageState extends State<ReceivePage> {
     walletInfo = stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
     return Scaffold(
+        backgroundColor: Colors.white,
       key: this.key,
       appBar: AppBar(title: Text(accountInfo.name+"收款"),),
       body: this.body()

@@ -22,6 +22,7 @@ class TradeInfoDetail extends StatelessWidget {
     stateModel = MainStateModel().of(context);
     tradeInfo = stateModel.currTradeInfo;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('交易记录详情'),
       ),
@@ -30,7 +31,6 @@ class TradeInfoDetail extends StatelessWidget {
   }
 
   Widget body(BuildContext context){
-
     var line1 = Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
