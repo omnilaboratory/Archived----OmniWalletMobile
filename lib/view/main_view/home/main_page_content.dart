@@ -4,7 +4,9 @@ import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
 import 'package:wallet_app/view/widgets/custom_expansion_tile.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
-
+/**
+ * asset list view
+ */
 class BodyContentWidget extends StatefulWidget {
   BodyContentWidget({Key key, }) : super(key: key);
   @override

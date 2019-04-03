@@ -11,15 +11,21 @@ class WalletDetailContent extends StatefulWidget {
   _WalletDetailContentState createState() => _WalletDetailContentState();
 }
 
-class _WalletDetailContentState extends State<WalletDetailContent> {
+class _WalletDetailContentState extends State<WalletDetailContent> with SingleTickerProviderStateMixin{
 
   MainStateModel stateModel = null;
   WalletInfo walletInfo;
   AccountInfo accountInfo;
   List<TradeInfo> tradeInfoes ;
 
+  TabController mController;
+
   @override void initState() {
     super.initState();
+    mController = TabController(
+      length: 4,
+      vsync: this,
+    );
   }
 
   @override
@@ -30,21 +36,63 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
     accountInfo = stateModel.currAccountInfo;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         buildHeader(),
-        buildBodyHeader(),
+        Padding(
+          padding: const EdgeInsets.only(top: 20,bottom: 10),
+          child: TabBar(
+              controller: mController,
+              labelColor: Colors.blue,
+              labelPadding: EdgeInsets.only(bottom: 4),
+              indicatorSize: TabBarIndicatorSize.label,
+              unselectedLabelColor: Colors.grey,
+              tabs: [
+                Text('All'),
+                Text('Out'),
+                Text('In'),
+                Text('Failed'),
+              ]),
+        ),
         Expanded(
-          child: ListView.builder(
-              itemCount:tradeInfoes.length,
-              itemBuilder: (BuildContext context, int index){
-                return detailTile(context,index);
-              }),
+          child: TabBarView(
+            controller: mController,
+            children: <Widget>[
+              ListView.builder(
+                  itemCount:tradeInfoes.length,
+                  itemBuilder: (BuildContext context, int index){
+                    return detailTile(context,index);
+                  }),
+              new Center(child: new Text('船')),
+              new Center(child: new Text('船')),
+              new Center(child: new Text('船')),
+            ],
+          ),
         ),
         buildFooter()
       ],
     );
   }
 
+  Widget buildBody(){
+    return Column(children: <Widget>[
+      TabBar(
+          controller: mController,
+          tabs: [
+        Text('tab1'),
+        Text('tab2'),
+      ]),
+      TabBarView(
+        controller: mController,
+        children: <Widget>[
+
+          Text('body1'),
+          Text('body2')
+        ],
+      )
+    ],);
+  }
+//  https://www.jianshu.com/p/a2dac1451a93  TabBar+TabView
   Widget buildBodyHeader() {
     return Container(
       child: Column(
@@ -138,24 +186,27 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
     );
   }
 
-  //头部 112
+  //头部
   Container buildHeader() {
     return Container(
-        padding: EdgeInsets.only(top: 30,bottom: 20),
+        height: 180,
+        width: MediaQuery.of(context).size.width,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 30),
               child: Text(
                   accountInfo.amount.toStringAsFixed(8),
-                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 30,color: Colors.white,fontWeight: FontWeight.w600),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:0),
+              padding: const EdgeInsets.only(top: 12),
               child: Text(
                   "=\$ "+accountInfo.legalTender.toStringAsFixed(2),
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 20,color: Colors.white54),
               ),
             ),
           ],
@@ -165,7 +216,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> {
 
   Widget buildFooter() {
     return Container(
-        margin: EdgeInsets.only(top: 15,bottom: 20),
+        margin: EdgeInsets.only(top: 2,bottom: 0),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
