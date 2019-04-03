@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/backup_wallet.dart';
-import 'package:wallet_app/tools/app_data_setting.dart';
 
 class BackupWalletWordsOrder extends StatefulWidget {
   @override

@@ -4,6 +4,7 @@ import 'package:wallet_app/model/backup_wallet.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_word_order.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 
 class BackupWalletWords extends StatefulWidget {
@@ -14,15 +15,14 @@ class BackupWalletWords extends StatefulWidget {
 
 class _BackupWalletWordsState extends State<BackupWalletWords> {
 
-  List<WordInfo> words=[
-    WordInfo(content: 'word1word1' ),WordInfo(content: 'word2word1' ),WordInfo(content: 'wordword13' ),WordInfo(content: 'word4' ),
-    WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),
-    WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),
-    WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' ),WordInfo(content: 'word' )
-  ];
+  List<WordInfo> words=null;
+
+  MainStateModel stateModel = null;
 
   @override
   Widget build(BuildContext context) {
+    stateModel = MainStateModel().of(context) ;
+    words = stateModel.mnemonicPhrases;
     return Scaffold(
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_words_title),
@@ -78,8 +78,6 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
     );
   }
 
-
-
   Widget pageCentent(BuildContext context){
     return Center(
       child: Column(
@@ -94,7 +92,9 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: FlatButton(
                 onPressed: (){
-                  Tools.copyToClipboard('copy the data');
+                  var str = stateModel.mnemonicPhraseString;
+                  Tools.copyToClipboard(str);
+                  print(str);
                   Scaffold.of(context).showSnackBar(SnackBar(content: Text('success'),duration: Duration(seconds: 2),));
                 },
                 child: Text(WalletLocalizations.of(context).common_btn_copy,style: TextStyle(color: Colors.blue,fontSize: 16),)
