@@ -32,53 +32,64 @@ class TradeInfoDetail extends StatelessWidget {
 
   Widget body(BuildContext context){
     var line1 = Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Text(
-                    DateFormat('yyyy-MM-dd kk:mm').format(tradeInfo.tradeDate),
-                    style: textStyleTitle,
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Text('Sent BTC',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black87
+                    ),
                   ),
                 ),
                 Text(
-                  '转出 ${tradeInfo.amount.toStringAsFixed(8)}',
+                  '${tradeInfo.amount.toStringAsFixed(8)}',
                   style: TextStyle(
-                    fontSize: 20
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 6),
+                  padding: const EdgeInsets.only(top: 15),
                   child: Text(
-                      '到    ${tradeInfo.objAddress}',
+                    tradeInfo.state==0?'Confirming':'Finish',
                     style: TextStyle(
-                      fontSize: 18
+                      fontSize: 18,
+                      color: Colors.grey
                     ),
                   ),
                 ),
               ],
             );
-
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.only(top: 20,left: 20),
+        margin: EdgeInsets.only(top: 20,left: 20,right: 20),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              line1,
-              line("状态",tradeInfo.state==0?'交易中':'完成'),
-              line("备注",tradeInfo.note),
+              Container(
+                  margin: EdgeInsets.only(bottom: 40),
+                  width: double.infinity, child: line1
+              ),
+              line("To",tradeInfo.objAddress),
+              line("Memo",tradeInfo.note),
+              line("Date",DateFormat('yyyy.MM.dd hh:mm').format(tradeInfo.tradeDate)),
               line("交易Id",tradeInfo.txId),
               line("确认Block",tradeInfo.blockId.toString()),
               line("确认数量",tradeInfo.confirmAmount.toString()),
               Center(
-                child: RaisedButton(
-                  onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                      return WebViewPage();
-                    }));
-                  },
-                  child: Text('浏览Omni网站'),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: RaisedButton(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                        return WebViewPage();
+                      }));
+                    },
+                    child: Text('浏览Omni网站'),
+                  ),
                 ),
               )
           ],
@@ -87,18 +98,19 @@ class TradeInfoDetail extends StatelessWidget {
     );
   }
   Widget line(String title,String content) {
-    return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8,top: 25),
-                child: Text(
-                  title,
-                  style: textStyleTitle,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    title,
+                    style: textStyleTitle,
+                  ),
                 ),
-              ),
-              Text(content,style: textStyleBody,)
-            ],
-          );
+                Text(content,style: textStyleBody,)
+              ],
+            ),
+    );
   }
 }

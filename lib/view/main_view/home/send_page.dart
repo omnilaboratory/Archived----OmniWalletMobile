@@ -148,12 +148,23 @@ class _WalletSendState extends State<WalletSend> {
             child: TextFormField(
               controller: addressController,
               validator: (val){
+                if(_usualAddressInfo!=null){
+                  if(addressController.text.length==0){
+                    val =_usualAddressInfo.address;
+                  }
+                }
+                val = addressController.text;
                 if(val==null||val.length==0){
                   return "wrong address";
                 }
               },
               onSaved: (val){
-                this._toAddress = val;
+                if(_usualAddressInfo!=null){
+                  if(addressController.text.length==0){
+                    addressController.text =_usualAddressInfo.address;
+                  }
+                }
+                this._toAddress = addressController.text;
               },
               scrollPadding: EdgeInsets.only(top: 10),
               decoration: InputDecoration(
