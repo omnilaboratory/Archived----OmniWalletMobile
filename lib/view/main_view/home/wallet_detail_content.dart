@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
@@ -122,7 +123,11 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-                            child: Text(tradeInfo.state==0?'Confirming':'Finish',style: TextStyle(color:Colors.grey[500]),),
+                            child: Text(
+                              tradeInfo.state==0?
+                                  WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
+                                : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
+                              style: TextStyle(color:Colors.grey[500]),),
                           )
                       )
                     ],
@@ -191,7 +196,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                     return WalletSend();
                   }));
                 },
-                child: Text('send',style: TextStyle(fontSize: 18,color: Colors.blue),),
+                child: Text(WalletLocalizations.of(context).wallet_detail_content_send ,style: TextStyle(fontSize: 18,color: Colors.blue),),
                 color: AppCustomColor.btnCancel,
                 padding: EdgeInsets.symmetric(vertical:12),
               ),
@@ -205,7 +210,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                     return ReceivePage();
                   }));
                 },
-                child: Text('Receive',style: TextStyle(fontSize: 18, color: Colors.white)),
+                child: Text(WalletLocalizations.of(context).wallet_detail_content_receive ,style: TextStyle(fontSize: 18, color: Colors.white)),
                 padding: EdgeInsets.symmetric(vertical:12),
                 color: AppCustomColor.btnConfirm,
               ),

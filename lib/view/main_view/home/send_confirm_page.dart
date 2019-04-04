@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class SendConfirm extends StatelessWidget {
@@ -12,7 +14,7 @@ class SendConfirm extends StatelessWidget {
     this._sendInfo = stateModel.sendInfo;
     print(this._sendInfo);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: AppBar(
         title: Text(SendConfirm.tag),
       ),
@@ -29,7 +31,7 @@ class SendConfirm extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Text(
-                  'To',
+                  WalletLocalizations.of(context).wallet_send_page_to,
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
@@ -42,7 +44,7 @@ class SendConfirm extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Text(
-                  'Amount',
+                  WalletLocalizations.of(context).wallet_send_page_title_amount,
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
@@ -55,7 +57,7 @@ class SendConfirm extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Text(
-                  'Miner Fee',
+                  WalletLocalizations.of(context).wallet_send_page_title_minerFee_input_title,
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
@@ -68,7 +70,7 @@ class SendConfirm extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Text(
-                  'Memo',
+                  WalletLocalizations.of(context).wallet_send_page_title_note,
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
@@ -83,6 +85,8 @@ class SendConfirm extends StatelessWidget {
               color: Colors.lightBlue[300],
               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.35,vertical: 20),
                 onPressed: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
              },
               child: Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
             ),

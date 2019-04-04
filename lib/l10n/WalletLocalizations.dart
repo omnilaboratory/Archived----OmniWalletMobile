@@ -32,7 +32,7 @@ class WalletLocalizations{
           "如您愿意继续使用我们的平台，您同意接受与您SEED损失相关的所有风险。如果您丢失了SEED，"
           "您同意并承认 Omni 平台不会对此造成的负面后果承担责任。",
       'welcomePageOneButton' : '您需要知道的关于您的SEED信息',
-      
+
       'welcomePageTwoTitle' : '您需要知道关于您的SEED的信息',
       'welcomePageTwoContentOne' : "注册您的账户时，您要保存您的密码（SEED）并使用密码来保护您的账户。"
           "用普通的中央服务器上，您特别注意密码, 而且您可以通过电子邮件更改和重置密码。然而，Omni 与众不同 — "
@@ -123,6 +123,31 @@ class WalletLocalizations{
       'buttom_tab2_name' : '市场',
       'buttom_tab3_name' : 'DEX',
       'buttom_tab4_name' : '我的',
+
+
+
+      'wallet_detail_content_send' : '转账',
+      'wallet_detail_content_receive' : '收款',
+      'wallet_receive_page_copy' : '复制',
+      'wallet_receive_page_share' : '分享',
+      'wallet_receive_page_tips_copy' : '复制成功',
+      'wallet_receive_page_tips_share' : '分享成功',
+      'wallet_send_page_to' : '转到',
+      'wallet_send_page_input_address_hint' : '请输入地址',
+      'wallet_send_page_input_address_error' : '地址为空',
+      'wallet_send_page_title_amount' : '数量',
+      'wallet_send_page_title_balance' : '余额',
+      'wallet_send_page_input_amount' : '请输入数量',
+      'wallet_send_page_input_amount_error' : '数量不对',
+      'wallet_send_page_title_note' : '备注',
+      'wallet_send_page_input_note' : '选填',
+      'wallet_send_page_title_minerFee' : '矿工费用',
+      'wallet_send_page_title_minerFee_input_title' : '自定义',
+
+      'wallet_trade_info_detail_title' : '交易记录详情',
+      'wallet_trade_info_detail_title2' : '转账',
+      'wallet_trade_info_detail_finish_state1' : '确认中',
+      'wallet_trade_info_detail_finish_state2' : '已完成',
     },
 
     'en': {
@@ -258,8 +283,41 @@ class WalletLocalizations{
       'buttom_tab2_name' : 'Market',
       'buttom_tab3_name' : 'DEX',
       'buttom_tab4_name' : 'Me',
+
+      'wallet_detail_content_send' : 'Send',
+      'wallet_detail_content_receive' : 'Receive',
+      'wallet_receive_page_copy' : 'Copy',
+      'wallet_receive_page_share' : 'Share',
+      'wallet_receive_page_tips_copy' : 'copy success',
+      'wallet_receive_page_tips_share' : 'share success',
+
+      'wallet_send_page_to' : 'To',
+      'wallet_send_page_input_address_hint' : 'please input address',
+      'wallet_send_page_input_address_error' : 'empty address',
+
+      'wallet_send_page_title_amount' : 'Amount',
+      'wallet_send_page_title_balance' : 'Balance',
+      'wallet_send_page_input_amount' : 'please input amount',
+      'wallet_send_page_input_amount_error' : 'wrong amount',
+      'wallet_send_page_title_note' : 'Memo',
+      'wallet_send_page_input_note' : 'Optional',
+      'wallet_send_page_title_minerFee' : 'Miner Fee',
+      'wallet_send_page_title_minerFee_input_title' : 'Custom',
+
+      'wallet_trade_info_detail_title' : 'Transaction Details',
+      'wallet_trade_info_detail_title2' : 'Sent',
+      'wallet_trade_info_detail_finish_state1' : 'Confirming',
+      'wallet_trade_info_detail_finish_state2' : 'Finish',
+
     }
   };
+
+  get wallet_trade_info_detail_title => _localizedValues[locale.languageCode]['wallet_trade_info_detail_title'];
+  get wallet_trade_info_detail_title2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_title2'];
+  get wallet_trade_info_detail_finish_state1 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state1'];
+  get wallet_trade_info_detail_finish_state2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state2'];
+
+
 
   get buttom_tab1_name => _localizedValues[locale.languageCode]['buttom_tab1_name'];
   get buttom_tab2_name => _localizedValues[locale.languageCode]['buttom_tab2_name'];
@@ -385,6 +443,24 @@ class WalletLocalizations{
   String get common_btn_skip => _localizedValues[locale.languageCode]['common_btn_skip'];
   String get common_btn_copy => _localizedValues[locale.languageCode]['common_btn_copy'];
 
+
+  String get wallet_detail_content_send => _localizedValues[locale.languageCode]['wallet_detail_content_send'];
+  String get wallet_detail_content_receive => _localizedValues[locale.languageCode]['wallet_detail_content_receive'];
+  String get wallet_receive_page_copy => _localizedValues[locale.languageCode]['wallet_receive_page_copy'];
+  String get wallet_receive_page_share => _localizedValues[locale.languageCode]['wallet_receive_page_share'];
+  String get wallet_receive_page_tips_copy => _localizedValues[locale.languageCode]['wallet_receive_page_tips_copy'];
+  String get wallet_receive_page_tips_share => _localizedValues[locale.languageCode]['wallet_receive_page_tips_share'];
+  String get wallet_send_page_to => _localizedValues[locale.languageCode]['wallet_send_page_to'];
+  String get wallet_send_page_input_address_hint => _localizedValues[locale.languageCode]['wallet_send_page_input_address_hint'];
+  String get wallet_send_page_input_address_error => _localizedValues[locale.languageCode]['wallet_send_page_input_address_error'];
+  String get wallet_send_page_title_amount => _localizedValues[locale.languageCode]['wallet_send_page_title_amount'];
+  String get wallet_send_page_title_balance => _localizedValues[locale.languageCode]['wallet_send_page_title_balance'];
+  String get wallet_send_page_input_amount => _localizedValues[locale.languageCode]['wallet_send_page_input_amount'];
+  String get wallet_send_page_input_amount_error => _localizedValues[locale.languageCode]['wallet_send_page_input_amount_error'];
+  String get wallet_send_page_title_note => _localizedValues[locale.languageCode]['wallet_send_page_title_note'];
+  String get wallet_send_page_input_note => _localizedValues[locale.languageCode]['wallet_send_page_input_note'];
+  String get wallet_send_page_title_minerFee => _localizedValues[locale.languageCode]['wallet_send_page_title_minerFee'];
+  String get wallet_send_page_title_minerFee_input_title => _localizedValues[locale.languageCode]['wallet_send_page_title_minerFee_input_title'];
 
   static WalletLocalizations of (BuildContext context){
     return Localizations.of(context, WalletLocalizations);

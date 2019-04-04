@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/omni_website.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view_model/main_model.dart';
@@ -9,22 +11,26 @@ import 'package:wallet_app/view_model/main_model.dart';
 class TradeInfoDetail extends StatelessWidget {
   MainStateModel stateModel = null;
   TradeInfo tradeInfo = null;
+  AccountInfo accountInfo;
 
   var textStyleTitle = TextStyle(
     color: Colors.grey,
   );
   var textStyleBody = TextStyle(
-    color: Colors.black,
+    color: AppCustomColor.themeFrontColor,
   );
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
+    if(stateModel==null)
+      stateModel = MainStateModel().of(context);
+
     tradeInfo = stateModel.currTradeInfo;
+    accountInfo = stateModel.currAccountInfo;
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: AppBar(
-        title: Text('交易记录详情'),
+        title: Text(WalletLocalizations.of(context).wallet_trade_info_detail_title),
       ),
       body:this.body(context)
     );
@@ -37,10 +43,10 @@ class TradeInfoDetail extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
-                  child: Text('Sent BTC',
+                  child: Text(WalletLocalizations.of(context).wallet_trade_info_detail_title2+ ' ${accountInfo.name}',
                     style: TextStyle(
                         fontSize: 18,
-                        color: Colors.black87
+                        color: AppCustomColor.themeFrontColor
                     ),
                   ),
                 ),
@@ -54,7 +60,9 @@ class TradeInfoDetail extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Text(
-                    tradeInfo.state==0?'Confirming':'Finish',
+                    tradeInfo.state==0?
+                        WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
+                        :WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey

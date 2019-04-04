@@ -45,12 +45,7 @@ class MyApp extends StatefulWidget {
     state.setState(() {
       print('test');
       state.brightness = brightness;
-      AppCustomColor.themeFrontColor = 
-        brightness == Brightness.dark ? Colors.white : Colors.black;
-      AppCustomColor.themeBackgroudColor = 
-        brightness == Brightness.dark ? Colors.yellow : Colors.white;
-      AppCustomColor.aboutPageBannerBGColor = 
-        brightness == Brightness.dark ? Colors.black : Colors.blue[50];
+      AppCustomColor.setColors(brightness);
     });
   }
 }
@@ -81,7 +76,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
+    AppCustomColor.setColors(brightness);
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
       child: MaterialApp(

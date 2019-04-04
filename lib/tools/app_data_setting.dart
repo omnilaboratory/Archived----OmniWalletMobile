@@ -28,4 +28,14 @@ class AppCustomColor{
    * About Page Banner Area Backgroud Color
    */
   static Color aboutPageBannerBGColor =  Colors.blue[50];
+
+  static setColors(Brightness brightness){
+    AppCustomColor.themeFrontColor =
+    brightness == Brightness.dark ? Colors.white : Colors.black;
+    AppCustomColor.themeBackgroudColor =
+    brightness == Brightness.dark ? Colors.yellow : Colors.white;
+    AppCustomColor.aboutPageBannerBGColor =
+    brightness == Brightness.dark ? Colors.black : Colors.blue[50];
+  }
+
 }

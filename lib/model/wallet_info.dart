@@ -51,7 +51,7 @@ class TradeInfo extends BaseInfo{
   num state;
   //交易时间
   DateTime tradeDate;
-  //被尊
+  //备注
   String note;
   //Block层数
   num blockId;
