@@ -2,7 +2,9 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-5
 
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
@@ -79,7 +81,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 } else {
                   locale = Locale('zh',"CH");
                 }
-                MyApp.setLocale(context,locale);
+                MyApp.setLocale(context, locale);
+
+                // save value
+                save(strClickItem);
               }
              
               Navigator.pop(context);
@@ -94,5 +99,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
         ),
       )
     );
+  }
+
+  save(String value) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('set_language', value);
   }
 }

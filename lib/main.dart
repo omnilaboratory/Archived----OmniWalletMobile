@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
@@ -12,9 +13,9 @@ import 'package:wallet_app/view/main_view/home/send_page.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view/main_view/splash.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
-import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
@@ -91,6 +92,8 @@ class _MyAppState extends State<MyApp> {
             iconTheme: brightness==Brightness.dark?IconThemeData(color: Colors.white):IconThemeData(color: Colors.black)
           )
         ),
+
+        //
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {
             this.locale = deviceLocale;
@@ -98,6 +101,7 @@ class _MyAppState extends State<MyApp> {
           return this.locale;
         },
 
+        // set app language
         locale: this.locale,
 
         // onGenerateTitle: (context){
@@ -115,7 +119,7 @@ class _MyAppState extends State<MyApp> {
         ],
         routes: routes,
         // home: BackupWalletIndex(),
-        home: WelcomePageOne(),
+        home: Splash(),
       ),
     );
   }

@@ -7,21 +7,18 @@ class WelcomePageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      // ),
+      appBar: PreferredSize(
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
+        preferredSize: Size.fromHeight(0),
+      ),
 
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: _childColumn(context),
         ),
-
-        // child: Container(
-        //   // padding: EdgeInsets.only(bottom: 30, left: 30, right: 30),
-        //   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 60),
-        //   child: _childColumn(context),
-        // ),
       )
     );
   }
@@ -50,7 +47,7 @@ class WelcomePageOne extends StatelessWidget {
         Text(
           WalletLocalizations.of(context).welcomePageOneContent,
           textAlign: TextAlign.left,
-          style: TextStyle(color: Colors.grey[700]),
+          // style: TextStyle(color: Colors.grey[700]),
         ),
 
         // Next button.

@@ -10,14 +10,24 @@ class WelcomePageThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            children: <Widget>[
-              _childColumn(context),
-            ],
-          ),
-        )
+
+      appBar: PreferredSize(
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          // brightness: Theme.of(context).brightness == 
+          //   Brightness.dark ? Brightness.light : Brightness.dark,
+        ),
+        preferredSize: Size.fromHeight(0),
+      ),
+
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          children: <Widget>[
+            _childColumn(context),
+          ],
+        ),
+      )
     );
   }
 
@@ -39,7 +49,7 @@ class WelcomePageThree extends StatelessWidget {
         SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageThreeContentOne,
-          style: TextStyle(color: Colors.grey[700]),
+          // style: TextStyle(color: Colors.grey[700]),
         ),
 
         // List content.
@@ -77,7 +87,7 @@ class WelcomePageThree extends StatelessWidget {
         Expanded(
           child: Text(
             txt,
-            style: TextStyle(color: Colors.grey[700]),
+            // style: TextStyle(color: Colors.grey[700]),
           ),
         ),
       ],

@@ -14,41 +14,53 @@ import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
 class UserCenter extends StatefulWidget {
-  
+
   @override
   _UserCenterState createState() => _UserCenterState();
 }
 
 class _UserCenterState extends State<UserCenter> {
-  
+
   @override
   Widget build(BuildContext context) {
-    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-      // statusBarColor:Colors.transparent,
-      statusBarBrightness: Brightness.dark,
-  );
-  SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/img1.jpg'),
+    return Stack(
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: AssetImage('assets/img1.jpg'),
+      //     fit: BoxFit.fitHeight,
+      //   )
+      // ),
+      children: <Widget>[
+        Image.asset(
+          'assets/img1.jpg',
           fit: BoxFit.cover,
-        )
-      ),
+          height: 260,
+          width: MediaQuery.of(context).size.width,
+        ),
 
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _bannerArea(),
-                _menuArea(),
-              ],
+        Scaffold(
+          backgroundColor: Colors.transparent,
+
+          appBar: PreferredSize(
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              brightness: Brightness.dark,
+            ),
+            preferredSize: Size.fromHeight(0),
+          ),
+          
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  _bannerArea(),
+                  _menuArea(),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 
