@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 class UserInfo extends StatefulWidget {
   static String tag = "UserInfo";
@@ -25,7 +26,7 @@ class _UserInfoState extends State<UserInfo> {
           children: <Widget>[
             SizedBox(height: 10),
             Ink(
-              color: Colors.white,
+              color: AppCustomColor.themeBackgroudColor,
               child: ListTile(  // Item 1
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_1_Title),
                 trailing: Row(
@@ -47,7 +48,7 @@ class _UserInfoState extends State<UserInfo> {
             Divider(height: 0, indent: 15),
 
             Ink(
-              color: Colors.white,
+              color: AppCustomColor.themeBackgroudColor,
               child: ListTile(  // Item 2
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_2_Title),
                 trailing: Row(
@@ -74,7 +75,7 @@ class _UserInfoState extends State<UserInfo> {
             SizedBox(height: 10),
             
             Ink( // delete account button
-              color: Colors.white,
+              color: AppCustomColor.themeBackgroudColor,
               child: ListTile(
                 title: Text(
                   WalletLocalizations.of(context).userInfoPageButton,

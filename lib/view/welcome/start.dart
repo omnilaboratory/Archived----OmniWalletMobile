@@ -8,6 +8,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
@@ -129,7 +130,7 @@ class _StartPageState extends State<StartPage> {
     return InkWell(
       // splashColor: Colors.blue[100],
       // highlightColor: Colors.blue[100],
-
+      
       onTap: () {
         // Show the select language page.
         Navigator.push(
@@ -142,7 +143,7 @@ class _StartPageState extends State<StartPage> {
           
       child: Ink(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        color: Colors.white,
+        color: AppCustomColor.themeFrontColor,
         
         child: Row(
           children: <Widget>[

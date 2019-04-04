@@ -75,7 +75,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 langModel.setSelectedLanguage(strClickItem);
 
                 // Set language.
-                Locale locale =  Localizations.localeOf(context);
+                Locale locale;
                 if (strClickItem == 'English') {
                   locale = Locale('en',"US");
                 } else {

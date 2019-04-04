@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/about.dart';
@@ -34,7 +35,7 @@ class _UserCenterState extends State<UserCenter> {
         Image.asset(
           'assets/img1.jpg',
           fit: BoxFit.cover,
-          height: 260,
+          height: 220,
           width: MediaQuery.of(context).size.width,
         ),
 
@@ -147,7 +148,7 @@ class _UserCenterState extends State<UserCenter> {
   //
   Widget _menuItem(Icon icon, String item, String route) {
     return Ink(
-      color: Colors.white,
+      color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         leading: icon,
         title: Text(item),

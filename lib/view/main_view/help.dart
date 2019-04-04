@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/feedback.dart';
 
 class Help extends StatefulWidget {
@@ -83,7 +84,7 @@ class _HelpState extends State<Help> {
   //
   Widget _faqItem(String item) {
     return Ink(
-      color: Colors.white,
+      color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),

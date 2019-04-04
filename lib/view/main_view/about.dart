@@ -39,7 +39,7 @@ class _AboutState extends State<About> {
   // AppBar Title
   Widget _bannerArea() {
     return Container(
-      color: Colors.blue[50],
+      color: AppCustomColor.aboutPageBannerBGColor,
       padding: EdgeInsets.symmetric(vertical: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _AboutState extends State<About> {
   //
   Widget _menuItem(String strTitle, String strValue, String route) {
     return Ink(
-      color: Colors.white,
+      color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         title: Text(strTitle),
         trailing: Row(

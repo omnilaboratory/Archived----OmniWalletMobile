@@ -24,4 +24,8 @@ class AppCustomColor{
    */
   static Color themeBackgroudColor =  Colors.white;
 
+  /**
+   * About Page Banner Area Backgroud Color
+   */
+  static Color aboutPageBannerBGColor =  Colors.blue[50];
 }

@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 class Settings extends StatefulWidget {
   static String tag = "Settings";
@@ -67,7 +68,7 @@ class _SettingsState extends State<Settings> {
   //
   Widget _menuItem(String strTitle, String strValue, String route) {
     return Ink(
-      color: Colors.white,
+      color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         title: Text(strTitle),
         trailing: Row(

@@ -81,10 +81,10 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
             decoration: InputDecoration(
               labelText: WalletLocalizations.of(context).feedbackPageInputTitleTooltip,
               labelStyle: TextStyle(
-                color: Colors.blue,
+                // color: Colors.blue,
               ),
               border: InputBorder.none,
-              fillColor: Colors.white,
+              fillColor: AppCustomColor.themeBackgroudColor,
               filled: true, 
             ),
 
@@ -97,10 +97,10 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
             decoration: InputDecoration(
               labelText: WalletLocalizations.of(context).feedbackPageContentTooltip,
               labelStyle: TextStyle(
-                color: Colors.blue,
+                // color: Colors.blue,
               ),
               border: InputBorder.none,
-              fillColor: Colors.white,
+              fillColor: AppCustomColor.themeBackgroudColor,
               filled: true, 
             ),
 
@@ -141,10 +141,10 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
             decoration: InputDecoration(
               labelText: WalletLocalizations.of(context).feedbackPageEmailTooltip,
               labelStyle: TextStyle(
-                color: Colors.blue,
+                // color: Colors.blue,
               ),
               border: InputBorder.none,
-              fillColor: Colors.white,
+              fillColor: AppCustomColor.themeBackgroudColor,
               filled: true, 
             ),
 
