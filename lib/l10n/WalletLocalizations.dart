@@ -124,8 +124,6 @@ class WalletLocalizations{
       'buttom_tab3_name' : 'DEX',
       'buttom_tab4_name' : '我的',
 
-
-
       'wallet_detail_content_send' : '转账',
       'wallet_detail_content_receive' : '收款',
       'wallet_receive_page_copy' : '复制',
@@ -148,6 +146,9 @@ class WalletLocalizations{
       'wallet_trade_info_detail_title2' : '转账',
       'wallet_trade_info_detail_finish_state1' : '确认中',
       'wallet_trade_info_detail_finish_state2' : '已完成',
+
+      'languagePageAppBarTitle' : '多语言',
+      'languagePageSaveButton' : '保存',
     },
 
     'en': {
@@ -278,7 +279,6 @@ class WalletLocalizations{
       'userInfoPageItem_2_Title' : 'User Name',
       'userInfoPageButton' : 'Delete Current Wallet',
 
-
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
       'buttom_tab3_name' : 'DEX',
@@ -309,15 +309,19 @@ class WalletLocalizations{
       'wallet_trade_info_detail_finish_state1' : 'Confirming',
       'wallet_trade_info_detail_finish_state2' : 'Finish',
 
+      'languagePageAppBarTitle' : 'Language',
+      'languagePageSaveButton' : 'Save',
     }
   };
+
+  // Select Language Page
+  get languagePageAppBarTitle => _localizedValues[locale.languageCode]['languagePageAppBarTitle'];
+  get languagePageSaveButton => _localizedValues[locale.languageCode]['languagePageSaveButton'];
 
   get wallet_trade_info_detail_title => _localizedValues[locale.languageCode]['wallet_trade_info_detail_title'];
   get wallet_trade_info_detail_title2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_title2'];
   get wallet_trade_info_detail_finish_state1 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state1'];
   get wallet_trade_info_detail_finish_state2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state2'];
-
-
 
   get buttom_tab1_name => _localizedValues[locale.languageCode]['buttom_tab1_name'];
   get buttom_tab2_name => _localizedValues[locale.languageCode]['buttom_tab2_name'];

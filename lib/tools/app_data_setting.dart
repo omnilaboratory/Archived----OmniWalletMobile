@@ -31,11 +31,13 @@ class AppCustomColor{
 
   static setColors(Brightness brightness){
     AppCustomColor.themeFrontColor =
-    brightness == Brightness.dark ? Colors.white : Colors.black;
+      brightness == Brightness.dark ? Colors.white : Colors.black;
+
     AppCustomColor.themeBackgroudColor =
-    brightness == Brightness.dark ? Colors.yellow : Colors.white;
+      brightness == Brightness.dark ? Colors.black : Colors.white;
+
     AppCustomColor.aboutPageBannerBGColor =
-    brightness == Brightness.dark ? Colors.black : Colors.blue[50];
+      brightness == Brightness.dark ? Colors.black45 : Colors.blue[50];
   }
 
 }
