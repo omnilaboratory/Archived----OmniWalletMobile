@@ -68,7 +68,9 @@ class _WalletSendState extends State<WalletSend> {
               InkWell(
                   child: Icon(Icons.event_note,color: Colors.blue,),
                 onTap: (){
-                  Navigator.of(context).pushNamed(AddressBook.tag);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                      return AddressBook(parentPageId: 1,);
+                  }));
                 },
               ),
             ],
