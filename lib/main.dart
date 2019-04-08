@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
     MainPage.tag: (context)            => MainPage(),
   };
 
-  Brightness brightness = Brightness.dark;
+  Brightness brightness = Brightness.light;
 
   @override
   Widget build(BuildContext context) {
