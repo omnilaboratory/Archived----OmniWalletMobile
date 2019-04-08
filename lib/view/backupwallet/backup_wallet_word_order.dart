@@ -24,7 +24,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_words_order_title),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppCustomColor.themeBackgroudColor,
       body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
     );
   }
@@ -49,7 +49,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(item.content),
+                child: Text(item.content,style: TextStyle(color: AppCustomColor.themeBackgroudColor),),
               )
             ),
           )

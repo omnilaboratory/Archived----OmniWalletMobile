@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class AddressBook extends StatefulWidget {
   static String tag = "Address Book";
+  int parentPageId;
+  AddressBook({Key key,this.parentPageId=null}):super(key:key);
   @override
   _AddressBookState createState() => _AddressBookState();
 }
@@ -28,11 +32,12 @@ class _AddressBookState extends State<AddressBook> {
           title: Text(AddressBook.tag), elevation: 0,
           actions: <Widget>[
             IconButton(icon: Icon(Icons.add), onPressed: () {
+              _selectItem = null;
               buildShowDialog(context);
             },),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: AppCustomColor.themeBackgroudColor,
         body: this.body(),
       );
     });
@@ -51,7 +56,7 @@ class _AddressBookState extends State<AddressBook> {
                contentPadding: EdgeInsets.symmetric(horizontal: 20),
               title: Column(
                 children: <Widget>[
-                  Text('Add address'),
+                  Text(WalletLocalizations.of(context).address_book_title),
                 ],
                 mainAxisAlignment: MainAxisAlignment.start
               ),
@@ -70,7 +75,7 @@ class _AddressBookState extends State<AddressBook> {
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Address Name'
+                      hintText: WalletLocalizations.of(context).createNewAddress_hint1
                     ),
                   ),
                 ),
@@ -82,7 +87,7 @@ class _AddressBookState extends State<AddressBook> {
                       initialValue: _selectItem==null?'':_selectItem.address,
                       validator: (val){
                         if(val==null||val.length==0){
-                          return "wrong address";
+                          return WalletLocalizations.of(context).wallet_send_page_input_address_error;
                         }
                       },
                       onSaved: (val){
@@ -90,7 +95,7 @@ class _AddressBookState extends State<AddressBook> {
                       },
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                        hintText: 'Address'
+                        hintText: WalletLocalizations.of(context).wallet_send_page_input_address_hint
                       ),
                     ),
                     width: MediaQuery.of(context).size.width,
@@ -107,7 +112,7 @@ class _AddressBookState extends State<AddressBook> {
                     },
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                      hintText: 'Memo Info'
+                      hintText: WalletLocalizations.of(context).wallet_send_page_title_note
                     ),
                   ),
                 ),
@@ -121,7 +126,7 @@ class _AddressBookState extends State<AddressBook> {
                         onPressed: (){
                           Navigator.of(context).pop();
                         },
-                        child: Text('cancel'),
+                        child: Text(WalletLocalizations.of(context).createNewAddress_Cancel,style: TextStyle(color: Colors.blue),),
                         color: Colors.lightBlue[50],
                         padding: EdgeInsets.symmetric(horizontal: 50)
                       ),
@@ -141,7 +146,7 @@ class _AddressBookState extends State<AddressBook> {
                             Navigator.of(context).pop();
                           }
                         },
-                        child: Text('save'),
+                        child: Text(WalletLocalizations.of(context).common_btn_save),
                         color: Colors.lightBlue,
                         padding: EdgeInsets.symmetric(horizontal: 50)
                       ),
@@ -167,13 +172,15 @@ class _AddressBookState extends State<AddressBook> {
       );
     }
   }
+
+
   Widget buildTile(int index) {
     var node = _usualAddressList[index];
     return InkWell(
-      onTap: (){
+      onTap:  widget.parentPageId!=null?(){
         stateModel.currSelectedUsualAddressIndex = index;
         Navigator.of(context).pop();
-      },
+      }:null,
       child: Slidable(
         delegate: new SlidableDrawerDelegate(),
         actionExtentRatio: 0.25,

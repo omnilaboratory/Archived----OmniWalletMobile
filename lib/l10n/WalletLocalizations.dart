@@ -67,6 +67,7 @@ class WalletLocalizations{
       'main_page_title' : '钱包',
       'common_btn_skip' : '跳过',
       'common_btn_copy' : '复制',
+      'common_btn_save': '保存',
 
       'marketPageAppBarTitle' : '行情',
       'marketPageFav' : '自选',
@@ -102,6 +103,7 @@ class WalletLocalizations{
       "createNewAddress_Add":"添加",
       "createNewAddress_Cancel":"取消",
       "createNewAddress_WrongAddress":"请输入地址名称",
+      "address_book_title":"地址簿",
 
       'serviceTermsPageAppBarTitle' : '服务条款',
 
@@ -237,6 +239,7 @@ class WalletLocalizations{
       'main_page_title' : 'My Wallet',
       'common_btn_skip' : 'Skip',
       'common_btn_copy' : 'Copy',
+      'common_btn_save' : 'Save',
 
       'marketPageAppBarTitle' : 'Quotation',
       'marketPageFav' : 'Favorites',
@@ -272,6 +275,7 @@ class WalletLocalizations{
       "createNewAddress_Add":"Add",
       "createNewAddress_Cancel":"Cancel",
       "createNewAddress_WrongAddress":"Please input address name",
+      "address_book_title":"Address Book",
 
       'serviceTermsPageAppBarTitle' : 'Service Terms',
 
@@ -381,6 +385,7 @@ class WalletLocalizations{
   get createNewAddress_Add => _localizedValues[locale.languageCode]['createNewAddress_Add'];
   get createNewAddress_Cancel => _localizedValues[locale.languageCode]['createNewAddress_Cancel'];
   get createNewAddress_WrongAddress => _localizedValues[locale.languageCode]['createNewAddress_WrongAddress'];
+  get address_book_title => _localizedValues[locale.languageCode]['address_book_title'];
 
   // Submit Feedback page
   get feedbackPageTitle => _localizedValues[locale.languageCode]['feedbackPageTitle'];
@@ -476,6 +481,7 @@ class WalletLocalizations{
 
   String get common_btn_skip => _localizedValues[locale.languageCode]['common_btn_skip'];
   String get common_btn_copy => _localizedValues[locale.languageCode]['common_btn_copy'];
+  String get common_btn_save => _localizedValues[locale.languageCode]['common_btn_save'];
 
 
   String get wallet_detail_content_send => _localizedValues[locale.languageCode]['wallet_detail_content_send'];
