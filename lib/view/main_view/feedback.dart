@@ -2,10 +2,12 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-25
 
+// import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SubmitFeedback extends StatefulWidget {
   static String tag = "SubmitFeedback";
@@ -128,7 +130,9 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
                 width: 80,
                 height: 80,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _bottomSheet();
+                  },
                   child: null,
                 ),
               ),
@@ -176,5 +180,47 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
         ],
       ),
     );
+  }
+
+  //
+  void _bottomSheet() {
+    showModalBottomSheet(
+      context: context, 
+      builder: (BuildContext context) {
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.photo_album),
+              title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_1),
+              onTap: () {
+                _openGallery();
+              },
+            ),
+
+            ListTile(
+              leading: Icon(Icons.photo_camera),
+              title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_2),
+              onTap: () {
+                _takePhoto();
+              },
+            ),
+          ],
+        );
+      }
+    );
+  }
+
+  //
+  _takePhoto() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    
+  }
+
+  //
+  _openGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    
   }
 }

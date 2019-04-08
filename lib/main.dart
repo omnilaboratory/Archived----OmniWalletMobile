@@ -43,7 +43,6 @@ class MyApp extends StatefulWidget {
   static void setThemeColor(BuildContext context, Brightness brightness) {
     _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
     state.setState(() {
-      print('test');
       state.brightness = brightness;
       AppCustomColor.setColors(brightness);
     });

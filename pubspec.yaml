@@ -44,6 +44,10 @@ dependencies:
 
   # persistent store for simple data
   shared_preferences: ^0.5.1+2
+
+  # Flutter plugin for selecting images from the Android and iOS image library, 
+  # and taking new pictures with the camera.
+  image_picker: ^0.5.2
   #------------------------
   
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.

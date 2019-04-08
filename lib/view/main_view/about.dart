@@ -149,11 +149,12 @@ class _AboutState extends State<About> {
             child: RaisedButton(
               child: Text(
                 WalletLocalizations.of(context).aboutPageButton,
-                style: TextStyle(color: Colors.white),
               ),
 
               color: AppCustomColor.btnConfirm,
+              textColor: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 15),
+              elevation: 0,
               onPressed: () {
                 // print(_btnWidth - 27);
               },
@@ -162,6 +163,6 @@ class _AboutState extends State<About> {
         ],
       ),
     );
-  } 
+  }
 
 }

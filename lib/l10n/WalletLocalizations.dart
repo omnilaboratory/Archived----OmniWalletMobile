@@ -149,6 +149,16 @@ class WalletLocalizations{
 
       'languagePageAppBarTitle' : '多语言',
       'languagePageSaveButton' : '保存',
+      
+      'createAccountPageAppBarTitle' : '创建新账号',
+      'createAccountPageTooltip_1' : '账号名',
+      'createAccountPageTooltip_2' : '密码',
+      'createAccountPageTooltip_3' : '重复密码',
+      'createAccountPageTooltip_4' : '最少8个字符',
+      'createAccountPageButton' : '创建',
+
+      'imagePickerBottomSheet_1' : '从手机相册选择',
+      'imagePickerBottomSheet_2' : '拍照',
     },
 
     'en': {
@@ -311,8 +321,26 @@ class WalletLocalizations{
 
       'languagePageAppBarTitle' : 'Language',
       'languagePageSaveButton' : 'Save',
+
+      'createAccountPageAppBarTitle' : 'Create New Account',
+      'createAccountPageTooltip_1' : 'Account name',
+      'createAccountPageTooltip_2' : 'Password',
+      'createAccountPageTooltip_3' : 'Confirm password',
+      'createAccountPageTooltip_4' : 'must be at least 8 characters',
+      'createAccountPageButton' : 'Create',
+
+      'imagePickerBottomSheet_1' : 'Choose from Album',
+      'imagePickerBottomSheet_2' : 'Take Photo',
     }
   };
+
+  // create account Page
+  get createAccountPageAppBarTitle => _localizedValues[locale.languageCode]['createAccountPageAppBarTitle'];
+  get createAccountPageTooltip_1 => _localizedValues[locale.languageCode]['createAccountPageTooltip_1'];
+  get createAccountPageTooltip_2 => _localizedValues[locale.languageCode]['createAccountPageTooltip_2'];
+  get createAccountPageTooltip_3 => _localizedValues[locale.languageCode]['createAccountPageTooltip_3'];
+  get createAccountPageTooltip_4 => _localizedValues[locale.languageCode]['createAccountPageTooltip_4'];
+  get createAccountPageButton => _localizedValues[locale.languageCode]['createAccountPageButton'];
 
   // Select Language Page
   get languagePageAppBarTitle => _localizedValues[locale.languageCode]['languagePageAppBarTitle'];
@@ -361,7 +389,9 @@ class WalletLocalizations{
   get feedbackPageEmailTooltip => _localizedValues[locale.languageCode]['feedbackPageEmailTooltip'];
   get feedbackPageUploadPicTitle => _localizedValues[locale.languageCode]['feedbackPageUploadPicTitle'];
   get feedbackPageSubmitButton => _localizedValues[locale.languageCode]['feedbackPageSubmitButton'];
-
+  get imagePickerBottomSheet_1 => _localizedValues[locale.languageCode]['imagePickerBottomSheet_1'];
+  get imagePickerBottomSheet_2 => _localizedValues[locale.languageCode]['imagePickerBottomSheet_2'];
+  
   // Help and Feedback page
   get helpPageTitle => _localizedValues[locale.languageCode]['helpPageTitle'];
   get helpPageItemTitle => _localizedValues[locale.languageCode]['helpPageItemTitle'];
