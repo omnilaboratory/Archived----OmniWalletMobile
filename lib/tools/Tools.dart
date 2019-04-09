@@ -11,4 +11,9 @@ class Tools{
     if (text == null) return;
     Clipboard.setData(new ClipboardData(text: text));
   }
+
+  /// get image path
+  static String imagePath(final String text) {
+    return 'assets/' + text + '@2x.png';
+  }
 }

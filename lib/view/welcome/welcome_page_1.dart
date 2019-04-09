@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_2.dart';
 
@@ -7,6 +9,7 @@ class WelcomePageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.transparent,
@@ -40,7 +43,8 @@ class WelcomePageOne extends StatelessWidget {
 
         // Image for welcome.
         SizedBox(height: 30),
-        Image.asset('assets/logo-png.png', width: 120, height: 120),
+        // Image.asset('assets/image_welcome@2x.png', width: 120, height: 120),
+        Image.asset(Tools.imagePath('image_welcome')),
 
         // Introduction content.
         SizedBox(height: 30),
