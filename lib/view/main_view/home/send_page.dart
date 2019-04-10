@@ -4,6 +4,7 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/widgets/custom_expansion_tile.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 /**
@@ -207,26 +208,25 @@ class _WalletSendState extends State<WalletSend> {
               color: AppCustomColor.themeBackgroudColor,
                 child: line4
             ),
+
+
             Container(
               margin: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 20),
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    child: RaisedButton(
-                      color: AppCustomColor.btnConfirm,
-                      onPressed: (){
-                        var _form = _formKey.currentState;
-                        if (_form.validate()) {
-                          _form.save();
-                          stateModel.sendInfo = SendInfo(toAddress: this._toAddress,amount: this._amount,note: this._note,minerFee: this.minerFee);
-                          Navigator.of(context).pushNamed(SendConfirm.tag);
-                        }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Text(WalletLocalizations.of(context).backup_words_next,style: TextStyle(color: Colors.white),),
-                      ),
-                    ),
+                  CustomRaiseButton(
+                    context: context,
+                    callback: (){
+                      var _form = _formKey.currentState;
+                      if (_form.validate()) {
+                        _form.save();
+                        stateModel.sendInfo = SendInfo(toAddress: this._toAddress,amount: this._amount,note: this._note,minerFee: this.minerFee);
+                        Navigator.of(context).pushNamed(SendConfirm.tag);
+                      }
+                    },
+                    title: WalletLocalizations.of(context).backup_words_next,
+                    titleColor: Colors.white,
+                    color: AppCustomColor.btnConfirm,
                   ),
                 ],
               ),

@@ -7,15 +7,18 @@ class CustomRaiseButton extends StatelessWidget {
     @required this.context,
     this.callback,
     @ required this.title,
+    this.hasRow=true,
     this.titleSize=15.0,
     this.titleColor,
     this.leftIconName,
     this.rightIconName,
     this.color = Colors.transparent,
-    this.height = 12.0
+    this.height = 12.0,
+    this.flex = 1
   }) : super(key: key);
 
   final BuildContext context;
+  final bool hasRow;
   final Function callback;
   final String title;
   final num titleSize;
@@ -28,9 +31,22 @@ class CustomRaiseButton extends StatelessWidget {
    */
   final Color color;
   final num height;
+  final int flex;
 
   @override
   Widget build(BuildContext context) {
+    if(this.hasRow==false){
+      return Row(
+        children: <Widget>[
+          this.bulidWidet()
+        ],
+      );
+    }else{
+      return this.bulidWidet();
+    }
+  }
+
+  Widget bulidWidet(){
     return Expanded(
       child: RaisedButton(
         elevation: 0,
