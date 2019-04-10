@@ -51,7 +51,11 @@ class WelcomePageOne extends StatelessWidget {
         Text(
           WalletLocalizations.of(context).welcomePageOneContent,
           textAlign: TextAlign.left,
-          // style: TextStyle(color: Colors.grey[700]),
+          style: TextStyle(
+            fontFamily: 'OpenSansCondensed',
+            
+            // color: Colors.grey[700]
+          ),
         ),
 
         // Next button.
