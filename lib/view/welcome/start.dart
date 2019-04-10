@@ -9,6 +9,7 @@ import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class StartPage extends StatefulWidget {
@@ -29,8 +30,10 @@ class _StartPageState extends State<StartPage> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _showSwiper(),  
-              _showButtons(),
+              _showSwiper(),
+              _getStarted(),
+              _restoreWallet(),
+              _selectLanguage(),
             ],
           ),
         ),
@@ -54,76 +57,43 @@ class _StartPageState extends State<StartPage> {
     );
   }
 
-  // buttons
-  Widget _showButtons() {
-    return Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        SizedBox(height: 30),
-        _getStartedButton(),
-        _restoreWalletButton(),
-        SizedBox(height: 50),
-        _selectLanguage(),
-      ],
+  // Get Started button
+  Widget _getStarted() {
+    return Padding(
+      padding: EdgeInsets.only(left: 30, right: 30, top: 60),
+      child: CustomRaiseButton( // Next button.
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).startPageButtonFirst,
+        titleColor: Colors.white,
+        color: AppCustomColor.btnConfirm,
+        callback: () {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(
+              builder: (context) => CreateAccount()
+            ) 
+          );
+        },
+      ),
     );
   }
 
-  //  button
-  Widget _getStartedButton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: RaisedButton(
-              child: Text(
-                WalletLocalizations.of(context).startPageButtonFirst,
-              ),
-
-              color: AppCustomColor.btnConfirm,
-              textColor: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              elevation: 0,
-              onPressed: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => CreateAccount()
-                  ) 
-                );
-              },
-            ),
-          ),
-        ],
+  // Restore Wallet button
+  Widget _restoreWallet() {
+    return Padding(
+      padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
+      child: CustomRaiseButton( // Next button.
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).startPageButtonSecond,
+        titleColor: Colors.blue,
+        color: AppCustomColor.btnCancel,
+        callback: () {
+        },
       ),
     );
-  } 
-  
-  //  button
-  Widget _restoreWalletButton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: RaisedButton(
-              child: Text(
-                WalletLocalizations.of(context).startPageButtonSecond,
-              ),
-
-              color: AppCustomColor.btnCancel,
-              textColor: Colors.blue,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              elevation: 0,
-              onPressed: () {
-                // TODO: restore wallet
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  } 
+  }
 
   //
   Widget _selectLanguage() {

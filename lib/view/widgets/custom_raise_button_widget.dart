@@ -7,7 +7,7 @@ class CustomRaiseButton extends StatelessWidget {
     Key key,
     @required this.context,
     this.callback,
-    @ required this.title,
+    @required this.title,
     this.hasRow=true,
     this.titleSize=15.0,
     this.titleColor= Colors.black,
