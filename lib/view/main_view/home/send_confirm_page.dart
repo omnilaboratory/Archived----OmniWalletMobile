@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class SendConfirm extends StatelessWidget {
@@ -80,17 +81,19 @@ class SendConfirm extends StatelessWidget {
           ),
           Expanded(child: Container()),
           Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: RaisedButton(
-              color: Colors.lightBlue[300],
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.35,vertical: 20),
-                onPressed: (){
+            padding: const EdgeInsets.only(bottom: 20),
+            child: CustomRaiseButton(
+              hasRow: false,
+              context: context,
+              callback: (){
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
-             },
-              child: Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
+              },
+              title: WalletLocalizations.of(context).common_btn_confirm,
+              titleColor: Colors.white,
+              color: AppCustomColor.btnConfirm,
             ),
-          )
+          ),
         ],
       ),
     );
