@@ -53,8 +53,9 @@ class WelcomePageOne extends StatelessWidget {
           textAlign: TextAlign.left,
           style: TextStyle(
             fontFamily: 'OpenSansCondensed',
-            
-            // color: Colors.grey[700]
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey[700],
           ),
         ),
 

@@ -107,4 +107,4 @@ flutter:
   fonts:
     - family: OpenSansCondensed
       fonts:
-        - asset: fonts/OpenSansCondensed-Light.ttf
+        - asset: assets/fonts/OpenSansCondensed-Light.ttf
