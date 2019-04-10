@@ -50,7 +50,7 @@ class WelcomePageOne extends StatelessWidget {
         SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageOneContent,
-          textAlign: TextAlign.left,
+          // textAlign: TextAlign.left,
           style: TextStyle(
             // fontFamily: AppCustomColor.fontFamily,
             // fontSize: 16,
@@ -64,8 +64,10 @@ class WelcomePageOne extends StatelessWidget {
         SizedBox(height: 30),
         RaisedButton(
           child: Text(WalletLocalizations.of(context).welcomePageOneButton),
-          color: Colors.blue,
+          color: AppCustomColor.btnConfirm,
           textColor: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 15),
+          elevation: 0,
           onPressed: () {
             // Show the welcome page two.
             Navigator.push(

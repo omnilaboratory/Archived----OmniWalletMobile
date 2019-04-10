@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 import 'package:wallet_app/view/welcome/welcome_page_3.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class WelcomePageTwo extends StatelessWidget {
 
@@ -51,7 +53,10 @@ class WelcomePageTwo extends StatelessWidget {
         SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageTwoContentOne,
-          // style: TextStyle(color: Colors.grey[700]),
+          style: TextStyle(
+            color: AppCustomColor.fontGreyColor,
+            height: 1.3,
+          ),
         ),
 
         // List content.
@@ -83,7 +88,10 @@ class WelcomePageTwo extends StatelessWidget {
         Expanded(
           child: Text(
             txt,
-            // style: TextStyle(color: Colors.grey[700]),
+            style: TextStyle(
+              color: AppCustomColor.fontGreyColor,
+              height: 1.3,
+            ),
           ),
         ),
       ],
@@ -93,21 +101,48 @@ class WelcomePageTwo extends StatelessWidget {
   // Buttons
   Widget _bottomButton(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+      // mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Back button.
-        RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageTwoButtonBack),
-          onPressed: () { Navigator.pop(context); },
+        // RaisedButton(
+        //   child: Text(WalletLocalizations.of(context).welcomePageTwoButtonBack),
+        //   onPressed: () { Navigator.pop(context); },
+        // ),
+
+        CustomRaiseButton( // Back button.
+          context: context,
+          flex: 1,
+          title: WalletLocalizations.of(context).welcomePageTwoButtonBack,
+          // titleColor: Colors.white,
+          leftIconName: 'icon_back',
+          // color: AppCustomColor.btnConfirm,
+          callback: () {
+            Navigator.pop(context);
+          },
         ),
 
         // Next button.
-        RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageTwoButtonNext),
-          color: Colors.blue,
-          textColor: Colors.white,
-          onPressed: () {
-            // Show the welcome page three.
+        // RaisedButton(
+        //   child: Text(WalletLocalizations.of(context).welcomePageTwoButtonNext),
+        //   color: Colors.blue,
+        //   textColor: Colors.white,
+        //   onPressed: () {
+        //     // Show the welcome page three.
+        //     Navigator.push(context,
+        //       MaterialPageRoute(builder: (context) => WelcomePageThree()));
+        //   },
+        // ),
+
+        SizedBox(width: 20),
+        CustomRaiseButton( // Next button.
+          context: context,
+          flex: 2,
+          title: WalletLocalizations.of(context).welcomePageTwoButtonNext,
+          titleColor: Colors.white,
+          rightIconName: 'icon_next',
+          color: AppCustomColor.btnConfirm,
+          callback: () {
             Navigator.push(context,
               MaterialPageRoute(builder: (context) => WelcomePageThree()));
           },

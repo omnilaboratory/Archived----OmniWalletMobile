@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/welcome/start.dart';
 
 class WelcomePageThree extends StatelessWidget {
@@ -50,7 +51,10 @@ class WelcomePageThree extends StatelessWidget {
         SizedBox(height: 30),
         Text(
           WalletLocalizations.of(context).welcomePageThreeContentOne,
-          // style: TextStyle(color: Colors.grey[700]),
+          style: TextStyle(
+            color: AppCustomColor.fontGreyColor,
+            height: 1.3,
+          ),
         ),
 
         // List content.
@@ -88,7 +92,10 @@ class WelcomePageThree extends StatelessWidget {
         Expanded(
           child: Text(
             txt,
-            // style: TextStyle(color: Colors.grey[700]),
+            style: TextStyle(
+              color: AppCustomColor.fontGreyColor,
+              height: 1.3,
+            ),
           ),
         ),
       ],
