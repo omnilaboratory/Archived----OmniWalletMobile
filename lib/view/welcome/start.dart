@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
@@ -123,62 +124,6 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   } 
-  
-  /*
-  // Select language bar - OLD STYLE.
-  Widget _selectLanguage(BuildContext context) {
-
-    // Set value by model.
-    final langModel = MainStateModel().of(context);
-
-    return InkWell(
-      // splashColor: Colors.blue[100],
-      // highlightColor: Colors.blue[100],
-      
-      onTap: () {
-        // Show the select language page.
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => SelectLanguage(),
-          ), 
-        );
-      },
-          
-      child: Ink(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        color: AppCustomColor.themeBackgroudColor,
-        
-        child: Row(
-          children: <Widget>[
-            Icon(Icons.language),
-            SizedBox(width: 15),
-            Text(WalletLocalizations.of(context).startPageLanguageBarTitle),
-            
-            Expanded(
-              child: Text(
-                // Get value by model.
-                langModel.getSelectedLanguage,
-                // currentLanguage,
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-
-            SizedBox(width: 15),
-
-            Icon(
-              Icons.keyboard_arrow_right, 
-              color: Colors.grey,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  */
 
   //
   Widget _selectLanguage() {
@@ -203,11 +148,8 @@ class _StartPageState extends State<StartPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // language icon
-            Image.asset('assets/logo-png.png', width: 30, height: 30),
-
+            _iconLanguage(langModel.getSelectedLanguage),
             SizedBox(width: 15),
-
             Text(
               // Get selected language by user before
               langModel.getSelectedLanguage,
@@ -215,9 +157,7 @@ class _StartPageState extends State<StartPage> {
               //   color: Colors.grey,
               // ),
             ),
-
             SizedBox(width: 20),
-
             Icon(
               Icons.keyboard_arrow_right, 
               color: Colors.grey,
@@ -226,5 +166,14 @@ class _StartPageState extends State<StartPage> {
         ),
       ),
     );
+  }
+
+  //
+  Widget _iconLanguage(String strLang) {
+    if (strLang == 'English') {
+      return Image.asset(Tools.imagePath('icon_english'), width: 24, height: 24);
+    } else {
+      return Image.asset(Tools.imagePath('icon_chinese'), width: 24, height: 24);
+    }
   }
 }
