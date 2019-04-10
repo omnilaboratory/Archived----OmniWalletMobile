@@ -24,11 +24,13 @@ class AppCustomColor{
    */
   static Color themeBackgroudColor =  Colors.white;
 
-  /**
-   * About Page Banner Area Backgroud Color
-   */
+  /// About Page Banner Area Backgroud Color
   static Color aboutPageBannerBGColor =  Colors.blue[50];
 
+  /// font color - grey
+  static Color fontGreyColor =  Colors.grey[600];
+
+  /// Set theme colors
   static setColors(Brightness brightness){
     AppCustomColor.themeFrontColor =
       brightness == Brightness.dark ? Colors.white : Colors.black;
@@ -40,4 +42,6 @@ class AppCustomColor{
       brightness == Brightness.dark ? Colors.black45 : Colors.blue[50];
   }
 
+  /// 
+  static String fontFamily = 'OpenSansCondensed';
 }
