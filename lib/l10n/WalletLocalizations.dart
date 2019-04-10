@@ -68,6 +68,7 @@ class WalletLocalizations{
       'common_btn_skip' : '跳过',
       'common_btn_copy' : '复制',
       'common_btn_save': '保存',
+      'common_btn_confirm': '确定',
 
       'marketPageAppBarTitle' : '行情',
       'marketPageFav' : '自选',
@@ -240,6 +241,7 @@ class WalletLocalizations{
       'common_btn_skip' : 'Skip',
       'common_btn_copy' : 'Copy',
       'common_btn_save' : 'Save',
+      'common_btn_confirm' : 'Confirm',
 
       'marketPageAppBarTitle' : 'Quotation',
       'marketPageFav' : 'Favorites',
@@ -482,6 +484,7 @@ class WalletLocalizations{
   String get common_btn_skip => _localizedValues[locale.languageCode]['common_btn_skip'];
   String get common_btn_copy => _localizedValues[locale.languageCode]['common_btn_copy'];
   String get common_btn_save => _localizedValues[locale.languageCode]['common_btn_save'];
+  String get common_btn_confirm => _localizedValues[locale.languageCode]['common_btn_confirm'];
 
 
   String get wallet_detail_content_send => _localizedValues[locale.languageCode]['wallet_detail_content_send'];

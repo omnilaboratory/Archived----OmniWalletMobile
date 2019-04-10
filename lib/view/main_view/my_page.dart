@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
@@ -32,8 +33,7 @@ class _UserCenterState extends State<UserCenter> {
       //   )
       // ),
       children: <Widget>[
-        Image.asset(
-          'assets/img1.jpg',
+        Image.asset(Tools.imagePath('title_bg2'),
           fit: BoxFit.cover,
           height: 220,
           width: MediaQuery.of(context).size.width,
@@ -88,6 +88,15 @@ class _UserCenterState extends State<UserCenter> {
       Icon(Icons.backup),
       Icon(Icons.info),
     ];
+    // Icons
+    List<String> leading_names = <String> [
+      'icon_set',
+      'icon_address',
+      'icon_help',
+      'icon_service',
+      'icon_backup',
+      'icon_about',
+    ];
 
     // item content
     List<String> items = <String> [
@@ -110,7 +119,7 @@ class _UserCenterState extends State<UserCenter> {
     ];
 
     for (int i = 0; i < items.length; i++) {
-      _list.add(_menuItem(leading_icons[i], items[i], routes[i]));
+      _list.add(_menuItem(leading_names[i], items[i], routes[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -146,11 +155,11 @@ class _UserCenterState extends State<UserCenter> {
   }
 
   //
-  Widget _menuItem(Icon icon, String item, String route) {
+  Widget _menuItem(String iconName, String item, String route) {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        leading: icon,
+        leading: Image.asset(Tools.imagePath(iconName),width: 24,height: 24,),
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {Navigator.of(context).pushNamed(route);},

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/tools/Tools.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 class CustomRaiseButton extends StatelessWidget {
   const CustomRaiseButton({
@@ -9,7 +10,7 @@ class CustomRaiseButton extends StatelessWidget {
     @ required this.title,
     this.hasRow=true,
     this.titleSize=15.0,
-    this.titleColor,
+    this.titleColor= Colors.black,
     this.leftIconName,
     this.rightIconName,
     this.color = Colors.transparent,
