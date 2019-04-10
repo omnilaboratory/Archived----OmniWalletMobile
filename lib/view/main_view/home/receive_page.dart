@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -33,16 +35,30 @@ class _ReceivePageState extends State<ReceivePage> {
     );
   }
 
+  copyAddress(){
+    Clipboard.setData(new ClipboardData(text: walletInfo.address));
+    this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_copy);
+  }
+
   Widget body(){
     return Column(
       children: <Widget>[
         Container(height: 100,),
-        Container(
-          margin: EdgeInsets.only(bottom: 10),
-          child: QrImage(
-            data: walletInfo.address,
-            size: 200.0,
-            foregroundColor: Colors.blue,
+        GestureDetector(
+          onLongPress: (){
+            copyAddress();
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(Tools.imagePath('icon_code_bg')))
+            ),
+            child: QrImage(
+              data: walletInfo.address,
+              size: 188.0,
+              foregroundColor: Colors.blue[800],
+              padding: EdgeInsets.all(20),
+            ),
           ),
         ),
         Container(
@@ -50,32 +66,30 @@ class _ReceivePageState extends State<ReceivePage> {
             child: Text(walletInfo.address)
         ),
         Container(
-          margin: EdgeInsets.only(top: 2,bottom: 6,left: 10,right: 10),
+          margin: EdgeInsets.only(top: 30,bottom: 20,left: 16,right: 16),
           child:Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Expanded(
-                child: RaisedButton(
-                  onPressed: (){
-                    Clipboard.setData(new ClipboardData(text: walletInfo.address));
-                    this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_copy);
-                  },
-                  child: Text(WalletLocalizations.of(context).wallet_receive_page_copy,style: TextStyle(fontSize: 18,color: Colors.blue),),
-                  color: AppCustomColor.btnCancel,
-                  padding: EdgeInsets.symmetric(vertical:12),
-                ),
+              CustomRaiseButton(
+                context: context,
+                callback: (){
+                  copyAddress();
+                },
+                title: WalletLocalizations.of(context).wallet_receive_page_copy,
+                titleColor: Colors.blue,
+                leftIconName: 'icon_copy',
+                color: AppCustomColor.btnCancel,
               ),
               SizedBox(width: 30,),
-              Expanded(
-                child: RaisedButton(
-                  onPressed: (){
-                    print('share');
-                    this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_share);
-                  },
-                  child: Text(WalletLocalizations.of(context).wallet_receive_page_share,style: TextStyle(fontSize: 18, color: Colors.white)),
-                  padding: EdgeInsets.symmetric(vertical:12),
-                  color: AppCustomColor.btnConfirm,
-                ),
+              CustomRaiseButton(
+                context: context,
+                callback: (){
+                  this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_share);
+                },
+                title: WalletLocalizations.of(context).wallet_receive_page_share,
+                titleColor: Colors.white,
+                leftIconName: 'icon_share',
+                color: AppCustomColor.btnConfirm,
               ),
             ],
           ),

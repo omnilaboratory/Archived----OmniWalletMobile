@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
 import 'package:wallet_app/view/main_view/home/trade_info_detail.dart';
 import 'package:wallet_app/view/main_view/home/receive_page.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class WalletDetailContent extends StatefulWidget {
@@ -182,38 +184,36 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
         ),
       );
   }
-
   Widget buildFooter() {
     return Container(
         margin: EdgeInsets.only(top: 2,bottom: 6,left: 10,right: 10),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Expanded(
-              child: RaisedButton(
-                onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                    return WalletSend();
-                  }));
-                },
-                child: Text(WalletLocalizations.of(context).wallet_detail_content_send ,style: TextStyle(fontSize: 18,color: Colors.blue),),
-                color: AppCustomColor.btnCancel,
-                padding: EdgeInsets.symmetric(vertical:12),
-              ),
+            CustomRaiseButton(
+              context: context,
+              callback: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                  return WalletSend();
+                }));
+              },
+              title: WalletLocalizations.of(context).wallet_detail_content_send,
+              titleColor: Colors.blue,
+              leftIconName: 'icon_send',
+              color: AppCustomColor.btnCancel,
             ),
             SizedBox(width: 30,),
-            Expanded(
-              child: RaisedButton(
-                onPressed: (){
-
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                    return ReceivePage();
-                  }));
-                },
-                child: Text(WalletLocalizations.of(context).wallet_detail_content_receive ,style: TextStyle(fontSize: 18, color: Colors.white)),
-                padding: EdgeInsets.symmetric(vertical:12),
-                color: AppCustomColor.btnConfirm,
-              ),
+            CustomRaiseButton(
+              context: context,
+              callback: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                  return ReceivePage();
+                }));
+              },
+              title: WalletLocalizations.of(context).wallet_detail_content_receive,
+              titleColor: Colors.white,
+              leftIconName: 'icon_receive',
+              color: AppCustomColor.btnConfirm,
             ),
           ],
         ),
