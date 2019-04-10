@@ -3,6 +3,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/welcome/start.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class WelcomePageThree extends StatelessWidget {
 
@@ -107,18 +108,25 @@ class WelcomePageThree extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        // Back button.
-        RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonBack),
-          onPressed: () { Navigator.pop(context); },
+        CustomRaiseButton( // Back button.
+          context: context,
+          flex: 1,
+          title: WalletLocalizations.of(context).welcomePageThreeButtonBack,
+          leftIconName: 'icon_back',
+          callback: () {
+            Navigator.pop(context);
+          },
         ),
 
-        // Next button.
-        RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageThreeButtonNext),
-          color: Colors.blue,
-          textColor: Colors.white,
-          onPressed: () {
+        SizedBox(width: 20),
+        CustomRaiseButton( // Next button.
+          context: context,
+          flex: 2,
+          title: WalletLocalizations.of(context).welcomePageThreeButtonNext,
+          titleColor: Colors.white,
+          rightIconName: 'icon_next',
+          color: AppCustomColor.btnConfirm,
+          callback: () {
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => StartPage()), 
               (route) => route == null
