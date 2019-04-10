@@ -4,6 +4,7 @@ import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_2.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class WelcomePageOne extends StatelessWidget {
   @override
@@ -62,14 +63,13 @@ class WelcomePageOne extends StatelessWidget {
 
         // Next button.
         SizedBox(height: 30),
-        RaisedButton(
-          child: Text(WalletLocalizations.of(context).welcomePageOneButton),
+        CustomRaiseButton( // Next button.
+          context: context,
+          hasRow: false,
+          title: WalletLocalizations.of(context).welcomePageOneButton,
+          titleColor: Colors.white,
           color: AppCustomColor.btnConfirm,
-          textColor: Colors.white,
-          padding: EdgeInsets.symmetric(vertical: 15),
-          elevation: 0,
-          onPressed: () {
-            // Show the welcome page two.
+          callback: () {
             Navigator.push(
               context,
               MaterialPageRoute(

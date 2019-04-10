@@ -44,8 +44,8 @@ class WalletLocalizations{
           "一个新密码。但是，如果您遗失了密码，您将无法访问您的帐户。",
       'welcomePageTwoContentFive' : "你不能改变你的秘密短语。如果您不小心将其发送给某人或怀疑诈骗者已将"
           "其移交给他人，请立即创建一个新的 Omni 钱包并将资金转入其中。",
-      'welcomePageTwoButtonBack' : '    返回    ',
-      'welcomePageTwoButtonNext' : '    保护自己    ',
+      'welcomePageTwoButtonBack' : '返回',
+      'welcomePageTwoButtonNext' : '保护自己',
 
       'welcomePageThreeTitle' : '如何防止网络钓鱼攻击',
       'welcomePageThreeContentOne' : "诈骗最常见的攻击方式之一是网络钓鱼，一般钓鱼者在Facebook或其他类"
@@ -56,12 +56,12 @@ class WalletLocalizations{
       'welcomePageThreeContentFive' : "请您定期更新您的浏览器和操作系统。",
       'welcomePageThreeContentSix' : "请您使用官方安全软件。请不要安装会被黑客攻击的未知软件。",
       'welcomePageThreeContentSeven' : "使用公共Wi-Fi或其他人的设备时请勿访问您的钱包。",
-      'welcomePageThreeButtonBack' : '    返回    ',
-      'welcomePageThreeButtonNext' : '    我了解    ',
+      'welcomePageThreeButtonBack' : '返回',
+      'welcomePageThreeButtonNext' : '我了解',
 
       'startPageAppBarTitle' : 'LunarX Omniwallet',
-      'startPageButtonFirst' : '      开始使用      ',
-      'startPageButtonSecond' : '      恢复钱包      ',
+      'startPageButtonFirst' : '开始使用',
+      'startPageButtonSecond' : '恢复钱包',
       'startPageLanguageBarTitle' : '多语言',
 
       'main_page_title' : '钱包',
@@ -232,8 +232,8 @@ class WalletLocalizations{
       'welcomePageThreeButtonNext' : 'I Understand',
 
       'startPageAppBarTitle' : 'LunarX Omniwallet',
-      'startPageButtonFirst' : '     Get Started     ',
-      'startPageButtonSecond' : '   Restore wallet   ',
+      'startPageButtonFirst' : 'Get Started',
+      'startPageButtonSecond' : 'Restore wallet',
       'startPageLanguageBarTitle' : 'Language',
 
       'main_page_title' : 'My Wallet',

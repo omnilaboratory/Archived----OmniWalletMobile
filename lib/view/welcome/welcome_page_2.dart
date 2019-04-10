@@ -101,38 +101,16 @@ class WelcomePageTwo extends StatelessWidget {
   // Buttons
   Widget _bottomButton(BuildContext context) {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-      // mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        // Back button.
-        // RaisedButton(
-        //   child: Text(WalletLocalizations.of(context).welcomePageTwoButtonBack),
-        //   onPressed: () { Navigator.pop(context); },
-        // ),
-
         CustomRaiseButton( // Back button.
           context: context,
           flex: 1,
           title: WalletLocalizations.of(context).welcomePageTwoButtonBack,
-          // titleColor: Colors.white,
           leftIconName: 'icon_back',
-          // color: AppCustomColor.btnConfirm,
           callback: () {
             Navigator.pop(context);
           },
         ),
-
-        // Next button.
-        // RaisedButton(
-        //   child: Text(WalletLocalizations.of(context).welcomePageTwoButtonNext),
-        //   color: Colors.blue,
-        //   textColor: Colors.white,
-        //   onPressed: () {
-        //     // Show the welcome page three.
-        //     Navigator.push(context,
-        //       MaterialPageRoute(builder: (context) => WelcomePageThree()));
-        //   },
-        // ),
 
         SizedBox(width: 20),
         CustomRaiseButton( // Next button.
