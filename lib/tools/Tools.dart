@@ -13,7 +13,7 @@ class Tools{
   }
 
   /// get image path
-  static String imagePath(final String text) {
-    return 'assets/' + text + '@2x.png';
+  static String imagePath(final String text,{String scaleType="@2x",String suffix="png"}) {
+    return 'assets/' + text + scaleType+'.'+suffix;
   }
 }

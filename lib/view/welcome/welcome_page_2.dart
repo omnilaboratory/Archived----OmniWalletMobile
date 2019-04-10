@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
 
 import 'package:wallet_app/view/welcome/welcome_page_3.dart';
 
@@ -55,16 +56,16 @@ class WelcomePageTwo extends StatelessWidget {
 
         // List content.
         SizedBox(height: 30),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentTwo),
+        _listContent(Tools.imagePath('icon_wel1'), WalletLocalizations.of(context).welcomePageTwoContentTwo),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentThree),
+        _listContent(Tools.imagePath('icon_wel2'), WalletLocalizations.of(context).welcomePageTwoContentThree),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentFour),
+        _listContent(Tools.imagePath('icon_wel3'), WalletLocalizations.of(context).welcomePageTwoContentFour),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageTwoContentFive),
+        _listContent(Tools.imagePath('icon_wel4'), WalletLocalizations.of(context).welcomePageTwoContentFive),
 
         SizedBox(height: 30),
         _bottomButton(context),
@@ -75,9 +76,9 @@ class WelcomePageTwo extends StatelessWidget {
   //
   Widget _listContent(String img, String txt) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Image.asset(img, width: 50, height: 50),
+        Image.asset(img, width: 24, height: 28),
         SizedBox(width: 30),
         Expanded(
           child: Text(

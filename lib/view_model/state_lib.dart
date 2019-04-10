@@ -10,3 +10,4 @@ export 'package:wallet_app/model/wallet_info.dart';
 export 'package:wallet_app/model/backup_wallet.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
+export 'package:wallet_app/tools/Tools.dart';
