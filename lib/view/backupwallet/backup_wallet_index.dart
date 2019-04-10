@@ -3,6 +3,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class BackupWalletIndex extends StatelessWidget {
   Object param;
@@ -22,7 +23,7 @@ class BackupWalletIndex extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 30,left: 20,right: 20),
             child:
-                Image.asset("assets/LunarX_Logo.jpg",scale: 0.5,),
+                Image.asset(Tools.imagePath('image_backup'),scale: 0.5,),
           ),
           Expanded(
               child: Align(

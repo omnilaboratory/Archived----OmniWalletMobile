@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/view/welcome/start.dart';
 
 class WelcomePageThree extends StatelessWidget {
@@ -54,22 +55,22 @@ class WelcomePageThree extends StatelessWidget {
 
         // List content.
         SizedBox(height: 30),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentTwo),
+        _listContent(Tools.imagePath('icon_wel5'), WalletLocalizations.of(context).welcomePageThreeContentTwo),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentThree),
+        _listContent(Tools.imagePath('icon_wel6'), WalletLocalizations.of(context).welcomePageThreeContentThree),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFour),
+        _listContent(Tools.imagePath('icon_wel7'), WalletLocalizations.of(context).welcomePageThreeContentFour),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentFive),
+        _listContent(Tools.imagePath('icon_wel8'), WalletLocalizations.of(context).welcomePageThreeContentFive),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSix),
+        _listContent(Tools.imagePath('icon_wel9'), WalletLocalizations.of(context).welcomePageThreeContentSix),
 
         SizedBox(height: 20),
-        _listContent(img_1, WalletLocalizations.of(context).welcomePageThreeContentSeven),
+        _listContent(Tools.imagePath('icon_wel10'), WalletLocalizations.of(context).welcomePageThreeContentSeven),
 
         SizedBox(height: 30),
         _bottomButton(context),
@@ -80,9 +81,9 @@ class WelcomePageThree extends StatelessWidget {
   //
   Widget _listContent(String img, String txt) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Image.asset(img, width: 50, height: 50),
+        Image.asset(img, width: 24, height: 28),
         SizedBox(width: 30),
         Expanded(
           child: Text(
