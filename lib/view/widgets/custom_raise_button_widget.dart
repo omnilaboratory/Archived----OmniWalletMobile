@@ -48,6 +48,7 @@ class CustomRaiseButton extends StatelessWidget {
 
   Widget bulidWidet(){
     return Expanded(
+      flex: this.flex,
       child: RaisedButton(
         elevation: 0,
         highlightElevation: 0,

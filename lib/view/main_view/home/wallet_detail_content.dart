@@ -191,6 +191,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             CustomRaiseButton(
+              flex: 1,
               context: context,
               callback: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
@@ -204,6 +205,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
             ),
             SizedBox(width: 30,),
             CustomRaiseButton(
+              flex: 3,
               context: context,
               callback: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
