@@ -4,9 +4,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -23,6 +25,8 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+
       appBar: AppBar(
         elevation: 0,
         title: Text(WalletLocalizations.of(context).createAccountPageAppBarTitle),
@@ -75,7 +79,7 @@ class _CreateAccountState extends State<CreateAccount> {
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Row(
         children: <Widget>[
-          Image.asset('assets/logo-png.png', width: 26, height: 26),
+          Image.asset(Tools.imagePath('icon_name'), width: 17, height: 16),
           Expanded(
             child: TextField(
               decoration: InputDecoration(
@@ -99,7 +103,7 @@ class _CreateAccountState extends State<CreateAccount> {
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Row(
         children: <Widget>[
-          Image.asset('assets/logo-png.png', width: 26, height: 26),
+          Image.asset(Tools.imagePath('icon_password'), width: 16, height: 18),
           Expanded(
             child: TextField(
               decoration: InputDecoration(
@@ -123,7 +127,7 @@ class _CreateAccountState extends State<CreateAccount> {
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Row(
         children: <Widget>[
-          Image.asset('assets/logo-png.png', width: 26, height: 26),
+          Image.asset(Tools.imagePath('icon_confirm'), width: 16, height: 18),
           Expanded(
             child: TextField(
               decoration: InputDecoration(
@@ -144,56 +148,48 @@ class _CreateAccountState extends State<CreateAccount> {
   //
   Widget _content() {
     return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.only(top: 30),
-        color: AppCustomColor.themeBackgroudColor,
-        child: Column(
-          children: <Widget>[
-            Image.asset('assets/logo-png.png', width: 80, height: 80),
-            SizedBox(height: 50.0),
-            _inputAccountName(),
-            Divider(height: 0, indent: 25),
-            _inputPassword(),
-            Divider(height: 0, indent: 25),
-            _inputRepeatPassword(),
-            Divider(height: 0, indent: 25),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 30, bottom: 50),
+            child: Image.asset(Tools.imagePath('image_account'), width: 68, height: 62)
+          ),
 
-            // Button - Create wallet
-            SizedBox(height: 50.0),
-            _createButton(),
-          ],
-        ),
+          _inputAccountName(),
+          Divider(height: 0, indent: 25),
+          _inputPassword(),
+          Divider(height: 0, indent: 25),
+          _inputRepeatPassword(),
+          Divider(height: 0, indent: 25),
+
+          SizedBox(height: 80),
+          _createButton(),
+        ],
       ),
     );
   }
 
-  // Update version button
+  // Create button
   Widget _createButton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: RaisedButton(
-              child: Text(
-                WalletLocalizations.of(context).createAccountPageButton,
-              ),
-
-              color: AppCustomColor.btnConfirm,
-              textColor: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              elevation: 0,
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context){
-                        return BackupWalletIndex(param: 1,);
-                      }),
-                      (route) => route == null);
-              },
+    return Padding(
+      padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
+      child: CustomRaiseButton(
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).createAccountPageButton,
+        titleColor: Colors.white,
+        color: AppCustomColor.btnConfirm,
+        callback: () {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return BackupWalletIndex(param: 1,);
+              }
             ),
-          ),
-        ],
+              
+            (route) => route == null,
+          );
+        },
       ),
     );
   }
