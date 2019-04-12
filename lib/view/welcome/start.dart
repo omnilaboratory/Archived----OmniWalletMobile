@@ -13,6 +13,7 @@ import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class StartPage extends StatefulWidget {
+  static String tag = "StartPage";
   @override
   _StartPageState createState() => _StartPageState();
 }
@@ -104,16 +105,6 @@ class _StartPageState extends State<StartPage> {
     final langModel = MainStateModel().of(context);
 
     return InkWell(
-      onTap: () {
-        // Show the select language page.
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => SelectLanguage(),
-          ), 
-        );
-      },
-          
       child: Ink(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Row(
@@ -136,6 +127,16 @@ class _StartPageState extends State<StartPage> {
           ],
         ),
       ),
+
+      onTap: () {
+        // Show the select language page.
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => SelectLanguage(),
+          ), 
+        );
+      },
     );
   }
 

@@ -145,6 +145,7 @@ class _MyAppState extends State<MyApp> {
     print(hdWallet.address);
     print(hdWallet.pubKey);
     print(hdWallet.privKey);
+    print(hdWallet.wif);
 
     hdWallet = new HDWallet.fromSeed(seed1);
     hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/1");

@@ -11,6 +11,7 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class SelectLanguage extends StatefulWidget {
+  static String tag = "SelectLanguage";
   @override
   _SelectLanguageState createState() => _SelectLanguageState();
 }
