@@ -143,27 +143,22 @@ class _MyAppState extends State<MyApp> {
     var hdWallet = new HDWallet.fromSeed(seed1);
     hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/0");
     print(hdWallet.address);
-    print(hdWallet.pubKey);
-    print(hdWallet.privKey);
     print(hdWallet.wif);
 
     hdWallet = new HDWallet.fromSeed(seed1);
     hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/1");
     print(hdWallet.address);
-    print(hdWallet.pubKey);
-    print(hdWallet.privKey);
+    print(hdWallet.wif);
 
     hdWallet = new HDWallet.fromSeed(seed1);
     hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/2");
     print(hdWallet.address);
-    print(hdWallet.pubKey);
-    print(hdWallet.privKey);
+    print(hdWallet.wif);
     print('---------------------------------------------------');
     hdWallet = new HDWallet.fromSeed(seed1);
     hdWallet = hdWallet.derivePath("m/0/0");
     print(hdWallet.address);
-    print(hdWallet.pubKey);
-    print(hdWallet.privKey);
+    print(hdWallet.wif);
 
     Bip44 bip44 = Bip44(seed);
     Coin bitcoin = bip44.coins[0];

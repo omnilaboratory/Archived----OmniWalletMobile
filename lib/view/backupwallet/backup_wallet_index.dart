@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
@@ -6,14 +7,21 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
-class BackupWalletIndex extends StatelessWidget {
-
-  BackupWalletIndex({Key key,this.param}):super(key:key);
+class BackupWalletIndex extends StatelessWidget  {
   static String tag = "BackupWallet";
+  BackupWalletIndex({Key key,this.param}):super(key:key);
   final Object param;
+
+ void initData(){
+   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+   prefs.then((share){
+     share.setInt('backParentId', this.param);
+   });
+ }
 
   @override
   Widget build(BuildContext context) {
+    this.initData();
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
 

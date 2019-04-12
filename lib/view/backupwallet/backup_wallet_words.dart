@@ -4,6 +4,7 @@ import 'package:wallet_app/model/backup_wallet.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_word_order.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 
@@ -121,22 +122,16 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: RaisedButton(
-                    color: AppCustomColor.btnConfirm,
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletWordsOrder()));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(WalletLocalizations.of(context).backup_words_next,style: TextStyle(color: Colors.white),),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child:CustomRaiseButton(
+              context: context,
+              hasRow: false,
+              title: WalletLocalizations.of(context).backup_words_next,
+              titleColor: Colors.white,
+              color: AppCustomColor.btnConfirm,
+              callback: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BackupWalletWordsOrder()));
+              },
+            )
           ),
         ],
       ),

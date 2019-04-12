@@ -53,7 +53,7 @@ class CustomRaiseButton extends StatelessWidget {
       child: RaisedButton(
         elevation: 0,
         highlightElevation: 0,
-        onPressed: (){
+        onPressed: callback==null?null:(){
           callback();
         },
         child: Row(

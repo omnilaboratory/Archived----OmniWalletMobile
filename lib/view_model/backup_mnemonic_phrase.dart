@@ -8,15 +8,15 @@ class BackupMnemonicPhrase extends Model{
   List<WordInfo> createNewWords(){
     if(this.wordList!=null){
       this.wordList.clear();
+    }else{
+      this.wordList = [];
     }
-    this.wordList = [
-      WordInfo(content: 'word1' ,seqNum: 0),WordInfo(content: 'word2' ,seqNum: 1 ),
-      WordInfo(content: 'word3' ,seqNum: 2),WordInfo(content: 'word4' ,seqNum: 3),
-      WordInfo(content: 'word5' ,seqNum: 4 ),WordInfo(content: 'word6' ,seqNum: 5),
-      WordInfo(content: 'word7' ,seqNum: 6 ),WordInfo(content: 'word8' ,seqNum: 7),
-      WordInfo(content: 'word9' ,seqNum: 8 ),WordInfo(content: 'word10' ,seqNum: 9),
-      WordInfo(content: 'word11' ,seqNum: 10 ),WordInfo(content: 'word12' ,seqNum: 11),
-    ];
+
+    String randomMnemonic = 'quote flag wise digital travel garlic film vibrant width evoke device biology';
+    List<String> list = randomMnemonic.split(' ');
+    for(int count=0;count<list.length;count++){
+      this.wordList.add(WordInfo(content: list[count],seqNum: count));
+    }
     return this.wordList;
   }
 
