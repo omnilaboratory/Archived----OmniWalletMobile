@@ -10,7 +10,7 @@ class BackupWalletIndex extends StatelessWidget {
 
   BackupWalletIndex({Key key,this.param}):super(key:key);
   static String tag = "BackupWallet";
-  Object param;
+  final Object param;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class BackupWalletIndex extends StatelessWidget {
       ),
       
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: _pageContent(context),
         ),
       )
@@ -59,9 +59,10 @@ class BackupWalletIndex extends StatelessWidget {
           ),
         ),
 
+        Expanded(child: Container()),
         // backup button
         Padding(
-          padding: EdgeInsets.only(top: 60),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.05),
           child: CustomRaiseButton(
             context: context,
             hasRow: false,
