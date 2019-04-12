@@ -22,6 +22,8 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+      
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).startPageAppBarTitle),
       ),
@@ -61,7 +63,7 @@ class _StartPageState extends State<StartPage> {
   Widget _getStarted() {
     return Padding(
       padding: EdgeInsets.only(left: 30, right: 30, top: 60),
-      child: CustomRaiseButton( // Next button.
+      child: CustomRaiseButton(
         context: context,
         hasRow: false,
         title: WalletLocalizations.of(context).startPageButtonFirst,
@@ -83,7 +85,7 @@ class _StartPageState extends State<StartPage> {
   Widget _restoreWallet() {
     return Padding(
       padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
-      child: CustomRaiseButton( // Next button.
+      child: CustomRaiseButton(
         context: context,
         hasRow: false,
         title: WalletLocalizations.of(context).startPageButtonSecond,
@@ -114,7 +116,6 @@ class _StartPageState extends State<StartPage> {
           
       child: Ink(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        // color: AppCustomColor.themeBackgroudColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

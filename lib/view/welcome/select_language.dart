@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
@@ -83,7 +84,13 @@ class _SelectLanguageState extends State<SelectLanguage> {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        title: Text(item),
+        leading: _iconLanguage(item),
+        title: Text(
+          item,
+          // style: TextStyle(
+          //   fontSize: 14,
+          // ),
+        ),
         trailing: Icon(
           isSelected ? Icons.check : null,
           color: Colors.blue,
@@ -125,5 +132,14 @@ class _SelectLanguageState extends State<SelectLanguage> {
   void _saveSelectedLanguage(String value) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('set_language', value);
+  }
+
+  //
+  Widget _iconLanguage(String item) {
+    if (item == 'English') {
+      return Image.asset(Tools.imagePath('icon_english'), width: 24, height: 24);
+    } else {
+      return Image.asset(Tools.imagePath('icon_chinese'), width: 24, height: 24);
+    }
   }
 }
