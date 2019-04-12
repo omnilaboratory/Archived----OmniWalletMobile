@@ -18,6 +18,9 @@ import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'package:bip39/bip39.dart' as bip39;
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
+import "package:bitcoin_bip44/bitcoin_bip44.dart";
 
 void main() {
 //   debugPaintSizeEnabled = true;
@@ -75,6 +78,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    this.test();
     AppCustomColor.setColors(brightness);
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
@@ -122,5 +126,47 @@ class _MyAppState extends State<MyApp> {
         home: Splash(),
       ),
     );
+  }
+
+
+  test(){
+
+//    String randomMnemonic = bip39.generateMnemonic();
+    String randomMnemonic = 'quote flag wise digital travel garlic film vibrant width evoke device biology';
+    print(randomMnemonic);
+    String seed = bip39.mnemonicToSeedHex(randomMnemonic);
+    print(seed);
+//    print(bip39.mnemonicToSeed(randomMnemonic));
+
+
+    var seed1 = bip39.mnemonicToSeed(randomMnemonic);
+    var hdWallet = new HDWallet.fromSeed(seed1);
+    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/0");
+    print(hdWallet.address);
+    print(hdWallet.pubKey);
+    print(hdWallet.privKey);
+
+    hdWallet = new HDWallet.fromSeed(seed1);
+    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/1");
+    print(hdWallet.address);
+    print(hdWallet.pubKey);
+    print(hdWallet.privKey);
+
+    hdWallet = new HDWallet.fromSeed(seed1);
+    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/2");
+    print(hdWallet.address);
+    print(hdWallet.pubKey);
+    print(hdWallet.privKey);
+    print('---------------------------------------------------');
+    hdWallet = new HDWallet.fromSeed(seed1);
+    hdWallet = hdWallet.derivePath("m/0/0");
+    print(hdWallet.address);
+    print(hdWallet.pubKey);
+    print(hdWallet.privKey);
+
+    Bip44 bip44 = Bip44(seed);
+    Coin bitcoin = bip44.coins[0];
+    Account account = Account(bitcoin, 0, changeExternal);
+    print(account.chain.root);
   }
 }
