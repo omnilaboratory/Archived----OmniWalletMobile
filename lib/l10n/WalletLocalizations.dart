@@ -155,8 +155,8 @@ class WalletLocalizations{
       
       'createAccountPageAppBarTitle' : '创建新账号',
       'createAccountPageTooltip_1' : '账号名',
-      'createAccountPageTooltip_2' : '密码',
-      'createAccountPageTooltip_3' : '重复密码',
+      'createAccountPageTooltip_2' : 'PIN码',
+      'createAccountPageTooltip_3' : '重复PIN码',
       'createAccountPageTooltip_4' : '最少8个字符',
       'createAccountPageButton' : '创建',
 
@@ -330,8 +330,8 @@ class WalletLocalizations{
 
       'createAccountPageAppBarTitle' : 'Create New Account',
       'createAccountPageTooltip_1' : 'Account name',
-      'createAccountPageTooltip_2' : 'Password',
-      'createAccountPageTooltip_3' : 'Confirm password',
+      'createAccountPageTooltip_2' : 'PIN Code',
+      'createAccountPageTooltip_3' : 'Confirm PIN Code',
       'createAccountPageTooltip_4' : 'must be at least 8 characters',
       'createAccountPageButton' : 'Create',
 

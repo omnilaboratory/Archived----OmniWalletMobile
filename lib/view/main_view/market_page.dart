@@ -22,14 +22,19 @@ class _MarketPageState extends State<MarketPage> {
       ),
 
       body: SafeArea(
+        child: Center(
+          child: Text('Coming Soon ...'),
+        ),
+        
+        /*
         child: Column(
           children: <Widget>[
             _showExchange(),
             _showTitle(),
             _quotationList(),
-
           ], 
         ),
+        */
       ),
     );
   }
