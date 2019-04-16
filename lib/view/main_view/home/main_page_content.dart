@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
@@ -49,11 +50,12 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
           child: CircleAvatar(
             radius: 24,
             backgroundColor: Colors.lightBlue[50],
-            child: Icon(
-              dataInfo.iconUrl??Icons.ac_unit,
-              size: 30,
-              color: Colors.blue,
-            ),
+//            child: Icon(
+//              dataInfo.iconUrl??Icons.ac_unit,
+//              size: 30,
+//              color: Colors.blue,
+//            ),
+            child: Image.asset(Tools.imagePath('icon_wallet'),width: 20,height: 20,),
           ),
         ),
         Expanded(
@@ -67,14 +69,15 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   Text(
                     '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                     ),
                   )
               ],),
               SizedBox(height: 10,),
-              Text(
+              AutoSizeText(
                 dataInfo.address,
                 maxLines: 1,
+                minFontSize: 10,
                 style: TextStyle(
                   color: Colors.grey
                 ),
@@ -103,7 +106,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               margin: EdgeInsets.all(6),
               child: Row(
                 children: <Widget>[
-                  CircleAvatar(backgroundColor: Colors.lightBlue[50], child: Icon(accountInfo.iconUrl??Icons.add,size: 30,color: Colors.green,)),
+                  Image.asset(Tools.imagePath('icon_BTC'),width: 25,height: 25,),
                   Container(
                     margin: EdgeInsets.only(left: 16),
                       child: Text('${accountInfo.name}',style: TextStyle(fontSize: 18),)
