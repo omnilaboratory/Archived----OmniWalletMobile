@@ -79,17 +79,19 @@ class _UserCenterState extends State<UserCenter> {
     // list tile
     List<Widget> _list = List();
 
-    /* TEMP CODE
+    // /* TEMP CODE
     // Icons
-    List<Icon> leading_icons = <Icon> [
+    List<Icon> leading_names = <Icon> [
       Icon(Icons.settings),
       Icon(Icons.book),
       Icon(Icons.help),
       Icon(Icons.terrain),
       Icon(Icons.backup),
       Icon(Icons.info),
-    ]; */
+    ]; 
+    // */
 
+    /* TEMP COMMENT
     // Icons
     List<String> leading_names = <String> [
       'icon_set',
@@ -99,6 +101,7 @@ class _UserCenterState extends State<UserCenter> {
       'icon_backup',
       'icon_about',
     ];
+    */
 
     // item content
     List<String> items = <String> [
@@ -125,9 +128,21 @@ class _UserCenterState extends State<UserCenter> {
       _list.add(Divider(height: 0, indent: 15));
     }
 
-    // var divideList = ListTile.divideTiles(context: context, tiles: _list).toList();
-
     return _list;
+  }
+
+  //
+  Widget _menuItem(Icon iconName, String item, String route) {
+    return Ink(
+      color: AppCustomColor.themeBackgroudColor,
+      child: ListTile(
+        // leading: Image.asset(Tools.imagePath(iconName), width: 20, height: 20),
+        leading: iconName,
+        title: Text(item),
+        trailing: Icon(Icons.keyboard_arrow_right),
+        onTap: () {Navigator.of(context).pushNamed(route);},
+      ),
+    );
   }
 
   // AppBar Title
@@ -152,19 +167,6 @@ class _UserCenterState extends State<UserCenter> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  //
-  Widget _menuItem(String iconName, String item, String route) {
-    return Ink(
-      color: AppCustomColor.themeBackgroudColor,
-      child: ListTile(
-        leading: Image.asset(Tools.imagePath(iconName), width: 20, height: 20),
-        title: Text(item),
-        trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {Navigator.of(context).pushNamed(route);},
       ),
     );
   }

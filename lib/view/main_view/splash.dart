@@ -51,6 +51,10 @@ class _SplashState extends State<Splash> {
   //
   void _setLocale() {
     Locale locale = Localizations.localeOf(context);
+
+    String strLocale = locale.languageCode;
+          print('LOCALE = $strLocale');
+
     Future<String> setLanguage = _getSelectedLanguage();
     setLanguage.then(
       (String setLanguage) {
@@ -61,11 +65,10 @@ class _SplashState extends State<Splash> {
         } else if (setLanguage == '简体中文') {
           locale = Locale('zh',"CH");
         } else { // No select before
-          // print('LOCALE = $locale');
-          String strLocale = locale.toString();
-          if (strLocale == 'zh_Hans_US') {
+          String strLocale = locale.languageCode;
+          if (strLocale == 'zh') {
             setLanguage = '简体中文';
-          } else if (strLocale == 'en_US') {
+          } else if (strLocale == 'en') {
             setLanguage = 'English';
           } else {
             setLanguage = 'English';

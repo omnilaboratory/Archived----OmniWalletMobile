@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    this.test();
+    // this.test();
     AppCustomColor.setColors(brightness);
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
