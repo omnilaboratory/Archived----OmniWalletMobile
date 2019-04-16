@@ -72,7 +72,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                           );
     var footer = Padding(
                             padding: const EdgeInsets.only(
-                                left: 20, right: 20, top: 6,bottom: 10),
+                                left: 20, right: 20, top: 6,bottom: 14),
                             child: Row(
                               children: <Widget>[
                                 CustomRaiseButton( // Next button.

@@ -6,6 +6,7 @@ import 'package:wallet_app/view/main_view/home/home_page.dart';
 import 'package:wallet_app/view/main_view/market_page.dart';
 import 'package:wallet_app/view/main_view/my_page.dart';
 import 'package:wallet_app/view/main_view/omni_page.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class MainPage extends StatefulWidget {
   static String tag = 'MainPage';
@@ -117,6 +118,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
           child: TabBar(
             indicatorWeight: 1,
             controller: controller,
+            labelColor: Colors.blue,
+            unselectedLabelColor: Colors.grey,
             tabs:createTabs(),
           ),
         ),
@@ -134,32 +137,32 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       Tab(
         child: Column(
           children: <Widget>[
-            Icon(Icons.home,color: AppCustomColor.themeFrontColor,),
-            Text(WalletLocalizations.of(context).buttom_tab1_name ,style: TextStyle(color: AppCustomColor.themeFrontColor),),
+            Image.asset(Tools.imagePath('nav_wallet_on'),width: 26,height: 26,),
+            Text(WalletLocalizations.of(context).buttom_tab1_name ),
           ],
         ),
       ),
       Tab(
         child: Column(
           children: <Widget>[
-            Icon(Icons.filter_drama,color: AppCustomColor.themeFrontColor,),
-            Text(WalletLocalizations.of(context).buttom_tab2_name,style: TextStyle(color: AppCustomColor.themeFrontColor),),
+            Image.asset(Tools.imagePath('nav_market_on'),width: 26,height: 26,),
+            Text(WalletLocalizations.of(context).buttom_tab2_name),
           ],
         ),
       ),
       Tab(
         child: Column(
           children: <Widget>[
-            Icon(Icons.wb_sunny,color: AppCustomColor.themeFrontColor),
-            Text(WalletLocalizations.of(context).buttom_tab3_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
+            Image.asset(Tools.imagePath('nav_dex_on'),width: 26,height: 26,),
+            Text(WalletLocalizations.of(context).buttom_tab3_name),
           ],
         ),
       ),
       Tab(
         child: Column(
           children: <Widget>[
-            Icon(Icons.my_location,color: AppCustomColor.themeFrontColor),
-            Text(WalletLocalizations.of(context).buttom_tab4_name,style: TextStyle(color: AppCustomColor.themeFrontColor)),
+            Image.asset(Tools.imagePath('nav_my_on'),width: 26,height: 26,),
+            Text(WalletLocalizations.of(context).buttom_tab4_name),
           ],
         ),
       ),
