@@ -85,6 +85,10 @@ class TradeInfoDetail extends StatelessWidget {
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_To,tradeInfo.objAddress),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Memo,tradeInfo.note),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Date,DateFormat('yyyy.MM.dd hh:mm').format(tradeInfo.tradeDate)),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 18),
+                child: Divider(height: 1,),
+              ),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_txid,tradeInfo.txId),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmIndex,tradeInfo.blockId.toString()),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmCount,tradeInfo.confirmAmount.toString()),
