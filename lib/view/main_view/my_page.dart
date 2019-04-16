@@ -79,6 +79,7 @@ class _UserCenterState extends State<UserCenter> {
     // list tile
     List<Widget> _list = List();
 
+    /* TEMP CODE
     // Icons
     List<Icon> leading_icons = <Icon> [
       Icon(Icons.settings),
@@ -87,7 +88,8 @@ class _UserCenterState extends State<UserCenter> {
       Icon(Icons.terrain),
       Icon(Icons.backup),
       Icon(Icons.info),
-    ];
+    ]; */
+
     // Icons
     List<String> leading_names = <String> [
       'icon_set',
@@ -159,7 +161,7 @@ class _UserCenterState extends State<UserCenter> {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        leading: Image.asset(Tools.imagePath(iconName),width: 24,height: 24,),
+        leading: Image.asset(Tools.imagePath(iconName), width: 20, height: 20),
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {Navigator.of(context).pushNamed(route);},

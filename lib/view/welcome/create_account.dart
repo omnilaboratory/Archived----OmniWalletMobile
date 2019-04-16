@@ -23,8 +23,8 @@ class _CreateAccountState extends State<CreateAccount> {
   /// should save data.
   String _strAccountName, _strPinCode, _strRepeatPinCode;
 
-  TextEditingController _accountNameController = TextEditingController();
-  TextEditingController _pinCodeController = TextEditingController();
+  TextEditingController _accountNameController   = TextEditingController();
+  TextEditingController _pinCodeController       = TextEditingController();
   TextEditingController _repeatPinCodeController = TextEditingController();
 
   //
@@ -33,14 +33,14 @@ class _CreateAccountState extends State<CreateAccount> {
   FocusNode _nodeText3 = FocusNode();
 
   /// textFormField focus 
-  bool _accountNameHasFocus = false;
-  bool _pinCodeHasFocus = false;
+  bool _accountNameHasFocus   = false;
+  bool _pinCodeHasFocus       = false;
   bool _repeatPinCodeHasFocus = false;
 
   //
   bool _autoValidate = false;
 
-  // add textfield listener
+  /// add textfield listener
   @override
   void initState() {
 
@@ -87,91 +87,51 @@ class _CreateAccountState extends State<CreateAccount> {
       body: FormKeyboardActions(
         actions: _keyboardActions(),
         child: SafeArea(
-          child: _content(),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              autovalidate: _autoValidate,
+              child: Column(
+                children: _content(),
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  // Keyboard Actions
+  /// Keyboard Actions
   List<KeyboardAction> _keyboardActions() {
-
-    List<KeyboardAction> actions = <KeyboardAction> [
-      KeyboardAction(
-        focusNode: _nodeText1,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
-      ),
-
-      KeyboardAction(
-        focusNode: _nodeText2,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
-      ),
-
-      KeyboardAction(
-        focusNode: _nodeText3,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
-      ),
+    List<KeyboardAction> _actions = List();
+    List<FocusNode> _nodes = <FocusNode> [
+      _nodeText1, _nodeText2, _nodeText3
     ];
 
-    return actions;
+    for (int i = 0; i < _nodes.length; i++) {
+      _actions.add(_keyAc(_nodes[i]));
+    }
+
+    return _actions;
   }
   
-  //
-  Widget _content() {
-    return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        autovalidate: _autoValidate,
-        child: Column(
-          children: _buildList(),
-          // children: <Widget>[
-            // Padding(
-            //   padding: EdgeInsets.only(top: 30, bottom: 50),
-            //   child: Image.asset(Tools.imagePath('image_account'), width: 68, height: 62)
-            // ),
-
-            // _textFormField(_accountNameController, _nodeText1, _strAccountName, 'icon_name', 
-            //   WalletLocalizations.of(context).createAccountPageTooltip_1, 
-            //   _accountNameHasFocus, null, 1),
-            
-            // Divider(height: 0, indent: 25),
-
-            // _textFormField(_pinCodeController, _nodeText2, _strPinCode, 'icon_password', 
-            //   WalletLocalizations.of(context).createAccountPageTooltip_2, 
-            //   _pinCodeHasFocus, WalletLocalizations.of(context).createAccountPageTooltip_4, 2),
-
-            //   Divider(height: 0, indent: 25),
-
-            // _textFormField(_repeatPinCodeController, _nodeText3, _strRepeatPinCode, 'icon_confirm', 
-            //   WalletLocalizations.of(context).createAccountPageTooltip_3, 
-            //   _repeatPinCodeHasFocus, WalletLocalizations.of(context).createAccountPageTooltip_4, 3),
-
-            // Divider(height: 0, indent: 25),
-
-            // SizedBox(height: 80),
-            // _btnCreate(),
-          // ],
-        ),
-      ),
+  ///
+  KeyboardAction _keyAc(FocusNode _node) {
+    return KeyboardAction(
+      focusNode: _node,
+      closeWidget: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(Icons.close),
+      )
     );
   }
-  
-  // 
-  List<Widget> _buildList() {
 
-    // list tile
+  /// build children list 
+  List<Widget> _content() {
+
     List<Widget> _list = List();
 
-    List<TextEditingController> _controller = <TextEditingController> [
+    List<TextEditingController> _controllers = <TextEditingController> [
       _accountNameController, _pinCodeController, _repeatPinCodeController
     ];
 
@@ -190,7 +150,7 @@ class _CreateAccountState extends State<CreateAccount> {
     List<String> _hintText = <String> [
       WalletLocalizations.of(context).createAccountPageTooltip_1, 
       WalletLocalizations.of(context).createAccountPageTooltip_2, 
-      WalletLocalizations.of(context).createAccountPageTooltip_3, 
+      WalletLocalizations.of(context).createAccountPageTooltip_3
     ];
     
     List<bool> _hasFocus = <bool> [
@@ -198,12 +158,12 @@ class _CreateAccountState extends State<CreateAccount> {
     ];
 
     List<String> _helperText = <String> [
+      null, 
       WalletLocalizations.of(context).createAccountPageTooltip_4, 
-      WalletLocalizations.of(context).createAccountPageTooltip_4, 
-      WalletLocalizations.of(context).createAccountPageTooltip_4, 
+      WalletLocalizations.of(context).createAccountPageTooltip_4
     ];
 
-    List<int> _textField = <int> [
+    List<int> _textFields = <int> [
       1, 2, 3
     ];
 
@@ -211,8 +171,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
     for (int i = 0; i < _nodes.length; i++) {
       _list.add( _textFormField(
-        _controller[i], _nodes[i], _saveData[i], _icons[i], 
-        _hintText[i], _hasFocus[i], _helperText[i], _textField[i]) );
+        _controllers[i], _nodes[i], _saveData[i], _icons[i], 
+        _hintText[i], _hasFocus[i], _helperText[i], _textFields[i]) );
 
       _list.add(Divider(height: 0, indent: 25));
     }
@@ -289,7 +249,7 @@ class _CreateAccountState extends State<CreateAccount> {
     }
   }
 
-  //
+  ///
   String _validateAccountName(String val) {
     if (val == null || val.trim().length == 0) {
       return 'AccountName is empty';
@@ -300,7 +260,7 @@ class _CreateAccountState extends State<CreateAccount> {
     }
   }
   
-  //
+  ///
   String _validatePinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return '_strPinCode is empty';
@@ -311,7 +271,7 @@ class _CreateAccountState extends State<CreateAccount> {
     }
   }
 
-  //
+  ///
   String _validateRepeatPinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return '_strRepeatPinCode is empty';
@@ -322,7 +282,7 @@ class _CreateAccountState extends State<CreateAccount> {
     }
   }
 
-  // Create button
+  /// Create button
   Widget _btnCreate() {
     return Padding(
       padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
@@ -339,7 +299,7 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-  // form submit
+  /// form submit
   void _onSubmit() {
     final form = _formKey.currentState;
     if (form.validate()) {

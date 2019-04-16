@@ -62,7 +62,7 @@ class WelcomePageOne extends StatelessWidget {
           ),
         ),
 
-        // Next button.
+        /// Next button.
         SizedBox(height: 30),
         CustomRaiseButton( // Next button.
           context: context,
@@ -80,6 +80,7 @@ class WelcomePageOne extends StatelessWidget {
           },
         ),
 
+        /* TEMP CODE
         FlatButton(
           child: Text(WalletLocalizations.of(context).common_btn_skip),
           textColor: Colors.grey,
@@ -90,6 +91,8 @@ class WelcomePageOne extends StatelessWidget {
             );
           },
         ),
+        */
+
       ],
     );
   }
