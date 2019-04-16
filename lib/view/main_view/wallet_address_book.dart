@@ -122,20 +122,10 @@ class _AddressBookState extends State<AddressBook> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-//                      RaisedButton(
-//                        onPressed: (){
-//                          Navigator.of(context).pop();
-//                        },
-//                        child: Text(WalletLocalizations.of(context).createNewAddress_Cancel,style: TextStyle(color: Colors.blue),),
-//                        color: Colors.lightBlue[50],
-//                        padding: EdgeInsets.symmetric(horizontal: 50)
-//                      ),
-
-
                       CustomRaiseButton( // Next button.
                         context: context,
                         title: WalletLocalizations.of(context).createNewAddress_Cancel,
-                        titleColor: Colors.white,
+                        titleColor: Colors.blue,
                         color: AppCustomColor.btnCancel,
                         callback: () {
                           Navigator.of(context).pop();
