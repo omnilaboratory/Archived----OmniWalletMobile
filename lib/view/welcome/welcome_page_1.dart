@@ -81,7 +81,7 @@ class WelcomePageOne extends StatelessWidget {
           },
         ),
 
-        /* TEMP CODE
+        /// TEMP CODE
         FlatButton(
           child: Text(WalletLocalizations.of(context).common_btn_skip),
           textColor: Colors.grey,
@@ -92,7 +92,6 @@ class WelcomePageOne extends StatelessWidget {
             );
           },
         ),
-        */
 
       ],
     );

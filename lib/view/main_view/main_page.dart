@@ -133,11 +133,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   createTabs(){
+    var iconWidth = 20.0;
      List<Tab> tabs=[
       Tab(
         child: Column(
           children: <Widget>[
-            Image.asset(Tools.imagePath('nav_wallet_on'),width: 26,height: 26,),
+            Image.asset(Tools.imagePath('nav_wallet_on'),width: iconWidth,height: iconWidth,),
             Text(WalletLocalizations.of(context).buttom_tab1_name ),
           ],
         ),
@@ -145,7 +146,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       Tab(
         child: Column(
           children: <Widget>[
-            Image.asset(Tools.imagePath('nav_market_on'),width: 26,height: 26,),
+            Image.asset(Tools.imagePath('nav_market_on'),width: iconWidth,height: iconWidth,),
             Text(WalletLocalizations.of(context).buttom_tab2_name),
           ],
         ),
@@ -153,7 +154,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       Tab(
         child: Column(
           children: <Widget>[
-            Image.asset(Tools.imagePath('nav_dex_on'),width: 26,height: 26,),
+            Image.asset(Tools.imagePath('nav_dex_on'),width: iconWidth,height: iconWidth,),
             Text(WalletLocalizations.of(context).buttom_tab3_name),
           ],
         ),
@@ -161,7 +162,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       Tab(
         child: Column(
           children: <Widget>[
-            Image.asset(Tools.imagePath('nav_my_on'),width: 26,height: 26,),
+            Image.asset(Tools.imagePath('nav_my_on'),width: iconWidth,height: iconWidth,),
             Text(WalletLocalizations.of(context).buttom_tab4_name),
           ],
         ),
