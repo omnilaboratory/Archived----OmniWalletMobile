@@ -7,10 +7,6 @@ import 'package:wallet_app/view/welcome/welcome_page_3.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class WelcomePageTwo extends StatelessWidget {
-
-  // Assets
-  final String img_1 = 'assets/LunarX_Logo.jpg';
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -26,12 +26,6 @@ class _UserCenterState extends State<UserCenter> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      // decoration: BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage('assets/img1.jpg'),
-      //     fit: BoxFit.fitHeight,
-      //   )
-      // ),
       children: <Widget>[
         Image.asset(Tools.imagePath('title_bg2'),
           fit: BoxFit.cover,

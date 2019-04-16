@@ -37,6 +37,7 @@ class WelcomePageOne extends StatelessWidget {
         // Title
         Text(
           WalletLocalizations.of(context).welcomePageOneTitle,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
