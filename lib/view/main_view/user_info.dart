@@ -166,7 +166,8 @@ class _UserInfoState extends State<UserInfo> {
     if (image == null) {
       // return Image.asset('assets/logo-png.png', width: 35, height: 35);
       return CircleAvatar(
-        backgroundImage: AssetImage('assets/logo-png.png'),
+        child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
+        backgroundColor: Colors.transparent,
       );
     } else {
       return CircleAvatar(

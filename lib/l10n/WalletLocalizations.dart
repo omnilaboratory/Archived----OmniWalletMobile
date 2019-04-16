@@ -8,7 +8,7 @@ class WalletLocalizations{
   static Map<String, Map<String, String>> _localizedValues = {
 
     'zh': {
-      'main_index_title': 'LunarX Omniwallet',
+      'main_index_title': 'Omni Wallet',
       'backup_index_prompt_btn': '知道了',
       'backup_index_title': '备份钱包',
       'backup_index_laterbackup': '稍后备份',
@@ -50,7 +50,7 @@ class WalletLocalizations{
       'welcomePageThreeTitle' : '如何防止网络钓鱼攻击',
       'welcomePageThreeContentOne' : "诈骗最常见的攻击方式之一是网络钓鱼，一般钓鱼者在Facebook或其他类"
           "似于真实的网站上创建假社群。",
-      'welcomePageThreeContentTwo' : "请总是检查URL: https://www.lunarx_omni.com",
+      'welcomePageThreeContentTwo' : "请总是检查URL: https://www.omnilayer.org",
       'welcomePageThreeContentThree' : "访问您的账户时请不要使用具有扩展程序或插件的浏览器。",
       'welcomePageThreeContentFour' : "请不要打开来自未知发件人的电子邮件或链接。",
       'welcomePageThreeContentFive' : "请您定期更新您的浏览器和操作系统。",
@@ -59,7 +59,7 @@ class WalletLocalizations{
       'welcomePageThreeButtonBack' : '返回',
       'welcomePageThreeButtonNext' : '我了解',
 
-      'startPageAppBarTitle' : 'LunarX Omniwallet',
+      'startPageAppBarTitle' : 'Omni Wallet',
       'startPageButtonFirst' : '开始使用',
       'startPageButtonSecond' : '恢复钱包',
       'startPageLanguageBarTitle' : '多语言',
@@ -175,7 +175,7 @@ class WalletLocalizations{
     },
 
     'en': {
-      'main_index_title': 'LunarX Omniwallet',
+      'main_index_title': 'Omni Wallet',
       'backup_index_prompt_btn': 'I got it',
       'backup_index_title': 'Back Up Wallet',
       'backup_index_laterbackup': 'Later',
@@ -230,7 +230,7 @@ class WalletLocalizations{
       'welcomePageThreeContentOne' : "One of the most common forms of scamming is "
           "phishing, which is when scammers create fake communities on Facebook or "
           "other websites that look similar to the authentic ones.",
-      'welcomePageThreeContentTwo' : "Always check the URL: https://www.lunarx_omni.com",
+      'welcomePageThreeContentTwo' : "Always check the URL: https://www.omnilayer.org",
       'welcomePageThreeContentThree' : "Do not use browsers that have extensions or "
           "plugins to access your account.",
       'welcomePageThreeContentFour' : "Do not open emails or links from unknown senders.",
@@ -242,7 +242,7 @@ class WalletLocalizations{
       'welcomePageThreeButtonBack' : 'Go Back',
       'welcomePageThreeButtonNext' : 'I Understand',
 
-      'startPageAppBarTitle' : 'LunarX Omniwallet',
+      'startPageAppBarTitle' : 'Omni Wallet',
       'startPageButtonFirst' : 'Get Started',
       'startPageButtonSecond' : 'Restore wallet',
       'startPageLanguageBarTitle' : 'Language',

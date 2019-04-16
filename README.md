@@ -1,3 +1,3 @@
 # wallet_app
 
-LunarX_Omni Wallet App
+Omni Wallet App

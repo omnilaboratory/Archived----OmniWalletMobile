@@ -152,7 +152,7 @@ class _UserCenterState extends State<UserCenter> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // user avatar.
-            Image.asset('assets/logo-png.png', width: 70, height: 70),
+            Image.asset('assets/omni-logo.png', width: 70, height: 70),
             SizedBox(height: 10),
             
             Text(  // user nick name

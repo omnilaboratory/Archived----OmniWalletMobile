@@ -40,14 +40,14 @@ class _AboutState extends State<About> {
   Widget _bannerArea() {
     return Container(
       color: AppCustomColor.aboutPageBannerBGColor,
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Column(
             children: <Widget>[
-              Image.asset('assets/logo-png.png', width: 80, height: 80),
-              SizedBox(height: 10),
+              Image.asset('assets/omni-logo.png', width: 80, height: 80),
+              SizedBox(height: 20),
               Text(
                 WalletLocalizations.of(context).aboutPageAppName,
                 style: TextStyle(
