@@ -72,7 +72,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                           );
     var footer = Padding(
                             padding: const EdgeInsets.only(
-                                left: 20, right: 20, top: 20),
+                                left: 20, right: 20, top: 6,bottom: 10),
                             child: Row(
                               children: <Widget>[
                                 CustomRaiseButton( // Next button.
@@ -115,7 +115,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                 alignment: Alignment(0, -0.05),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.33,
                   child: Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
@@ -126,6 +126,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                       child: Column(
                         children: <Widget>[
                           header,
+                          Expanded(child: Container()),
                           body,
                           Padding(
                             padding: const EdgeInsets.only(
@@ -134,6 +135,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
                               height: 1,
                             ),
                           ),
+                          Expanded(child: Container()),
                           footer
                         ],
                       ),
