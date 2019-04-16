@@ -71,6 +71,7 @@ class TradeInfoDetail extends StatelessWidget {
                 ),
               ],
             );
+
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(top: 20,left: 20,right: 20),
@@ -81,25 +82,25 @@ class TradeInfoDetail extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 40),
                   width: double.infinity, child: line1
               ),
-              line("To",tradeInfo.objAddress),
-              line("Memo",tradeInfo.note),
-              line("Date",DateFormat('yyyy.MM.dd hh:mm').format(tradeInfo.tradeDate)),
-              line("交易Id",tradeInfo.txId),
-              line("确认Block",tradeInfo.blockId.toString()),
-              line("确认数量",tradeInfo.confirmAmount.toString()),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: RaisedButton(
-                    onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                        return WebViewPage();
-                      }));
-                    },
-                    child: Text('浏览Omni网站'),
-                  ),
-                ),
-              )
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_To,tradeInfo.objAddress),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Memo,tradeInfo.note),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Date,DateFormat('yyyy.MM.dd hh:mm').format(tradeInfo.tradeDate)),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_txid,tradeInfo.txId),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmIndex,tradeInfo.blockId.toString()),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmCount,tradeInfo.confirmAmount.toString()),
+//              Center(
+//                child: Padding(
+//                  padding: const EdgeInsets.symmetric(vertical: 20),
+//                  child: RaisedButton(
+//                    onPressed: (){
+//                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+//                        return WebViewPage();
+//                      }));
+//                    },
+//                    child: Text('浏览Omni网站'),
+//                  ),
+//                ),
+//              )
           ],
         ),
       ),

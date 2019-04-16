@@ -47,7 +47,7 @@ class _WalletSendState extends State<WalletSend> {
     return Scaffold(
         key: this.key,
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(title: Text(accountInfo.name + WalletLocalizations.of(context).wallet_detail_content_send),),
+        appBar: AppBar(title: Text(accountInfo.name +' '+ WalletLocalizations.of(context).wallet_detail_content_send),),
         body: this.body()
     );
   }
@@ -208,8 +208,6 @@ class _WalletSendState extends State<WalletSend> {
               color: AppCustomColor.themeBackgroudColor,
                 child: line4
             ),
-
-
             Container(
               margin: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 20),
               child: Row(

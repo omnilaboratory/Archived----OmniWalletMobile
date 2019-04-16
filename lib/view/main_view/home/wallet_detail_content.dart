@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -137,7 +138,13 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
-                    child: Text('${tradeInfo.objAddress}',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold)),
+                    child: AutoSizeText(
+                        '${tradeInfo.objAddress}',
+                        style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                        minFontSize: 10.0,
+
+                    ),
                   ),
               ],),
             ),

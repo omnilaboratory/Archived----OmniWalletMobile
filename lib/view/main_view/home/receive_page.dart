@@ -30,7 +30,7 @@ class _ReceivePageState extends State<ReceivePage> {
     return Scaffold(
       key: this.key,
       backgroundColor: AppCustomColor.themeBackgroudColor,
-      appBar: AppBar(title: Text(accountInfo.name+WalletLocalizations.of(context).wallet_detail_content_receive),),
+      appBar: AppBar(title: Text(accountInfo.name+' '+WalletLocalizations.of(context).wallet_detail_content_receive),),
       body: this.body()
     );
   }

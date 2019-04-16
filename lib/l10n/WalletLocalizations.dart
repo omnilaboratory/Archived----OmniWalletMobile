@@ -150,6 +150,15 @@ class WalletLocalizations{
       'wallet_trade_info_detail_finish_state1' : '确认中',
       'wallet_trade_info_detail_finish_state2' : '已完成',
 
+      'wallet_trade_info_detail_item_To' : '转到',
+      'wallet_trade_info_detail_item_Memo' : '备注',
+      'wallet_trade_info_detail_item_Date' : '时间',
+      'wallet_trade_info_detail_item_txid' : '交易ID',
+      'wallet_trade_info_detail_item_confirmIndex' : '确认Block',
+      'wallet_trade_info_detail_item_confirmCount' : '确认数',
+
+
+
       'languagePageAppBarTitle' : '多语言',
       'languagePageSaveButton' : '保存',
       
@@ -325,6 +334,16 @@ class WalletLocalizations{
       'wallet_trade_info_detail_finish_state1' : 'Confirming',
       'wallet_trade_info_detail_finish_state2' : 'Finish',
 
+      'wallet_trade_info_detail_item_To' : 'To',
+      'wallet_trade_info_detail_item_Memo' : 'Memo',
+      'wallet_trade_info_detail_item_Date' : 'Date',
+      'wallet_trade_info_detail_item_txid' : 'Transaction Id',
+      'wallet_trade_info_detail_item_confirmIndex' : 'Confirmed In Block',
+      'wallet_trade_info_detail_item_confirmCount' : 'Confirmations',
+
+
+
+
       'languagePageAppBarTitle' : 'Language',
       'languagePageSaveButton' : 'Save',
 
@@ -356,6 +375,13 @@ class WalletLocalizations{
   get wallet_trade_info_detail_title2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_title2'];
   get wallet_trade_info_detail_finish_state1 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state1'];
   get wallet_trade_info_detail_finish_state2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state2'];
+
+  get wallet_trade_info_detail_item_To => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_To'];
+  get wallet_trade_info_detail_item_Memo => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_Memo'];
+  get wallet_trade_info_detail_item_Date => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_Date'];
+  get wallet_trade_info_detail_item_txid => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_txid'];
+  get wallet_trade_info_detail_item_confirmIndex => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_confirmIndex'];
+  get wallet_trade_info_detail_item_confirmCount => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_confirmCount'];
 
   get buttom_tab1_name => _localizedValues[locale.languageCode]['buttom_tab1_name'];
   get buttom_tab2_name => _localizedValues[locale.languageCode]['buttom_tab2_name'];

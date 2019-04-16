@@ -38,11 +38,9 @@ class _WalletDetailState extends State<WalletDetail> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             brightness: Brightness.dark,
-//            leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){Navigator.pop(context);}),
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.transparent,
             title: Text(accountInfo.name,style: TextStyle(color: Colors.white),),
-//            centerTitle: true,
           ),
           body: WalletDetailContent(),
         ),

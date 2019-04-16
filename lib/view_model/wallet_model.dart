@@ -59,10 +59,10 @@ class WalletModel extends Model{
         num totalMoney = 0;
         for(int j=0;j<accountCount;j++){
           num money = Random().nextDouble();
-          accountInfo.add(AccountInfo(name: '币种${j+1}',amount:Random().nextDouble(),legalTender:money ));
+          accountInfo.add(AccountInfo(name: 'Asset ${j+1}',amount:Random().nextDouble(),legalTender:money ));
           totalMoney+=money;
         }
-        WalletInfo info = WalletInfo(name: '钱包${i+1}',address: "address${i+1}",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
+        WalletInfo info = WalletInfo(name: 'Wallet Address ${i+1}',address: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
         _walletInfoes.add(info);
       }
     }
@@ -78,7 +78,7 @@ class WalletModel extends Model{
           TradeInfo(
             amount: Random().nextDouble(),
             note: "note${i}",
-            objAddress: "address",
+            objAddress: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",
             tradeDate: DateTime.now(),
             state: Random().nextInt(2),
             confirmAmount: Random().nextInt(100),
