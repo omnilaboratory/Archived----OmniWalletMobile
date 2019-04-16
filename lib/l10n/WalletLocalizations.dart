@@ -120,6 +120,7 @@ class WalletLocalizations{
       'userInfoPageAppBarTitle' : '用户信息',
       'userInfoPageItem_1_Title' : '头像',
       'userInfoPageItem_2_Title' : '用户名',
+      'userInfoPageItem_3_Title' : '更新 PIN',
       'userInfoPageButton' : '删除当前钱包',
 
       'buttom_tab1_name' : '钱包',
@@ -302,6 +303,7 @@ class WalletLocalizations{
       'userInfoPageAppBarTitle' : 'User Information',
       'userInfoPageItem_1_Title' : 'Avatar',
       'userInfoPageItem_2_Title' : 'User Name',
+      'userInfoPageItem_3_Title' : 'Update PIN',
       'userInfoPageButton' : 'Delete Current Wallet',
 
       'buttom_tab1_name' : 'Wallet',
@@ -340,9 +342,6 @@ class WalletLocalizations{
       'wallet_trade_info_detail_item_txid' : 'Transaction Id',
       'wallet_trade_info_detail_item_confirmIndex' : 'Confirmed In Block',
       'wallet_trade_info_detail_item_confirmCount' : 'Confirmations',
-
-
-
 
       'languagePageAppBarTitle' : 'Language',
       'languagePageSaveButton' : 'Save',
@@ -392,6 +391,7 @@ class WalletLocalizations{
   get userInfoPageAppBarTitle => _localizedValues[locale.languageCode]['userInfoPageAppBarTitle'];
   get userInfoPageItem_1_Title => _localizedValues[locale.languageCode]['userInfoPageItem_1_Title'];
   get userInfoPageItem_2_Title => _localizedValues[locale.languageCode]['userInfoPageItem_2_Title'];
+  get userInfoPageItem_3_Title => _localizedValues[locale.languageCode]['userInfoPageItem_3_Title'];
   get userInfoPageButton => _localizedValues[locale.languageCode]['userInfoPageButton'];
 
   // Service Terms page

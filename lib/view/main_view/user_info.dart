@@ -76,6 +76,18 @@ class _UserInfoState extends State<UserInfo> {
               ),
             ),
             
+            Ink( /// Update PIN Code
+              color: AppCustomColor.themeBackgroudColor,
+              child: ListTile(
+                title: Text(WalletLocalizations.of(context).userInfoPageItem_3_Title),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  // TODO: show next page.
+                  // Navigator.of(context).pushNamed(route);
+                },
+              ),
+            ),
+
             SizedBox(height: 10),
             
             Ink( // delete account button

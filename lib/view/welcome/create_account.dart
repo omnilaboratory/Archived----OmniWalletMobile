@@ -302,7 +302,7 @@ class _CreateAccountState extends State<CreateAccount> {
   /// form submit
   void _onSubmit() {
     final form = _formKey.currentState;
-    if (form.validate()) {
+    if (!form.validate()) {
       form.save();
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
