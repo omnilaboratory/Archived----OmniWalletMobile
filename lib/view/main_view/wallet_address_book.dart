@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:wallet_app/view/main_view/home/send_page.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class AddressBook extends StatefulWidget {
@@ -122,17 +122,32 @@ class _AddressBookState extends State<AddressBook> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      RaisedButton(
-                        onPressed: (){
+//                      RaisedButton(
+//                        onPressed: (){
+//                          Navigator.of(context).pop();
+//                        },
+//                        child: Text(WalletLocalizations.of(context).createNewAddress_Cancel,style: TextStyle(color: Colors.blue),),
+//                        color: Colors.lightBlue[50],
+//                        padding: EdgeInsets.symmetric(horizontal: 50)
+//                      ),
+
+
+                      CustomRaiseButton( // Next button.
+                        context: context,
+                        title: WalletLocalizations.of(context).createNewAddress_Cancel,
+                        titleColor: Colors.white,
+                        color: AppCustomColor.btnCancel,
+                        callback: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text(WalletLocalizations.of(context).createNewAddress_Cancel,style: TextStyle(color: Colors.blue),),
-                        color: Colors.lightBlue[50],
-                        padding: EdgeInsets.symmetric(horizontal: 50)
                       ),
-                      Expanded(child: Container()),
-                      RaisedButton(
-                        onPressed: (){
+                      SizedBox(width: 20,),
+                      CustomRaiseButton( // Next button.
+                        context: context,
+                        title: WalletLocalizations.of(context).common_btn_save,
+                        titleColor: Colors.white,
+                        color: AppCustomColor.btnConfirm,
+                        callback: () {
                           var _form = _formKey.currentState;
                           if (_form.validate()) {
                             _form.save();
@@ -146,9 +161,6 @@ class _AddressBookState extends State<AddressBook> {
                             Navigator.of(context).pop();
                           }
                         },
-                        child: Text(WalletLocalizations.of(context).common_btn_save),
-                        color: Colors.lightBlue,
-                        padding: EdgeInsets.symmetric(horizontal: 50)
                       ),
                     ],
                   ),

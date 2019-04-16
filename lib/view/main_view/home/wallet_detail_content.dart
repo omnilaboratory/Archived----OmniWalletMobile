@@ -142,8 +142,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                         '${tradeInfo.objAddress}',
                         style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                         maxLines: 1,
-                        minFontSize: 10.0,
-
+                        minFontSize: 9,
                     ),
                   ),
               ],),

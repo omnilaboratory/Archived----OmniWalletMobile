@@ -50,11 +50,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
           child: CircleAvatar(
             radius: 24,
             backgroundColor: Colors.lightBlue[50],
-//            child: Icon(
-//              dataInfo.iconUrl??Icons.ac_unit,
-//              size: 30,
-//              color: Colors.blue,
-//            ),
             child: Image.asset(Tools.imagePath('icon_wallet'),width: 20,height: 20,),
           ),
         ),
@@ -77,7 +72,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               AutoSizeText(
                 dataInfo.address,
                 maxLines: 1,
-                minFontSize: 10,
+                minFontSize: 9,
                 style: TextStyle(
                   color: Colors.grey
                 ),
@@ -122,7 +117,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                           child: Text(
                             '${accountInfo.amount.toStringAsFixed(8)}',
                             textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
                         Padding(
@@ -130,7 +125,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                           child: Text(
                             '\$'+accountInfo.legalTender.toStringAsFixed(2),
                             textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 18,color: Colors.grey),
+                            style: TextStyle(fontSize: 16,color: Colors.grey),
                           ),
                         ),
                       ],
