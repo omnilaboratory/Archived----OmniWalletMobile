@@ -116,7 +116,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
             )
           ),
           child: TabBar(
-            indicatorWeight: 1,
+            indicatorWeight: 0.1,
             controller: controller,
             labelColor: Colors.blue,
             unselectedLabelColor: Colors.grey,
@@ -133,13 +133,17 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
   }
 
   createTabs(){
-    var iconWidth = 20.0;
+    var iconWidth = 22.0;
+    var fontSize = 14.0;
      List<Tab> tabs=[
       Tab(
         child: Column(
           children: <Widget>[
             Image.asset(Tools.imagePath('nav_wallet_on'),width: iconWidth,height: iconWidth,),
-            Text(WalletLocalizations.of(context).buttom_tab1_name ),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(WalletLocalizations.of(context).buttom_tab1_name,style: TextStyle(fontSize: fontSize) ),
+            ),
           ],
         ),
       ),
@@ -147,7 +151,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Image.asset(Tools.imagePath('nav_market_on'),width: iconWidth,height: iconWidth,),
-            Text(WalletLocalizations.of(context).buttom_tab2_name),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(WalletLocalizations.of(context).buttom_tab2_name,style: TextStyle(fontSize: fontSize),),
+            ),
           ],
         ),
       ),
@@ -155,7 +162,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Image.asset(Tools.imagePath('nav_dex_on'),width: iconWidth,height: iconWidth,),
-            Text(WalletLocalizations.of(context).buttom_tab3_name),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(WalletLocalizations.of(context).buttom_tab3_name,style: TextStyle(fontSize: fontSize)),
+            ),
           ],
         ),
       ),
@@ -163,7 +173,10 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
         child: Column(
           children: <Widget>[
             Image.asset(Tools.imagePath('nav_my_on'),width: iconWidth,height: iconWidth,),
-            Text(WalletLocalizations.of(context).buttom_tab4_name),
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(WalletLocalizations.of(context).buttom_tab4_name,style: TextStyle(fontSize: fontSize)),
+            ),
           ],
         ),
       ),

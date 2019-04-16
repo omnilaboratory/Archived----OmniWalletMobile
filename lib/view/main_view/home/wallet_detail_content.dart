@@ -130,7 +130,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                               tradeInfo.state==0?
                                   WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
                                 : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
-                              style: TextStyle(color:Colors.grey[500]),),
+                              style: TextStyle(color:Colors.grey[500],fontSize: 12),),
                           )
                       )
                     ],

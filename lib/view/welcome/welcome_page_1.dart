@@ -92,7 +92,6 @@ class WelcomePageOne extends StatelessWidget {
             );
           },
         ),
-
       ],
     );
   }
