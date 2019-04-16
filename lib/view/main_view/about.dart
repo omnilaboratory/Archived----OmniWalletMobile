@@ -39,7 +39,8 @@ class _AboutState extends State<About> {
   // AppBar Title
   Widget _bannerArea() {
     return Container(
-      color: AppCustomColor.aboutPageBannerBGColor,
+      // color: AppCustomColor.aboutPageBannerBGColor,
+      color: AppCustomColor.themeBackgroudColor,
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
