@@ -13,6 +13,8 @@ class WelcomePageThree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+      
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.transparent,

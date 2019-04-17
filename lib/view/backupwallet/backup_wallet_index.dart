@@ -44,10 +44,11 @@ class BackupWalletIndex extends StatelessWidget  {
     return Column(
       children: <Widget>[
         // title image
+        Expanded(child: Container()),
         Image.asset(Tools.imagePath('image_backup'), width: 280, height: 200),
 
         // Title
-        SizedBox(height: 40),
+        Expanded(child: Container()),
         Text(
           WalletLocalizations.of(context).backup_index_tips_title,
           style: TextStyle(
@@ -57,7 +58,7 @@ class BackupWalletIndex extends StatelessWidget  {
         ),
 
         // content text
-        SizedBox(height: 40),
+        SizedBox(height: 20),
         Text(
           WalletLocalizations.of(context).backup_index_tips,
           textAlign: TextAlign.center,
@@ -67,10 +68,10 @@ class BackupWalletIndex extends StatelessWidget  {
           ),
         ),
 
-        Expanded(child: Container()),
         // backup button
+        Expanded(child: Container()),
         Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.05),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.05),
           child: CustomRaiseButton(
             context: context,
             hasRow: false,

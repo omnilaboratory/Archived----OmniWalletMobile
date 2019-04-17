@@ -36,11 +36,18 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
       words = stateModel.randomSortMnemonicPhrases;
     }
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_words_order_title),
       ),
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-      body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
+      
+      // body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
+
+      // update by Cheng
+      body: SafeArea(
+        child: pageCentent(context)
+      ),
     );
   }
 
@@ -114,26 +121,39 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Expanded(child: Container()),
           Container(
-              margin: EdgeInsets.only(left: 20,right: 20,top: 30,bottom: 40),
-              child: Text(WalletLocalizations.of(context).backup_words_order_content,style: TextStyle(fontSize: 15,color: Colors.grey),)
+            // update by Cheng
+            margin: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 20),
+            child: Text(
+              WalletLocalizations.of(context).backup_words_order_content,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+              ),
+            ),
           ),
+
           AnimatedOpacity(
             duration: Duration(milliseconds: 0),
             opacity: showErrorTips?1:0,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(WalletLocalizations.of(context).backup_words_order_error,style: TextStyle(color: Colors.red),),
+              child: Text(
+                WalletLocalizations.of(context).backup_words_order_error,
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ),
+
           Container(
-            margin: EdgeInsets.only(bottom: 40),
+            margin: EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
               color: Color(0xFFF8F8F8),
               borderRadius: BorderRadius.circular(5)
             ),
             width: MediaQuery.of(context).size.width,
-            height: 150,
+            height: 140,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Wrap(
@@ -145,9 +165,12 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
           ),
 
           createWords(),
+
           Expanded(child: Container()),
+
           Padding(
-            padding: const EdgeInsets.only(bottom: 20,left: 20,right: 20),
+            // update by Cheng
+            padding: EdgeInsets.only(top: 30, bottom: 20, left: 30, right: 30),
             child:CustomRaiseButton(
               context: context,
               hasRow: false,

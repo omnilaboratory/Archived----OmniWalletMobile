@@ -24,11 +24,20 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
     stateModel = MainStateModel().of(context) ;
     words = stateModel.mnemonicPhrases;
     return Scaffold(
+      backgroundColor: AppCustomColor.themeBackgroudColor,
+
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_words_title),
       ),
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-      body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
+
+      // body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
+
+      // update by Cheng
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: pageCentent(context),
+        ),
+      ),
     );
   }
 
@@ -100,7 +109,10 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
                 child: Text(WalletLocalizations.of(context).common_btn_copy,style: TextStyle(color: Colors.blue,fontSize: 16),)
             ),
           ),
-          Expanded(child: Container()),
+
+          // update by Cheng
+          // Expanded(child: Container()),
+
           Container(
             margin: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 30),
             decoration: BoxDecoration(

@@ -177,7 +177,7 @@ class _CreateAccountState extends State<CreateAccount> {
       _list.add(Divider(height: 0, indent: 25));
     }
 
-    _list.add(SizedBox(height: 80));
+    _list.add(SizedBox(height: 30));
     _list.add(_btnCreate());
 
     return _list;
