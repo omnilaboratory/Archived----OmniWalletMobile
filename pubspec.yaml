@@ -63,6 +63,8 @@ dependencies:
 
   bitcoin_bip44: ^0.1.1
 
+  fluttertoast: ^3.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
