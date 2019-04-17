@@ -97,7 +97,7 @@ class _UpdatePINState extends State<UpdatePIN> {
     }
     Fluttertoast.cancel();
     Fluttertoast.showToast(
-      msg: "Wrong PIN",
+      msg: WalletLocalizations.of(context).restore_account_tip_error,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIos: 1,

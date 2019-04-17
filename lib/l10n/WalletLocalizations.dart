@@ -33,6 +33,7 @@ class WalletLocalizations{
       'restore_account_tip_pin': 'PIN',
       'restore_account_tip_confirmPin': '确认 PIN',
       'restore_account_btn_restore': '恢复',
+      'restore_account_tip_error': '错误PIN',
 
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
       'welcomePageOneContent' : "为了您的安全，请您抽时间来了解一些重要信息。\n\n"
@@ -209,6 +210,7 @@ class WalletLocalizations{
       'restore_account_tip_pin': 'PIN',
       'restore_account_tip_confirmPin': 'Confirm PIN',
       'restore_account_btn_restore': 'Restore',
+      'restore_account_tip_error': 'Wrong PIN input',
 
 
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
@@ -519,6 +521,7 @@ class WalletLocalizations{
   get restore_account_tip_pin => _localizedValues[locale.languageCode]['restore_account_tip_pin'];
   get restore_account_tip_confirmPin => _localizedValues[locale.languageCode]['restore_account_tip_confirmPin'];
   get restore_account_btn_restore => _localizedValues[locale.languageCode]['restore_account_btn_restore'];
+  get restore_account_tip_error => _localizedValues[locale.languageCode]['restore_account_tip_error'];
 
 
 
