@@ -1,4 +1,4 @@
-/// Switch language display of app page.
+/// Start page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-5
 
@@ -30,21 +30,18 @@ class _StartPageState extends State<StartPage> {
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              _showSwiper(),
-              _getStarted(),
-              _restoreWallet(),
-              _selectLanguage(),
-            ],
-          ),
+        child: Column(
+          children: <Widget>[
+            _showSwiper(),
+            _buttonArea(),
+            _selectLanguage(),
+          ],
         ),
       )
     );
   }
 
-  // Swiper
+  /// Swiper
   Widget _showSwiper() {
     return Container(
       height: 230,
@@ -60,83 +57,98 @@ class _StartPageState extends State<StartPage> {
     );
   }
 
-  // Get Started button
-  Widget _getStarted() {
-    return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, top: 60),
-      child: CustomRaiseButton(
-        context: context,
-        hasRow: false,
-        title: WalletLocalizations.of(context).startPageButtonFirst,
-        titleColor: Colors.white,
-        color: AppCustomColor.btnConfirm,
-        callback: () {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (context) => CreateAccount()
-            ) 
-          );
-        },
+  /// two button area
+  Widget _buttonArea() {
+    return Expanded(
+      flex: 4,
+      child: Padding(
+        padding: EdgeInsets.only(left: 30, right: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _getStarted(),
+            SizedBox(height: 30),
+            _restoreWallet(),
+          ],
+        ),
       ),
+    );
+  }
+
+  /// Get Started button
+  Widget _getStarted() {
+    return CustomRaiseButton(
+      context: context,
+      hasRow: false,
+      title: WalletLocalizations.of(context).startPageButtonFirst,
+      titleColor: Colors.white,
+      color: AppCustomColor.btnConfirm,
+      callback: () {
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => CreateAccount()
+          ) 
+        );
+      },
     );
   }
 
   // Restore Wallet button
   Widget _restoreWallet() {
-    return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
-      child: CustomRaiseButton(
-        context: context,
-        hasRow: false,
-        title: WalletLocalizations.of(context).startPageButtonSecond,
-        titleColor: Colors.blue,
-        color: AppCustomColor.btnCancel,
-        callback: () {
-        },
-      ),
+    return CustomRaiseButton(
+      context: context,
+      hasRow: false,
+      title: WalletLocalizations.of(context).startPageButtonSecond,
+      titleColor: Colors.blue,
+      color: AppCustomColor.btnCancel,
+      callback: () {
+        
+      },
     );
   }
 
-  //
+  /// select language
   Widget _selectLanguage() {
 
     // Set value by model.
     final langModel = MainStateModel().of(context);
 
-    return InkWell(
-      child: Ink(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _iconLanguage(langModel.getSelectedLanguage),
-            SizedBox(width: 15),
-            Text(
-              // Get selected language by user before
-              langModel.getSelectedLanguage,
-              // style: TextStyle(
-              //   color: Colors.grey,
-              // ),
-            ),
-            SizedBox(width: 20),
-            Icon(
-              Icons.keyboard_arrow_right, 
-              color: Colors.grey,
-            ),
-          ],
+    return Expanded(
+      flex: 1,
+      child: InkWell(
+        child: Ink(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _iconLanguage(langModel.getSelectedLanguage),
+              SizedBox(width: 15),
+              Text(
+                // Get selected language by user before
+                langModel.getSelectedLanguage,
+                // style: TextStyle(
+                //   color: Colors.grey,
+                // ),
+              ),
+              SizedBox(width: 20),
+              Icon(
+                Icons.keyboard_arrow_right, 
+                color: Colors.grey,
+              ),
+            ],
+          ),
         ),
-      ),
 
-      onTap: () {
-        // Show the select language page.
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => SelectLanguage(),
-          ), 
-        );
-      },
+        onTap: () {
+          // Show the select language page.
+          Navigator.push(
+            context, 
+            MaterialPageRoute(
+              builder: (context) => SelectLanguage(),
+            ), 
+          );
+        },
+      ),
     );
   }
 

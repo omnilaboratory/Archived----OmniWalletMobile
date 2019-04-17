@@ -17,7 +17,7 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
 
-  // form define
+  /// form define
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   /// should save data.
@@ -85,7 +85,7 @@ class _CreateAccountState extends State<CreateAccount> {
       ),
 
       body: FormKeyboardActions(
-        actions: _keyboardActions(),
+        actions: _actions(),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Form(
@@ -102,21 +102,21 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   /// Keyboard Actions
-  List<KeyboardAction> _keyboardActions() {
+  List<KeyboardAction> _actions() {
     List<KeyboardAction> _actions = List();
     List<FocusNode> _nodes = <FocusNode> [
       _nodeText1, _nodeText2, _nodeText3
     ];
 
     for (int i = 0; i < _nodes.length; i++) {
-      _actions.add(_keyAc(_nodes[i]));
+      _actions.add(_keyboardAction(_nodes[i]));
     }
 
     return _actions;
   }
   
   ///
-  KeyboardAction _keyAc(FocusNode _node) {
+  KeyboardAction _keyboardAction(FocusNode _node) {
     return KeyboardAction(
       focusNode: _node,
       closeWidget: Padding(
@@ -235,7 +235,7 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-  //
+  /// validate all input data
   String _validate(String val, int _textField) {
     switch (_textField) {
       case 1:

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
@@ -74,7 +75,20 @@ class CustomRaiseButton extends StatelessWidget {
         child: Image.asset(Tools.imagePath(this.leftIconName),width: 15,height: 15,),
       ));
     }
-    list.add(Text(this.title ,style: TextStyle(fontSize: titleSize,color: titleColor),));
+
+    list.add(
+      AutoSizeText(
+        this.title,
+        minFontSize: 9,
+        maxLines: 1,
+        style: TextStyle(
+          fontSize: titleSize,
+          // fontSize: 12,
+          color:    titleColor,
+        )
+      )
+    );
+
     if(this.rightIconName!=null){
       list.add(Padding(
         padding: const EdgeInsets.only(left: 10),

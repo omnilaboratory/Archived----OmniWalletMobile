@@ -1,3 +1,8 @@
+///  Welcome Page-1 
+/// [author] Kevin Zhang
+/// [time] 2019-3-1
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -66,8 +71,30 @@ class WelcomePageOne extends StatelessWidget {
           ),
         ),
 
-        /// Next button.
         SizedBox(height: 30),
+        RaisedButton( // Next button.
+          elevation: 0,
+          highlightElevation: 0,
+          color: AppCustomColor.btnConfirm,
+          padding: EdgeInsets.symmetric(vertical: 12),
+          child: AutoSizeText(
+            WalletLocalizations.of(context).welcomePageOneButton,
+            minFontSize: 9,
+            maxLines: 1,
+            style: TextStyle(color: Colors.white),
+          ),
+
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WelcomePageTwo()
+              )
+            );
+          },
+        ),
+
+        /* 
         CustomRaiseButton( // Next button.
           context: context,
           hasRow: false,
@@ -82,7 +109,7 @@ class WelcomePageOne extends StatelessWidget {
               )
             );
           },
-        ),
+        ), */
 
         /// TEMP CODE
         AnimatedOpacity(

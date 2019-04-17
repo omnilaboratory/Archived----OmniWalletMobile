@@ -1,3 +1,7 @@
+///  Welcome Page-2
+/// [author] Kevin Zhang
+/// [time] 2019-3-1
+
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -10,7 +14,6 @@ class WelcomePageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.transparent,
@@ -23,58 +26,67 @@ class WelcomePageTwo extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          children: <Widget>[
-            _childColumn(context),
-          ],
+          children: _content(context)
         ),
       )
     );
   }
 
-  // Child content.
-  Widget _childColumn(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        // Title
-        Text(
-          WalletLocalizations.of(context).welcomePageTwoTitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-
-        // Introduction content.
-        SizedBox(height: 30),
-        Text(
-          WalletLocalizations.of(context).welcomePageTwoContentOne,
-          style: TextStyle(
-            color: AppCustomColor.fontGreyColor,
-            height: 1.3,
-          ),
-        ),
-
-        // List content.
-        SizedBox(height: 30),
-        _listContent(Tools.imagePath('icon_wel1'), WalletLocalizations.of(context).welcomePageTwoContentTwo),
-
-        SizedBox(height: 20),
-        _listContent(Tools.imagePath('icon_wel2'), WalletLocalizations.of(context).welcomePageTwoContentThree),
-
-        SizedBox(height: 20),
-        _listContent(Tools.imagePath('icon_wel3'), WalletLocalizations.of(context).welcomePageTwoContentFour),
-
-        SizedBox(height: 20),
-        _listContent(Tools.imagePath('icon_wel4'), WalletLocalizations.of(context).welcomePageTwoContentFive),
-
-        SizedBox(height: 30),
-        _bottomButton(context),
-      ],
+  /// Title
+  Widget _title(BuildContext context) {
+    return Text(
+      WalletLocalizations.of(context).welcomePageTwoTitle,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+      ),
     );
   }
 
-  //
+  /// Introduction content
+  Widget _firstPart(BuildContext context) {
+    return Text(
+      WalletLocalizations.of(context).welcomePageTwoContentOne,
+      style: TextStyle(
+        color: AppCustomColor.fontGreyColor,
+        height: 1.3,
+      ),
+    );
+  }
+
+  /// 
+  List<Widget> _content(BuildContext context) {
+
+    List<Widget> _list = List();
+
+    List<String> _icons = <String> [
+      'icon_wel1', 'icon_wel2', 'icon_wel3', 'icon_wel4'
+    ];
+
+    List<String> _text = <String> [
+      WalletLocalizations.of(context).welcomePageTwoContentTwo, 
+      WalletLocalizations.of(context).welcomePageTwoContentThree, 
+      WalletLocalizations.of(context).welcomePageTwoContentFour,
+      WalletLocalizations.of(context).welcomePageTwoContentFive,
+    ];
+
+    _list.add(_title(context));
+    _list.add(SizedBox(height: 30));
+    _list.add(_firstPart(context));
+    _list.add(SizedBox(height: 30));
+
+    for (int i = 0; i < _icons.length; i++) {
+      _list.add(_listContent(Tools.imagePath(_icons[i]), _text[i]));
+      _list.add(SizedBox(height: 30));
+    }
+
+    _list.add(_bottomButton(context));
+
+    return _list;
+  }
+
+  ///
   Widget _listContent(String img, String txt) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,13 +106,13 @@ class WelcomePageTwo extends StatelessWidget {
     );
   }
 
-  // Buttons
+  /// Buttons
   Widget _bottomButton(BuildContext context) {
     return Row(
       children: <Widget>[
         CustomRaiseButton( // Back button.
           context: context,
-          flex: 1,
+          flex: 2,
           title: WalletLocalizations.of(context).welcomePageTwoButtonBack,
           leftIconName: 'icon_back',
           callback: () {
@@ -108,10 +120,10 @@ class WelcomePageTwo extends StatelessWidget {
           },
         ),
 
-        SizedBox(width: 20),
+        SizedBox(width: 10),
         CustomRaiseButton( // Next button.
           context: context,
-          flex: 2,
+          flex: 3,
           title: WalletLocalizations.of(context).welcomePageTwoButtonNext,
           titleColor: Colors.white,
           rightIconName: 'icon_next',
