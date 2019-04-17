@@ -7,6 +7,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/backupwallet/restore_account_page.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
@@ -103,7 +104,7 @@ class _StartPageState extends State<StartPage> {
       titleColor: Colors.blue,
       color: AppCustomColor.btnCancel,
       callback: () {
-        
+        Navigator.of(context).pushNamed(RestoreAccount.tag);
       },
     );
   }

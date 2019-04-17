@@ -141,26 +141,25 @@ class _UserCenterState extends State<UserCenter> {
 
   // AppBar Title
   Widget _bannerArea() {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(UserInfo.tag);
-      },
+    return Container(
+      height: 200,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // user avatar.
+          InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(UserInfo.tag);
+              },
+              child: Image.asset('assets/omni-logo.png', width: 70, height: 70)
+          ),
+          SizedBox(height: 10),
 
-      child: Container(
-        height: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // user avatar.
-            Image.asset('assets/omni-logo.png', width: 70, height: 70),
-            SizedBox(height: 10),
-            
-            Text(  // user nick name
-              'Nick Name',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
+          Text(  // user nick name
+            'Nick Name',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
       ),
     );
   }

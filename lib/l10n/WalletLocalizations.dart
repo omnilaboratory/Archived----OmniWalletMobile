@@ -26,6 +26,15 @@ class WalletLocalizations{
       'backup_words_order_error': '顺序错误，重试一次！',
       'backup_words_order_finish': '完成',
 
+      'restore_account_title': '恢复已有帐号',
+      'restore_account_phrase_title': '请输入助记词',
+      'restore_account_tips': '注意：使用助记词导入账号后，你可以重置PIN',
+      'restore_account_resetPIN': '重置 PIN',
+      'restore_account_tip_pin': 'PIN',
+      'restore_account_tip_confirmPin': '确认 PIN',
+      'restore_account_btn_restore': '恢复',
+      'restore_account_tip_error': '错误PIN',
+
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
       'welcomePageOneContent' : "为了您的安全，请您抽时间来了解一些重要信息。\n\n"
           "如果您访问了钓鱼网站或丢失备份短语（SEED短语），我们无法恢复您的资金或冻结您的帐户。\n\n"
@@ -193,6 +202,16 @@ class WalletLocalizations{
       'backup_words_order_content': 'Click the following 12-word phrase in exact sequence, to make sure you have a correct backup.',
       'backup_words_order_error': 'Invalid order.Try again!',
       'backup_words_order_finish': 'Finish',
+
+      'restore_account_title': 'Restore Account',
+      'restore_account_tips': 'Notice: after importing account by Mnemonic Phrase, you can reset PIN for safety concerns.',
+      'restore_account_phrase_title': 'Input Mnemonic words',
+      'restore_account_resetPIN': 'Reset PIN',
+      'restore_account_tip_pin': 'PIN',
+      'restore_account_tip_confirmPin': 'Confirm PIN',
+      'restore_account_btn_restore': 'Restore',
+      'restore_account_tip_error': 'Wrong PIN input',
+
 
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
       'welcomePageOneContent' : "Please take some time to understand some "
@@ -494,6 +513,17 @@ class WalletLocalizations{
   get backup_index_prompt_title => _localizedValues[locale.languageCode]['backup_index_prompt_title'];
   get backup_index_prompt_tips => _localizedValues[locale.languageCode]['backup_index_prompt_tips'];
   get backup_index_prompt_btn => _localizedValues[locale.languageCode]['backup_index_prompt_btn'];
+
+  get restore_account_title => _localizedValues[locale.languageCode]['restore_account_title'];
+  get restore_account_tips => _localizedValues[locale.languageCode]['restore_account_tips'];
+  get restore_account_phrase_title => _localizedValues[locale.languageCode]['restore_account_phrase_title'];
+  get restore_account_resetPIN => _localizedValues[locale.languageCode]['restore_account_resetPIN'];
+  get restore_account_tip_pin => _localizedValues[locale.languageCode]['restore_account_tip_pin'];
+  get restore_account_tip_confirmPin => _localizedValues[locale.languageCode]['restore_account_tip_confirmPin'];
+  get restore_account_btn_restore => _localizedValues[locale.languageCode]['restore_account_btn_restore'];
+  get restore_account_tip_error => _localizedValues[locale.languageCode]['restore_account_tip_error'];
+
+
 
   get backup_words_title => _localizedValues[locale.languageCode]['backup_words_title'];
   get backup_words_content => _localizedValues[locale.languageCode]['backup_words_content'];

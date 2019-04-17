@@ -14,6 +14,7 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
+import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view_model/main_model.dart';
@@ -72,6 +73,8 @@ class _MyAppState extends State<MyApp> {
     UserInfo.tag: (context)            => UserInfo(),
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
+    RestoreAccount.tag: (context)            => RestoreAccount(),
+    UpdatePIN.tag: (context)            => UpdatePIN(),
   };
 
   Brightness brightness = Brightness.light;

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/main_view/update_pin.dart';
 
 class UserInfo extends StatefulWidget {
   static String tag = "UserInfo";
@@ -83,7 +84,7 @@ class _UserInfoState extends State<UserInfo> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
                   // TODO: show next page.
-                  // Navigator.of(context).pushNamed(route);
+                   Navigator.of(context).pushNamed(UpdatePIN.tag);
                 },
               ),
             ),
