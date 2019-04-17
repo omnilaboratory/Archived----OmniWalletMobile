@@ -1,6 +1,12 @@
 import 'package:flutter/services.dart';
 
 class Tools{
+
+  /** 返回当前时间戳 */
+  static bool getCurrRunningMode() {
+    return bool.fromEnvironment("dart.vm.product");
+  }
+
   /** 返回当前时间戳 */
   static int currentTimeMillis() {
     return new DateTime.now().millisecondsSinceEpoch;

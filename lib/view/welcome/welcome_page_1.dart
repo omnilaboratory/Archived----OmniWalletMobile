@@ -7,6 +7,9 @@ import 'package:wallet_app/view/welcome/welcome_page_2.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class WelcomePageOne extends StatelessWidget {
+  /**
+   *  curr mode debug  or product
+   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,15 +85,19 @@ class WelcomePageOne extends StatelessWidget {
         ),
 
         /// TEMP CODE
-        FlatButton(
-          child: Text(WalletLocalizations.of(context).common_btn_skip),
-          textColor: Colors.grey,
-          onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => MainPage()), 
-              (route) => route == null
-            );
-          },
+        AnimatedOpacity(
+          duration: Duration(milliseconds: 1000),
+          opacity:Tools.getCurrRunningMode()?0:1,
+          child: FlatButton(
+            child: Text(WalletLocalizations.of(context).common_btn_skip),
+            textColor: Colors.grey,
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => MainPage()),
+                (route) => route == null
+              );
+            },
+          ),
         ),
       ],
     );
