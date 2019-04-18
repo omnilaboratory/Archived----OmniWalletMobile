@@ -117,7 +117,13 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text('${accountInfo.name} '+('${tradeInfo.amount>0?'In':'Out'}'),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),),
+                      AutoSizeText(
+                        '${accountInfo.name} '+('${tradeInfo.amount>0?'In':'Out'}'),
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),
+                        minFontSize: 12,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Container(
                           margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
@@ -126,11 +132,15 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-                            child: Text(
+                            child: AutoSizeText(
                               tradeInfo.state==0?
                                   WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
                                 : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
-                              style: TextStyle(color:Colors.grey[500],fontSize: 12),),
+                              style: TextStyle(color:Colors.grey[500],fontSize: 12),
+                              minFontSize: 9,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           )
                       )
                     ],
@@ -152,10 +162,21 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>
               [
-                Text((tradeInfo.amount>0?'+':'-')+'${tradeInfo.amount.toStringAsFixed(8)}',style: TextStyle( fontSize:16,color:tradeInfo.amount>0?Colors.green:Colors.red,fontWeight: FontWeight.bold),),
+                AutoSizeText(
+                  (tradeInfo.amount>0?'+':'-')+'${tradeInfo.amount.toStringAsFixed(8)}',
+                  style: TextStyle( fontSize:16,color:tradeInfo.amount>0?Colors.green:Colors.red,fontWeight: FontWeight.bold),
+                  minFontSize: 12,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12),
-                  child: Text(DateFormat('yyyy.MM.dd').format(tradeInfo.tradeDate)),
+                  child: AutoSizeText(
+                      DateFormat('yyyy.MM.dd').format(tradeInfo.tradeDate),
+                      minFontSize: 9,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                  ),
                 )
             ],),
           ],
