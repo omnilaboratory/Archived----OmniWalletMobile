@@ -68,10 +68,29 @@ class _UserCenterState extends State<UserCenter> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // user avatar.
-          InkWell(
-              onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
-              child: Ink(child: Image.asset('assets/omni-logo.png', width: 70, height: 70))
+          // InkWell(
+          //     onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+          //     child: Ink(child: Image.asset('assets/omni-logo.png', width: 70, height: 70))
+          // ),
+
+          Material(
+            shape: CircleBorder(),
+            color: Colors.transparent,
+            child: Ink.image(
+              image: AssetImage('assets/omni-logo.png'),
+                  fit: BoxFit.cover,
+                  width: 70,
+                  height: 70,
+                  child: InkWell(
+                    onTap: () {
+                      // _bottomSheet();
+                    },
+                    child: null,
+                  ),
+
+            ),
           ),
+          
           SizedBox(height: 10),
           Text(  // user nick name
             'Nick Name',
