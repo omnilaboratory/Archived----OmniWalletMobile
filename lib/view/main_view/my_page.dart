@@ -62,39 +62,37 @@ class _UserCenterState extends State<UserCenter> {
   // banner area
   Widget _bannerArea() {
     return Container(
+      padding: EdgeInsets.only(top: 40),
       height: 220,
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // user avatar.
-          // InkWell(
-          //     onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
-          //     child: Ink(child: Image.asset('assets/omni-logo.png', width: 70, height: 70))
-          // ),
-
           Material(
-            shape: CircleBorder(),
             color: Colors.transparent,
             child: Ink.image(
               image: AssetImage('assets/omni-logo.png'),
-                  fit: BoxFit.cover,
-                  width: 70,
-                  height: 70,
-                  child: InkWell(
-                    onTap: () {
-                      // _bottomSheet();
-                    },
-                    child: null,
-                  ),
-
+              fit: BoxFit.cover,
+              width: 70,
+              height: 70,
+              child: InkWell(
+                onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+                child: null,
+              ),
             ),
           ),
           
           SizedBox(height: 10),
-          Text(  // user nick name
-            'Nick Name',
-            style: TextStyle(color: Colors.white),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+              child: Text(  // user nick name
+                'Nick Name',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ),
         ],
       ),

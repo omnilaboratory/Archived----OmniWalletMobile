@@ -116,16 +116,26 @@ class TradeInfoDetail extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
               children: <Widget>[
+                AutoSizeText(
+                  title,
+                  style: textStyleTitle,
+                  minFontSize: 9,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
+                ),
+
+                SizedBox(width: 20),
+
                 Expanded(
                   child: AutoSizeText(
-                    title,
-                    style: textStyleTitle,
+                    content,
+                    style: textStyleBody,
+                    textAlign: TextAlign.right,
                     minFontSize: 9,
                     maxLines: 1,
                     overflow: TextOverflow.fade,
-                  ),
-                ),
-                Text(content,style: textStyleBody,)
+                  )
+                )
               ],
             ),
     );
