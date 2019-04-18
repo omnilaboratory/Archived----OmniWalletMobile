@@ -1,7 +1,3 @@
-///  Welcome Page-3
-/// [author] Kevin Zhang
-/// [time] 2019-3-1
-
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -14,7 +10,7 @@ class WelcomePageThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
-      
+
       appBar: PreferredSize(
         child: AppBar(
           backgroundColor: Colors.transparent,
@@ -56,7 +52,7 @@ class WelcomePageThree extends StatelessWidget {
     );
   }
 
-  /// 
+  ///
   List<Widget> _content(BuildContext context) {
 
     List<Widget> _list = List();
@@ -66,8 +62,8 @@ class WelcomePageThree extends StatelessWidget {
     ];
 
     List<String> _text = <String> [
-      WalletLocalizations.of(context).welcomePageThreeContentTwo, 
-      WalletLocalizations.of(context).welcomePageThreeContentThree, 
+      WalletLocalizations.of(context).welcomePageThreeContentTwo,
+      WalletLocalizations.of(context).welcomePageThreeContentThree,
       WalletLocalizations.of(context).welcomePageThreeContentFour,
       WalletLocalizations.of(context).welcomePageThreeContentFive,
       WalletLocalizations.of(context).welcomePageThreeContentSix,

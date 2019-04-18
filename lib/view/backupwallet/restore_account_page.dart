@@ -145,7 +145,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
         Divider(height: 0,),
         inputConfirmPin,
         Divider(height: 0,),
-        SizedBox(height: 80,),
+        SizedBox(height: 20,),
         CustomRaiseButton( // Next button.
           context: context,
           hasRow: false,

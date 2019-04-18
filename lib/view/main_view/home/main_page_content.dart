@@ -59,13 +59,14 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text(dataInfo.name),
+                  AutoSizeText(dataInfo.name,minFontSize: 12,),
                   Expanded(child: Container()),
-                  Text(
+                  AutoSizeText(
                     '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
                     style: TextStyle(
                       fontSize: 20,
                     ),
+                    minFontSize: 14,
                   )
               ],),
               SizedBox(height: 10,),
@@ -104,7 +105,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   Image.asset(Tools.imagePath('icon_BTC'),width: 25,height: 25,),
                   Container(
                     margin: EdgeInsets.only(left: 16),
-                      child: Text('${accountInfo.name}',style: TextStyle(fontSize: 18),)
+                      child: AutoSizeText('${accountInfo.name}',style: TextStyle(fontSize: 18),minFontSize: 16,)
                   ),
                   Expanded(child: Container(),),
                   Container(
@@ -114,18 +115,20 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
-                          child: Text(
+                          child: AutoSizeText(
                             '${accountInfo.amount.toStringAsFixed(8)}',
                             textAlign: TextAlign.right,
                             style: TextStyle(fontSize: 16),
+                            minFontSize: 12,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
-                          child: Text(
+                          child: AutoSizeText(
                             '\$'+accountInfo.legalTender.toStringAsFixed(2),
                             textAlign: TextAlign.right,
                             style: TextStyle(fontSize: 16,color: Colors.grey),
+                            minFontSize: 12,
                           ),
                         ),
                       ],

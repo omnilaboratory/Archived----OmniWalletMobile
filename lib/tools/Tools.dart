@@ -1,6 +1,18 @@
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Tools{
+
+  static SharedPreferences sharedPreferences = null;
+
+  static getSharedPreferences() async{
+    if(sharedPreferences==null){
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      sharedPreferences = prefs;
+    }
+    return sharedPreferences;
+
+  }
 
   /** 返回当前时间戳 */
   static bool getCurrRunningMode() {
@@ -20,6 +32,11 @@ class Tools{
 
   /// get image path
   static String imagePath(final String text,{String scaleType="@2x",String suffix="png"}) {
+    scaleType = scaleType==null?'':scaleType;
+    suffix = suffix==null?'png':suffix;
     return 'assets/' + text + scaleType+'.'+suffix;
   }
+
+
+
 }
