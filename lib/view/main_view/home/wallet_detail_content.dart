@@ -143,6 +143,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                         style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                         maxLines: 1,
                         minFontSize: 9,
+                        overflow: TextOverflow.ellipsis,
                     ),
                   ),
               ],),
