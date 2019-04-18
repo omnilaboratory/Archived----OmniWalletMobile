@@ -59,12 +59,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-<<<<<<< HEAD
-                  AutoSizeText(
-                    dataInfo.name.length>10?dataInfo.name.substring(0, 7)+'...':dataInfo.name,
-                    style: TextStyle(
-                      fontSize: 16,
-=======
                   Expanded(
                     child: AutoSizeText(
                       dataInfo.name,
@@ -72,7 +66,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                       minFontSize: 10,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
->>>>>>> 6a6e5252ddabe84ce3ec6f2541c6062db756bd53
                     ),
                   ),
                   Expanded(
