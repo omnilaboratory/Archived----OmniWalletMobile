@@ -59,31 +59,37 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  AutoSizeText(
-                    dataInfo.name.length>20?dataInfo.name.substring(0,17)+'...':dataInfo.name,
-                    style: TextStyle(
-                      fontSize: 16,
+                  Expanded(
+                    child: AutoSizeText(
+                      dataInfo.name,
+                      style: TextStyle(fontSize: 18),
+                      minFontSize: 10,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    minFontSize: 8,
-                    overflow: TextOverflow.clip,
                   ),
-                  Expanded(child: Container()),
-                  AutoSizeText(
-                    '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
-                    style: TextStyle(
-                      fontSize: 18,
+                  Expanded(
+                    child: AutoSizeText(
+                      '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontSize: 18),
+                      minFontSize: 11,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    minFontSize: 12,
                   )
-              ],),
+                ],
+              ),
               SizedBox(height: 10,),
               AutoSizeText(
                 dataInfo.address,
-                maxLines: 1,
-                minFontSize: 8,
+                minFontSize: 9,
                 style: TextStyle(
-                  color: Colors.grey
+                  color: Colors.grey,
+                  fontSize: 18
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
