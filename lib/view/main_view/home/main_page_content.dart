@@ -60,7 +60,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    dataInfo.name.length>20?dataInfo.name.substring(0,17)+'...':dataInfo.name,
+                    dataInfo.name.length>10?dataInfo.name.substring(0, 7)+'...':dataInfo.name,
                     style: TextStyle(
                       fontSize: 16,
                     ),

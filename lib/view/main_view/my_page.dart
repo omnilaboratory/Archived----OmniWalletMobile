@@ -70,7 +70,7 @@ class _UserCenterState extends State<UserCenter> {
           // user avatar.
           InkWell(
               onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
-              child: Image.asset('assets/omni-logo.png', width: 70, height: 70)
+              child: Ink(child: Image.asset('assets/omni-logo.png', width: 70, height: 70))
           ),
           SizedBox(height: 10),
           Text(  // user nick name
