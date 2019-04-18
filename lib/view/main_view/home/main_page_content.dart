@@ -60,11 +60,13 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               Row(
                 children: <Widget>[
                   AutoSizeText(
-                    dataInfo.name,
+                    dataInfo.name.length>20?dataInfo.name.substring(0,17)+'...':dataInfo.name,
                     style: TextStyle(
                       fontSize: 16,
                     ),
-                    minFontSize: 10,),
+                    minFontSize: 8,
+                    overflow: TextOverflow.clip,
+                  ),
                   Expanded(child: Container()),
                   AutoSizeText(
                     '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
@@ -78,7 +80,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               AutoSizeText(
                 dataInfo.address,
                 maxLines: 1,
-                minFontSize: 9,
+                minFontSize: 8,
                 style: TextStyle(
                   color: Colors.grey
                 ),
