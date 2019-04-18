@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
@@ -116,9 +117,12 @@ class TradeInfoDetail extends StatelessWidget {
       child: Row(
               children: <Widget>[
                 Expanded(
-                  child: Text(
+                  child: AutoSizeText(
                     title,
                     style: textStyleTitle,
+                    minFontSize: 9,
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
                   ),
                 ),
                 Text(content,style: textStyleBody,)

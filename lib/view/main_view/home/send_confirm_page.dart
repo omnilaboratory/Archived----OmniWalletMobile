@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
@@ -31,9 +32,12 @@ class SendConfirm extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20),
             child: Row(
               children: <Widget>[
-                Text(
+                AutoSizeText(
                   WalletLocalizations.of(context).wallet_send_page_to,
                   style: TextStyle(color: Colors.grey),
+                  minFontSize: 9,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Expanded(child: Container()),
                 Text('${_sendInfo.toAddress==null?'':_sendInfo.toAddress}',style: TextStyle(fontWeight: FontWeight.w500),)

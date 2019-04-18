@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -63,7 +64,12 @@ class _ReceivePageState extends State<ReceivePage> {
         ),
         Container(
             margin: EdgeInsets.only(top: 10,bottom: 60),
-            child: Text(walletInfo.address)
+            child: AutoSizeText(
+                walletInfo.address,
+              maxLines: 1,
+              minFontSize: 9,
+              overflow: TextOverflow.fade,
+            )
         ),
         Container(
           margin: EdgeInsets.only(top: 30,bottom: 20,left: 16,right: 16),
