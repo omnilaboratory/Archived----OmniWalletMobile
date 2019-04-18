@@ -27,12 +27,6 @@ class _UserCenterState extends State<UserCenter> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Image.asset(Tools.imagePath('title_bg2'),
-          fit: BoxFit.cover,
-          height: 220,
-          width: MediaQuery.of(context).size.width,
-        ),
-
         Scaffold(
           backgroundColor: Colors.transparent,
 
@@ -46,25 +40,45 @@ class _UserCenterState extends State<UserCenter> {
           
           body: SafeArea(
             child: SingleChildScrollView(
+              padding: EdgeInsets.only(top: 200),
               child: Column(
-                children: <Widget>[
-                  _bannerArea(),
-                  _menuArea(),
-                ],
+                children: _buildMenuList(),
               ),
             ),
           ),
         ),
+
+        Image.asset(Tools.imagePath('title_bg2'),
+          fit: BoxFit.cover,
+          height: 220,
+          width: MediaQuery.of(context).size.width,
+        ),
+
+        _bannerArea(),
       ],
     );
   }
 
-  //
-  Widget _menuArea() {
-    return ListView(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      children: _buildMenuList(),
+  // banner area
+  Widget _bannerArea() {
+    return Container(
+      height: 220,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          // user avatar.
+          InkWell(
+              onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+              child: Image.asset('assets/omni-logo.png', width: 70, height: 70)
+          ),
+          SizedBox(height: 10),
+          Text(  // user nick name
+            'Nick Name',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
     );
   }
 
@@ -134,34 +148,8 @@ class _UserCenterState extends State<UserCenter> {
         leading: iconName,
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {Navigator.of(context).pushNamed(route);},
+        onTap: () { Navigator.of(context).pushNamed(route); },
       ),
     );
   }
-
-  // AppBar Title
-  Widget _bannerArea() {
-    return Container(
-      height: 200,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          // user avatar.
-          InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed(UserInfo.tag);
-              },
-              child: Image.asset('assets/omni-logo.png', width: 70, height: 70)
-          ),
-          SizedBox(height: 10),
-
-          Text(  // user nick name
-            'Nick Name',
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
-
 }

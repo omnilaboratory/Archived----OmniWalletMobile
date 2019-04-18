@@ -11,6 +11,8 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class CreateAccount extends StatefulWidget {
+  static String tag = "CreateAccount";
+
   @override
   _CreateAccountState createState() => _CreateAccountState();
 }

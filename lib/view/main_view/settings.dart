@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/welcome/select_language.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class Settings extends StatefulWidget {
   static String tag = "Settings";
@@ -14,8 +16,16 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  String _selectLanguage;
+
   @override
   Widget build(BuildContext context) {
+
+    // Set value by model.
+    final langModel = MainStateModel().of(context);
+    _selectLanguage = langModel.getSelectedLanguage;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -40,8 +50,8 @@ class _SettingsState extends State<Settings> {
     // list tile
     List<Widget> _list = List();
 
-    // item content
-    List<String> items = <String> [
+    // titles
+    List<String> titles = <String> [
       WalletLocalizations.of(context).settingsPageItem_1_Title,
       WalletLocalizations.of(context).settingsPageItem_2_Title,
       WalletLocalizations.of(context).settingsPageItem_3_Title,
@@ -49,16 +59,16 @@ class _SettingsState extends State<Settings> {
 
     // item content
     List<String> values = <String> [
-      'English', 'CNY', 'Light'
+      _selectLanguage, 'CNY', 'Light'
     ];
 
     // Page routes
     List<String> routes = <String> [
-      '','',''
+      SelectLanguage.tag, '', ''
     ];
 
-    for (int i = 0; i < items.length; i++) {
-      _list.add(_menuItem(items[i], values[i], routes[i]));
+    for (int i = 0; i < titles.length; i++) {
+      _list.add(_menuItem(titles[i], values[i], routes[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -85,7 +95,7 @@ class _SettingsState extends State<Settings> {
           ],
         ),
 
-        onTap: () {Navigator.of(context).pushNamed(route);},
+        onTap: () { Navigator.of(context).pushNamed(route); },
       ),
     );
   }

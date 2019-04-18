@@ -34,7 +34,14 @@ class _StartPageState extends State<StartPage> {
         child: Column(
           children: <Widget>[
             _showSwiper(),
-            _buttonArea(),
+
+            // two buttons area
+            Expanded(child: Container()),
+            _getStarted(),
+            SizedBox(height: 30),
+            _restoreWallet(),
+            Expanded(child: Container()),
+
             _selectLanguage(),
           ],
         ),
@@ -58,54 +65,37 @@ class _StartPageState extends State<StartPage> {
     );
   }
 
-  /// two button area
-  Widget _buttonArea() {
-    return Expanded(
-      flex: 4,
-      child: Padding(
-        padding: EdgeInsets.only(left: 30, right: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _getStarted(),
-            SizedBox(height: 30),
-            _restoreWallet(),
-          ],
-        ),
-      ),
-    );
-  }
-
   /// Get Started button
   Widget _getStarted() {
-    return CustomRaiseButton(
-      context: context,
-      hasRow: false,
-      title: WalletLocalizations.of(context).startPageButtonFirst,
-      titleColor: Colors.white,
-      color: AppCustomColor.btnConfirm,
-      callback: () {
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => CreateAccount()
-          ) 
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: CustomRaiseButton(
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).startPageButtonFirst,
+        titleColor: Colors.white,
+        color: AppCustomColor.btnConfirm,
+        callback: () {
+          Navigator.of(context).pushNamed(CreateAccount.tag);
+        },
+      ),
     );
   }
 
   // Restore Wallet button
   Widget _restoreWallet() {
-    return CustomRaiseButton(
-      context: context,
-      hasRow: false,
-      title: WalletLocalizations.of(context).startPageButtonSecond,
-      titleColor: Colors.blue,
-      color: AppCustomColor.btnCancel,
-      callback: () {
-        Navigator.of(context).pushNamed(RestoreAccount.tag);
-      },
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: CustomRaiseButton(
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).startPageButtonSecond,
+        titleColor: Colors.blue,
+        color: AppCustomColor.btnCancel,
+        callback: () {
+          Navigator.of(context).pushNamed(RestoreAccount.tag);
+        },
+      ),
     );
   }
 
@@ -115,10 +105,10 @@ class _StartPageState extends State<StartPage> {
     // Set value by model.
     final langModel = MainStateModel().of(context);
 
-    return Expanded(
-      flex: 1,
-      child: InkWell(
-        child: Ink(
+    return InkWell(
+      child: Ink(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -139,17 +129,12 @@ class _StartPageState extends State<StartPage> {
             ],
           ),
         ),
-
-        onTap: () {
-          // Show the select language page.
-          Navigator.push(
-            context, 
-            MaterialPageRoute(
-              builder: (context) => SelectLanguage(),
-            ), 
-          );
-        },
       ),
+
+      onTap: () {
+        // Show the select language page.
+        Navigator.of(context).pushNamed(SelectLanguage.tag);
+      },
     );
   }
 

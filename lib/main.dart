@@ -17,6 +17,8 @@ import 'package:wallet_app/view/main_view/splash.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
+import 'package:wallet_app/view/welcome/create_account.dart';
+import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 import 'package:bip39/bip39.dart' as bip39;
@@ -73,8 +75,10 @@ class _MyAppState extends State<MyApp> {
     UserInfo.tag: (context)            => UserInfo(),
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
-    RestoreAccount.tag: (context)            => RestoreAccount(),
-    UpdatePIN.tag: (context)            => UpdatePIN(),
+    RestoreAccount.tag: (context)      => RestoreAccount(),
+    UpdatePIN.tag: (context)           => UpdatePIN(),
+    CreateAccount.tag: (context)       => CreateAccount(),
+    SelectLanguage.tag: (context)      => SelectLanguage(),
   };
 
   Brightness brightness = Brightness.light;
