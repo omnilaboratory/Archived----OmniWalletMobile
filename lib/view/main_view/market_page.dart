@@ -22,11 +22,11 @@ class _MarketPageState extends State<MarketPage> {
       ),
 
       body: SafeArea(
-        child: Center(
-          child: Text('Coming Soon ...'),
-        ),
+        // child: Center(
+        //   child: Text('Coming Soon ...'),
+        // ),
         
-        /*
+        // /*
         child: Column(
           children: <Widget>[
             _showExchange(),
@@ -34,7 +34,7 @@ class _MarketPageState extends State<MarketPage> {
             _quotationList(),
           ], 
         ),
-        */
+        // */
       ),
     );
   }
@@ -135,38 +135,53 @@ class _MarketPageState extends State<MarketPage> {
             Icon(Icons.attach_money),
             SizedBox(width: 20),
 
-            Column( // Trade pair and exchange
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Text( // Trade pair first part
-                      'LX',
-                      style: TextStyle(
-                        fontFamily: 'Arial',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column( // Trade pair and exchange
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Expanded(
+                        child: AutoSizeText( // Trade pair first part
+                          'LX',
+                          style: TextStyle(
+                            fontFamily: 'Arial',
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          minFontSize: 10,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
 
-                    Text( // Trade pair second part
-                      ' / USDT',
-                      style: TextStyle(
-                        fontFamily: 'Arial',
-                        fontSize: 13,
+                      Expanded(
+                        child: AutoSizeText( // Trade pair second part
+                          '/USDT',
+                          style: TextStyle(
+                            fontFamily: 'Arial',
+                            fontSize: 13,
+                          ),
+                          minFontSize: 10,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                
-                SizedBox(height: 10),
+                    ],
+                  ),
+                  
+                  SizedBox(height: 10),
 
-                Text( // exchange name
-                  'Binance',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
+                  AutoSizeText( // exchange name
+                    'Binance',
+                    style: TextStyle(color: Colors.grey),
+                    minFontSize: 10,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
 
             SizedBox(width: 20),
@@ -186,9 +201,12 @@ class _MarketPageState extends State<MarketPage> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 10),
-                  Text( // Assets value
+                  AutoSizeText( // Assets value
                     '\$ 0.12',
                     style: TextStyle(color: Colors.grey),
+                    minFontSize: 10,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
