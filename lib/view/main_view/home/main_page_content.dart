@@ -59,14 +59,19 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  AutoSizeText(dataInfo.name,minFontSize: 12,),
+                  AutoSizeText(
+                    dataInfo.name,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                    minFontSize: 10,),
                   Expanded(child: Container()),
                   AutoSizeText(
                     '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
-                    minFontSize: 14,
+                    minFontSize: 12,
                   )
               ],),
               SizedBox(height: 10,),
