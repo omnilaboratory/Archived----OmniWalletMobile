@@ -29,7 +29,7 @@ class _UserCenterState extends State<UserCenter> {
       children: <Widget>[
         Image.asset(Tools.imagePath('title_bg2'),
           fit: BoxFit.cover,
-          height: 220,
+          height: 240,
           width: MediaQuery.of(context).size.width,
         ),
 

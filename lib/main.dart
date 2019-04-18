@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
@@ -79,8 +80,17 @@ class _MyAppState extends State<MyApp> {
 
   Brightness brightness = Brightness.light;
 
+
+
   @override
   Widget build(BuildContext context) {
+//    Future data = NetConfig.post(NetConfig.createUser,{'userId':'c4ca4238a0b923820dcc509a6f758494','nickname':'user4'});
+//    Future data = NetConfig.get(NetConfig.getUserInfo);
+//    print(data.then((data){
+//      if(data!=null){
+////        NetConfig.setUserID(data['userId']);
+//      }
+//    }));
     // this.test();
     AppCustomColor.setColors(brightness);
     return ScopedModel<MainStateModel>(

@@ -11,6 +11,7 @@ export 'package:wallet_app/model/backup_wallet.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:wallet_app/l10n/WalletLocalizationsDelegate.dart';
 export 'package:wallet_app/tools/Tools.dart';
+export 'package:wallet_app/tools/net_config.dart';
 export 'package:wallet_app/tools/app_data_setting.dart';
 export 'package:wallet_app/l10n/WalletLocalizations.dart';
 export 'package:wallet_app/view/backupwallet/restore_account_page.dart';

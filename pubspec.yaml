@@ -17,8 +17,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  
-  http: ^0.12.0+1
+
+  # http package https://pub.dartlang.org/packages/http#-readme-tab-
+  http: ^0.12.0+2
+
   cached_network_image: ^0.6.2
 
   # The following adds the Cupertino Icons font to your application.

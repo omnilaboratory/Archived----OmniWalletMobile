@@ -119,15 +119,23 @@ class WelcomePageOne extends StatelessWidget {
           child: FlatButton(
             child: Text(WalletLocalizations.of(context).common_btn_skip),
             textColor: Colors.grey,
-            onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => MainPage()),
-                (route) => route == null
-              );
-            },
+            onPressed: this.onClickSkip(context),
           ),
         ),
       ],
     );
   }
+
+  Function onClickSkip(BuildContext context){
+    if(Tools.getCurrRunningMode()==false){
+        return () {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => MainPage()),
+                (route) => route == null
+        );
+      };
+    }
+    return null;
+  }
+
 }
