@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:path/path.dart';
+import 'package:async/async.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -20,8 +23,8 @@ class NetConfig{
   static String createUser='common/createUser';
   /// 根据助记词恢复用户
   static String restoreUser= 'common/restoreUser';
-  /// testKafka common/countries
-  static String testKafka='common/testKafka';
+  /// 图片上传
+  static String uploadImage='common/uploadImage';
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
@@ -90,5 +93,20 @@ class NetConfig{
       gravity: ToastGravity.CENTER,
       timeInSecForIos: 1,
     );
+  }
+
+  static uploadImageFunc(File imageFile) async{
+    String url = apiHost + uploadImage;
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var uri = Uri.parse(url);
+    var request = new http.MultipartRequest("POST", uri);
+    var multipartFile = new http.MultipartFile('file', stream, length,filename: basename(imageFile.path));
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+    response.stream.transform(utf8.decoder).listen((data) {
+      print(data);
+    });
   }
 }
