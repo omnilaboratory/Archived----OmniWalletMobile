@@ -318,6 +318,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
       // 0)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
+      print('==> $_mnemonic');
       // 3)
       Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
 

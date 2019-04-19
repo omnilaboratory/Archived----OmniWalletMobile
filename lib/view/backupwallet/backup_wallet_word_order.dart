@@ -88,7 +88,11 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
         Future<SharedPreferences> prefs = SharedPreferences.getInstance();
         prefs.then((share){
           share.remove('backParentId');
+
+          // User have finished to back up mnimonic.
+          share.setBool('finish_backup_mnimonic', true);
         });
+
         if(this.backParentId==null){
           Navigator.pop(context);
           Navigator.pop(context);
