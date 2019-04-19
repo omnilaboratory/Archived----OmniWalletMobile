@@ -85,15 +85,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(Tools.convertMD5Str('quote flag wise digital travel garlic film vibrant width evoke device biology'));
-//    Future data = NetConfig.post(NetConfig.createUser,{'userId':'c4ca4238a0b923820dcc509a6f758494','nickname':'user4'});
-//    Future data = NetConfig.get(NetConfig.getUserInfo);
-//    print(data.then((data){
-//      if(data!=null){
-////        NetConfig.setUserID(data['userId']);
-//      }
-//    }));
-    // this.test();
     AppCustomColor.setColors(brightness);
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
@@ -141,43 +132,5 @@ class _MyAppState extends State<MyApp> {
         home: Splash(),
       ),
     );
-  }
-
-
-  test(){
-
-//    String randomMnemonic = bip39.generateMnemonic();
-    String randomMnemonic = 'quote flag wise digital travel garlic film vibrant width evoke device biology';
-    print(randomMnemonic);
-    String seed = bip39.mnemonicToSeedHex(randomMnemonic);
-    print(seed);
-//    print(bip39.mnemonicToSeed(randomMnemonic));
-
-
-    var seed1 = bip39.mnemonicToSeed(randomMnemonic);
-    var hdWallet = new HDWallet.fromSeed(seed1);
-    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/0");
-    print(hdWallet.address);
-    print(hdWallet.wif);
-
-    hdWallet = new HDWallet.fromSeed(seed1);
-    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/1");
-    print(hdWallet.address);
-    print(hdWallet.wif);
-
-    hdWallet = new HDWallet.fromSeed(seed1);
-    hdWallet = hdWallet.derivePath("m/44'/0'/0'/0/2");
-    print(hdWallet.address);
-    print(hdWallet.wif);
-    print('---------------------------------------------------');
-    hdWallet = new HDWallet.fromSeed(seed1);
-    hdWallet = hdWallet.derivePath("m/0/0");
-    print(hdWallet.address);
-    print(hdWallet.wif);
-
-    Bip44 bip44 = Bip44(seed);
-    Coin bitcoin = bip44.coins[0];
-    Account account = Account(bitcoin, 0, changeExternal);
-    print(account.chain.root);
   }
 }

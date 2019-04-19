@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
   static String apiHost='http://172.21.100.248:8080/api/';
@@ -41,7 +42,8 @@ class NetConfig{
     if(url.startsWith('common')==false){
       if(userMD5Id==null){
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        userMD5Id = prefs.get('userMD5Id');
+        userMD5Id = prefs.get('user.mnemonic_md5');
+
         if(userMD5Id==null){
           showToast('user have not login');
         }

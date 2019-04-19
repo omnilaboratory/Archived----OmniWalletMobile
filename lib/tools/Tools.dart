@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Tools{
 
@@ -31,5 +32,17 @@ class Tools{
     scaleType = scaleType==null?'':scaleType;
     suffix = suffix==null?'png':suffix;
     return 'assets/' + text + scaleType+'.'+suffix;
+  }
+
+  ///
+  static void saveStringKeyValue(String key, String value) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
+  }
+
+  ///
+  static Future<String> getStringKeyValue(String key) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(key);
   }
 }

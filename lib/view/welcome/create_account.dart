@@ -9,6 +9,7 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class CreateAccount extends StatefulWidget {
   static String tag = "CreateAccount";
@@ -23,9 +24,9 @@ class _CreateAccountState extends State<CreateAccount> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   /// should save data.
-  String _strAccountName, _strPinCode, _strRepeatPinCode;
+  String _strNickName, _strPinCode, _strRepeatPinCode;
 
-  TextEditingController _accountNameController   = TextEditingController();
+  TextEditingController _nickNameController   = TextEditingController();
   TextEditingController _pinCodeController       = TextEditingController();
   TextEditingController _repeatPinCodeController = TextEditingController();
 
@@ -134,7 +135,7 @@ class _CreateAccountState extends State<CreateAccount> {
     List<Widget> _list = List();
 
     List<TextEditingController> _controllers = <TextEditingController> [
-      _accountNameController, _pinCodeController, _repeatPinCodeController
+      _nickNameController, _pinCodeController, _repeatPinCodeController
     ];
 
     List<FocusNode> _nodes = <FocusNode> [
@@ -142,7 +143,7 @@ class _CreateAccountState extends State<CreateAccount> {
     ];
 
     List<String> _saveData = <String> [
-      _strAccountName, _strPinCode, _strRepeatPinCode
+      _strNickName, _strPinCode, _strRepeatPinCode
     ];
 
     List<String> _icons = <String> [
@@ -266,7 +267,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validatePinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return '_strPinCode is empty';
-    } else if (val.trim().length < 8) {
+    } else if (val.trim().length < 3) {
       return 'length is enough';
     } else {
       return null;
@@ -277,7 +278,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validateRepeatPinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return '_strRepeatPinCode is empty';
-    } else if (val.trim().length < 8) {
+    } else if (val.trim().length < 3) {
       return 'length is enough';
     } else {
       return null;
@@ -304,17 +305,52 @@ class _CreateAccountState extends State<CreateAccount> {
   /// form submit
   void _onSubmit() {
     final form = _formKey.currentState;
-    if (!form.validate()) {
+    if (form.validate()) {
       form.save();
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return BackupWalletIndex(param: 1,);
-          }
-        ),
-          
-        (route) => route == null,
+      
+      /// 0) create [Mnemonic Phrase]
+      /// 1) [Nick name] save to remote (Clear text) 
+      /// 2) Encrypt the [PIN code] with the MD5 algorithm and save it locally
+      /// 3) Save [Mnemonic Phrase] to locally(Clear text)
+      /// 4) Encrypt the [Mnemonic Phrase] with the MD5 algorithm and
+      /// save it locally and remotely as User ID. 
+      /// (User ID is used to associate user data)
+
+      // 0)
+      String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
+      // 3)
+      Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
+
+
+      // 4)
+      String _mnemonic_md5 =  Tools.convertMD5Str(_mnemonic);
+      Tools.saveStringKeyValue('user.mnemonic_md5', _mnemonic_md5);
+
+      // 2)
+      String _pinCode_md5 =  Tools.convertMD5Str(_pinCodeController.text);
+      Tools.saveStringKeyValue('user.pinCode', _pinCode_md5);
+
+      // 1) 4) -> server
+      Future data = NetConfig.post(
+        NetConfig.createUser,
+        {'userId':_mnemonic_md5,
+        'nickname':_nickNameController.text},
       );
+
+      data.then((data){
+        if(data!=null){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return BackupWalletIndex(param: 1,);
+              }
+            ),
+              
+            (route) => route == null,
+          );
+        }
+      });
+      
     } else {
       setState(() {
         _autoValidate = true;
