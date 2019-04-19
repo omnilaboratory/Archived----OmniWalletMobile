@@ -53,12 +53,14 @@ class NetConfig{
     }
 
     url = apiHost + url;
+    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
     if(reqType=="get"){
       response = await http.get(url,headers: header);
     }else{
       response =  await http.post(url,headers: header, body: data);
     }
+    Fluttertoast.cancel();
 
     if(response.statusCode==200){
       var result = json.decode(response.body);
@@ -80,11 +82,11 @@ class NetConfig{
     }
   }
 
-  static showToast(String msg){
+  static showToast(String msg,{Toast toastLength = Toast.LENGTH_SHORT}){
     Fluttertoast.cancel();
     Fluttertoast.showToast(
       msg: msg,
-      toastLength: Toast.LENGTH_SHORT,
+      toastLength: toastLength,
       gravity: ToastGravity.CENTER,
       timeInSecForIos: 1,
     );

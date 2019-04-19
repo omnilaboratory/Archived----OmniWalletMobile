@@ -170,6 +170,8 @@ class _RestoreAccountState extends State<RestoreAccount> {
     });
     String pin = this.controller1.text;
     String pin2 = this.controller2.text;
+    print(split);
+    print(split.length);
     if (split.length == 12) {
       return () {
         if(pin!=null||pin2!=null){
@@ -184,25 +186,32 @@ class _RestoreAccountState extends State<RestoreAccount> {
             return ;
           }
         }
-        var _mnemonic= split.toString();
-        var  userId = Tools.convertMD5Str(split.toString());
-        Future<Map> result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
+        var _mnemonic= split.join(' ');
+        print(_mnemonic);
+        var  userId = Tools.convertMD5Str(_mnemonic);
+        print(userId);
+        Future result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
         result.then((data){
-          Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
-          GlobalInfo.userInfo.mnemonic = _mnemonic;
+          if(data!=null){
+            GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+            GlobalInfo.userInfo.nickname = data['nickname'];
 
-          Tools.saveStringKeyValue('user.mnemonic_md5', userId);
-          GlobalInfo.userInfo.userId = userId;
+            Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
+            GlobalInfo.userInfo.mnemonic = _mnemonic;
 
-          if(pin!=null){
-            String _pinCode_md5 =  Tools.convertMD5Str(pin);
-            Tools.saveStringKeyValue('user.pinCode', _pinCode_md5);
-            GlobalInfo.userInfo.pinCode = _pinCode_md5;
+            Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
+            GlobalInfo.userInfo.userId = userId;
+
+            if(pin!=null){
+              String _pinCode_md5 =  Tools.convertMD5Str(pin);
+              Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
+              GlobalInfo.userInfo.pinCode = _pinCode_md5;
+            }
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => MainPage()), (
+                route) => route == null
+            );
           }
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => MainPage()), (
-              route) => route == null
-          );
         });
       };
     }
