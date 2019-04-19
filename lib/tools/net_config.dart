@@ -100,7 +100,7 @@ class NetConfig{
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     var uri = Uri.parse(url);
-    var request = new http.MultipartRequest("POST", uri);
+    var request = http.MultipartRequest("POST", uri);
     var multipartFile = new http.MultipartFile('file', stream, length,filename: basename(imageFile.path));
     request.files.add(multipartFile);
 
