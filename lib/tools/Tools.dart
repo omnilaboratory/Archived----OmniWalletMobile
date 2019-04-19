@@ -1,23 +1,22 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Tools{
 
-  static SharedPreferences sharedPreferences = null;
-
-  static getSharedPreferences() async{
-    if(sharedPreferences==null){
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      sharedPreferences = prefs;
-    }
-    return sharedPreferences;
-
-  }
-
   /** 返回当前时间戳 */
   static bool getCurrRunningMode() {
     return bool.fromEnvironment("dart.vm.product");
   }
+
+  ///生成md5
+  static String convertMD5Str(String data){
+    return md5.convert(Utf8Encoder().convert(md5.convert(Utf8Encoder().convert(data)).toString())).toString();
+  }
+
+
 
   /** 返回当前时间戳 */
   static int currentTimeMillis() {
@@ -36,7 +35,4 @@ class Tools{
     suffix = suffix==null?'png':suffix;
     return 'assets/' + text + scaleType+'.'+suffix;
   }
-
-
-
 }

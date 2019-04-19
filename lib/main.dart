@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -88,6 +91,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(Tools.convertMD5Str('abcd'));
+
 //    Future data = NetConfig.post(NetConfig.createUser,{'userId':'c4ca4238a0b923820dcc509a6f758494','nickname':'user4'});
 //    Future data = NetConfig.get(NetConfig.getUserInfo);
 //    print(data.then((data){
