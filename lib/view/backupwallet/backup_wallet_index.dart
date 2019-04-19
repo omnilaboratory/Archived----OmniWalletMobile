@@ -90,7 +90,7 @@ class BackupWalletIndex extends StatelessWidget  {
   //
   List<Widget> _getActions(BuildContext context){
 
-    if (this.param != null && this.param == 1) {
+    if (this.param == null ) {
       List<Widget> list = [];
       list.add(FlatButton(
         child: Text(WalletLocalizations.of(context).backup_index_laterbackup),

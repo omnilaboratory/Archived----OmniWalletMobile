@@ -165,7 +165,20 @@ class _UserCenterState extends State<UserCenter> {
         leading: iconName,
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () { Navigator.of(context).pushNamed(route); },
+        onTap: () {
+          if(BackupWalletIndex.tag == route)
+          {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return BackupWalletIndex(param: 1,);
+                  }
+              ),
+            );
+          }else{
+            Navigator.of(context).pushNamed(route);
+          }
+        },
       ),
     );
   }

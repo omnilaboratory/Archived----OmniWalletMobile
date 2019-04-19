@@ -343,7 +343,7 @@ class _CreateAccountState extends State<CreateAccount> {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return BackupWalletIndex(param: 1,);
+                return BackupWalletIndex(param: null,);
               }
             ),
               

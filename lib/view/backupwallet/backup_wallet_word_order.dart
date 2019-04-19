@@ -93,7 +93,7 @@ class _BackupWalletWordsOrderState extends State<BackupWalletWordsOrder> {
           share.setBool('finish_backup_mnimonic', true);
         });
 
-        if(this.backParentId==null){
+        if(this.backParentId !=null&&this.backParentId==1){
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
