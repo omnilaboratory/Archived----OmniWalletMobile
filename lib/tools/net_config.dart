@@ -15,8 +15,8 @@ class NetConfig{
   static String userMD5Id = null;
   static setUserID(String data) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('userMD5Id',data);
-    userMD5Id = prefs.get('userMD5Id');
+    prefs.setString(KeyConfig.user_mnemonic_md5,data);
+    userMD5Id = prefs.get(KeyConfig.user_mnemonic_md5);
   }
 
   /// 创建新用户
