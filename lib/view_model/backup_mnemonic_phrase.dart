@@ -5,15 +5,14 @@ class BackupMnemonicPhrase extends Model{
 
   List<WordInfo> wordList=null;
 
-  List<WordInfo> createNewWords(){
+  List<WordInfo> createNewWords(String mnemonic){
     if(this.wordList!=null){
       this.wordList.clear();
     }else{
       this.wordList = [];
     }
 
-    String randomMnemonic = 'quote flag wise digital travel garlic film vibrant width evoke device biology';
-    List<String> list = randomMnemonic.split(' ');
+    List<String> list = mnemonic.split(' ');
     for(int count=0;count<list.length;count++){
       this.wordList.add(WordInfo(content: list[count],seqNum: count));
     }
@@ -22,7 +21,10 @@ class BackupMnemonicPhrase extends Model{
 
   List<WordInfo> get mnemonicPhrases{
     if(this.wordList==null){
-      createNewWords();
+      Tools.getStringKeyValue('user.mnemonic').then((data){
+        createNewWords(data);
+        notifyListeners();
+      });
     }
     return this.wordList;
   }
@@ -37,10 +39,10 @@ class BackupMnemonicPhrase extends Model{
   }
 
   String get mnemonicPhraseString{
-    if(this.wordList==null){
-      createNewWords();
-    }
     String result = '';
+    if(this.wordList==null){
+      return result;
+    }
     for(int i=0;i<this.wordList.length;i++){
       result += '${i+1}:'+this.wordList[i].content+",";
     }

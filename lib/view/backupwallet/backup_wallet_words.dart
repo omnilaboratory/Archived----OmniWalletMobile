@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/backup_wallet.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -21,71 +22,30 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context) ;
-    words = stateModel.mnemonicPhrases;
-    return Scaffold(
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-
-      appBar: AppBar(
-        title: Text(WalletLocalizations.of(context).backup_words_title),
-      ),
-
-      // body: Builder(builder: (BuildContext context) { return pageCentent(context);}),
-
-      // update by Cheng
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: pageCentent(context),
-        ),
-      ),
-    );
-  }
-
-  showTipsBar(){
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text('success')));
-  }
-
-  List<Widget> wrapChildren(){
-    List<Widget> list = [];
-    for(int i=0;i<this.words.length;i++){
-      list.add(
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(4)
-            ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RichText(
-                  text: TextSpan(
-                    text: '${i+1} ',
-                    style: TextStyle(color: Colors.grey),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '${this.words[i].content}',
-                        style: TextStyle(color: AppCustomColor.themeFrontColor),
-                      )
-                    ]
-                  ),
-                ),
-              )
-          )
-      );
+    if(stateModel==null){
+      stateModel = MainStateModel().of(context) ;
     }
-    print(list.length);
-    return list;
-  }
-  Widget createWords(){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        spacing: 5,
-        runSpacing: 5,
-        children: wrapChildren(),
-      ),
+    return ScopedModelDescendant<MainStateModel>(
+      builder: (context, child, model) {
+        print("BackupWalletWords");
+        words = stateModel.mnemonicPhrases;
+        return Scaffold(
+          backgroundColor: AppCustomColor.themeBackgroudColor,
+          appBar: AppBar(
+            title: Text(WalletLocalizations.of(context).backup_words_title),
+          ),
+
+          // update by Cheng
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: pageCentent(context),
+            ),
+          ),
+        );
+      }
     );
   }
+
 
   Widget pageCentent(BuildContext context){
     return Center(
@@ -148,5 +108,52 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
         ],
       ),
     );
+  }
+
+  Widget createWords(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 5,
+        runSpacing: 5,
+        children: wrapChildren(),
+      ),
+    );
+  }
+
+  List<Widget> wrapChildren(){
+    if(this.words==null) return [];
+    List<Widget> list = [];
+    for(int i=0;i<this.words.length;i++){
+      list.add(
+          Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(4)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RichText(
+                  text: TextSpan(
+                      text: '${i+1} ',
+                      style: TextStyle(color: Colors.grey),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: '${this.words[i].content}',
+                          style: TextStyle(color: AppCustomColor.themeFrontColor),
+                        )
+                      ]
+                  ),
+                ),
+              )
+          )
+      );
+    }
+    return list;
+  }
+
+  showTipsBar(){
+    Scaffold.of(context).showSnackBar(SnackBar(content: Text('success')));
   }
 }
