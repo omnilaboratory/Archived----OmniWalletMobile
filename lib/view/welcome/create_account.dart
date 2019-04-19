@@ -2,6 +2,7 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-5
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -307,39 +308,31 @@ class _CreateAccountState extends State<CreateAccount> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-      
-      /// 0) create [Mnemonic Phrase]
-      /// 1) [Nick name] save to remote (Clear text) 
-      /// 2) Encrypt the [PIN code] with the MD5 algorithm and save it locally
-      /// 3) Save [Mnemonic Phrase] to locally(Clear text)
-      /// 4) Encrypt the [Mnemonic Phrase] with the MD5 algorithm and
+
+      /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
+      String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
+      Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
+      print('==> [Mnemonic Phrase] ==> $_mnemonic');
+
+      /// 2) Encrypt the [Mnemonic Phrase] with the MD5 algorithm and
       /// save it locally and remotely as User ID. 
       /// (User ID is used to associate user data)
-
-      // 0)
-      String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
-      print('==> $_mnemonic');
-      // 3)
-      Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
-
-
-      // 4)
       String _mnemonic_md5 =  Tools.convertMD5Str(_mnemonic);
       Tools.saveStringKeyValue('user.mnemonic_md5', _mnemonic_md5);
 
-      // 2)
-      String _pinCode_md5 =  Tools.convertMD5Str(_pinCodeController.text);
+      /// 3) Encrypt the [PIN code] with the MD5 algorithm and save it locally
+      String _pinCode_md5 = Tools.convertMD5Str(_pinCodeController.text);
       Tools.saveStringKeyValue('user.pinCode', _pinCode_md5);
 
-      // 1) 4) -> server
+      /// 4) [Nick name] (Clear text) and [Mnemonic Phrase] (MD5) save to remote.
       Future data = NetConfig.post(
         NetConfig.createUser,
         {'userId':_mnemonic_md5,
         'nickname':_nickNameController.text},
       );
 
-      data.then((data){
-        if(data!=null){
+      data.then((data) {
+        if(data != null) {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (BuildContext context) {

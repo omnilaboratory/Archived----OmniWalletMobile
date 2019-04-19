@@ -4,9 +4,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
+import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 
 class UserInfo extends StatefulWidget {
   static String tag = "UserInfo";
@@ -102,10 +104,7 @@ class _UserInfoState extends State<UserInfo> {
                   ),
                 ),
 
-                onTap: () {
-                  // TODO: show next page.
-                  // Navigator.of(context).pushNamed(route);
-                },
+                onTap: () { _deleteUser(); },
               ),
             ),
           ],
@@ -114,6 +113,17 @@ class _UserInfoState extends State<UserInfo> {
     );
   }
 
+  void _deleteUser() {
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+    prefs.then((share) {
+      share.clear();
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => WelcomePageOne()), 
+        (route) => route == null,
+      );
+    });
+  }
+  
   //
   void _bottomSheet() {
     showModalBottomSheet(

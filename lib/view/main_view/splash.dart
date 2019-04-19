@@ -56,7 +56,6 @@ class _SplashState extends State<Splash> {
     String languageCode = locale.languageCode;
     print('languageCode = $languageCode');
 
-// /*
     // update
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {
@@ -64,16 +63,19 @@ class _SplashState extends State<Splash> {
       // Check login status
       String val = share.getString('user.mnemonic_md5');
       if ( val != null && val != '') { // has login
+        print('==> has login');
 
         // check if has finished to back up mnimonic.
         bool bVal = share.getBool('finish_backup_mnimonic');
         if (bVal == true) { // has backup
+          print('==> has backup');
           // show wallet main page
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => MainPage()), 
             (route) => route == null,
           );
         } else { // no backup
+          print('==> no backup');
           // show mnimonic back up page
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => BackupWalletIndex()), 
@@ -82,6 +84,7 @@ class _SplashState extends State<Splash> {
         }
 
       } else { // new user or logout (delete id)
+        print('==> new user or logout (delete id)');
         // show welcome page
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => WelcomePageOne()), 
@@ -89,7 +92,6 @@ class _SplashState extends State<Splash> {
         );
       }
     });
-// */
 
     Future<String> setLanguage = _getSelectedLanguage();
     setLanguage.then(
