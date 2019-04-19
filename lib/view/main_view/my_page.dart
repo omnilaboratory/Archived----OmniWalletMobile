@@ -110,7 +110,7 @@ class _UserCenterState extends State<UserCenter> {
       Icon(Icons.settings),
       Icon(Icons.book),
       Icon(Icons.help),
-      Icon(Icons.terrain),
+      Icon(Icons.assignment),
       Icon(Icons.backup),
       Icon(Icons.info),
     ]; 

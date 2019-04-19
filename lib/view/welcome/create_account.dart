@@ -229,10 +229,10 @@ class _CreateAccountState extends State<CreateAccount> {
       helperText: _hasFocus ? _helperText : null,
       suffixIcon: _hasFocus ? 
         IconButton(
-          icon: Icon(Icons.clear),
-          onPressed: () {
-            _controller.clear();
-          },
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          icon: Icon(Icons.highlight_off, color: Colors.grey),
+          onPressed: () { _controller.clear(); },
         ) : null,
     );
   }
