@@ -6,6 +6,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
+import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/key_config.dart';
+import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
@@ -65,23 +68,35 @@ class _SplashState extends State<Splash> {
       if ( val != null && val != '') { // has login
         print('==> has login');
 
-        // check if has finished to back up mnimonic.
-        bool bVal = share.getBool('finish_backup_mnimonic');
-        if (bVal == true) { // has backup
-          print('==> has backup');
-          // show wallet main page
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => MainPage()), 
-            (route) => route == null,
-          );
-        } else { // no backup
-          print('==> no backup');
-          // show mnimonic back up page
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => BackupWalletIndex()), 
-            (route) => route == null,
-          );
-        }
+        Future data = NetConfig.get(NetConfig.getUserInfo);
+        data.then((data) {
+          if (data != null) {
+            GlobalInfo.userInfo.userId = NetConfig.userMD5Id;
+            GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
+            GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
+            GlobalInfo.userInfo.nickname = data['nickname'];
+            GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+
+            // check if has finished to back up mnimonic.
+            bool bVal = share.getBool('finish_backup_mnimonic');
+            if (bVal == true) { // has backup
+              print('==> has backup');
+
+              // show wallet main page
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => MainPage()),
+                    (route) => route == null,
+              );
+            } else { // no backup
+              print('==> no backup');
+              // show mnimonic back up page
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => BackupWalletIndex()),
+                    (route) => route == null,
+              );
+            }
+          }
+        });
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');

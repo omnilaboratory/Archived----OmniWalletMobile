@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
@@ -89,7 +90,7 @@ class _UserCenterState extends State<UserCenter> {
             child: InkWell(
               onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
               child: Text(  // user nick name
-                'Nick Name',
+                GlobalInfo.userInfo.nickname,
                 style: TextStyle(color: Colors.white),
               ),
             ),

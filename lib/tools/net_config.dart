@@ -42,12 +42,12 @@ class NetConfig{
     if(url.startsWith('common')==false){
       if(userMD5Id==null){
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        userMD5Id = prefs.get('user.mnemonic_md5');
-
+        userMD5Id = prefs.get(KeyConfig.user_mnemonic_md5);
+        print(userMD5Id);
         if(userMD5Id==null){
           showToast('user have not login');
+          return null;
         }
-        return null;
       }
       header['authorization']='Bearer '+userMD5Id;
     }
