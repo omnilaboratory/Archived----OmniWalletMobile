@@ -56,7 +56,7 @@ class _SplashState extends State<Splash> {
     String languageCode = locale.languageCode;
     print('languageCode = $languageCode');
 
-/*
+// /*
     // update
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {
@@ -89,7 +89,7 @@ class _SplashState extends State<Splash> {
         );
       }
     });
-*/
+// */
 
     Future<String> setLanguage = _getSelectedLanguage();
     setLanguage.then(
