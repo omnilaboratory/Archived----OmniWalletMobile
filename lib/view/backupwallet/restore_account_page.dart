@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -182,10 +184,26 @@ class _RestoreAccountState extends State<RestoreAccount> {
             return ;
           }
         }
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => MainPage()), (
-            route) => route == null
-        );
+        var _mnemonic= split.toString();
+        var  userId = Tools.convertMD5Str(split.toString());
+        Future<Map> result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
+        result.then((data){
+          Tools.saveStringKeyValue('user.mnemonic', _mnemonic);
+          GlobalInfo.userInfo.mnemonic = _mnemonic;
+
+          Tools.saveStringKeyValue('user.mnemonic_md5', userId);
+          GlobalInfo.userInfo.userId = userId;
+
+          if(pin!=null){
+            String _pinCode_md5 =  Tools.convertMD5Str(pin);
+            Tools.saveStringKeyValue('user.pinCode', _pinCode_md5);
+            GlobalInfo.userInfo.pinCode = _pinCode_md5;
+          }
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => MainPage()), (
+              route) => route == null
+          );
+        });
       };
     }
     return null;

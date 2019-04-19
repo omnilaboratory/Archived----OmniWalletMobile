@@ -80,8 +80,6 @@ class NetConfig{
     }
   }
 
-
-
   static showToast(String msg){
     Fluttertoast.cancel();
     Fluttertoast.showToast(
