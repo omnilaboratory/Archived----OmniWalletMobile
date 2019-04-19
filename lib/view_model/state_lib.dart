@@ -18,3 +18,4 @@ export 'package:wallet_app/view/backupwallet/restore_account_page.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:wallet_app/model/mnemonic_phrase_model.dart';
 export 'package:wallet_app/model/global_model.dart';
+export 'package:wallet_app/tools/key_config.dart';
