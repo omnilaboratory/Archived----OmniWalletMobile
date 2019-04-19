@@ -16,8 +16,6 @@ class Tools{
     return md5.convert(Utf8Encoder().convert(md5.convert(Utf8Encoder().convert(data)).toString())).toString();
   }
 
-
-
   /** 返回当前时间戳 */
   static int currentTimeMillis() {
     return new DateTime.now().millisecondsSinceEpoch;
