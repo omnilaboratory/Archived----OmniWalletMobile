@@ -9,6 +9,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class UserInfo extends StatefulWidget {
   static String tag = "UserInfo";
@@ -168,6 +169,7 @@ class _UserInfoState extends State<UserInfo> {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       _imgAvatar = image;
+      NetConfig.uploadImageFunc(image);
     });
     Navigator.pop(context);
   }

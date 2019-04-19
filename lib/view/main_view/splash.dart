@@ -31,7 +31,7 @@ class _SplashState extends State<Splash> {
     _timer = Timer(
       Duration(seconds: 2), 
       () {
-        _setLocale();
+        _processData();
       }
     );
   }
@@ -54,17 +54,17 @@ class _SplashState extends State<Splash> {
   }
 
   //
-  void _setLocale() {
+  void _processData() {
     Locale locale = Localizations.localeOf(context);
     String languageCode = locale.languageCode;
     print('languageCode = $languageCode');
 
-    // update
+    // load data
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {
 
       // Check login status
-      String val = share.getString('user.mnemonic_md5');
+      String val = share.getString(KeyConfig.user_mnemonic_md5);
       if ( val != null && val != '') { // has login
         print('==> has login');
 
@@ -78,7 +78,7 @@ class _SplashState extends State<Splash> {
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
 
             // check if has finished to back up mnimonic.
-            bool bVal = share.getBool('finish_backup_mnimonic');
+            bool bVal = share.getBool(KeyConfig.is_backup);
             if (bVal == true) { // has backup
               print('==> has backup');
 

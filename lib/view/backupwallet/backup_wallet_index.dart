@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -15,7 +16,7 @@ class BackupWalletIndex extends StatelessWidget  {
  void initData(){
    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
    prefs.then((share){
-     share.setInt('backParentId', this.param);
+     share.setInt(KeyConfig.backParentId, this.param);
    });
  }
 
