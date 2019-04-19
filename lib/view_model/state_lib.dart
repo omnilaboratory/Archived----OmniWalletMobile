@@ -16,3 +16,4 @@ export 'package:wallet_app/tools/app_data_setting.dart';
 export 'package:wallet_app/l10n/WalletLocalizations.dart';
 export 'package:wallet_app/view/backupwallet/restore_account_page.dart';
 export 'package:fluttertoast/fluttertoast.dart';
+export 'package:wallet_app/model/mnemonic_phrase_model.dart';
