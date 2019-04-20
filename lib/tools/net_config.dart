@@ -75,7 +75,9 @@ class NetConfig{
       int status = result['status'];
       if(status==1){
         var data = result['data'];
-        print(data);
+        if(data==null){
+          data = [];
+        }
         return data;
       }
       if(status==0){
