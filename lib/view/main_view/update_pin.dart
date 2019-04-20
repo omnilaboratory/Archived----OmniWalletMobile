@@ -86,23 +86,20 @@ class _UpdatePINState extends State<UpdatePIN> {
       ),
     );
   }
-  clickBtn() {
+  Function clickBtn() {
     String pin = this.controller1.text;
     String pin2 = this.controller2.text;
-    if (pin.isNotEmpty&&pin2.isNotEmpty) {
-      if(pin == pin2){
-        Navigator.of(context).pop();
-        return;
-      }
+    if(pin.isEmpty||pin.isEmpty||pin != pin2){
+      NetConfig.showToast(WalletLocalizations.of(context).restore_account_tip_error);
+      return null;
     }
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: WalletLocalizations.of(context).restore_account_tip_error,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIos: 1,
-    );
-    return ;
+    return (){
+      String _pinCode_md5 =  Tools.convertMD5Str(pin);
+      Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
+      GlobalInfo.userInfo.pinCode = _pinCode_md5;
+
+      Navigator.of(context).pop();
+    };
   }
 
   List<KeyboardAction> _keyboardActions() {
