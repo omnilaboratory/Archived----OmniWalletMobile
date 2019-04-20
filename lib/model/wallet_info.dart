@@ -1,4 +1,6 @@
 
+import 'package:meta/meta.dart';
+
 class WalletInfo extends BaseInfo{
 
   String note;
@@ -7,6 +9,8 @@ class WalletInfo extends BaseInfo{
   String iconUrl;
   //钱包帐号地址
   String address;
+
+  int addressIndex;
   //总体价值法币金额
   double totalLegalTender;
 
@@ -14,8 +18,10 @@ class WalletInfo extends BaseInfo{
 
   WalletInfo({
     String name,
+    @required this.address,
+    @required this.addressIndex,
     this.note,
-    this.iconUrl,this.address,this.totalLegalTender=0,this.accountInfoes
+    this.iconUrl,this.totalLegalTender=0,this.accountInfoes
   }):super(name:name);
 
 }

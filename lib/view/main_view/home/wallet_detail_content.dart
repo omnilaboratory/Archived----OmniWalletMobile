@@ -111,41 +111,38 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
               child: CircleAvatar(child: Icon(Icons.arrow_upward),backgroundColor:Colors.green[100]),
             ),
             Expanded(
+              flex: 3,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Expanded(
-                        child: AutoSizeText(
-                          '${accountInfo.name} '+('${tradeInfo.amount>0?'In':'Out'}'),
-                          style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),
-                          minFontSize: 12,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                      AutoSizeText(
+                        '${accountInfo.name} '+('${tradeInfo.amount>0?'In':'Out'}'),
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),
+                        minFontSize: 12,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      Expanded(
-                        child: Container(
-                            margin: EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(10)
+                      Container(
+                          margin: EdgeInsets.only(left: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
+                            child: AutoSizeText(
+                              tradeInfo.state==0?
+                                  WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
+                                : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
+                              style: TextStyle(color:Colors.grey[500],fontSize: 12),
+                              minFontSize: 9,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-                              child: AutoSizeText(
-                                tradeInfo.state==0?
-                                    WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
-                                  : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
-                                style: TextStyle(color:Colors.grey[500],fontSize: 12),
-                                minFontSize: 9,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )
-                        ),
+                          )
                       )
                     ],
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -162,7 +159,9 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                   ),
               ],),
             ),
+            SizedBox(width: 10,),
             Expanded(
+              flex: 1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>

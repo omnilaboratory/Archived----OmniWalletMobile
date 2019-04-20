@@ -60,7 +60,16 @@ class WalletModel extends Model{
           List list = data['data'] ;
           for(int i=0;i<list.length;i++){
             var node = list[i];
-            WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],totalLegalTender: 0,note: '',accountInfoes: []);
+            List assets = node['assets'];
+            num totalMoney = 0;
+            List<AccountInfo> accountInfo = [];
+            for(int j=0;j<assets.length;j++){
+              var asset = assets[j];
+              double money = 0;
+              accountInfo.add(AccountInfo(name: asset['name'],amount:double.parse(asset['balance'].toString()),legalTender:money ));
+              totalMoney+=money;
+            }
+            WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
         }
@@ -71,7 +80,7 @@ class WalletModel extends Model{
   }
 //      int walletCount = 1+Random().nextInt(10);
 //      for(int i=0;i<walletCount;i++){
-//        List<AccountInfo> accountInfo = [];
+//
 //        int accountCount = 1+Random().nextInt(10);
 //        num totalMoney = 0;
 //        for(int j=0;j<accountCount;j++){

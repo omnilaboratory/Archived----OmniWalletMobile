@@ -49,9 +49,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Function onClickAddButton(String addressName){
-    int addressIndex = walletInfoes.length+1;
+    int addressIndex = walletInfoes.length;
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
-    WalletInfo info = WalletInfo(name: addressName,address: wallet.address,totalLegalTender: 0,note: '',accountInfoes: []);
+    WalletInfo info = WalletInfo(name: addressName,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
     Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()});
     result.then((data){
       if(data!=null){
