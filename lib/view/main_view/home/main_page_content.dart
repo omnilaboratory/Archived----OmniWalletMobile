@@ -21,22 +21,27 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
-    walletInfoes = stateModel.walletInfoes;
-    return ListView.builder(
-      itemCount: walletInfoes.length,
-      itemBuilder: (BuildContext context, int index){
-        return Container(
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            color: AppCustomColor.themeBackgroudColor,
-          ),
-          child: CustemExpansionTile(
-            title: buildFirstLevelHeader(index),
-            children: buildItemes(context,index),
-          ),
-        );
-    });
+    if(stateModel==null)
+      stateModel = MainStateModel().of(context);
+
+    return ScopedModelDescendant<MainStateModel>(
+        builder: (context, child, model) {
+          walletInfoes = model.walletInfoes;
+          return ListView.builder(
+              itemCount: walletInfoes.length,
+              itemBuilder: (BuildContext context, int index){
+                return Container(
+                  margin: EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: AppCustomColor.themeBackgroudColor,
+                  ),
+                  child: CustemExpansionTile(
+                    title: buildFirstLevelHeader(index),
+                    children: buildItemes(context,index),
+                  ),
+                );
+              });
+        });
   }
 
   Widget buildFirstLevelHeader(int index) {

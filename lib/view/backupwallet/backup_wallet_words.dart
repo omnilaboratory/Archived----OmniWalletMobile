@@ -28,7 +28,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
     return ScopedModelDescendant<MainStateModel>(
       builder: (context, child, model) {
         print("BackupWalletWords");
-        words = stateModel.mnemonicPhrases;
+        words = model.mnemonicPhrases;
         return Scaffold(
           backgroundColor: AppCustomColor.themeBackgroudColor,
           appBar: AppBar(

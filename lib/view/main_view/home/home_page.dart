@@ -1,8 +1,10 @@
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/main_page_content.dart';
 import 'package:wallet_app/view/widgets/dialog_widget.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,11 +12,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<WalletInfo> walletInfoes;
+  MainStateModel stateModel = null;
+
   @override void initState() {
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    stateModel = MainStateModel().of(context);
+    walletInfoes = stateModel.walletInfoes;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -40,8 +48,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Function onClickAddButton(String address){
-    debugPrint(address);
+  Function onClickAddButton(String addressName){
+    int addressIndex = walletInfoes.length+1;
+    HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
+    WalletInfo info = WalletInfo(name: addressName,address: wallet.address,totalLegalTender: 0,note: '',accountInfoes: []);
+    Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()});
+    result.then((data){
+      if(data!=null){
+        stateModel.addWalletInfo(info);
+      }
+    });
   }
   Function showSnackBar(String content){
     Scaffold.of(context).showSnackBar(SnackBar(content: Text(content)));

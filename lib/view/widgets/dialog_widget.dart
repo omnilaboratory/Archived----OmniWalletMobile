@@ -110,6 +110,7 @@ class _CreateNewAddressDialogState extends State<CreateNewAddressDialog> {
             type: MaterialType.transparency,
             child: GestureDetector(
               onTap: () {
+
               },
               child: Align(
                 alignment: Alignment(0, -0.05),

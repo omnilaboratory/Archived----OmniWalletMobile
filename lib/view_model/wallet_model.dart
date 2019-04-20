@@ -2,6 +2,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'dart:math';
 
+import 'package:wallet_app/view_model/state_lib.dart';
+
 class WalletModel extends Model{
 
   List<WalletInfo> _walletInfoes;
@@ -52,23 +54,40 @@ class WalletModel extends Model{
   List<WalletInfo> get  walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
-      int walletCount = 1+Random().nextInt(10);
-      for(int i=0;i<walletCount;i++){
-        List<AccountInfo> accountInfo = [];
-        int accountCount = 1+Random().nextInt(10);
-        num totalMoney = 0;
-        for(int j=0;j<accountCount;j++){
-          num money = Random().nextDouble();
-          accountInfo.add(AccountInfo(name: 'Asset ${j+1}',amount:Random().nextDouble(),legalTender:money ));
-          totalMoney+=money;
+      Future future = NetConfig.get(NetConfig.addressList);
+      future.then((data){
+        if(data!=null){
+          List list = data['data'] ;
+          for(int i=0;i<list.length;i++){
+            var node = list[i];
+            WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],totalLegalTender: 0,note: '',accountInfoes: []);
+            _walletInfoes.add(info);
+          }
         }
-        WalletInfo info = WalletInfo(name: 'Wallet Address ${i+1}',address: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
-        _walletInfoes.add(info);
-      }
+      });
     }
     notifyListeners();
     return this._walletInfoes;
   }
+//      int walletCount = 1+Random().nextInt(10);
+//      for(int i=0;i<walletCount;i++){
+//        List<AccountInfo> accountInfo = [];
+//        int accountCount = 1+Random().nextInt(10);
+//        num totalMoney = 0;
+//        for(int j=0;j<accountCount;j++){
+//          num money = Random().nextDouble();
+//          accountInfo.add(AccountInfo(name: 'Asset ${j+1}',amount:Random().nextDouble(),legalTender:money ));
+//          totalMoney+=money;
+//        }
+//        WalletInfo info = WalletInfo(name: 'Wallet Address ${i+1}',address: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
+//        _walletInfoes.add(info);
+//      }
+
+  addWalletInfo(WalletInfo info) {
+    _walletInfoes.add(info);
+    notifyListeners();
+  }
+
 
   List<TradeInfo> get tradeInfoes{
     List<TradeInfo> infoes = [];

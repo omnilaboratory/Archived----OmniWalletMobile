@@ -28,6 +28,11 @@ class NetConfig{
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
+  /// wallet/address/create  创建新地址
+  static String createAddress='wallet/address/create';
+  /// wallet/address/list  地址列表
+  static String addressList ='wallet/address/list';
+
 
 
   static post(String url,Map<String, String> data) async{
