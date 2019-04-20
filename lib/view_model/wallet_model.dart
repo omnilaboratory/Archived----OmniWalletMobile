@@ -78,19 +78,6 @@ class WalletModel extends Model{
     notifyListeners();
     return this._walletInfoes;
   }
-//      int walletCount = 1+Random().nextInt(10);
-//      for(int i=0;i<walletCount;i++){
-//
-//        int accountCount = 1+Random().nextInt(10);
-//        num totalMoney = 0;
-//        for(int j=0;j<accountCount;j++){
-//          num money = Random().nextDouble();
-//          accountInfo.add(AccountInfo(name: 'Asset ${j+1}',amount:Random().nextDouble(),legalTender:money ));
-//          totalMoney+=money;
-//        }
-//        WalletInfo info = WalletInfo(name: 'Wallet Address ${i+1}',address: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",totalLegalTender: totalMoney,note: "note${i+1}",accountInfoes: accountInfo);
-//        _walletInfoes.add(info);
-//      }
 
   addWalletInfo(WalletInfo info) {
     _walletInfoes.add(info);
