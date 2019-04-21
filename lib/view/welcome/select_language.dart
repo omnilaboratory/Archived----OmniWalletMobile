@@ -9,6 +9,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class SelectLanguage extends StatefulWidget {
   static String tag = "SelectLanguage";
@@ -132,7 +133,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
   //
   void _saveSelectedLanguage(String value) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('set_language', value);
+    prefs.setString(KeyConfig.set_language, value);
   }
 
   //

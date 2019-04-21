@@ -8,4 +8,5 @@ class KeyConfig {
   static const String user_pinCode_md5 = 'user.pinCode_md5';
   static const String is_backup = 'is_backup';
   static const String backParentId = 'backParentId';
+  static const String set_language = 'set_language';
 }
