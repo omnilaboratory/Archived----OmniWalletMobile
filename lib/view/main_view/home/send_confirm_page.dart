@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
 class SendConfirm extends StatelessWidget {
   static String tag = "Send Confirm";
   MainStateModel stateModel = null;
+  AccountInfo accountInfo = null;
   SendInfo _sendInfo ;
   @override
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     this._sendInfo = stateModel.sendInfo;
+    accountInfo = stateModel.currAccountInfo;
     print(this._sendInfo);
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
@@ -90,8 +93,7 @@ class SendConfirm extends StatelessWidget {
               hasRow: false,
               context: context,
               callback: (){
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
+                this.transfer(context);
               },
               title: WalletLocalizations.of(context).common_btn_confirm,
               titleColor: Colors.white,
@@ -101,5 +103,25 @@ class SendConfirm extends StatelessWidget {
         ],
       ),
     );
+  }
+  transfer(BuildContext context){
+    print(accountInfo.propertyId);
+    //btc send
+    if(accountInfo.propertyId==0){
+      Future future = NetConfig.post(NetConfig.btcSend, {
+        'fromBitCoinAddress':accountInfo.jsonData['address'],
+        'toBitCoinAddress':_sendInfo.toAddress,
+        'amount':_sendInfo.amount.toString(),
+        'minerFee':_sendInfo.minerFee.toString(),
+      });
+      future.then((data){
+        if(data!=null){
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        }
+      });
+    }else{
+
+    }
   }
 }

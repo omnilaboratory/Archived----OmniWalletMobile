@@ -41,6 +41,11 @@ class NetConfig{
   /// user/transferAddress/delAddress  删除常用转账地址
   static String delAddress ='user/transferAddress/delAddress';
 
+  /// blockChain/btcSend  btc转账
+  static String btcSend ='blockChain/btcSend';
+
+
+
   static post(String url,Map<String, String> data) async{
     return _sendData("post", url, data);
   }

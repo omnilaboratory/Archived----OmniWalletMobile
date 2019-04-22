@@ -66,7 +66,13 @@ class WalletModel extends Model{
             for(int j=0;j<assets.length;j++){
               var asset = assets[j];
               double money = 0;
-              accountInfo.add(AccountInfo(name: asset['name'],amount:double.parse(asset['balance'].toString()),legalTender:money ));
+              accountInfo.add(AccountInfo(
+                  name: asset['name'],
+                  amount:double.parse(asset['balance'].toString()),
+                  legalTender:money,
+                  jsonData: asset,
+                  propertyId: asset['propertyid']
+              ));
               totalMoney+=money;
             }
             WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);

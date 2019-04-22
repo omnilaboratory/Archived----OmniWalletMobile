@@ -40,7 +40,12 @@ class AccountInfo extends BaseInfo{
   double amount;
   //法币
   double legalTender;
-  AccountInfo({String name, this.iconUrl,this.amount,this.legalTender}):super(name:name);
+  //服务器传递过来的信息
+  Map jsonData;
+
+  int propertyId;
+
+  AccountInfo({String name, this.iconUrl,this.amount,this.legalTender,this.jsonData,this.propertyId}):super(name:name);
 }
 
 

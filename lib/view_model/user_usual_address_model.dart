@@ -17,7 +17,7 @@ class UserUsualAddressModel extends Model{
   }
 
   UsualAddressInfo get currSelectedUsualAddress{
-    if(this._usualAddressList.length>0&&_currSelectedIndex>-1){
+    if(this._usualAddressList!=null&&this._usualAddressList.length>0&&_currSelectedIndex>-1){
       return this._usualAddressList[this._currSelectedIndex];
     }else{
       print("get nothing0");
