@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:wallet_app/l10n/chinese_local.dart';
 
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
@@ -122,10 +123,12 @@ class _MyAppState extends State<MyApp> {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           WalletLocalizationsDelegate.delegate,
+          ChineseCupertinoLocalizations.delegate,  // Fix for Flutter Bug
         ],
         supportedLocales: [
           const Locale('zh','CH'),
           const Locale('en','US'),
+          const Locale('zh',''),  // Fix for Flutter Bug
         ],
         routes: routes,
         // home: BackupWalletIndex(),
