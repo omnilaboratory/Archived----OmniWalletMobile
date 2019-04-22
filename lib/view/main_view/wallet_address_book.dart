@@ -27,9 +27,10 @@ class _AddressBookState extends State<AddressBook> {
       stateModel.usualAddressList = null;
     }
     _newAddressInfo = UsualAddressInfo();
+    _usualAddressList = stateModel.usualAddressList;
+
     return ScopedModelDescendant<MainStateModel>(builder: (context, child, model)
     {
-      _usualAddressList = model.usualAddressList;
       return Scaffold(
         appBar: AppBar(
           title: Text(AddressBook.tag), elevation: 0,

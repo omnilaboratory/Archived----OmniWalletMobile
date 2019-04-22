@@ -25,7 +25,6 @@ class _WalletSendState extends State<WalletSend> {
   UsualAddressInfo _usualAddressInfo;
   final key = new GlobalKey<ScaffoldState>();
 
-
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String _toAddress;
   num _amount;
@@ -40,16 +39,24 @@ class _WalletSendState extends State<WalletSend> {
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
-    walletInfo = stateModel.currWalletInfo;
-    accountInfo = stateModel.currAccountInfo;
+    if(stateModel==null){
+      stateModel = MainStateModel().of(context);
+      walletInfo = stateModel.currWalletInfo;
+      accountInfo = stateModel.currAccountInfo;
+      stateModel.currSelectedUsualAddressIndex  = -1;
+    }
+
     _usualAddressInfo = stateModel.currSelectedUsualAddress;
-    return Scaffold(
-        key: this.key,
-        backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(title: Text(accountInfo.name +' '+ WalletLocalizations.of(context).wallet_detail_content_send),),
-        body: this.body()
-    );
+
+    return ScopedModelDescendant<MainStateModel>(
+        builder: (context, child, model) {
+          return Scaffold(
+              key: this.key,
+              backgroundColor: Theme.of(context).canvasColor,
+              appBar: AppBar(title: Text(accountInfo.name +' '+ WalletLocalizations.of(context).wallet_detail_content_send),),
+              body: this.body()
+          );
+    });
   }
 
   Widget body(){
@@ -192,10 +199,11 @@ class _WalletSendState extends State<WalletSend> {
           );
 
     if(_usualAddressInfo!=null){
-        if(addressController.text.length==0){
-          addressController.text =_usualAddressInfo.address;
-        }
+      addressController.text =_usualAddressInfo.address;
+    }else{
+      addressController.text='';
     }
+
     return SingleChildScrollView(
       child: Form(
         key: _formKey,

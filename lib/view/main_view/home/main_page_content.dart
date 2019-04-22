@@ -24,9 +24,10 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     if(stateModel==null)
       stateModel = MainStateModel().of(context);
 
+    walletInfoes = stateModel.walletInfoes;
+
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
-          walletInfoes = model.walletInfoes;
           return ListView.builder(
               itemCount: walletInfoes.length,
               itemBuilder: (BuildContext context, int index){

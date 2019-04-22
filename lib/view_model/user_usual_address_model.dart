@@ -12,15 +12,14 @@ class UserUsualAddressModel extends Model{
     return this._currSelectedIndex;
   }
   set currSelectedUsualAddressIndex(int index){
-    notifyListeners();
     this._currSelectedIndex = index;
+    notifyListeners();
   }
 
   UsualAddressInfo get currSelectedUsualAddress{
     if(this._usualAddressList!=null&&this._usualAddressList.length>0&&_currSelectedIndex>-1){
       return this._usualAddressList[this._currSelectedIndex];
     }else{
-      print("get nothing0");
       return null;
     }
   }
@@ -40,6 +39,7 @@ class UserUsualAddressModel extends Model{
             _usualAddressList.add(UsualAddressInfo(id:list[i]['id'], name: list[i]['nickname'],address:list[i]['address'],note: list[i]['note']));
           }
         }
+        notifyListeners();
       });
     }
     notifyListeners();

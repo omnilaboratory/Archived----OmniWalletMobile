@@ -78,6 +78,7 @@ class WalletModel extends Model{
             WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
+          notifyListeners();
         }
       });
     }
