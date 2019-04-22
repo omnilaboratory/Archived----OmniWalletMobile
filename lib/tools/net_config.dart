@@ -42,6 +42,12 @@ class NetConfig{
   /// user/transferAddress/delAddress  删除常用转账地址
   static String delAddress ='user/transferAddress/delAddress';
 
+  /// blockChain/sendCmd  发送omni命令
+  static String sendCmd ='blockChain/sendCmd';
+
+  /// 获取用户公钥
+  static String getUserRSAEncrypt ='user/getUserRSAEncrypt';
+
   /// blockChain/btcSend  btc转账
   static String btcSend ='blockChain/btcSend';
 

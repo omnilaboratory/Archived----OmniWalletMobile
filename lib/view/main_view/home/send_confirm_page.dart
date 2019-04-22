@@ -1,23 +1,31 @@
+import 'dart:convert';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/model/mnemonic_phrase_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
+import 'package:simple_rsa/simple_rsa.dart';
 
 class SendConfirm extends StatelessWidget {
   static String tag = "Send Confirm";
   MainStateModel stateModel = null;
   AccountInfo accountInfo = null;
+  WalletInfo walletInfo = null;
   SendInfo _sendInfo ;
   @override
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     this._sendInfo = stateModel.sendInfo;
+    walletInfo =  stateModel.currWalletInfo;
     accountInfo = stateModel.currAccountInfo;
-    print(this._sendInfo);
+
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: AppBar(
@@ -108,19 +116,28 @@ class SendConfirm extends StatelessWidget {
     print(accountInfo.propertyId);
     //btc send
     if(accountInfo.propertyId==0){
-      Future future = NetConfig.post(NetConfig.btcSend, {
-        'fromBitCoinAddress':accountInfo.jsonData['address'],
-        'toBitCoinAddress':_sendInfo.toAddress,
-        'amount':_sendInfo.amount.toString(),
-        'minerFee':_sendInfo.minerFee.toString(),
-      });
-      future.then((data){
-        if(data!=null){
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-        }
+      Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
+      futureRSA.then((publicKey){
+        HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
+        var encryptedFuture = encryptString(wallet.wif, publicKey);
+        encryptedFuture.then((encryptedString){
+          Future future = NetConfig.post(NetConfig.btcSend, {
+            'fromBitCoinAddress':accountInfo.jsonData['address'],
+            'privkey':encryptedString,
+            'toBitCoinAddress':_sendInfo.toAddress,
+            'amount':_sendInfo.amount.toString(),
+            'minerFee':_sendInfo.minerFee.toString(),
+          });
+          future.then((data){
+            if(data!=null){
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            }
+          });
+        });
       });
     }else{
+
 
     }
   }
