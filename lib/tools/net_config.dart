@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
+//  static String apiHost='http://192.168.0.106:8080/api/';
   static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String imageHost='http://62.234.169.68:8080';
   static String userMD5Id = null;
@@ -33,7 +34,12 @@ class NetConfig{
   /// wallet/address/list  地址列表
   static String addressList ='wallet/address/list';
 
-
+  /// user/transferAddress/create  创建新的常用转账地址
+  static String createTransferAddress='user/transferAddress/edit';
+  /// user/transferAddress/list  转账地址列表
+  static String transferAddressList ='user/transferAddress/list';
+  /// user/transferAddress/delAddress  删除常用转账地址
+  static String delAddress ='user/transferAddress/delAddress';
 
   static post(String url,Map<String, String> data) async{
     return _sendData("post", url, data);
@@ -75,9 +81,6 @@ class NetConfig{
       int status = result['status'];
       if(status==1){
         var data = result['data'];
-        if(data==null){
-          data = [];
-        }
         return data;
       }
       if(status==0){

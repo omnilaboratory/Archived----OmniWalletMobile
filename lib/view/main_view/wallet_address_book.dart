@@ -1,8 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class AddressBook extends StatefulWidget {
@@ -22,11 +22,14 @@ class _AddressBookState extends State<AddressBook> {
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
-    _usualAddressList = stateModel.usualAddressList;
+    if(stateModel==null){
+      stateModel = MainStateModel().of(context);
+      stateModel.usualAddressList = null;
+    }
     _newAddressInfo = UsualAddressInfo();
     return ScopedModelDescendant<MainStateModel>(builder: (context, child, model)
     {
+      _usualAddressList = model.usualAddressList;
       return Scaffold(
         appBar: AppBar(
           title: Text(AddressBook.tag), elevation: 0,
@@ -50,15 +53,15 @@ class _AddressBookState extends State<AddressBook> {
            return Form(
              key: _formKey,
              child: SimpleDialog(
-               shape: RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                  borderRadius: BorderRadius.circular(8.0),
-               ),
-               contentPadding: EdgeInsets.symmetric(horizontal: 20),
-              title: Column(
-                children: <Widget>[
-                  Text(WalletLocalizations.of(context).address_book_title),
-                ],
-                mainAxisAlignment: MainAxisAlignment.start
+                ),
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                title: Column(
+                  children: <Widget>[
+                    Text(WalletLocalizations.of(context).address_book_title),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.start
               ),
               children: <Widget>[
                 Padding(
@@ -73,6 +76,7 @@ class _AddressBookState extends State<AddressBook> {
                     onSaved: (val){
                       _newAddressInfo.name = val;
                     },
+                    style: TextStyle(fontSize: 12),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: WalletLocalizations.of(context).createNewAddress_hint1
@@ -93,6 +97,7 @@ class _AddressBookState extends State<AddressBook> {
                       onSaved: (val){
                         _newAddressInfo.address = val;
                       },
+                      style: TextStyle(fontSize: 12),
                       decoration: InputDecoration(
                           border: InputBorder.none,
                         hintText: WalletLocalizations.of(context).wallet_send_page_input_address_hint
@@ -110,6 +115,7 @@ class _AddressBookState extends State<AddressBook> {
                       if(val==null) val='';
                       _newAddressInfo.note = val;
                     },
+                    style: TextStyle(fontSize: 12),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                       hintText: WalletLocalizations.of(context).wallet_send_page_title_note
@@ -120,43 +126,61 @@ class _AddressBookState extends State<AddressBook> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20,bottom: 36),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+//                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      CustomRaiseButton( // Next button.
-                        context: context,
-                        title: WalletLocalizations.of(context).createNewAddress_Cancel,
-                        titleColor: Colors.blue,
-                        color: AppCustomColor.btnCancel,
-                        callback: () {
-                          Navigator.of(context).pop();
-                        },
+                      Expanded(
+                        child: RaisedButton(
+                          elevation: 0,
+                          highlightElevation: 0,
+                          onPressed:  () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                              WalletLocalizations.of(context).createNewAddress_Cancel,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color:Colors.blue,
+                              )
+                            ),
+                          color: AppCustomColor.btnCancel,
+                        ),
                       ),
                       SizedBox(width: 20,),
-                      CustomRaiseButton( // Next button.
-                        context: context,
-                        title: WalletLocalizations.of(context).common_btn_save,
-                        titleColor: Colors.white,
-                        color: AppCustomColor.btnConfirm,
-                        callback: () {
-                          var _form = _formKey.currentState;
-                          if (_form.validate()) {
-                            _form.save();
-                            if(_selectItem==null){
-                              stateModel.addAddress(_newAddressInfo);
-                            }else
-                            {
-                              _usualAddressList.remove(_selectItem);
-                              stateModel.addAddress(_newAddressInfo);
+                      Expanded(
+                        child: RaisedButton(
+                          elevation: 0,
+                          highlightElevation: 0,
+                          onPressed:  () {
+                            var _form = _formKey.currentState;
+                            if (_form.validate()) {
+                              _form.save();
+                              if(_selectItem==null){
+                                stateModel.addAddress(_newAddressInfo);
+                              }else
+                              {
+                                _newAddressInfo.id = _selectItem.id;
+                                stateModel.addAddress(_newAddressInfo);
+                              }
+                              Navigator.of(context).pop();
                             }
-                            Navigator.of(context).pop();
-                          }
-                        },
+                          },
+                          child: Text(
+                              WalletLocalizations.of(context).common_btn_save,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color:Colors.white,
+                              )
+                          ),
+                          color: AppCustomColor.btnConfirm,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
-          ),
+            ),
            );
         },
       );
@@ -191,7 +215,7 @@ class _AddressBookState extends State<AddressBook> {
             caption: 'Delete',
             color: Colors.red,
             icon: Icons.delete,
-            onTap: () => stateModel.delAddress(index),
+            onTap: () => stateModel.delAddress(node.id),
           ),
         ],
         child: Container(
@@ -216,7 +240,12 @@ class _AddressBookState extends State<AddressBook> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
-                    child: Text('${node.address}',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300),),
+                    child: AutoSizeText('${node.address}',
+                      style: TextStyle(fontSize: 14,fontWeight: FontWeight.w300),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      minFontSize: 10,
+                    ),
                   ),
                   Divider(
                     color: Theme.of(context).dividerColor,

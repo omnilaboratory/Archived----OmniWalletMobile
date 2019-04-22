@@ -92,8 +92,9 @@ class SendInfo{
  * 用户常用地址
  */
 class UsualAddressInfo extends BaseInfo{
+  int id;
   String address;
   String note;
-  UsualAddressInfo({String name, this.address,this.note}):super(name:name);
+  UsualAddressInfo({this.id, String name, this.address,this.note}):super(name:name);
 }
 

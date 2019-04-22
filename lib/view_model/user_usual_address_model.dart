@@ -5,7 +5,7 @@ import 'package:wallet_app/view_model/state_lib.dart';
  */
 class UserUsualAddressModel extends Model{
 
-  List<UsualAddressInfo> _usualAddressList=[];
+  List<UsualAddressInfo> _usualAddressList;
 
   int _currSelectedIndex=-1;
   get currSelectedUsualAddressIndex{
@@ -25,23 +25,43 @@ class UserUsualAddressModel extends Model{
     }
   }
 
+  set usualAddressList(List<UsualAddressInfo> list){
+    _usualAddressList = list;
+  }
+
   get usualAddressList{
-    if(this._usualAddressList==null){
-      this._usualAddressList = [];
+    if(_usualAddressList==null){
+      _usualAddressList = [];
+      Future future = NetConfig.get(NetConfig.transferAddressList);
+      future.then((data){
+        if(data!=null){
+          List list = data ;
+          for(int i=0;i<list.length;i++){
+            _usualAddressList.add(UsualAddressInfo(id:list[i]['id'], name: list[i]['nickname'],address:list[i]['address'],note: list[i]['note']));
+          }
+        }
+      });
     }
+    notifyListeners();
     return this._usualAddressList;
   }
 
   addAddress(UsualAddressInfo info){
     if(info!=null){
-      this._usualAddressList.insert(0, info);
-      notifyListeners();
+      Future future = NetConfig.post(NetConfig.createTransferAddress,{'id':info.id==null?'':info.id.toString(),'address':info.address,'note':info.note,'nickname':info.name});
+      future.then((data){
+        _usualAddressList = null;
+        notifyListeners();
+      });
     }
   }
 
   delAddress(int index){
-    this._usualAddressList.removeAt(index);
-    notifyListeners();
+    Future future = NetConfig.get(NetConfig.delAddress+'?id='+index.toString());
+    future.then((data){
+      _usualAddressList = null;
+      notifyListeners();
+    });
   }
 
 }

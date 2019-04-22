@@ -76,6 +76,17 @@ class CustomRaiseButton extends StatelessWidget {
       ));
     }
 
+//    list.add(
+//      Text(
+//        this.title,
+//        maxLines: 1,
+//        style: TextStyle(
+//          fontSize: titleSize,
+//          // fontSize: 12,
+//          color:    titleColor,
+//        )
+//      )
+//    );
     list.add(
       AutoSizeText(
         this.title,
