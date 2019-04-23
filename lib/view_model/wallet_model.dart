@@ -62,6 +62,7 @@ class WalletModel extends Model{
       Future future = NetConfig.get(NetConfig.addressList);
       future.then((data){
         if(data!=null){
+          this._walletInfoes = [];
           List list = data['data'] ;
           for(int i=0;i<list.length;i++){
             var node = list[i];

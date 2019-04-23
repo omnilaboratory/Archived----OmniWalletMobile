@@ -26,10 +26,11 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
     print('mainIndex');
     stateModel.walletInfoes = null;
-    walletInfoes = stateModel.walletInfoes;
+//    walletInfoes = stateModel.walletInfoes;
 
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
+          walletInfoes = model.walletInfoes;
           return ListView.builder(
               itemCount: walletInfoes.length,
               itemBuilder: (BuildContext context, int index){
@@ -108,15 +109,11 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
   List<Widget> buildItemes(BuildContext context, int index) {
     WalletInfo dataInfo = walletInfoes[index];
     List<Widget> list = List();
-    list.add(Container(height: 1,color: Colors.grey[100],));
     for (int i = 0; i < dataInfo.accountInfoes.length; i++) {
       AccountInfo accountInfo = dataInfo.accountInfoes[i];
       list.add(
         Container(
-          margin: EdgeInsets.only(left: 16,bottom: 12,top: 12),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey[100]))
-          ),
+          margin: EdgeInsets.only(left: 50,bottom: 12,top: 6),
           child: InkWell(
             onTap: (){ this.onClickItem(index,i);},
             child: Container(
@@ -162,7 +159,6 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
         )
       );
     }
-    list.add(SizedBox(height: 20,));
     return list;
   }
   //点击item
