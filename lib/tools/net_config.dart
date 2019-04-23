@@ -11,6 +11,7 @@ import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
 //  static String apiHost='http://192.168.0.106:8080/api/';
+//  static String apiHost='http://172.21.100.248:8080/api/';
 
   static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String imageHost='http://62.234.169.68:8080';
@@ -91,16 +92,17 @@ class NetConfig{
     if(response.statusCode==200){
       var result = json.decode(response.body);
       int status = result['status'];
+      print(result);
       if(status==1){
         var data = result['data'];
         return data;
       }
       if(status==0){
-        showToast(result['msg']);
+        showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
       }
       if(status==403){
         setUserID(null);
-        showToast(result['msg']);
+        showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
       }
     }else{
       showToast('server is sleep, please wait');

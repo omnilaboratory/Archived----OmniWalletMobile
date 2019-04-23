@@ -44,7 +44,7 @@ class BackupMnemonicPhrase extends Model{
       return result;
     }
     for(int i=0;i<this.wordList.length;i++){
-      result += '${i+1}:'+this.wordList[i].content+",";
+      result += this.wordList[i].content+' ';
     }
     result = result.substring(0,result.length-1);
     return result;

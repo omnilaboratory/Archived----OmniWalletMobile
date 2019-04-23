@@ -24,6 +24,8 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     if(stateModel==null)
       stateModel = MainStateModel().of(context);
 
+    print('mainIndex');
+    stateModel.walletInfoes = null;
     walletInfoes = stateModel.walletInfoes;
 
     return ScopedModelDescendant<MainStateModel>(

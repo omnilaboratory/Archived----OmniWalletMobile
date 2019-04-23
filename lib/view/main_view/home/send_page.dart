@@ -200,8 +200,6 @@ class _WalletSendState extends State<WalletSend> {
 
     if(_usualAddressInfo!=null){
       addressController.text =_usualAddressInfo.address;
-    }else{
-      addressController.text='';
     }
 
     return SingleChildScrollView(

@@ -122,13 +122,14 @@ class SendConfirm extends StatelessWidget {
 //        var encryptedFuture = encryptString(wallet.wif, publicKey);
 //        encryptedFuture.then((encryptedString){
           Future future = NetConfig.post(NetConfig.btcSend, {
-            'fromBitCoinAddress':accountInfo.jsonData['address'],
+            'fromBitCoinAddress':wallet.address,
             'privkey':wallet.wif,
             'toBitCoinAddress':_sendInfo.toAddress,
             'amount':_sendInfo.amount.toString(),
             'minerFee':_sendInfo.minerFee.toString(),
           });
           future.then((data){
+            print(data);
             if(data!=null){
               Navigator.of(context).pop();
               Navigator.of(context).pop();

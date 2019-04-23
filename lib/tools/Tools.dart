@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Tools{
@@ -25,6 +26,16 @@ class Tools{
   static copyToClipboard(final String text) {
     if (text == null) return;
     Clipboard.setData(new ClipboardData(text: text));
+  }
+
+  static showToast(String msg,{Toast toastLength = Toast.LENGTH_SHORT}){
+    Fluttertoast.cancel();
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: toastLength,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIos: 1,
+    );
   }
 
   /// get image path

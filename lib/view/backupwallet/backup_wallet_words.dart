@@ -63,8 +63,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
                 onPressed: (){
                   var str = stateModel.mnemonicPhraseString;
                   Tools.copyToClipboard(str);
-                  print(str);
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Text('success'),duration: Duration(seconds: 2),));
+                  Tools.showToast('copy success');
                 },
                 child: Text(WalletLocalizations.of(context).common_btn_copy,style: TextStyle(color: Colors.blue,fontSize: 16),)
             ),

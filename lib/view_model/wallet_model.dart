@@ -51,6 +51,11 @@ class WalletModel extends Model{
     return _currTradeInfo;
   }
 
+  set walletInfoes(List<WalletInfo> info){
+    this._walletInfoes = info;
+    notifyListeners();
+  }
+
   List<WalletInfo> get  walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
@@ -87,6 +92,14 @@ class WalletModel extends Model{
   }
 
   addWalletInfo(WalletInfo info) {
+    List<AccountInfo> accountInfo = [];
+    accountInfo.add(AccountInfo(
+        name: 'Btc',
+        amount:0,
+        legalTender:0,
+        propertyId: 0
+    ));
+    info.accountInfoes = accountInfo;
     _walletInfoes.add(info);
     notifyListeners();
   }
