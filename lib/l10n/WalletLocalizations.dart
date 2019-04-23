@@ -173,11 +173,13 @@ class WalletLocalizations{
       'languagePageSaveButton' : '保存',
       
       'createAccountPageAppBarTitle' : '创建新账号',
-      'createAccountPageTooltip_1' : '账号名',
+      'createAccountPageTooltip_1' : '昵称',
       'createAccountPageTooltip_2' : 'PIN码',
       'createAccountPageTooltip_3' : '重复PIN码',
       'createAccountPageTooltip_4' : '最少8个字符',
       'createAccountPageButton' : '创建',
+      'createAccountPageErrMsgEmpty' : '不能为空',
+      'createAccountPageErrMsgLength' : '长度不够',
 
       'imagePickerBottomSheet_1' : '从手机相册选择',
       'imagePickerBottomSheet_2' : '拍照',
@@ -366,11 +368,13 @@ class WalletLocalizations{
       'languagePageSaveButton' : 'Save',
 
       'createAccountPageAppBarTitle' : 'Create New Account',
-      'createAccountPageTooltip_1' : 'Account name',
+      'createAccountPageTooltip_1' : 'Nick Name',
       'createAccountPageTooltip_2' : 'PIN Code',
       'createAccountPageTooltip_3' : 'Confirm PIN Code',
-      'createAccountPageTooltip_4' : 'must be at least 8 characters',
+      'createAccountPageTooltip_4' : 'Should be at least 8 characters',
       'createAccountPageButton' : 'Create',
+      'createAccountPageErrMsgEmpty' : 'Should not be empty',
+      'createAccountPageErrMsgLength' : 'Length is not enough',
 
       'imagePickerBottomSheet_1' : 'Choose from Album',
       'imagePickerBottomSheet_2' : 'Take Photo',
@@ -384,6 +388,8 @@ class WalletLocalizations{
   get createAccountPageTooltip_3 => _localizedValues[locale.languageCode]['createAccountPageTooltip_3'];
   get createAccountPageTooltip_4 => _localizedValues[locale.languageCode]['createAccountPageTooltip_4'];
   get createAccountPageButton => _localizedValues[locale.languageCode]['createAccountPageButton'];
+  get createAccountPageErrMsgEmpty => _localizedValues[locale.languageCode]['createAccountPageErrMsgEmpty'];
+  get createAccountPageErrMsgLength => _localizedValues[locale.languageCode]['createAccountPageErrMsgLength'];
 
   // Select Language Page
   get languagePageAppBarTitle => _localizedValues[locale.languageCode]['languagePageAppBarTitle'];

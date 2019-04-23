@@ -27,7 +27,7 @@ class _CreateAccountState extends State<CreateAccount> {
   /// should save data.
   String _strNickName, _strPinCode, _strRepeatPinCode;
 
-  TextEditingController _nickNameController   = TextEditingController();
+  TextEditingController _nickNameController      = TextEditingController();
   TextEditingController _pinCodeController       = TextEditingController();
   TextEditingController _repeatPinCodeController = TextEditingController();
 
@@ -243,7 +243,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validate(String val, int _textField) {
     switch (_textField) {
       case 1:
-        return _validateAccountName(val);
+        return _validateNickName(val);
       case 2:
         return _validatePinCode(val);
       case 3:
@@ -254,11 +254,11 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   ///
-  String _validateAccountName(String val) {
+  String _validateNickName(String val) {
     if (val == null || val.trim().length == 0) {
-      return 'AccountName is empty';
-    } else if (val.trim().length < 4) {
-      return 'length is enough';
+      return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
+    } else if (val.trim().length < 1) {
+      return WalletLocalizations.of(context).createAccountPageErrMsgLength;
     } else {
       return null;
     }
@@ -267,9 +267,9 @@ class _CreateAccountState extends State<CreateAccount> {
   ///
   String _validatePinCode(String val) {
     if (val == null || val.trim().length == 0) {
-      return '_strPinCode is empty';
+      return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
     } else if (val.trim().length < 3) {
-      return 'length is enough';
+      return WalletLocalizations.of(context).createAccountPageErrMsgLength;
     } else {
       return null;
     }
@@ -278,9 +278,9 @@ class _CreateAccountState extends State<CreateAccount> {
   ///
   String _validateRepeatPinCode(String val) {
     if (val == null || val.trim().length == 0) {
-      return '_strRepeatPinCode is empty';
+      return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
     } else if (val.trim().length < 3) {
-      return 'length is enough';
+      return WalletLocalizations.of(context).createAccountPageErrMsgLength;
     } else {
       return null;
     }
@@ -334,8 +334,8 @@ class _CreateAccountState extends State<CreateAccount> {
       data.then((data) {
         if(data != null) {
           GlobalInfo.userInfo.mnemonic = _mnemonic;
-          GlobalInfo.userInfo.userId = _mnemonic_md5;
-          GlobalInfo.userInfo.pinCode = _pinCode_md5;
+          GlobalInfo.userInfo.userId   = _mnemonic_md5;
+          GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
 
           Navigator.of(context).pushAndRemoveUntil(
