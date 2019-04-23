@@ -140,15 +140,17 @@ class _WalletSendState extends State<WalletSend> {
                     if(val==null||val.length==0){
                       return WalletLocalizations.of(context).wallet_send_page_input_amount_error;
                     }
-                    if(num.tryParse(val) is num){
+                    if(double.tryParse(val) is num){
 
                     }else{
                       return WalletLocalizations.of(context).wallet_send_page_input_amount_error;
                     }
+                    if(double.parse(val)>=accountInfo.amount){
+                      return WalletLocalizations.of(context).wallet_send_page_input_amount_error;
+                    }
                 },
                 onSaved: (val){
-                  print(val);
-                  this._amount = num.parse(val);
+                  this._amount = double.parse(val);
                 },
                 keyboardType:TextInputType.number ,
                 scrollPadding: EdgeInsets.only(top: 0),

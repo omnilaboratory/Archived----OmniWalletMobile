@@ -21,12 +21,10 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(stateModel==null)
+    if(stateModel==null){
       stateModel = MainStateModel().of(context);
-
-    stateModel.walletInfoes = null;
-    walletInfoes = stateModel.walletInfoes;
-
+      stateModel.walletInfoes = null;
+    }
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
           walletInfoes = model.walletInfoes;
@@ -90,11 +88,11 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               ),
               SizedBox(height: 10,),
               AutoSizeText(
-                dataInfo.address,
+                dataInfo.address.replaceRange(6, 28, '...'),
                 minFontSize: 9,
                 style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 18
+                  fontSize: 14
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

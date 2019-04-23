@@ -53,7 +53,7 @@ class WalletModel extends Model{
 
   set walletInfoes(List<WalletInfo> info){
     this._walletInfoes = info;
-    notifyListeners();
+//    notifyListeners();
   }
 
   List<WalletInfo> get  walletInfoes {
