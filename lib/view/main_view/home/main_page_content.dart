@@ -21,9 +21,8 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(stateModel==null){
+    if(stateModel==null)
       stateModel = MainStateModel().of(context);
-    }
 
     stateModel.walletInfoes = null;
     walletInfoes = stateModel.walletInfoes;
