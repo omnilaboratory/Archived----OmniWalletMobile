@@ -21,12 +21,12 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(stateModel==null)
+    if(stateModel==null){
       stateModel = MainStateModel().of(context);
+    }
 
-    print('mainIndex');
     stateModel.walletInfoes = null;
-//    walletInfoes = stateModel.walletInfoes;
+    walletInfoes = stateModel.walletInfoes;
 
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
