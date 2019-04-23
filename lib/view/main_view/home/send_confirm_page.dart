@@ -11,7 +11,7 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
-import 'package:simple_rsa/simple_rsa.dart';
+// import 'package:simple_rsa/simple_rsa.dart';
 
 class SendConfirm extends StatelessWidget {
   static String tag = "Send Confirm";
