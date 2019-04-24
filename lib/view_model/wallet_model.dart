@@ -1,3 +1,4 @@
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'dart:math';
@@ -84,7 +85,21 @@ class WalletModel extends Model{
             WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
-          notifyListeners();
+          if(_walletInfoes.length==0){
+            int addressIndex = walletInfoes.length;
+            String defaultName = 'name0';
+            HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
+            WalletInfo info = WalletInfo(name: defaultName,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
+            Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
+            result.then((data){
+              if(data!=null){
+                this.addWalletInfo(info);
+                notifyListeners();
+              }
+            });
+          }else{
+            notifyListeners();
+          }
         }
       });
     }

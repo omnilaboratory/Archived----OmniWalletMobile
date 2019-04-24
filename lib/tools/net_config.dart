@@ -80,14 +80,14 @@ class NetConfig{
     }
 
     url = apiHost + url;
-    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
+//    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
     if(reqType=="get"){
       response = await http.get(url,headers: header);
     }else{
       response =  await http.post(url,headers: header, body: data);
     }
-    Fluttertoast.cancel();
+//    Fluttertoast.cancel();
 
     if(response.statusCode==200){
       var result = json.decode(response.body);

@@ -168,6 +168,12 @@ class _RestoreAccountState extends State<RestoreAccount> {
     split.removeWhere((item) {
       return item == ' ' || item.length == 0;
     });
+    String pin = this.controller1.text;
+    String pin2 = this.controller2.text;
+    if(pin.isEmpty||pin.isEmpty||pin != pin2){
+      return null;
+    }
+
     if (split.length == 12) {
       return () {
         String pin = this.controller1.text;

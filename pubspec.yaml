@@ -65,7 +65,7 @@ dependencies:
 
   bitcoin_bip44: ^0.1.1
 
-  fluttertoast: ^3.0.3
+  fluttertoast: ^3.0.4
   #  Flutter plugin to encrypt, decrypt (RSA/ECB/PCSK1), verify and sign string with a public and a private key
   # simple_rsa: ^0.0.5
 

@@ -42,7 +42,8 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   ),
                 );
               });
-        });
+          }
+        );
   }
 
   Widget buildFirstLevelHeader(int index) {
