@@ -11,9 +11,11 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/about.dart';
+import 'package:wallet_app/view/main_view/address_manage.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
+import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
 class UserCenter extends StatefulWidget {
@@ -100,7 +102,7 @@ class _UserCenterState extends State<UserCenter> {
     );
   }
 
-  // Build menu list
+  /// Build menu list
   List<Widget> _buildMenuList() {
     // list tile
     List<Widget> _list = List();
@@ -109,6 +111,7 @@ class _UserCenterState extends State<UserCenter> {
     // Icons
     List<Icon> leading_names = <Icon> [
       Icon(Icons.settings),
+      Icon(Icons.account_balance_wallet), // Wallet Addresses Management
       Icon(Icons.book),
       Icon(Icons.help),
       Icon(Icons.assignment),
@@ -132,6 +135,7 @@ class _UserCenterState extends State<UserCenter> {
     // item content
     List<String> items = <String> [
       WalletLocalizations.of(context).myProfilePageMenu1,
+      WalletLocalizations.of(context).myProfilePageMenu7,
       WalletLocalizations.of(context).myProfilePageMenu2,
       WalletLocalizations.of(context).myProfilePageMenu3,
       WalletLocalizations.of(context).myProfilePageMenu4,
@@ -141,9 +145,10 @@ class _UserCenterState extends State<UserCenter> {
 
     // Page routes
     List<String> routes = <String> [
-      Settings.tag, 
-      AddressBook.tag, 
-      Help.tag, 
+      Settings.tag,
+      WalletAddress.tag,
+      AddressBook.tag,
+      Help.tag,
       ServiceTerms.tag,
       BackupWalletIndex.tag,
       About.tag,

@@ -7,6 +7,8 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
 import 'package:wallet_app/view/main_view/about.dart';
+import 'package:wallet_app/view/main_view/address_manage.dart';
+import 'package:wallet_app/view/main_view/displayed_assets.dart';
 import 'package:wallet_app/view/main_view/feedback.dart';
 import 'package:wallet_app/view/main_view/help.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
@@ -17,14 +19,12 @@ import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info.dart';
+import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
-import 'package:bip39/bip39.dart' as bip39;
-import 'package:bitcoin_flutter/bitcoin_flutter.dart';
-import "package:bitcoin_bip44/bitcoin_bip44.dart";
 
 void main() {
 //   debugPaintSizeEnabled = true;
@@ -80,6 +80,9 @@ class _MyAppState extends State<MyApp> {
     UpdatePIN.tag: (context)           => UpdatePIN(),
     CreateAccount.tag: (context)       => CreateAccount(),
     SelectLanguage.tag: (context)      => SelectLanguage(),
+    WalletAddress.tag: (context)       => WalletAddress(),
+    AddressManage.tag: (context)       => AddressManage(),
+    DisplayedAssets.tag: (context)     => DisplayedAssets(),
   };
 
   Brightness brightness = Brightness.light;

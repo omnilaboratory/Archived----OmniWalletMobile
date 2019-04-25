@@ -2,6 +2,7 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-29
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,10 +64,8 @@ class _UserInfoState extends State<UserInfo> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      'user name',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
+                      GlobalInfo.userInfo.nickname,
+                      style: TextStyle(color: Colors.grey),
                     ),
                     SizedBox(width: 15),
                     Icon(Icons.keyboard_arrow_right),
@@ -115,14 +114,36 @@ class _UserInfoState extends State<UserInfo> {
   }
 
   void _deleteUser() {
-    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-    prefs.then((share) {
-      share.clear();
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => WelcomePageOne()), 
-        (route) => route == null,
-      );
-    });
+    showDialog(
+      context: context,
+      // barrierDismissible: false,  // user must tap button!
+      builder:  (BuildContext context) {
+        return AlertDialog(
+          title: Text(WalletLocalizations.of(context).userInfoPageButton),
+          content: Text(WalletLocalizations.of(context).userInfoPageDeleteMsg),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(WalletLocalizations.of(context).createNewAddress_Cancel),
+              onPressed: () { Navigator.of(context).pop(); },
+            ),
+
+            FlatButton(
+              child: Text(WalletLocalizations.of(context).common_btn_confirm),
+              onPressed: () {
+                Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+                prefs.then((share) {
+                  share.clear();
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => WelcomePageOne()), 
+                    (route) => route == null,
+                  );
+                });
+              },
+            )
+          ],
+        );
+      }
+    );
   }
   
   //
@@ -177,7 +198,6 @@ class _UserInfoState extends State<UserInfo> {
   // 
   Widget _avatar(image) {
     if (image == null) {
-      // return Image.asset('assets/logo-png.png', width: 35, height: 35);
       return CircleAvatar(
         child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
         backgroundColor: Colors.transparent,

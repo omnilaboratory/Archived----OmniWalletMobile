@@ -15,7 +15,7 @@ class CustomRaiseButton extends StatelessWidget {
     this.leftIconName,
     this.rightIconName,
     this.color = Colors.transparent,
-    this.height = 12.0,
+    this.height = 15.0,
     this.flex = 1
   }) : super(key: key);
 

@@ -86,11 +86,12 @@ class WalletLocalizations{
       'marketPageChange' : '涨跌幅',
 
       'myProfilePageMenu1' : '设置',
-      'myProfilePageMenu2' : '钱包地址本',
+      'myProfilePageMenu2' : '常用地址管理',
       'myProfilePageMenu3' : '帮助和反馈',
       'myProfilePageMenu4' : '服务条款',
       'myProfilePageMenu5' : '备份钱包',
       'myProfilePageMenu6' : '关于',
+      'myProfilePageMenu7' : '钱包地址管理',
 
       'settingsPageTitle' : '设置',
       'settingsPageItem_1_Title' : '多语言',
@@ -131,6 +132,7 @@ class WalletLocalizations{
       'userInfoPageItem_2_Title' : '用户名',
       'userInfoPageItem_3_Title' : '更新 PIN',
       'userInfoPageButton' : '删除当前钱包',
+      'userInfoPageDeleteMsg' : '即将移除所有信息，请确保所有数据已经备份！',
 
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
@@ -183,6 +185,19 @@ class WalletLocalizations{
 
       'imagePickerBottomSheet_1' : '从手机相册选择',
       'imagePickerBottomSheet_2' : '拍照',
+
+      'walletAddressPageAppBarTitle' : '钱包地址',
+      'walletAddressPageListTitle' : '修改钱包地址名，显示或隐藏钱包地址和资产。',
+
+      'addressManagePageAppBarTitle' : '钱包地址管理',
+      'addressManagePageEditButton' : '编辑',
+      'addressManagePageDoneButton' : '完成',
+      'addressManagePageAddressDisplay' : '地址显示',
+      'addressManagePageAssetsDisplay' : '资产显示',
+
+      'displayedAssetsPageAppBarTitle' : '资产显示',
+      'displayedAssetsPageTitle_1' : '热门资产',
+      'displayedAssetsPageTitle_2' : '其它资产',
     },
 
     'en': {
@@ -286,9 +301,10 @@ class WalletLocalizations{
       'myProfilePageMenu4' : 'Service Terms',
       'myProfilePageMenu5' : 'Back Up Wallet',
       'myProfilePageMenu6' : 'About',
+      'myProfilePageMenu7' : 'Wallet Address',
 
       'settingsPageTitle' : 'Settings',
-      'settingsPageItem_1_Title' : 'Language',
+      'settingsPageItem_1_Title' : 'Languages',
       'settingsPageItem_2_Title' : 'Currency',
       'settingsPageItem_3_Title' : 'Theme',
 
@@ -323,9 +339,11 @@ class WalletLocalizations{
 
       'userInfoPageAppBarTitle' : 'User Information',
       'userInfoPageItem_1_Title' : 'Avatar',
-      'userInfoPageItem_2_Title' : 'User Name',
+      'userInfoPageItem_2_Title' : 'Nick Name',
       'userInfoPageItem_3_Title' : 'Update PIN',
       'userInfoPageButton' : 'Delete Current Wallet',
+      'userInfoPageDeleteMsg' : "All data will be removed, "
+        "please make sure all data has been backed up!",
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
@@ -364,7 +382,7 @@ class WalletLocalizations{
       'wallet_trade_info_detail_item_confirmIndex' : 'Confirmed In Block',
       'wallet_trade_info_detail_item_confirmCount' : 'Confirmations',
 
-      'languagePageAppBarTitle' : 'Language',
+      'languagePageAppBarTitle' : 'Languages',
       'languagePageSaveButton' : 'Save',
 
       'createAccountPageAppBarTitle' : 'Create New Account',
@@ -378,8 +396,37 @@ class WalletLocalizations{
 
       'imagePickerBottomSheet_1' : 'Choose from Album',
       'imagePickerBottomSheet_2' : 'Take Photo',
+
+      'walletAddressPageAppBarTitle' : 'Wallet Address',
+      'walletAddressPageListTitle' : 'Manage wallet address name, assets display.',
+
+      'addressManagePageAppBarTitle' : 'Address Management',
+      'addressManagePageEditButton' : 'Edit',
+      'addressManagePageDoneButton' : 'Done',
+      'addressManagePageAddressDisplay' : 'Address Display',
+      'addressManagePageAssetsDisplay' : 'Assets Display',
+
+      'displayedAssetsPageAppBarTitle' : 'Displayed Assets',
+      'displayedAssetsPageTitle_1' : 'Popular Assets',
+      'displayedAssetsPageTitle_2' : 'Other Assets',
     }
   };
+
+  // Displayed Assets
+  get displayedAssetsPageAppBarTitle => _localizedValues[locale.languageCode]['displayedAssetsPageAppBarTitle'];
+  get displayedAssetsPageTitle_1 => _localizedValues[locale.languageCode]['displayedAssetsPageTitle_1'];
+  get displayedAssetsPageTitle_2 => _localizedValues[locale.languageCode]['displayedAssetsPageTitle_2'];
+
+  // wallet address Page
+  get walletAddressPageAppBarTitle => _localizedValues[locale.languageCode]['walletAddressPageAppBarTitle'];
+  get walletAddressPageListTitle => _localizedValues[locale.languageCode]['walletAddressPageListTitle'];
+
+  // address management Page
+  get addressManagePageAppBarTitle => _localizedValues[locale.languageCode]['addressManagePageAppBarTitle'];
+  get addressManagePageEditButton => _localizedValues[locale.languageCode]['addressManagePageEditButton'];
+  get addressManagePageDoneButton => _localizedValues[locale.languageCode]['addressManagePageDoneButton'];
+  get addressManagePageAddressDisplay => _localizedValues[locale.languageCode]['addressManagePageAddressDisplay'];
+  get addressManagePageAssetsDisplay => _localizedValues[locale.languageCode]['addressManagePageAssetsDisplay'];
 
   // create account Page
   get createAccountPageAppBarTitle => _localizedValues[locale.languageCode]['createAccountPageAppBarTitle'];
@@ -418,6 +465,7 @@ class WalletLocalizations{
   get userInfoPageItem_2_Title => _localizedValues[locale.languageCode]['userInfoPageItem_2_Title'];
   get userInfoPageItem_3_Title => _localizedValues[locale.languageCode]['userInfoPageItem_3_Title'];
   get userInfoPageButton => _localizedValues[locale.languageCode]['userInfoPageButton'];
+  get userInfoPageDeleteMsg => _localizedValues[locale.languageCode]['userInfoPageDeleteMsg'];
 
   // Service Terms page
   get serviceTermsPageAppBarTitle => _localizedValues[locale.languageCode]['serviceTermsPageAppBarTitle'];
@@ -468,6 +516,7 @@ class WalletLocalizations{
   get myProfilePageMenu4 => _localizedValues[locale.languageCode]['myProfilePageMenu4'];
   get myProfilePageMenu5 => _localizedValues[locale.languageCode]['myProfilePageMenu5'];
   get myProfilePageMenu6 => _localizedValues[locale.languageCode]['myProfilePageMenu6'];
+  get myProfilePageMenu7 => _localizedValues[locale.languageCode]['myProfilePageMenu7'];
 
   // Market Page
   get marketPageAppBarTitle => _localizedValues[locale.languageCode]['marketPageAppBarTitle'];
