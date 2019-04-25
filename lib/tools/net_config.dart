@@ -28,6 +28,10 @@ class NetConfig{
   static String restoreUser= 'common/restoreUser';
   /// 图片上传
   static String uploadImage='common/uploadImage';
+  /// 比特币、Usdt和欧元的对美元的实时汇率
+  static String btcAndUsdtExchangeRate='common/btcAndUsdtExchangeRate';
+
+
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
@@ -35,6 +39,12 @@ class NetConfig{
   static String createAddress='wallet/address/create';
   /// wallet/address/list  地址列表
   static String addressList ='wallet/address/list';
+
+  /**
+   * wallet/address/getTransactionsByAddress 根据address获取交易记录
+   * wallet/address/getTransactionsByAddress?address=1JiSZQDAZ16Qm8BDmNRBWa6AVsJWWeLC2U
+  */
+  static String getTransactionsByAddress ='wallet/address/getTransactionsByAddress';
 
   /// user/transferAddress/create  创建新的常用转账地址
   static String createTransferAddress='user/transferAddress/edit';

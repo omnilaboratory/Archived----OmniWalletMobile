@@ -10,6 +10,7 @@ import 'package:wallet_app/view/main_view/home/trade_info_detail.dart';
 import 'package:wallet_app/view/main_view/home/receive_page.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class WalletDetailContent extends StatefulWidget {
   @override
@@ -22,6 +23,9 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
   WalletInfo walletInfo;
   AccountInfo accountInfo;
   List<TradeInfo> tradeInfoes ;
+  List<TradeInfo> tradeInfoes1 ;
+  List<TradeInfo> tradeInfoes2 ;
+  List<TradeInfo> tradeInfoes3 ;
 
   TabController mController;
 
@@ -35,63 +39,72 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
-    tradeInfoes = stateModel.tradeInfoes;
-    walletInfo = stateModel.currWalletInfo;
-    accountInfo = stateModel.currAccountInfo;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        buildHeader(),
-        Padding(
-          padding: const EdgeInsets.only(top: 20,bottom: 10),
-          child: TabBar(
-              controller: mController,
-              labelColor: Colors.blue,
-              labelPadding: EdgeInsets.only(bottom: 4),
-              indicatorSize: TabBarIndicatorSize.label,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                Text('All'),
-                Text('Out'),
-                Text('In'),
-                Text('Failed'),
-              ]),
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: mController,
+    if(stateModel==null){
+      stateModel = MainStateModel().of(context);
+      walletInfo = stateModel.currWalletInfo;
+      accountInfo = stateModel.currAccountInfo;
+    }
+    tradeInfoes = stateModel.getTradeInfoes(walletInfo.address);
+    return ScopedModelDescendant<MainStateModel>(
+        builder: (context, child, model) {
+          tradeInfoes = model.getTradeInfoes(walletInfo.address,type: 0);
+          tradeInfoes1 = model.getTradeInfoes(walletInfo.address,type: 1);
+          tradeInfoes2 = model.getTradeInfoes(walletInfo.address,type: 2);
+          tradeInfoes3 = model.getTradeInfoes(walletInfo.address,type: 3);
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              ListView.builder(
-                  itemCount:tradeInfoes.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return detailTile(context,index);
-                  }),
-              ListView.builder(
-                  itemCount:tradeInfoes.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return detailTile(context,index);
-                  }),
-              ListView.builder(
-                  itemCount:tradeInfoes.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return detailTile(context,index);
-                  }),
-              ListView.builder(
-                  itemCount:tradeInfoes.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return detailTile(context,index);
-                  }),
+              buildHeader(),
+              Padding(
+                padding: const EdgeInsets.only(top: 20,bottom: 10),
+                child: TabBar(
+                    controller: mController,
+                    labelColor: Colors.blue,
+                    labelPadding: EdgeInsets.only(bottom: 4),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    unselectedLabelColor: Colors.grey,
+                    tabs: [
+                      Text('All'),
+                      Text('Out'),
+                      Text('In'),
+                      Text('Failed'),
+                    ]),
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: mController,
+                  children: <Widget>[
+                    ListView.builder(
+                        itemCount:tradeInfoes.length,
+                        itemBuilder: (BuildContext context, int index){
+                          return detailTile(context,index,tradeInfoes);
+                        }),
+                    ListView.builder(
+                        itemCount:tradeInfoes1.length,
+                        itemBuilder: (BuildContext context, int index){
+                          return detailTile(context,index,tradeInfoes1);
+                        }),
+                    ListView.builder(
+                        itemCount:tradeInfoes2.length,
+                        itemBuilder: (BuildContext context, int index){
+                          return detailTile(context,index,tradeInfoes2);
+                        }),
+                    ListView.builder(
+                        itemCount:tradeInfoes3.length,
+                        itemBuilder: (BuildContext context, int index){
+                          return detailTile(context,index,tradeInfoes3);
+                        }),
+                  ],
+                ),
+              ),
+              buildFooter()
             ],
-          ),
-        ),
-        buildFooter()
-      ],
-    );
+          );
+        });
   }
 
-  Widget detailTile(BuildContext context, int index){
+  Widget detailTile(BuildContext context, int index,List<TradeInfo> tradeInfoes){
     TradeInfo tradeInfo = tradeInfoes[index];
     return InkWell(
       onTap: (){

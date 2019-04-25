@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 
 class SelectLanguageModel extends Model {
@@ -15,6 +16,7 @@ class SelectLanguageModel extends Model {
 
   void setSelectedLanguage(String setLanguage) {
     _selectedLanguage = setLanguage;
+    GlobalInfo.currLanguage = setLanguage;
     notifyListeners();
   }
 
