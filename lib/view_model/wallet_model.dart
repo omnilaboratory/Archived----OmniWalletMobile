@@ -57,12 +57,18 @@ class WalletModel extends Model{
 //    notifyListeners();
   }
 
-  List<WalletInfo> get  walletInfoes {
+  List<WalletInfo> get walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
       Future future = NetConfig.get(NetConfig.addressList);
       future.then((data){
         if(data!=null){
+          double btcRate = GlobalInfo.usdRateInfo.btcs[0];
+          if(GlobalInfo.currLanguage==KeyConfig.languageEn){
+            btcRate = GlobalInfo.usdRateInfo.btcs[0];
+          }else{
+            btcRate = GlobalInfo.usdRateInfo.btcs[1];
+          }
           this._walletInfoes = [];
           List list = data['data'] ;
           for(int i=0;i<list.length;i++){
@@ -72,16 +78,19 @@ class WalletModel extends Model{
             List<AccountInfo> accountInfo = [];
             for(int j=0;j<assets.length;j++){
               var asset = assets[j];
-              double money = 0;
+              double amount = double.parse(asset['balance'].toString());
+
+              double money = amount* btcRate;
               accountInfo.add(AccountInfo(
                   name: asset['name'],
-                  amount:double.parse(asset['balance'].toString()),
+                  amount:amount,
                   legalTender:money,
                   jsonData: asset,
                   propertyId: asset['propertyid']
               ));
               totalMoney+=money;
             }
+            totalMoney = totalMoney*btcRate;
             WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
@@ -121,23 +130,48 @@ class WalletModel extends Model{
   }
 
 
-  List<TradeInfo> get tradeInfoes{
+  List<TradeInfo> getTradeInfoes(String address,{int type=0}){
+
     List<TradeInfo> infoes = [];
-    int count = 6;
-    for(int i=0;i<count;i++){
-      infoes.add(
-          TradeInfo(
-            amount: Random().nextDouble(),
-            note: "note${i}",
-            objAddress: "18TbfsFjWpi6Ad14UXS4YQ3Wume4xh5ySt",
-            tradeDate: DateTime.now(),
-            state: Random().nextInt(2),
-            confirmAmount: Random().nextInt(100),
-            txId: "txidtxidtxidtxidtxid${i}",
-            blockId: Random().nextInt(60000)
-          )
-      );
+    if(type==3){
+      notifyListeners();
+      return infoes;
     }
+    Future future = NetConfig.get(NetConfig.getTransactionsByAddress+'?address='+address);
+    future.then((data){
+      infoes = [];
+      List dataList = data['list'];
+      for(int i=0;i<dataList.length;i++){
+        var currData = dataList[i];
+        bool isSend = currData['txValue'];
+        // if out 保留send等于true
+        if(type==1){
+            if(isSend==false) continue;
+        }
+        //if in
+        if(type==2){
+            if(isSend) continue;
+        }
+        double txValue = currData['txValue'];
+        if(isSend){
+          txValue = 0-txValue;
+        }
+        infoes.add(
+            TradeInfo(
+                amount: txValue,
+                note: '',
+                objAddress: currData['targetAddress'],
+                tradeDate:currData['targetAddress'],
+                state: Random().nextInt(2),
+                confirmAmount: Random().nextInt(100),
+                txId: currData['txId'],
+                blockId: currData['blockHeight']
+            )
+        );
+      }
+      notifyListeners();
+    });
+    notifyListeners();
     return infoes;
   }
 
