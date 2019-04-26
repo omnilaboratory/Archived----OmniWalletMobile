@@ -86,6 +86,7 @@ class WalletModel extends Model{
                   amount:amount,
                   legalTender:money,
                   jsonData: asset,
+                  visible: asset['visible'],
                   propertyId: asset['propertyid']
               ));
               totalMoney+=money;
@@ -121,6 +122,7 @@ class WalletModel extends Model{
         name: 'Btc',
         amount:0,
         legalTender:0,
+        visible: true,
         propertyId: 0
     ));
     info.accountInfoes = accountInfo;
