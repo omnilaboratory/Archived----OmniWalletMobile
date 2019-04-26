@@ -105,6 +105,7 @@ class NetConfig{
       print(result);
       if(status==1){
         var data = result['data'];
+        print(data);
         return data;
       }
       if(status==0){

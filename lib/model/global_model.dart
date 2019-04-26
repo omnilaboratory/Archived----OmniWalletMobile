@@ -23,6 +23,6 @@ class  GlobalInfo{
 }
 
 class AssetToUSDRateInfo {
-  List<double> btcs = [1,1];
+  List<double> btcs = [5000,35000];
   AssetToUSDRateInfo();
 }

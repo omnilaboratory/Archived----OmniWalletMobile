@@ -23,9 +23,9 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
   WalletInfo walletInfo;
   AccountInfo accountInfo;
   List<TradeInfo> tradeInfoes ;
-  List<TradeInfo> tradeInfoes1 ;
-  List<TradeInfo> tradeInfoes2 ;
-  List<TradeInfo> tradeInfoes3 ;
+  List<TradeInfo> tradeInfoes1=[] ;
+  List<TradeInfo> tradeInfoes2=[] ;
+  List<TradeInfo> tradeInfoes3 =[];
 
   TabController mController;
 
@@ -37,21 +37,34 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
     );
   }
 
+  initData(){
+    tradeInfoes1 = [];
+    tradeInfoes2 = [];
+    tradeInfoes3 = [];
+    for(int i=0;i<this.tradeInfoes.length;i++){
+      TradeInfo info = tradeInfoes[i];
+      bool isSend = info.tradeType;
+      if(isSend){
+        tradeInfoes1.add(info);
+      }else{
+        tradeInfoes2.add(info);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-
+    print("detail content");
     if(stateModel==null){
       stateModel = MainStateModel().of(context);
       walletInfo = stateModel.currWalletInfo;
       accountInfo = stateModel.currAccountInfo;
+      stateModel.tradeInfoes = null;
     }
-    tradeInfoes = stateModel.getTradeInfoes(walletInfo.address);
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
-          tradeInfoes = model.getTradeInfoes(walletInfo.address,type: 0);
-          tradeInfoes1 = model.getTradeInfoes(walletInfo.address,type: 1);
-          tradeInfoes2 = model.getTradeInfoes(walletInfo.address,type: 2);
-          tradeInfoes3 = model.getTradeInfoes(walletInfo.address,type: 3);
+          tradeInfoes = model.getTradeInfoes(walletInfo.address);
+          initData();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -78,16 +91,20 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                     ListView.builder(
                         itemCount:tradeInfoes.length,
                         itemBuilder: (BuildContext context, int index){
+                          print("all");
                           return detailTile(context,index,tradeInfoes);
                         }),
                     ListView.builder(
                         itemCount:tradeInfoes1.length,
                         itemBuilder: (BuildContext context, int index){
+                          print(tradeInfoes1);
+                          print("out");
                           return detailTile(context,index,tradeInfoes1);
                         }),
                     ListView.builder(
                         itemCount:tradeInfoes2.length,
                         itemBuilder: (BuildContext context, int index){
+                          print("in");
                           return detailTile(context,index,tradeInfoes2);
                         }),
                     ListView.builder(
@@ -163,7 +180,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: AutoSizeText(
-                        '${tradeInfo.objAddress}',
+                        '${tradeInfo.objAddress.replaceRange(6, 28, '...')}',
                         style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                         maxLines: 1,
                         minFontSize: 9,

@@ -53,7 +53,7 @@ class TradeInfo extends BaseInfo{
   //交易额度
   num amount;
   //交易类型，转出 转入
-  num tradeType;
+  bool tradeType;
   //交易的目标地址
   String objAddress;
   //交易id

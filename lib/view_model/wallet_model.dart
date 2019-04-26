@@ -90,7 +90,7 @@ class WalletModel extends Model{
               ));
               totalMoney+=money;
             }
-            totalMoney = totalMoney*btcRate;
+            totalMoney = totalMoney;
             WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
@@ -112,7 +112,6 @@ class WalletModel extends Model{
         }
       });
     }
-    notifyListeners();
     return this._walletInfoes;
   }
 
@@ -129,50 +128,45 @@ class WalletModel extends Model{
     notifyListeners();
   }
 
-
-  List<TradeInfo> getTradeInfoes(String address,{int type=0}){
-
+  List<TradeInfo> tradeInfoes = null;
+  List<TradeInfo> getTradeInfoes(String address){
+    print('getTradeInfoes');
     List<TradeInfo> infoes = [];
-    if(type==3){
-      notifyListeners();
-      return infoes;
+    if(tradeInfoes==null){
+      Future future = NetConfig.get(NetConfig.getTransactionsByAddress+'?address='+address);
+      future.then((data){
+        if(data!=null){
+          tradeInfoes = [];
+          List dataList = data['list'];
+          for(int i=0;i<dataList.length;i++){
+            var currData = dataList[i];
+            bool isSend = currData['isSend'];
+            double txValue = currData['txValue'];
+            if(isSend){
+              txValue = 0-txValue;
+            }
+            tradeInfoes.add(
+                TradeInfo(
+                    amount: txValue,
+                    note: '',
+                    tradeType: isSend,
+                    objAddress: currData['targetAddress'],
+                    tradeDate:DateTime.now(),
+                    state: Random().nextInt(2),
+                    confirmAmount: Random().nextInt(100),
+                    txId: currData['txId'],
+                    blockId: currData['blockHeight']
+                )
+            );
+          }
+          notifyListeners();
+          return tradeInfoes;
+        }
+      });
     }
-    Future future = NetConfig.get(NetConfig.getTransactionsByAddress+'?address='+address);
-    future.then((data){
-      infoes = [];
-      List dataList = data['list'];
-      for(int i=0;i<dataList.length;i++){
-        var currData = dataList[i];
-        bool isSend = currData['txValue'];
-        // if out 保留send等于true
-        if(type==1){
-            if(isSend==false) continue;
-        }
-        //if in
-        if(type==2){
-            if(isSend) continue;
-        }
-        double txValue = currData['txValue'];
-        if(isSend){
-          txValue = 0-txValue;
-        }
-        infoes.add(
-            TradeInfo(
-                amount: txValue,
-                note: '',
-                objAddress: currData['targetAddress'],
-                tradeDate:currData['targetAddress'],
-                state: Random().nextInt(2),
-                confirmAmount: Random().nextInt(100),
-                txId: currData['txId'],
-                blockId: currData['blockHeight']
-            )
-        );
-      }
-      notifyListeners();
-    });
-    notifyListeners();
-    return infoes;
+
+    if(tradeInfoes==null) tradeInfoes=[];
+    return tradeInfoes;
   }
 
   /**
