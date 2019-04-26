@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:wallet_app/view/welcome/select_language.dart';
+import 'package:wallet_app/view/main_view/address_manage.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class WalletAddress extends StatefulWidget {
@@ -16,6 +16,10 @@ class WalletAddress extends StatefulWidget {
 }
 
 class _WalletAddressState extends State<WalletAddress> {
+
+  List<WalletInfo> _walletInfoes;
+  MainStateModel stateModel = null;
+
   @override
   Widget build(BuildContext context) {
 
@@ -40,23 +44,21 @@ class _WalletAddressState extends State<WalletAddress> {
 
   /// wallet address list
   List<Widget> _addressList() {
+
+    if (stateModel == null) {
+      stateModel = MainStateModel().of(context);
+      _walletInfoes = stateModel.walletInfoes;
+    }
+    print('==> address amount = ${_walletInfoes.length}');
+
     // list tile
     List<Widget> _list = List();
 
-    // addressName
-    List<String> addressName = <String> [
-      WalletLocalizations.of(context).settingsPageItem_1_Title,
-      WalletLocalizations.of(context).settingsPageItem_2_Title,
-      WalletLocalizations.of(context).settingsPageItem_3_Title,
-    ];
+    // title
+    _list.add(_listTitle());
 
-    // address string
-    List<String> address = <String> [
-      SelectLanguage.tag, '11', '22'
-    ];
-
-    for (int i = 0; i < addressName.length; i++) {
-      _list.add(_menuItem(addressName[i], address[i]));
+    for (int i = 0; i < _walletInfoes.length; i++) {
+      _list.add(_menuItem(_walletInfoes[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -64,16 +66,26 @@ class _WalletAddressState extends State<WalletAddress> {
   }
 
   ///
-  Widget _menuItem(String strAddressName, String strAddress) {
+  Widget _listTitle() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Text(
+        WalletLocalizations.of(context).walletAddressPageListTitle
+      ),
+    );
+  }
+
+  ///
+  Widget _menuItem(WalletInfo walletData) {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        title: Text(strAddressName),
+        title: Text(walletData.name),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              strAddress,
+              walletData.address.replaceRange(6, walletData.address.length - 6, '...'),
               style: TextStyle(
                 color: Colors.grey,
               ),
@@ -83,7 +95,15 @@ class _WalletAddressState extends State<WalletAddress> {
           ],
         ),
 
-        onTap: () { Navigator.of(context).pushNamed('route'); },
+        // onTap: () { Navigator.of(context).pushNamed(AddressManage.tag); },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddressManage(data: walletData),
+            ),
+          );
+        },
       ),
     );
   }
