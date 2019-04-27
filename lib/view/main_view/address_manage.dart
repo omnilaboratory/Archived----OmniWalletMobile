@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/main_view/displayed_assets.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
@@ -23,11 +24,22 @@ class AddressManage extends StatefulWidget {
 
 class _AddressManageState extends State<AddressManage> {
 
-  bool isEditing = false;
-  bool isAddressDisplay = true;
+  bool _isEditing = false;
+  bool _isAddressDisplay = true;
+  List<bool> _isAssetDisplay = List();
+
+  @override
+  void initState() {
+    super.initState();
+    int assetAmount = widget.data.accountInfoes.length;
+    for (int i = 0; i < assetAmount; i++) {
+      _isAssetDisplay.add(true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,7 +59,7 @@ class _AddressManageState extends State<AddressManage> {
     );
   }
 
-  /// asset list
+  /// body content
   List<Widget> _content() {
 
     // list tile
@@ -58,12 +70,14 @@ class _AddressManageState extends State<AddressManage> {
     _list.add(SizedBox(height: 10));
     _list.add(_switchAddressDisplay());
 
-    _list.add(_assetListTitle());
-    _list.add(
-      Column(
-        children: _assetList(),
-      )
-    );
+    if (_isAddressDisplay) {
+      _list.add(_assetListTitle());
+      _list.add(
+        Column(
+          children: _assetList(),
+        )
+      );
+    }
 
     return _list;
   }
@@ -79,30 +93,19 @@ class _AddressManageState extends State<AddressManage> {
   }
 
   ///
-  // Widget _editAddressNameTitle() {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(left: 15, top: 30, bottom: 10),
-  //     child: Text(
-  //       WalletLocalizations.of(context).addressManagePageAssetsDisplay,
-  //       style: TextStyle(color: Colors.grey),
-  //     ),
-  //   );
-  // }
-
-  ///
   Widget _editAddressName() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       color: AppCustomColor.themeBackgroudColor,
       child: Row(
         children: <Widget>[
-          isEditing ? _newName() : _newNameText(),
+          _isEditing ? _newName() : _newNameText(),
           SizedBox(width: 20),
           RaisedButton(
             // padding: EdgeInsets.symmetric(vertical: 12),
             elevation: 0,
             color: AppCustomColor.btnConfirm,
-            child: isEditing ? Text(
+            child: _isEditing ? Text(
                 WalletLocalizations.of(context).addressManagePageDoneButton,
                 style: TextStyle(color: Colors.white),
               ) : 
@@ -112,15 +115,12 @@ class _AddressManageState extends State<AddressManage> {
               ),
 
             onPressed: () {
-              if (isEditing) {
-                isEditing = false;
+              if (_isEditing) {
+                _isEditing = false;
               } else {
-                isEditing = true;
+                _isEditing = true;
               }
-
-              setState(() {
-                
-              });
+              setState(() { });
             },
           ),
         ],
@@ -150,7 +150,7 @@ class _AddressManageState extends State<AddressManage> {
           // filled: true,
         ),
 
-        // enabled: isEditing ? true : false,
+        // enabled: _isEditing ? true : false,
 
         // focusNode: _nodeText3,
         // keyboardType: TextInputType.emailAddress,
@@ -165,10 +165,10 @@ class _AddressManageState extends State<AddressManage> {
       child: ListTile(
         title: Text(WalletLocalizations.of(context).addressManagePageAddressDisplay),
         trailing: Switch(
-          value: isAddressDisplay, 
+          value: _isAddressDisplay, 
           onChanged: (bool value) {
             setState(() {
-              isAddressDisplay = !isAddressDisplay;
+              _isAddressDisplay = !_isAddressDisplay;
             });
           },
         ),
@@ -189,12 +189,12 @@ class _AddressManageState extends State<AddressManage> {
             ),
           ),
 
-          Padding(
+          Padding( // manage displayed assets.
             padding: const EdgeInsets.only(right: 12),
             child: IconButton(
               icon: Icon(Icons.add_circle),
-              color: Colors.grey,
-              onPressed: () {},
+              color: Colors.blue,
+              onPressed: () { Navigator.of(context).pushNamed(DisplayedAssets.tag); },
             ),
           )
         ],
@@ -211,25 +211,26 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     for (int i = 0; i < assetAmount; i++) {
-      _list.add(_assetItem(widget.data.accountInfoes[i]));
+      _list.add(_assetItem(widget.data.accountInfoes[i], i));
       _list.add(Divider(height: 0, indent: 15));
     }
 
     return _list;
   }
 
-  ///
-  Widget _assetItem(AccountInfo assetData) {
+  /// every asset
+  Widget _assetItem(AccountInfo assetData, int index) {
+    print('==> asset icon = ${assetData.iconUrl}');
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         // leading: Image.asset(assetData.iconUrl),
         title: Text(assetData.name),
         trailing: Switch(
-          value: isAddressDisplay, 
+          value: _isAssetDisplay[index], 
           onChanged: (bool value) {
             setState(() {
-              isAddressDisplay = !isAddressDisplay;
+              _isAssetDisplay[index] = !_isAssetDisplay[index];
             });
           },
         ),

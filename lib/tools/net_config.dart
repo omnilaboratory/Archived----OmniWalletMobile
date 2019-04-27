@@ -59,6 +59,9 @@ class NetConfig{
   /// 获取用户公钥
   static String getUserRSAEncrypt ='user/getUserRSAEncrypt';
 
+  /// Get Popular Asset List
+  static String getPopularAssetList ='wallet/asset/getPopularAssetList';
+
   /// blockChain/btcSend  btc转账
   static String btcSend ='blockChain/btcSend';
 
