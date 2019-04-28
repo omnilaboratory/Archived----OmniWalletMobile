@@ -243,20 +243,20 @@ class _WalletSendState extends State<WalletSend> {
     );
   }
 
-  var minerFee = 0.0001;
+  var minerFee = 0.00001;
   var _feeGroup = 0;
   void _setvalue2(int value) => setState(() {
     if(value==0){
-      this.minerFee = 0.0001 ;
+      this.minerFee = 0.00001 ;
     }
     if(value==1){
-      this.minerFee = 0.0002 ;
+      this.minerFee = 0.00002 ;
     }
     if(value==2){
-      this.minerFee = 0.0003 ;
+      this.minerFee = 0.00003 ;
     }
     if(value==-1){
-      this.minerFee = 0.0004 ;
+      this.minerFee = 0.00004 ;
     }
 
     _feeGroup = value;
@@ -301,13 +301,13 @@ class _WalletSendState extends State<WalletSend> {
     var row = Row(children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(left: 20),
-        child: Text(WalletLocalizations.of(context).wallet_send_page_title_minerFee_input_title),
+        child: Text(WalletLocalizations.of(context).wallet_send_page_title_minerFee),
       ),
       Expanded(
         child: Padding(
           padding: const EdgeInsets.only (left: 20,right: 20),
           child: TextField(
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
             onChanged: (value){
               if(value.length>0){
                 setState(() {
