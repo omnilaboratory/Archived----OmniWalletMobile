@@ -144,11 +144,8 @@ class WalletModel extends Model{
             var currData = dataList[i];
             bool isSend = currData['isSend'];
             double txValue = currData['txValue'];
-            int result = currData['result'];
-            int confirmAmount = 0;
-            if(result!=0){
-              confirmAmount = 6;
-            }
+            int time = currData['time']*1000;
+            int confirmAmount = currData['confirmAmount'];
             if(isSend){
               txValue = 0-txValue;
             }
@@ -158,8 +155,8 @@ class WalletModel extends Model{
                     note: '',
                     tradeType: isSend,
                     objAddress: currData['targetAddress'],
-                    tradeDate:DateTime.now(),
-                    state: result==0?0:1,
+                    tradeDate:DateTime.fromMillisecondsSinceEpoch(time),
+                    state: confirmAmount>0?0:1,
                     confirmAmount: confirmAmount,
                     txId: currData['txId'],
                     blockId: currData['blockHeight']

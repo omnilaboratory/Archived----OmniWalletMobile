@@ -163,6 +163,7 @@ class WalletLocalizations{
       'wallet_trade_info_detail_finish_state2' : '已完成',
 
       'wallet_trade_info_detail_item_To' : '转到',
+      'wallet_trade_info_detail_item_From' : '来自',
       'wallet_trade_info_detail_item_Memo' : '备注',
       'wallet_trade_info_detail_item_Date' : '时间',
       'wallet_trade_info_detail_item_txid' : '交易ID',
@@ -377,6 +378,7 @@ class WalletLocalizations{
       'wallet_trade_info_detail_finish_state2' : 'Finish',
 
       'wallet_trade_info_detail_item_To' : 'To',
+      'wallet_trade_info_detail_item_From' : 'From',
       'wallet_trade_info_detail_item_Memo' : 'Memo',
       'wallet_trade_info_detail_item_Date' : 'Date',
       'wallet_trade_info_detail_item_txid' : 'Transaction Id',
@@ -451,6 +453,7 @@ class WalletLocalizations{
   get wallet_trade_info_detail_finish_state2 => _localizedValues[locale.languageCode]['wallet_trade_info_detail_finish_state2'];
 
   get wallet_trade_info_detail_item_To => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_To'];
+  get wallet_trade_info_detail_item_From => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_From'];
   get wallet_trade_info_detail_item_Memo => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_Memo'];
   get wallet_trade_info_detail_item_Date => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_Date'];
   get wallet_trade_info_detail_item_txid => _localizedValues[locale.languageCode]['wallet_trade_info_detail_item_txid'];

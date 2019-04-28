@@ -83,7 +83,11 @@ class TradeInfoDetail extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 40),
                   width: double.infinity, child: line1
               ),
-              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_To,tradeInfo.objAddress),
+              line(tradeInfo.tradeType?
+                  WalletLocalizations.of(context).wallet_trade_info_detail_item_To:
+                  WalletLocalizations.of(context).wallet_trade_info_detail_item_From
+                  ,
+                  tradeInfo.objAddress),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Memo,tradeInfo.note),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_Date,DateFormat('yyyy.MM.dd hh:mm').format(tradeInfo.tradeDate)),
               Padding(
