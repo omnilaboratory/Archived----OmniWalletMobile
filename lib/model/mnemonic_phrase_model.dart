@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,6 +19,13 @@ class MnemonicPhrase{
 
   String createPhrases(){
     return bip39.generateMnemonic();
+  }
+  String initSeed(String phrases){
+     Future((){
+       if(GlobalInfo.bip39Seed==null){
+         GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
+       }
+     });
   }
 
   HDWallet createAddress(String phrases,{int index=0}){
