@@ -178,15 +178,17 @@ class _RestoreAccountState extends State<RestoreAccount> {
           return null;
         }
         var _mnemonic= split.join(' ');
-        print(_mnemonic);
         var  userId = Tools.convertMD5Str(_mnemonic);
-        print(userId);
         Future result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
         result.then((data){
           if(data!=null){
+
+            MnemonicPhrase.getInstance().initSeed(_mnemonic);
+
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
 
+            GlobalInfo.bip39Seed = null;
             Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
             GlobalInfo.userInfo.mnemonic = _mnemonic;
 

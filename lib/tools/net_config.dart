@@ -92,7 +92,6 @@ class NetConfig{
       }
       header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
     }
-
     url = apiHost + url;
 //    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;

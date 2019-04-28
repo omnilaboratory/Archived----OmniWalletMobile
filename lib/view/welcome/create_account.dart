@@ -308,9 +308,9 @@ class _CreateAccountState extends State<CreateAccount> {
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
-
       /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
+      MnemonicPhrase.getInstance().initSeed(_mnemonic);
       Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
       print('==> [Mnemonic Phrase] ==> $_mnemonic');
 

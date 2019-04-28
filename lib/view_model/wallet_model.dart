@@ -106,10 +106,8 @@ class WalletModel extends Model{
             WalletInfo info = WalletInfo(name: defaultName,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
             Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
-              if(data!=null){
-                this.addWalletInfo(info);
-                notifyListeners();
-              }
+              this.addWalletInfo(info);
+              notifyListeners();
             });
           }else{
             notifyListeners();

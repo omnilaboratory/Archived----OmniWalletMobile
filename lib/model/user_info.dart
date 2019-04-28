@@ -27,20 +27,18 @@ class UserInfo{
 
   void initBipSeed() {
     if(GlobalInfo.bip39Seed==null){
-      print(DateTime.now());
       new Future((){
         GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic);
-        Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
-        future.then((data){
-          if(data!=null){
-            AssetToUSDRateInfo info = AssetToUSDRateInfo();
-            info.btcs[0] = data[0]['rate'];
-            info.btcs[1] = data[1]['rate'];
-            GlobalInfo.usdRateInfo = info;
-          }
-        });
       });
-      print(DateTime.now());
     }
+    Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
+    future.then((data){
+      if(data!=null){
+        AssetToUSDRateInfo info = AssetToUSDRateInfo();
+        info.btcs[0] = data[0]['rate'];
+        info.btcs[1] = data[1]['rate'];
+        GlobalInfo.usdRateInfo = info;
+      }
+    });
   }
 }
