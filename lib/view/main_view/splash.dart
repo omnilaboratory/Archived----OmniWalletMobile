@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
@@ -29,7 +30,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     _timer = Timer(
-      Duration(seconds: 2), 
+      Duration(seconds: 0), 
       () {
         _processData();
       }
@@ -39,11 +40,16 @@ class _SplashState extends State<Splash> {
   @override
   void dispose() {
     _timer.cancel();
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    // It will hide status bar and notch.
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -61,7 +67,7 @@ class _SplashState extends State<Splash> {
       // Check login status
       String val = share.getString(KeyConfig.user_mnemonic_md5);
       if ( val != null && val != '') { // has login
-        print('==> has login');
+        print('==> has login | ${DateTime.now()}');
 
         // get user info from server - FINAL CODE
         _getUserInfo(share);
@@ -94,10 +100,13 @@ class _SplashState extends State<Splash> {
 
     data.then((data) {
       if (data != null) {
+        print('==> --. DATA | ${DateTime.now()}');
         GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+
+        print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
       }
@@ -110,7 +119,7 @@ class _SplashState extends State<Splash> {
     bool bVal = share.getBool(KeyConfig.is_backup);
 
     if (bVal == true) { // has backup
-      print('==> has backup');
+      print('==> has backup | ${DateTime.now()}');
 
       // show wallet main page
       Navigator.of(context).pushAndRemoveUntil(
@@ -118,7 +127,7 @@ class _SplashState extends State<Splash> {
             (route) => route == null,
       );
     } else { // no backup
-      print('==> no backup');
+      print('==> no backup | ${DateTime.now()}');
       // show mnimonic back up page
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => BackupWalletIndex()),

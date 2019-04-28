@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/net_config.dart';
