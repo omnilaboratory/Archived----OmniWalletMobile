@@ -156,7 +156,7 @@ class WalletModel extends Model{
                     tradeType: isSend,
                     objAddress: currData['targetAddress'],
                     tradeDate:DateTime.fromMillisecondsSinceEpoch(time),
-                    state: confirmAmount>0?0:1,
+                    state: confirmAmount>0?1:0,
                     confirmAmount: confirmAmount,
                     txId: currData['txId'],
                     blockId: currData['blockHeight']
