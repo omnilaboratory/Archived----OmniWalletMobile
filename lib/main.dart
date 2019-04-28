@@ -81,7 +81,7 @@ class _MyAppState extends State<MyApp> {
     CreateAccount.tag: (context)       => CreateAccount(),
     SelectLanguage.tag: (context)      => SelectLanguage(),
     WalletAddress.tag: (context)       => WalletAddress(),
-    AddressManage.tag: (context)       => AddressManage(),
+    AddressManage.tag: (context)       => AddressManage(data: null),
     DisplayedAssets.tag: (context)     => DisplayedAssets(),
   };
 
