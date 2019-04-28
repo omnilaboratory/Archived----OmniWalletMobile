@@ -1,3 +1,5 @@
+import 'dart:async';
+
 /// Addresses Management page.
 /// [author] Kevin Zhang
 /// [time] 2019-4-25
@@ -70,14 +72,14 @@ class _AddressManageState extends State<AddressManage> {
     _list.add(SizedBox(height: 10));
     _list.add(_switchAddressDisplay());
 
-    if (_isAddressDisplay) {
+    // if (_isAddressDisplay) {
       _list.add(_assetListTitle());
       _list.add(
         Column(
           children: _assetList(),
         )
       );
-    }
+    // }
 
     return _list;
   }
@@ -170,7 +172,21 @@ class _AddressManageState extends State<AddressManage> {
             setState(() {
               _isAddressDisplay = !_isAddressDisplay;
             });
-          },
+
+            print('==> _isAddressDisplay = $_isAddressDisplay');
+
+            Future response = NetConfig.post(NetConfig.setAddressVisible, {
+              'address': widget.data.address, 
+              'visible': _isAddressDisplay.toString(),
+            });
+
+            response.then((val) {
+              print('==> val = $val');
+              if (val != null) {
+
+              }
+            });
+          }
         ),
       ),
     );
@@ -194,7 +210,9 @@ class _AddressManageState extends State<AddressManage> {
             child: IconButton(
               icon: Icon(Icons.add_circle),
               color: Colors.blue,
-              onPressed: () { Navigator.of(context).pushNamed(DisplayedAssets.tag); },
+              disabledColor: Colors.grey[300],
+              onPressed: !_isAddressDisplay ? null : 
+                () { Navigator.of(context).pushNamed(DisplayedAssets.tag); },
             ),
           )
         ],
@@ -224,11 +242,12 @@ class _AddressManageState extends State<AddressManage> {
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
+        enabled: _isAddressDisplay ? true : false,
         // leading: Image.asset(assetData.iconUrl),
         title: Text(assetData.name),
         trailing: Switch(
           value: _isAssetDisplay[index], 
-          onChanged: (bool value) {
+          onChanged: !_isAddressDisplay ? null : (bool value) {
             setState(() {
               _isAssetDisplay[index] = !_isAssetDisplay[index];
             });

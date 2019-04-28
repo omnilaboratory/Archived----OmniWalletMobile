@@ -14,6 +14,7 @@ import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -50,12 +51,30 @@ class _SplashState extends State<Splash> {
     // It will hide status bar and notch.
     SystemChrome.setEnabledSystemUIOverlays([]);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Image.asset('assets/logo-png.png', width: 180, height: 180),
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: Image.asset('assets/logo-png.png', width: 229, height: 180),
+            ),
+          )
         ),
-      )
+
+        Padding(
+          padding: const EdgeInsets.only(top: 200),
+          child: SpinKitFadingCircle(
+            itemBuilder: (context, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: index.isEven ? Colors.red : Colors.green,
+                ),
+              );
+            },
+          ),
+        )
+
+      ],
     );
   }
 

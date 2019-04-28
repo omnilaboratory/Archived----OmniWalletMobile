@@ -71,6 +71,12 @@ class NetConfig{
   /// blockChain/omniRawTransaction omni原生转账
   static String omniRawTransaction ='blockChain/omniRawTransaction';
 
+  ///
+  static String setAddressVisible ='wallet/address/setVisible';
+
+  ///
+  static String setAssetVisible ='wallet/asset/setAssetVisible';
+
 
 
   static post(String url,Map<String, String> data) async{

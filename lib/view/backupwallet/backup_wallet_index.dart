@@ -22,6 +22,7 @@ class BackupWalletIndex extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
+    print('==> BACK PAGE | ${DateTime.now()}');
     this.initData();
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
