@@ -80,17 +80,11 @@ class NetConfig{
     Map<String, String> header = new Map();
     print(url);
     if(url.startsWith('common')==false){
-      // if(userMD5Id==null){
-      //   SharedPreferences prefs = await SharedPreferences.getInstance();
-      //   userMD5Id = prefs.get(KeyConfig.user_mnemonic_md5);
-      //   print(userMD5Id);
-      //   if(userMD5Id==null){
-      //     showToast('user have not login');
-      //     return null;
-      //   }
-      // }
-      // header['authorization']='Bearer '+userMD5Id;
-      header['authorization']='Bearer '+ GlobalInfo.userInfo.userId;
+      if(GlobalInfo.userInfo.userId==null){
+        showToast('user have not login');
+        return null;
+      }
+      header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
     }
 
     url = apiHost + url;

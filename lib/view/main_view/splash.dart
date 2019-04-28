@@ -89,16 +89,15 @@ class _SplashState extends State<Splash> {
   // 
   void _getUserInfo(SharedPreferences share) {
 
+    GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
     Future data = NetConfig.get(NetConfig.getUserInfo);
 
     data.then((data) {
       if (data != null) {
-        GlobalInfo.userInfo.userId = NetConfig.userMD5Id;
         GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-
         // check if has finished to back up mnimonic.
         _hasBackup(share);
       }
