@@ -152,7 +152,7 @@ class _WalletSendState extends State<WalletSend> {
                 onSaved: (val){
                   this._amount = double.parse(val);
                 },
-                keyboardType:TextInputType.number ,
+                keyboardType:TextInputType.numberWithOptions(decimal: true) ,
                 scrollPadding: EdgeInsets.only(top: 0),
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(top: 6),
