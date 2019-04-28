@@ -46,6 +46,9 @@ class NetConfig{
   */
   static String getTransactionsByAddress ='wallet/address/getTransactionsByAddress';
 
+  /// wallet/address/getOmniTransactionsByAddress 根据address获取omni交易记录
+  static String getOmniTransactionsByAddress ='wallet/address/getOmniTransactionsByAddress';
+
   /// user/transferAddress/create  创建新的常用转账地址
   static String createTransferAddress='user/transferAddress/edit';
   /// user/transferAddress/list  转账地址列表

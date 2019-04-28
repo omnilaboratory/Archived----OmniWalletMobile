@@ -81,6 +81,10 @@ class WalletModel extends Model{
               double amount = double.parse(asset['balance'].toString());
 
               double money = amount* btcRate;
+              var  propertyId = asset['propertyid'];
+              if(propertyId>0){
+                money = 0;
+              }
               accountInfo.add(AccountInfo(
                   name: asset['name'],
                   amount:amount,
@@ -131,11 +135,15 @@ class WalletModel extends Model{
   }
 
   List<TradeInfo> tradeInfoes = null;
-  List<TradeInfo> getTradeInfoes(String address){
+  List<TradeInfo> getTradeInfoes(String address,{int propertyId=0}){
     print('getTradeInfoes');
     List<TradeInfo> infoes = [];
     if(tradeInfoes==null){
-      Future future = NetConfig.get(NetConfig.getTransactionsByAddress+'?address='+address);
+      String url  = NetConfig.getTransactionsByAddress+'?address='+address;
+      if(propertyId>0){
+        url  = NetConfig.getOmniTransactionsByAddress+'?address='+address+'&assetId='+propertyId.toString();
+      }
+      Future future = NetConfig.get(url);
       future.then((data){
         if(data!=null){
           tradeInfoes = [];
@@ -143,7 +151,13 @@ class WalletModel extends Model{
           for(int i=0;i<dataList.length;i++){
             var currData = dataList[i];
             bool isSend = currData['isSend'];
-            double txValue = currData['txValue'];
+            double txValue = 0;
+            if(propertyId==0){
+               txValue = currData['txValue'];
+            }else{
+                txValue = double.parse(currData['txValue']);
+             }
+
             int time = currData['time']*1000;
             int confirmAmount = currData['confirmAmount'];
             if(isSend){
