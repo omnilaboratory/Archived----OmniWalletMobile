@@ -130,7 +130,7 @@ class _WalletSendState extends State<WalletSend> {
               children: <Widget>[
                 Text(WalletLocalizations.of(context).wallet_send_page_title_amount,style: TextStyle(color: AppCustomColor.themeFrontColor,fontWeight: FontWeight.w500),),
                 Expanded(child: Container()),
-                Text(WalletLocalizations.of(context).wallet_send_page_title_balance+'：'+accountInfo.amount.toStringAsFixed(8),style: TextStyle(color: Colors.blue),)
+                Text(WalletLocalizations.of(context).wallet_send_page_title_balance+'：'+accountInfo.amount.toString(),style: TextStyle(color: Colors.blue),)
               ],
             ),
             Padding(
@@ -193,7 +193,7 @@ class _WalletSendState extends State<WalletSend> {
               children: <Widget>[
                 Text(WalletLocalizations.of(context).wallet_send_page_title_minerFee),
                 Expanded(child: Container()),
-                Text(this.minerFee.toStringAsFixed(8))
+                Text(this.minerFee.toString())
             ],),
             children: <Widget>[
               makeRadioTiles()

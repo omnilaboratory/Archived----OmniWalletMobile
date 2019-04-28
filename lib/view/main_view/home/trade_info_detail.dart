@@ -52,7 +52,7 @@ class TradeInfoDetail extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${tradeInfo.amount.toStringAsFixed(8)}',
+                  '${tradeInfo.amount.toString()}',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold

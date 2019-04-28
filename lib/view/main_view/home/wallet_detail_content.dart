@@ -137,8 +137,8 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(child: Icon(Icons.arrow_upward),backgroundColor:Colors.green[100]),
+              padding: const EdgeInsets.only(right: 12,left: 10),
+              child: Image.asset(Tools.imagePath(tradeInfo.tradeType?'icon_out':'icon_in'),width: 25,height: 25,),
             ),
             Expanded(
               flex: 3,
@@ -180,7 +180,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: AutoSizeText(
-                        '${tradeInfo.objAddress.replaceRange(6, 28, '...')}',
+                        '${tradeInfo.objAddress.replaceRange(6, tradeInfo.objAddress.length-6, '...')}',
                         style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                         maxLines: 1,
                         minFontSize: 9,
@@ -197,7 +197,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                 children: <Widget>
                 [
                   AutoSizeText(
-                    (tradeInfo.amount>0?'+':'-')+'${tradeInfo.amount.toStringAsFixed(8)}',
+                    tradeInfo.amount.toString(),
                     style: TextStyle( fontSize:16,color:tradeInfo.amount>0?Colors.green:Colors.red,fontWeight: FontWeight.bold),
                     minFontSize: 12,
                     maxLines: 1,
@@ -232,14 +232,14 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Text(
-                  accountInfo.amount.toStringAsFixed(8),
+                  accountInfo.amount.toString(),
                   style: TextStyle(fontSize: 30,color: Colors.white,fontWeight: FontWeight.w600),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Text(
-                  "=\$ "+accountInfo.legalTender.toStringAsFixed(2),
+                  "≈ \$ "+accountInfo.legalTender.toStringAsFixed(2),
                   style: TextStyle(fontSize: 20,color: Colors.white54),
               ),
             ),

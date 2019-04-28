@@ -89,7 +89,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               ),
               SizedBox(height: 10,),
               AutoSizeText(
-                dataInfo.address.replaceRange(6, 28, '...'),
+                dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
                 minFontSize: 9,
                 style: TextStyle(
                   color: Colors.grey,
@@ -132,7 +132,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
                           child: AutoSizeText(
-                            '${accountInfo.amount.toStringAsFixed(8)}',
+                            '${accountInfo.amount.toString()}',
                             textAlign: TextAlign.right,
                             style: TextStyle(fontSize: 16),
                             minFontSize: 12,
