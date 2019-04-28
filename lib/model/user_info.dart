@@ -25,9 +25,13 @@ class UserInfo{
     this.initBipSeed();
   }
 
-  void initBipSeed() async{
+  void initBipSeed() {
     if(GlobalInfo.bip39Seed==null){
-      await (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));
+      print(DateTime.now());
+      new Future((){
+        GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic);
+      });
+      print(DateTime.now());
       Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
       future.then((data){
         print(data);
