@@ -374,7 +374,7 @@ class WalletLocalizations{
 
       'wallet_trade_info_detail_title' : 'Transaction Details',
       'wallet_trade_info_detail_title2' : 'Sent',
-      'wallet_trade_info_detail_finish_state1' : 'Confirming',
+      'wallet_trade_info_detail_finish_state1' : 'Unconfirmed',
       'wallet_trade_info_detail_finish_state2' : 'Finish',
 
       'wallet_trade_info_detail_item_To' : 'To',

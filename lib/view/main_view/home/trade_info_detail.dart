@@ -95,7 +95,7 @@ class TradeInfoDetail extends StatelessWidget {
                 child: Divider(height: 1,),
               ),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_txid,tradeInfo.txId),
-              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmIndex,tradeInfo.blockId.toString()),
+              line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmIndex,tradeInfo.blockId!=null?tradeInfo.blockId.toString():''),
               line(WalletLocalizations.of(context).wallet_trade_info_detail_item_confirmCount,tradeInfo.confirmAmount.toString()),
 //              Center(
 //                child: Padding(
