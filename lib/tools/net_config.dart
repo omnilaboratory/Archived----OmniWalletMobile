@@ -65,6 +65,9 @@ class NetConfig{
   /// blockChain/btcSend  btc转账
   static String btcSend ='blockChain/btcSend';
 
+  /// blockChain/omniRawTransaction omni原生转账
+  static String omniRawTransaction ='blockChain/omniRawTransaction';
+
 
 
   static post(String url,Map<String, String> data) async{

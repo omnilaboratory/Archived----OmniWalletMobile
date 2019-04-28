@@ -138,8 +138,28 @@ class SendConfirm extends StatelessWidget {
         });
 //      });
     }else{
-
-
+      Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
+      futureRSA.then((publicKey){
+        HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
+//        var encryptedFuture = encryptString(wallet.wif, publicKey);
+//        encryptedFuture.then((encryptedString){
+        Future future = NetConfig.post(NetConfig.omniRawTransaction, {
+          'propertyId':accountInfo.propertyId.toString(),
+          'fromBitCoinAddress':wallet.address,
+          'privkey':wallet.wif,
+          'toBitCoinAddress':_sendInfo.toAddress,
+          'amount':_sendInfo.amount.toString(),
+          'minerFee':_sendInfo.minerFee.toString(),
+        });
+        future.then((data){
+          print(data);
+          if(data!=null){
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          }
+        });
+      });
+//      });
     }
   }
 }
