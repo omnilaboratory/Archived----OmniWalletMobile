@@ -32,7 +32,6 @@ class UserInfo{
         GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic);
         Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
         future.then((data){
-          print(data);
           if(data!=null){
             AssetToUSDRateInfo info = AssetToUSDRateInfo();
             info.btcs[0] = data[0]['rate'];
