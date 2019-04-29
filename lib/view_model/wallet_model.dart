@@ -123,8 +123,8 @@ class WalletModel extends Model{
             Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
               this.addWalletInfo(info);
-              notifyListeners();
             });
+              notifyListeners();
           }else{
             notifyListeners();
           }
@@ -161,7 +161,7 @@ class WalletModel extends Model{
         propertyId: 361
     ));
     info.accountInfoes = accountInfo;
-    _walletInfoes.indexOf(info);
+    _walletInfoes.insert(0,info);
     notifyListeners();
   }
 

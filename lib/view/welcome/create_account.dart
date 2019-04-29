@@ -3,6 +3,7 @@
 /// [time] 2019-3-5
 
 import 'dart:async';
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -337,6 +338,11 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.userId   = _mnemonic_md5;
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
+
+//          Future((){
+//            HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: 0);
+//            NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':'name0','addressIndex':"0"});
+//          });
 
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
