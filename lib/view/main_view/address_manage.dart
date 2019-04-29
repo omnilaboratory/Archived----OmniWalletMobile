@@ -27,7 +27,7 @@ class _AddressManageState extends State<AddressManage> {
 
   bool _isEditing = false;
   bool _isAddressDisplay;
-  bool _isAssetDisplay;
+  List<bool> _isAssetDisplay = List();
 
   @override
   Widget build(BuildContext context) {
@@ -219,6 +219,7 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     for (int i = 0; i < assetAmount; i++) {
+      _isAssetDisplay.add(widget.data.accountInfoes[i].visible);
       _list.add(_assetItem(widget.data.accountInfoes[i], i));
       _list.add(Divider(height: 0, indent: 15));
     }
@@ -228,35 +229,34 @@ class _AddressManageState extends State<AddressManage> {
 
   /// every asset
   Widget _assetItem(AccountInfo assetData, int index) {
-    print('==> asset visible = ${widget.data.accountInfoes[index].visible}');
 
-    // _isAssetDisplay = widget.data.accountInfoes[index].visible;
+    print('==> asset visible = ${_isAssetDisplay[index]}');
 
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         enabled: _isAddressDisplay ? true : false,
         // leading: Image.asset(assetData.iconUrl),
-        title: Text(widget.data.accountInfoes[index].name),
+        title: Text(assetData.name),
         trailing: Switch(
-          value: widget.data.accountInfoes[index].visible, 
+          value: _isAssetDisplay[index],
           onChanged: !_isAddressDisplay ? null : (bool value) {
-            widget.data.accountInfoes[index].visible = !widget.data.accountInfoes[index].visible;
+            _isAssetDisplay[index] = !_isAssetDisplay[index];
 
-            print('==> assetData.propertyId = ${assetData.propertyId}');
-            print('==> _isAssetDisplay = ${_isAssetDisplay}');
+            print('==> address = ${widget.data.address}');
+            print('==> assetId = ${assetData.propertyId}');
+            print('==> CHANGE -> visible = ${_isAssetDisplay[index]}');
 
             Future response = NetConfig.post(NetConfig.setAssetVisible, {
               'address': widget.data.address,
-              // 'assetId': assetData.propertyId.toString(),
-              'assetId': widget.data.accountInfoes[index].propertyId.toString(),
-              'visible': widget.data.accountInfoes[index].visible.toString(),
+              'assetId': assetData.propertyId.toString(),
+              'visible': _isAssetDisplay[index].toString(),
             });
 
             response.then((val) {
               if (val != null) {
-                // assetData.visible = _isAssetDisplay;
-                // widget.data.accountInfoes[index].visible = _isAddressDisplay;
+                print('==> response then -> visible = ${_isAssetDisplay[index]}');
+                widget.data.accountInfoes[index].visible = _isAssetDisplay[index];
                 setState(() { });
               }
             });
