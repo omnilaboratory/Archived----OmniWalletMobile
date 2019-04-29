@@ -27,7 +27,6 @@ class _AddressManageState extends State<AddressManage> {
 
   bool _isEditing = false;
   bool _isAddressDisplay;
-  List<bool> _isAssetDisplay = List();
 
   @override
   Widget build(BuildContext context) {
@@ -219,7 +218,6 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     for (int i = 0; i < assetAmount; i++) {
-      _isAssetDisplay.add(widget.data.accountInfoes[i].visible);
       _list.add(_assetItem(widget.data.accountInfoes[i], i));
       _list.add(Divider(height: 0, indent: 15));
     }
@@ -230,7 +228,7 @@ class _AddressManageState extends State<AddressManage> {
   /// every asset
   Widget _assetItem(AccountInfo assetData, int index) {
 
-    print('==> asset visible = ${_isAssetDisplay[index]}');
+    print('==> asset visible = ${assetData.visible}');
 
     return Container(
       color: AppCustomColor.themeBackgroudColor,
@@ -245,7 +243,6 @@ class _AddressManageState extends State<AddressManage> {
 
             print('==> address = ${widget.data.address}');
             print('==> assetId = ${assetData.propertyId}');
-            print('==> CHANGE -> visible = ${_isAssetDisplay[index]}');
 
             Future response = NetConfig.post(NetConfig.setAssetVisible, {
               'address': widget.data.address,
@@ -256,8 +253,6 @@ class _AddressManageState extends State<AddressManage> {
             response.then((val) {
               if (val != null) {
                 assetData.visible = !assetData.visible;
-                print('==> response then -> visible = ${_isAssetDisplay[index]}');
-//                widget.data.accountInfoes[index].visible = assetData.visible;
                 setState(() { });
               }
             });
