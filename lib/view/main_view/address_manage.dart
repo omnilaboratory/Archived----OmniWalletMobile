@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/displayed_assets.dart';
-import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class AddressManage extends StatefulWidget {
@@ -29,17 +28,6 @@ class _AddressManageState extends State<AddressManage> {
   bool _isEditing = false;
   bool _isAddressDisplay;
   bool _isAssetDisplay;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // TODO: TEMP CODE WILL DELETED
-    int assetAmount = widget.data.accountInfoes.length;
-    for (int i = 0; i < assetAmount; i++) {
-      widget.data.accountInfoes[i].visible = true;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -240,33 +228,35 @@ class _AddressManageState extends State<AddressManage> {
 
   /// every asset
   Widget _assetItem(AccountInfo assetData, int index) {
-    print('==> asset visible = ${assetData.visible}');
+    print('==> asset visible = ${widget.data.accountInfoes[index].visible}');
 
-    _isAssetDisplay = assetData.visible;
+    // _isAssetDisplay = widget.data.accountInfoes[index].visible;
 
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
         enabled: _isAddressDisplay ? true : false,
         // leading: Image.asset(assetData.iconUrl),
-        title: Text(assetData.name),
+        title: Text(widget.data.accountInfoes[index].name),
         trailing: Switch(
-          value: _isAssetDisplay, 
+          value: widget.data.accountInfoes[index].visible, 
           onChanged: !_isAddressDisplay ? null : (bool value) {
-            _isAssetDisplay = !_isAssetDisplay;
+            widget.data.accountInfoes[index].visible = !widget.data.accountInfoes[index].visible;
 
             print('==> assetData.propertyId = ${assetData.propertyId}');
+            print('==> _isAssetDisplay = ${_isAssetDisplay}');
 
             Future response = NetConfig.post(NetConfig.setAssetVisible, {
               'address': widget.data.address,
               'assetId': assetData.propertyId.toString(),
               // 'assetId': widget.data.accountInfoes[index].propertyId.toString(),
-              'visible': _isAssetDisplay.toString(),
+              'visible': widget.data.accountInfoes[index].visible.toString(),
             });
 
             response.then((val) {
               if (val != null) {
-                widget.data.accountInfoes[index].visible = _isAddressDisplay;
+                // assetData.visible = _isAssetDisplay;
+                // widget.data.accountInfoes[index].visible = _isAddressDisplay;
                 setState(() { });
               }
             });
