@@ -239,9 +239,9 @@ class _AddressManageState extends State<AddressManage> {
         // leading: Image.asset(assetData.iconUrl),
         title: Text(assetData.name),
         trailing: Switch(
-          value: _isAssetDisplay[index],
+          value: assetData.visible,
           onChanged: !_isAddressDisplay ? null : (bool value) {
-            _isAssetDisplay[index] = !_isAssetDisplay[index];
+            bool flag  = !assetData.visible;
 
             print('==> address = ${widget.data.address}');
             print('==> assetId = ${assetData.propertyId}');
@@ -250,13 +250,14 @@ class _AddressManageState extends State<AddressManage> {
             Future response = NetConfig.post(NetConfig.setAssetVisible, {
               'address': widget.data.address,
               'assetId': assetData.propertyId.toString(),
-              'visible': _isAssetDisplay[index].toString(),
+              'visible': flag.toString(),
             });
 
             response.then((val) {
               if (val != null) {
+                assetData.visible = !assetData.visible;
                 print('==> response then -> visible = ${_isAssetDisplay[index]}');
-                widget.data.accountInfoes[index].visible = _isAssetDisplay[index];
+//                widget.data.accountInfoes[index].visible = assetData.visible;
                 setState(() { });
               }
             });
