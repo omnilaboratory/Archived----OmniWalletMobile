@@ -14,6 +14,9 @@ class WalletInfo extends BaseInfo{
   //总体价值法币金额
   double totalLegalTender;
 
+  /// wallet address whether visible, default is visible.
+  bool visible = true;
+
   List<AccountInfo> accountInfoes;
 
   WalletInfo({

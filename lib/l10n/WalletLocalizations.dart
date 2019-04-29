@@ -189,6 +189,7 @@ class WalletLocalizations{
 
       'walletAddressPageAppBarTitle' : '钱包地址',
       'walletAddressPageListTitle' : '修改钱包地址名，显示或隐藏钱包地址和资产。',
+      'walletAddressPageHidden' : '已隐藏',
 
       'addressManagePageAppBarTitle' : '钱包地址管理',
       'addressManagePageEditTips' : '新名字',
@@ -402,6 +403,7 @@ class WalletLocalizations{
 
       'walletAddressPageAppBarTitle' : 'Wallet Address',
       'walletAddressPageListTitle' : 'Manage wallet address name, assets display.',
+      'walletAddressPageHidden' : 'Hiddened',
 
       'addressManagePageAppBarTitle' : 'Address Management',
       'addressManagePageEditTips' : 'New Name',
@@ -424,6 +426,7 @@ class WalletLocalizations{
   // wallet address Page
   get walletAddressPageAppBarTitle => _localizedValues[locale.languageCode]['walletAddressPageAppBarTitle'];
   get walletAddressPageListTitle => _localizedValues[locale.languageCode]['walletAddressPageListTitle'];
+  get walletAddressPageHidden => _localizedValues[locale.languageCode]['walletAddressPageHidden'];
 
   // address management Page
   get addressManagePageAppBarTitle => _localizedValues[locale.languageCode]['addressManagePageAppBarTitle'];

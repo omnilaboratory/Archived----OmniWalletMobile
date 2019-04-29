@@ -80,8 +80,17 @@ class _WalletAddressState extends State<WalletAddress> {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        title: Text(walletData.name),
-        trailing: Row(
+        title: Text( // address name
+          walletData.name,
+          style: walletData.visible ? null : TextStyle(color: Colors.grey),
+        ),
+
+        subtitle: walletData.visible ? null : Text( // Is hiddened display
+          WalletLocalizations.of(context).walletAddressPageHidden,
+          style: TextStyle(color: Colors.red),
+        ),
+
+        trailing: Row( // address
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(

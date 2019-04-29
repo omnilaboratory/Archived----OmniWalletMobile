@@ -162,6 +162,9 @@ class _AddressManageState extends State<AddressManage> {
 
   ///
   Widget _switchAddressDisplay() {
+    
+    _isAddressDisplay = widget.data.visible;
+    
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
@@ -169,10 +172,7 @@ class _AddressManageState extends State<AddressManage> {
         trailing: Switch(
           value: _isAddressDisplay, 
           onChanged: (bool value) {
-            setState(() {
-              _isAddressDisplay = !_isAddressDisplay;
-            });
-
+            _isAddressDisplay = !_isAddressDisplay;
             print('==> _isAddressDisplay = $_isAddressDisplay');
 
             Future response = NetConfig.post(NetConfig.setAddressVisible, {
@@ -181,9 +181,9 @@ class _AddressManageState extends State<AddressManage> {
             });
 
             response.then((val) {
-              print('==> val = $val');
               if (val != null) {
-
+                widget.data.visible = _isAddressDisplay;
+                setState(() { });
               }
             });
           }
