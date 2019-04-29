@@ -87,7 +87,11 @@ class _WalletAddressState extends State<WalletAddress> {
 
         subtitle: walletData.visible ? null : Text( // Is hiddened display
           WalletLocalizations.of(context).walletAddressPageHidden,
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 12,
+            fontStyle: FontStyle.italic,
+          ),
         ),
 
         trailing: Row( // address

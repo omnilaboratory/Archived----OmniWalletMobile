@@ -93,7 +93,7 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
       child: TabBarView(
         children: <Widget>[
           _popularAsset(),
-          Text('data2'),
+          Text(''),
         ],
       ),
     );
