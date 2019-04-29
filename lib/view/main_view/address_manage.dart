@@ -266,7 +266,7 @@ class _AddressManageState extends State<AddressManage> {
 
             response.then((val) {
               if (val != null) {
-                assetData.visible = _isAddressDisplay;
+                widget.data.accountInfoes[index].visible = _isAddressDisplay;
                 setState(() { });
               }
             });
