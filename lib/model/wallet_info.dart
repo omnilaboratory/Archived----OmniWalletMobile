@@ -48,7 +48,7 @@ class AccountInfo extends BaseInfo{
 
   int propertyId;
 
-  ///是否可见
+  /// Asset 是否可见
   bool visible;
 
   AccountInfo({String name, this.iconUrl,this.amount,this.legalTender,this.jsonData,this.propertyId,this.visible}):super(name:name);
