@@ -111,6 +111,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
       ],
     );
   }
+
   List<Widget> buildItemes(BuildContext context, int index) {
     WalletInfo dataInfo = _walletInfoes[index];
     List<Widget> list = List();
