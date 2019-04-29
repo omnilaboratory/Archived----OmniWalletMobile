@@ -248,8 +248,8 @@ class _AddressManageState extends State<AddressManage> {
 
             Future response = NetConfig.post(NetConfig.setAssetVisible, {
               'address': widget.data.address,
-              'assetId': assetData.propertyId.toString(),
-              // 'assetId': widget.data.accountInfoes[index].propertyId.toString(),
+              // 'assetId': assetData.propertyId.toString(),
+              'assetId': widget.data.accountInfoes[index].propertyId.toString(),
               'visible': widget.data.accountInfoes[index].visible.toString(),
             });
 
