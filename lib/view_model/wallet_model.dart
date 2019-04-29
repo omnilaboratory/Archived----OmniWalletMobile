@@ -88,6 +88,7 @@ class WalletModel extends Model{
               accountInfo.add(AccountInfo(
                   name: asset['name'],
                   amount:amount,
+                  iconUrl: propertyId==0||propertyId==1||propertyId==361?'icon_'+asset['name'].toString().toUpperCase():'icon_OMNI',
                   legalTender:money,
                   jsonData: asset,
                   visible: asset['visible'],
@@ -138,6 +139,7 @@ class WalletModel extends Model{
     accountInfo.add(AccountInfo(
         name: 'BTC',
         amount:0,
+        iconUrl: 'icon_BTC',
         legalTender:0,
         visible: true,
         propertyId: 0
@@ -145,6 +147,7 @@ class WalletModel extends Model{
     accountInfo.add(AccountInfo(
         name: 'OMNI',
         amount:0,
+        iconUrl: 'icon_OMNI',
         legalTender:0,
         visible: true,
         propertyId: 1
@@ -152,12 +155,13 @@ class WalletModel extends Model{
     accountInfo.add(AccountInfo(
         name: 'LunarX',
         amount:0,
+        iconUrl: 'icon_LUNARX',
         legalTender:0,
         visible: true,
         propertyId: 361
     ));
     info.accountInfoes = accountInfo;
-    _walletInfoes.add(info);
+    _walletInfoes.indexOf(info);
     notifyListeners();
   }
 

@@ -17,6 +17,7 @@ class BodyContentWidget extends StatefulWidget {
 class _BodyContentWidgetState extends State<BodyContentWidget> {
 
   List<WalletInfo> walletInfoes;
+  List<WalletInfo> _walletInfoes;
   MainStateModel stateModel = null;
 
   @override
@@ -28,8 +29,14 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
           walletInfoes = model.walletInfoes;
+          _walletInfoes=[];
+          for(var node in walletInfoes){
+            if(node.visible){
+              _walletInfoes.add(node);
+            }
+          }
           return ListView.builder(
-              itemCount: walletInfoes.length,
+              itemCount: _walletInfoes.length,
               itemBuilder: (BuildContext context, int index){
                 return Container(
                   margin: EdgeInsets.only(top: 10),
@@ -47,7 +54,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
   }
 
   Widget buildFirstLevelHeader(int index) {
-    WalletInfo dataInfo = walletInfoes[index];
+    WalletInfo dataInfo = _walletInfoes[index];
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,10 +112,11 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     );
   }
   List<Widget> buildItemes(BuildContext context, int index) {
-    WalletInfo dataInfo = walletInfoes[index];
+    WalletInfo dataInfo = _walletInfoes[index];
     List<Widget> list = List();
     for (int i = 0; i < dataInfo.accountInfoes.length; i++) {
       AccountInfo accountInfo = dataInfo.accountInfoes[i];
+      if(accountInfo.visible==false) continue;
       list.add(
         Container(
           margin: EdgeInsets.only(left: 50,bottom: 12,top: 6),
@@ -118,7 +126,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
               margin: EdgeInsets.all(6),
               child: Row(
                 children: <Widget>[
-                  Image.asset(Tools.imagePath('icon_BTC'),width: 25,height: 25,),
+                  Image.asset(Tools.imagePath(accountInfo.iconUrl),width: 25,height: 25,),
                   Container(
                     margin: EdgeInsets.only(left: 16),
                       child: AutoSizeText('${accountInfo.name}',style: TextStyle(fontSize: 18),minFontSize: 16,)
