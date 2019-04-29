@@ -2,9 +2,7 @@ import 'dart:async';
 
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wallet_app/model/global_model.dart';
-import 'package:wallet_app/tools/Tools.dart';
 
 class MnemonicPhrase{
 

@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
@@ -64,7 +64,7 @@ class SendConfirm extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
                 Expanded(child: Container()),
-                Text("${_sendInfo.amount==null?0:_sendInfo.amount} BTC",style: TextStyle(fontWeight: FontWeight.w500),)
+                Text("${_sendInfo.amount==null?0:_sendInfo.amount} "+accountInfo.name,style: TextStyle(fontWeight: FontWeight.w500),)
               ],
             ),
           ),

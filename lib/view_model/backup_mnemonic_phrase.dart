@@ -1,5 +1,4 @@
 import 'package:wallet_app/view_model/state_lib.dart';
-import 'dart:math';
 
 class BackupMnemonicPhrase extends Model{
 

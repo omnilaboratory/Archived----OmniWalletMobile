@@ -18,7 +18,6 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
   TabController controller;
   Brightness brightness ;
-  int _currentIndex = 0;
   final _bottomNavigationColor = Colors.grey;
   final _bottomNavigationActiveColor = Colors.blue;
   List<Widget> pages = List();

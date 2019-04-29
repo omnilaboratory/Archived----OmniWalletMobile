@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
-import 'dart:math';
 
 import 'package:wallet_app/view_model/state_lib.dart';
 
