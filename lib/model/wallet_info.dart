@@ -24,6 +24,7 @@ class WalletInfo extends BaseInfo{
     @required this.address,
     @required this.addressIndex,
     this.note,
+    this.visible,
     this.iconUrl,this.totalLegalTender=0,this.accountInfoes
   }):super(name:name);
 
