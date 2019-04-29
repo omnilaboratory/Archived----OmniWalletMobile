@@ -96,14 +96,29 @@ class WalletModel extends Model{
               totalMoney+=money;
             }
             totalMoney = totalMoney;
-            WalletInfo info = WalletInfo(name: node['addressName'],address:node['address'],addressIndex: node['addressIndex'], totalLegalTender: totalMoney,note: '',accountInfoes: accountInfo);
+            WalletInfo info = WalletInfo(
+                name: node['addressName'],
+                address:node['address'],
+                addressIndex: node['addressIndex'],
+                visible: node['visible'],
+                totalLegalTender: totalMoney,
+                note: '',
+                accountInfoes: accountInfo);
             _walletInfoes.add(info);
           }
           if(_walletInfoes.length==0){
             int addressIndex = walletInfoes.length;
             String defaultName = 'name0';
             HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
-            WalletInfo info = WalletInfo(name: defaultName,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
+            WalletInfo info = WalletInfo(
+                name: defaultName,
+                address: wallet.address,
+                addressIndex: addressIndex,
+                visible: true,
+                totalLegalTender: 0,
+                note: '',
+                accountInfoes: []
+            );
             Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
               this.addWalletInfo(info);
@@ -121,11 +136,25 @@ class WalletModel extends Model{
   addWalletInfo(WalletInfo info) {
     List<AccountInfo> accountInfo = [];
     accountInfo.add(AccountInfo(
-        name: 'Btc',
+        name: 'BTC',
         amount:0,
         legalTender:0,
         visible: true,
         propertyId: 0
+    ));
+    accountInfo.add(AccountInfo(
+        name: 'OMNI',
+        amount:0,
+        legalTender:0,
+        visible: true,
+        propertyId: 1
+    ));
+    accountInfo.add(AccountInfo(
+        name: 'LunarX',
+        amount:0,
+        legalTender:0,
+        visible: true,
+        propertyId: 361
     ));
     info.accountInfoes = accountInfo;
     _walletInfoes.add(info);
