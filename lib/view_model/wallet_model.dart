@@ -18,13 +18,13 @@ class WalletModel extends Model{
     return _currWalletInfo;
   }
 
-  num _currWalletIndex=0;
-  set currWalletIndex(num value){
-    this._currWalletIndex = value;
-  }
-  num get currWalletIndex{
-    return _currWalletIndex;
-  }
+//  num _currWalletIndex=0;
+//  set currWalletIndex(num value){
+//    this._currWalletIndex = value;
+//  }
+//  num get currWalletIndex{
+//    return _currWalletIndex;
+//  }
 
   AccountInfo _currAccountInfo;
   set currAccountInfo(AccountInfo info){
@@ -35,13 +35,13 @@ class WalletModel extends Model{
     return _currAccountInfo;
   }
 
-  num _currAccountIndex=0;
-  set currAccountIndex(num value){
-    this._currAccountIndex = value;
-  }
-  num get currAccountIndex{
-    return _currAccountIndex;
-  }
+//  num _currAccountIndex=0;
+//  set currAccountIndex(num value){
+//    this._currAccountIndex = value;
+//  }
+//  num get currAccountIndex{
+//    return _currAccountIndex;
+//  }
 
 
   TradeInfo _currTradeInfo;

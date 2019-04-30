@@ -173,8 +173,8 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     print('clickItem '+mainIndex.toString()+" "+ subIndex.toString());
     stateModel.currWalletInfo = _walletInfoes[mainIndex];
     stateModel.currAccountInfo = stateModel.currWalletInfo.accountInfoes[subIndex];
-    stateModel.currWalletIndex = mainIndex;
-    stateModel.currAccountIndex = subIndex;
+//    stateModel.currWalletIndex = mainIndex;
+//    stateModel.currAccountIndex = subIndex;
     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>WalletDetail()));
   }
 }

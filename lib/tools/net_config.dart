@@ -82,7 +82,7 @@ class NetConfig{
 
 
 
-  static post(String url,Map<String, String> data,{Function errorCallback}) async{
+  static post(String url,Map<String, String> data,{Function errorCallback=null}) async{
     return _sendData("post", url, data,errorCallback: errorCallback);
   }
 
@@ -90,10 +90,9 @@ class NetConfig{
     return _sendData("get", url,null,errorCallback: errorCallback);
   }
 
-  static _sendData(String reqType, String url,Map<String, String> data,{Function errorCallback}) async{
+  static _sendData(String reqType, String url,Map<String, String> data,{Function errorCallback=null}) async{
 
     Map<String, String> header = new Map();
-    print(url);
     if(url.startsWith('common')==false){
       if(GlobalInfo.userInfo.userId==null){
         showToast('user have not login');
@@ -101,7 +100,9 @@ class NetConfig{
       }
       header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
     }
+
     url = apiHost + url;
+    print(url);
 //    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
     if(reqType=="get"){
@@ -110,7 +111,7 @@ class NetConfig{
       response =  await http.post(url,headers: header, body: data);
     }
 //    Fluttertoast.cancel();
-
+    print(response.statusCode);
     bool isError = true;
     if(response.statusCode==200){
       var result = json.decode(response.body);
@@ -119,22 +120,28 @@ class NetConfig{
       if(status==1){
         var data = result['data'];
         print(data);
+        isError = false;
         return data;
       }
       if(status==0){
         showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
       }
       if(status==403){
-        setUserID(null);
-        showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
+
       }
-    }else{
+    }else if(response.statusCode==403){
+      GlobalInfo.bip39Seed = null;
+      Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+      prefs.then((share) {
+        share.clear();
+      });
+      showToast('user not exist');
+    } else{
       showToast('server is sleep, please wait');
     }
-    if(errorCallback!=null){
+    if(errorCallback!=null&&isError){
       errorCallback();
     }
-
   }
 
   static showToast(String msg,{Toast toastLength = Toast.LENGTH_SHORT}){
