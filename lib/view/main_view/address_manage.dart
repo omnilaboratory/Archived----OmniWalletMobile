@@ -30,6 +30,7 @@ class _AddressManageState extends State<AddressManage> {
   bool _isAddressDisplay;
 
   FocusNode _nodeText = FocusNode();
+  TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     _list.add(_bodyTitle());
-    _list.add(_editAddressName());
+    _list.add(_btnEditAddressName());
     _list.add(SizedBox(height: 10));
     _list.add(_switchAddressDisplay());
 
@@ -105,7 +106,7 @@ class _AddressManageState extends State<AddressManage> {
   }
 
   ///
-  Widget _editAddressName() {
+  Widget _btnEditAddressName() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       color: AppCustomColor.themeBackgroudColor,
@@ -129,6 +130,7 @@ class _AddressManageState extends State<AddressManage> {
             onPressed: () {
               if (_isEditing) {
                 _isEditing = false;
+                _onSubmit();
               } else {
                 _isEditing = true;
               }
@@ -138,6 +140,13 @@ class _AddressManageState extends State<AddressManage> {
         ],
       ),
     );
+  }
+
+  /// update address name
+  void _onSubmit() {
+    // return Expanded(
+    //   child: Text(widget.data.name)
+    // );
   }
 
   ///
@@ -151,14 +160,14 @@ class _AddressManageState extends State<AddressManage> {
   Widget _inputNewName() {
     return Expanded(
       child: TextFormField(
-        // controller:  _controller,
+        controller:  _nameController,
         focusNode:   _nodeText,
         // keyboardType: TextInputType.emailAddress,
 
-        onSaved: (String val) {
-          print('_strSave = $val');
-          _strSave = val;
-        },
+        // onSaved: (String val) {
+        //   print('_strSave = $val');
+        //   _strSave = val;
+        // },
 
         validator: (val) => _validate(val),
 

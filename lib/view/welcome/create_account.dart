@@ -25,7 +25,7 @@ class _CreateAccountState extends State<CreateAccount> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   /// should save data.
-  String _strNickName, _strPinCode, _strRepeatPinCode;
+  // String _strNickName, _strPinCode, _strRepeatPinCode;
 
   TextEditingController _nickNameController      = TextEditingController();
   TextEditingController _pinCodeController       = TextEditingController();
@@ -145,9 +145,9 @@ class _CreateAccountState extends State<CreateAccount> {
       _nodeText1, _nodeText2, _nodeText3
     ];
 
-    List<String> _saveData = <String> [
-      _strNickName, _strPinCode, _strRepeatPinCode
-    ];
+    // List<String> _saveData = <String> [
+    //   _strNickName, _strPinCode, _strRepeatPinCode
+    // ];
 
     List<String> _icons = <String> [
       'icon_name', 'icon_password', 'icon_confirm'
@@ -177,7 +177,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
     for (int i = 0; i < _nodes.length; i++) {
       _list.add( _textFormField(
-        _controllers[i], _nodes[i], _saveData[i], _icons[i], 
+        _controllers[i], _nodes[i], _icons[i], 
         _hintText[i], _hasFocus[i], _helperText[i], _textFields[i]) );
 
       _list.add(Divider(height: 0, indent: 25));
@@ -199,7 +199,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
   // 
   Widget _textFormField(TextEditingController _controller, FocusNode _node, 
-        String _strSave, String _iconName, String _hintText, 
+        String _iconName, String _hintText, 
         bool _hasFocus, String _helperText, int _textField) {
 
     return Container(
