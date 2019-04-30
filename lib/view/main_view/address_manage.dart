@@ -5,6 +5,7 @@ import 'dart:async';
 /// [time] 2019-4-25
 
 import 'package:flutter/material.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/displayed_assets.dart';
@@ -28,6 +29,8 @@ class _AddressManageState extends State<AddressManage> {
   bool _isEditing = false;
   bool _isAddressDisplay;
 
+  FocusNode _nodeText = FocusNode();
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,17 +40,35 @@ class _AddressManageState extends State<AddressManage> {
         title: Text(WalletLocalizations.of(context).addressManagePageAppBarTitle),
       ),
 
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 10),
-          child: ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            children: _content(),
+      body: FormKeyboardActions(
+        actions: _actions(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(top: 10),
+            child: ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: _content(),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  ///
+  List<KeyboardAction> _actions() {
+    List<KeyboardAction> _actions = <KeyboardAction> [
+      KeyboardAction(
+        focusNode: _nodeText,
+        closeWidget: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(Icons.close),
+        )
+      )
+    ];
+
+    return _actions;
   }
 
   /// body content
@@ -90,7 +111,7 @@ class _AddressManageState extends State<AddressManage> {
       color: AppCustomColor.themeBackgroudColor,
       child: Row(
         children: <Widget>[
-          _isEditing ? _newName() : _newNameText(),
+          _isEditing ? _inputNewName() : _newNameText(),
           SizedBox(width: 20),
           RaisedButton(
             // padding: EdgeInsets.symmetric(vertical: 12),
@@ -127,9 +148,20 @@ class _AddressManageState extends State<AddressManage> {
   }
 
   ///
-  Widget _newName() {
+  Widget _inputNewName() {
     return Expanded(
-      child: TextField(
+      child: TextFormField(
+        // controller:  _controller,
+        focusNode:   _nodeText,
+        // keyboardType: TextInputType.emailAddress,
+
+        onSaved: (String val) {
+          print('_strSave = $val');
+          _strSave = val;
+        },
+
+        validator: (val) => _validate(val),
+
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           labelText: WalletLocalizations.of(context).addressManagePageEditTips,
@@ -140,13 +172,17 @@ class _AddressManageState extends State<AddressManage> {
           // fillColor: Colors.grey[100],
           // filled: true,
         ),
-
-        // enabled: _isEditing ? true : false,
-
-        // focusNode: _nodeText3,
-        // keyboardType: TextInputType.emailAddress,
       ),
     );
+  }
+
+  /// validate new name
+  String _validate(String val) {
+    if (val == null || val.trim().length == 0) {
+      return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
+    }
+
+    return null;
   }
 
   ///

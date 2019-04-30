@@ -208,10 +208,10 @@ class _CreateAccountState extends State<CreateAccount> {
         decoration: _inputDecoration(_iconName, _hintText, 
           _hasFocus, _helperText, _controller),
 
-        onSaved: (String val) {
-          print('_strSave = $val');
-          _strSave = val;
-        },
+        // onSaved: (String val) {
+        //   print('_strSave = $val');
+        //   _strSave = val;
+        // },
 
         validator: (val) => _validate(val, _textField),
       ),
@@ -296,9 +296,7 @@ class _CreateAccountState extends State<CreateAccount> {
         title: WalletLocalizations.of(context).createAccountPageButton,
         titleColor: Colors.white,
         color: AppCustomColor.btnConfirm,
-        callback: () {
-          _onSubmit();
-        },
+        callback: () { _onSubmit(); },
       ),
     );
   }
@@ -309,7 +307,7 @@ class _CreateAccountState extends State<CreateAccount> {
     if(this.canCreate==false) return ;
     final form = _formKey.currentState;
     if (form.validate()) {
-      form.save();
+      // form.save();
       this.canCreate =false;
       /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
