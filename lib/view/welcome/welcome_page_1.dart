@@ -112,15 +112,15 @@ class WelcomePageOne extends StatelessWidget {
         ), */
 
         /// TEMP CODE
-        AnimatedOpacity(
-          duration: Duration(milliseconds: 1000),
-          opacity:Tools.getCurrRunningMode()?0:1,
-          child: FlatButton(
-            child: Text(WalletLocalizations.of(context).common_btn_skip),
-            textColor: Colors.grey,
-            onPressed: this.onClickSkip(context),
-          ),
-        ),
+//        AnimatedOpacity(
+//          duration: Duration(milliseconds: 1000),
+//          opacity:Tools.getCurrRunningMode()?0:1,
+//          child: FlatButton(
+//            child: Text(WalletLocalizations.of(context).common_btn_skip),
+//            textColor: Colors.grey,
+//            onPressed: this.onClickSkip(context),
+//          ),
+//        ),
       ],
     );
   }

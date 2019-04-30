@@ -11,9 +11,9 @@ import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
 //  static String apiHost='http://192.168.0.106:8080/api/';
-  static String apiHost='http://172.21.100.248:8080/api/';
+//  static String apiHost='http://172.21.100.248:8080/api/';
 
-//  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
+  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String imageHost='http://62.234.169.68:8080';
   static String userMD5Id = null;
   static setUserID(String data) async{
@@ -79,15 +79,15 @@ class NetConfig{
 
 
 
-  static post(String url,Map<String, String> data) async{
-    return _sendData("post", url, data);
+  static post(String url,Map<String, String> data,{Function errorCallback}) async{
+    return _sendData("post", url, data,errorCallback: errorCallback);
   }
 
-  static get(String url) async{
-    return _sendData("get", url,null);
+  static get(String url,{Function errorCallback}) async{
+    return _sendData("get", url,null,errorCallback: errorCallback);
   }
 
-  static _sendData(String reqType, String url,Map<String, String> data) async{
+  static _sendData(String reqType, String url,Map<String, String> data,{Function errorCallback}) async{
 
     Map<String, String> header = new Map();
     print(url);
@@ -108,6 +108,7 @@ class NetConfig{
     }
 //    Fluttertoast.cancel();
 
+    bool isError = true;
     if(response.statusCode==200){
       var result = json.decode(response.body);
       int status = result['status'];
@@ -127,6 +128,10 @@ class NetConfig{
     }else{
       showToast('server is sleep, please wait');
     }
+    if(errorCallback!=null){
+      errorCallback();
+    }
+
   }
 
   static showToast(String msg,{Toast toastLength = Toast.LENGTH_SHORT}){

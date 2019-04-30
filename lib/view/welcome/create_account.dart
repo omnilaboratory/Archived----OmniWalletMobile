@@ -80,6 +80,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
+    canCreate =true;
+
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
 
@@ -330,6 +332,9 @@ class _CreateAccountState extends State<CreateAccount> {
         NetConfig.createUser,
         {'userId':_mnemonic_md5,
         'nickname':_nickNameController.text},
+        errorCallback: (){
+          canCreate = true;
+        }
       );
 
       data.then((data) {

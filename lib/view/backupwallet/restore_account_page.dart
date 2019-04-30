@@ -29,6 +29,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
   }
   @override
   Widget build(BuildContext context) {
+    canToucn =true;
     return Scaffold(
       backgroundColor: AppCustomColor.themeBackgroudColor,
       appBar: AppBar(title: Text(WalletLocalizations.of(context).restore_account_title),),
@@ -161,8 +162,9 @@ class _RestoreAccountState extends State<RestoreAccount> {
     );
     return body;
   }
-
+  bool canToucn =true;
   Function clickBtn(BuildContext context) {
+    if(canToucn ==false) return null;
     String text = this.controller.text;
     var split = text.split(' ');
     split.removeWhere((item) {
@@ -179,7 +181,14 @@ class _RestoreAccountState extends State<RestoreAccount> {
         }
         var _mnemonic= split.join(' ');
         var  userId = Tools.convertMD5Str(_mnemonic);
-        Future result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
+        canToucn =false;
+        Future result = NetConfig.post(
+            NetConfig.restoreUser,
+            {'userId':userId},
+            errorCallback: (){
+              canToucn = true;
+            }
+            );
         result.then((data){
           if(data!=null){
 
