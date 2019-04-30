@@ -195,6 +195,8 @@ class WalletLocalizations{
       'addressManagePageEditTips' : '新名字',
       'addressManagePageEditButton' : '编辑',
       'addressManagePageDoneButton' : '完成',
+      'addressManagePageAddressNameTitle' : '地址名字',
+      'addressManagePageAddressDisplayTitle' : '地址显示 / 隐藏',
       'addressManagePageAddressDisplay' : '地址显示',
       'addressManagePageAssetsDisplay' : '资产显示',
 
@@ -409,10 +411,12 @@ class WalletLocalizations{
       'addressManagePageEditTips' : 'New Name',
       'addressManagePageEditButton' : 'Edit',
       'addressManagePageDoneButton' : 'Done',
+      'addressManagePageAddressNameTitle' : 'Address Name',
+      'addressManagePageAddressDisplayTitle' : 'Switch Address Display',
       'addressManagePageAddressDisplay' : 'Address Display',
       'addressManagePageAssetsDisplay' : 'Assets Display',
 
-      'displayedAssetsPageAppBarTitle' : 'Displayed Assets',
+      'displayedAssetsPageAppBarTitle' : 'Display Assets',
       'displayedAssetsPageTitle_1' : 'Popular Assets',
       'displayedAssetsPageTitle_2' : 'Other Assets',
     }
@@ -433,6 +437,8 @@ class WalletLocalizations{
   get addressManagePageEditTips => _localizedValues[locale.languageCode]['addressManagePageEditTips'];
   get addressManagePageEditButton => _localizedValues[locale.languageCode]['addressManagePageEditButton'];
   get addressManagePageDoneButton => _localizedValues[locale.languageCode]['addressManagePageDoneButton'];
+  get addressManagePageAddressNameTitle => _localizedValues[locale.languageCode]['addressManagePageAddressNameTitle'];
+  get addressManagePageAddressDisplayTitle => _localizedValues[locale.languageCode]['addressManagePageAddressDisplayTitle'];
   get addressManagePageAddressDisplay => _localizedValues[locale.languageCode]['addressManagePageAddressDisplay'];
   get addressManagePageAssetsDisplay => _localizedValues[locale.languageCode]['addressManagePageAssetsDisplay'];
 

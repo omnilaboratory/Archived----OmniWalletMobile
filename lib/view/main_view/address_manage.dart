@@ -1,9 +1,9 @@
-import 'dart:async';
-
 /// Addresses Management page.
 /// [author] Kevin Zhang
 /// [time] 2019-4-25
 
+import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -32,8 +32,6 @@ class _AddressManageState extends State<AddressManage> {
 
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
-
-  /// form define
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -83,8 +81,9 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     _list.add(_bodyTitle());
-    _list.add(_btnEditAddressName());
-    _list.add(SizedBox(height: 10));
+    _list.add(_addressNameTitle());
+    _list.add(_changeAddressName());
+    _list.add(_addressDisplayTitle());
     _list.add(_switchAddressDisplay());
 
     // if (_isAddressDisplay) {
@@ -102,47 +101,119 @@ class _AddressManageState extends State<AddressManage> {
   ///
   Widget _bodyTitle() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Text(
-        widget.data.address
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: AutoSizeText(
+        widget.data.address,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.center,
+        minFontSize: 9,
+        maxLines: 1,
+        style: TextStyle(
+          color: Colors.blue,
+          fontSize: 16,
+        ),
       ),
     );
   }
 
   ///
-  Widget _btnEditAddressName() {
+  Widget _addressNameTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+      child: Row(
+        children: <Widget>[
+          Text(
+            WalletLocalizations.of(context).addressManagePageAddressNameTitle,
+            style: TextStyle(color: Colors.grey),
+          ),
+          
+          _isEditing ? _btnCancel() : Text(''),
+        ],
+      ),
+    );
+  }
+
+  ///
+  Widget _addressDisplayTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+      child: Text(
+        WalletLocalizations.of(context).addressManagePageAddressDisplayTitle,
+        style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+
+  ///
+  Widget _changeAddressName() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       color: AppCustomColor.themeBackgroudColor,
       child: Row(
         children: <Widget>[
-          _isEditing ? _inputNewName() : _newNameText(),
-          SizedBox(width: 20),
-          RaisedButton(
-            // padding: EdgeInsets.symmetric(vertical: 12),
-            elevation: 0,
-            color: AppCustomColor.btnConfirm,
-            child: _isEditing ? Text(
-                WalletLocalizations.of(context).addressManagePageDoneButton,
-                style: TextStyle(color: Colors.white),
-              ) : 
-              Text(
-                WalletLocalizations.of(context).addressManagePageEditButton,
-                style: TextStyle(color: Colors.white),
-              ),
 
-            onPressed: () {
-              if (_isEditing) {
-                // _isEditing = false;
-                _onSubmit();
-              } else {
-                _isEditing = true;
-              }
-              setState(() { });
-            },
-          ),
+          // Display address name or textfield for input new name.
+          _isEditing ? _inputNewName() : _addressName(),
+
+          SizedBox(width: 20),
+
+          // Edit or Done button.
+          _btnEditOrDone(),
+          
         ],
       ),
+    );
+  }
+
+  /// _btnEditOrDone
+  Widget _btnTwo() {
+    return Row(
+      children: <Widget>[
+        _btnCancel(),
+        _btnEditOrDone(),
+      ],
+    );
+  }
+
+  /// _btnEditOrDone
+  Widget _btnCancel() {
+    return FlatButton(
+      child: Text(
+        WalletLocalizations.of(context).createNewAddress_Cancel,
+        style: TextStyle(color: Colors.blue),
+      ),
+      onPressed: () {
+        setState(() {
+          _isEditing = false;
+        });
+      },
+    );
+  }
+
+  /// _btnEditOrDone
+  Widget _btnEditOrDone() {
+    return FlatButton(
+      // padding: EdgeInsets.symmetric(vertical: 12),
+      // elevation: 0,
+      // color: AppCustomColor.btnConfirm,
+      child: _isEditing ? Text(
+          WalletLocalizations.of(context).addressManagePageDoneButton,
+          style: TextStyle(color: Colors.blue[800]),
+        ) : 
+        Text(
+          WalletLocalizations.of(context).addressManagePageEditButton,
+          style: TextStyle(color: Colors.blue[800]),
+        ),
+
+      onPressed: () {
+        if (_isEditing) {
+          // _isEditing = false;
+          _onSubmit();
+        } else {
+          _isEditing = true;
+        }
+        setState(() { });
+      },
     );
   }
 
@@ -172,7 +243,7 @@ class _AddressManageState extends State<AddressManage> {
   }
 
   ///
-  Widget _newNameText() {
+  Widget _addressName() {
     return Expanded(
       child: Text(
         widget.data.name,
@@ -309,7 +380,10 @@ class _AddressManageState extends State<AddressManage> {
       child: ListTile(
         enabled: _isAddressDisplay ? true : false,
         // leading: Image.asset(assetData.iconUrl),
-        title: Text(assetData.name),
+        title: Text(
+          assetData.name,
+          style: TextStyle(color: assetData.visible ? null : Colors.grey),
+        ),
         trailing: Switch(
           value: assetData.visible,
           onChanged: !_isAddressDisplay ? null : (bool value) {
