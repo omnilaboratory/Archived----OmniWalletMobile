@@ -18,7 +18,7 @@ import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
-import 'package:wallet_app/view/main_view/user_info.dart';
+import 'package:wallet_app/view/main_view/user_info_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 import 'package:wallet_app/view/welcome/create_account.dart';
@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
     ServiceTerms.tag: (context)        => ServiceTerms(),
     BackupWalletIndex.tag: (context)   => BackupWalletIndex(),
     About.tag: (context)               => About(),
-    UserInfo.tag: (context)            => UserInfo(),
+    UserInfoPage.tag: (context)        => UserInfoPage(),
     BackupWalletWords.tag: (context)   => BackupWalletWords(),
     MainPage.tag: (context)            => MainPage(),
     RestoreAccount.tag: (context)      => RestoreAccount(),

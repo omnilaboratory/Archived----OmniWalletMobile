@@ -12,13 +12,13 @@ import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
-class UserInfo extends StatefulWidget {
-  static String tag = "UserInfo";
+class UserInfoPage extends StatefulWidget {
+  static String tag = "UserInfoPage";
   @override
-  _UserInfoState createState() => _UserInfoState();
+  _UserInfoPageState createState() => _UserInfoPageState();
 }
 
-class _UserInfoState extends State<UserInfo> {
+class _UserInfoPageState extends State<UserInfoPage> {
 
   var _imgAvatar;
 
@@ -48,9 +48,7 @@ class _UserInfoState extends State<UserInfo> {
                   ],
                 ),
 
-                onTap: () {
-                  _bottomSheet();
-                },
+                onTap: () { _bottomSheet(); },
               ),
             ),
             
@@ -79,15 +77,12 @@ class _UserInfoState extends State<UserInfo> {
               ),
             ),
             
-            Ink( /// Update PIN Code
+            Ink( // Update PIN Code
               color: AppCustomColor.themeBackgroudColor,
               child: ListTile(
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_3_Title),
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
-                  // TODO: show next page.
-                   Navigator.of(context).pushNamed(UpdatePIN.tag);
-                },
+                onTap: () { Navigator.of(context).pushNamed(UpdatePIN.tag); },
               ),
             ),
 

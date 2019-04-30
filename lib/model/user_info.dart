@@ -27,7 +27,7 @@ class UserInfo{
 
   void init() async{
     print('step 1 ${DateTime.now()}  ${GlobalInfo.bip39Seed}');
-    Future.delayed(Duration(seconds: 20),(){
+    Future.delayed(Duration(seconds: 1),(){
       if(GlobalInfo.bip39Seed==null){
         print('step 4 ${DateTime.now()}');
         (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));

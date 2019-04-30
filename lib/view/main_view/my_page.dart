@@ -13,7 +13,7 @@ import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/about.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
-import 'package:wallet_app/view/main_view/user_info.dart';
+import 'package:wallet_app/view/main_view/user_info_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
 
@@ -79,7 +79,7 @@ class _UserCenterState extends State<UserCenter> {
               width: 70,
               height: 70,
               child: InkWell(
-                onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+                onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
                 child: null,
               ),
             ),
@@ -89,7 +89,7 @@ class _UserCenterState extends State<UserCenter> {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: () { Navigator.of(context).pushNamed(UserInfo.tag); },
+              onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
               child: Text(  // user nick name
                 GlobalInfo.userInfo.nickname,
                 style: TextStyle(color: Colors.white),
