@@ -25,28 +25,26 @@ class UserInfo{
     this.init();
   }
 
-
-  void initBipSeed() async{
-    if(GlobalInfo.bip39Seed==null){
-      print('begin ${DateTime.now()}');
-      await (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));
-      print('end ${DateTime.now()}');
-      print(GlobalInfo.bip39Seed);
-    }
-  }
-
   void init() async{
-    print('begin init ${DateTime.now()}  ${GlobalInfo.bip39Seed}');
-    this.initBipSeed();
-    print('get rate ${DateTime.now()}');
+    print('step 1 ${DateTime.now()}  ${GlobalInfo.bip39Seed}');
+    Future.delayed(Duration(seconds: 20),(){
+      if(GlobalInfo.bip39Seed==null){
+        print('step 4 ${DateTime.now()}');
+        (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));
+      }
+      print(GlobalInfo.bip39Seed);
+    });
+    print('step 2 ${DateTime.now()}');
     Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
     future.then((data){
       if(data!=null){
+        print('step 5 ${DateTime.now()}');
         AssetToUSDRateInfo info = AssetToUSDRateInfo();
         info.btcs[0] = data[0]['rate'];
         info.btcs[1] = data[1]['rate'];
         GlobalInfo.usdRateInfo = info;
       }
     });
+    print('step 3 ${DateTime.now()}');
   }
 }
