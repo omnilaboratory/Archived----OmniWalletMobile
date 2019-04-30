@@ -303,11 +303,14 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
+  bool canCreate =true;
   /// form submit
   void _onSubmit() {
+    if(this.canCreate==false) return ;
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
+      this.canCreate =false;
       /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
       MnemonicPhrase.getInstance().initSeed(_mnemonic);
@@ -337,11 +340,6 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.userId   = _mnemonic_md5;
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
-
-//          Future((){
-//            HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: 0);
-//            NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':'name0','addressIndex':"0"});
-//          });
 
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(

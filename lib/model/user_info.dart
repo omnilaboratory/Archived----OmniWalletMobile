@@ -20,17 +20,25 @@ class UserInfo{
     return this._mnemonic;
   }
 
-  void set mnemonic(String val){
+  void set mnemonic(String val) {
     this._mnemonic=val;
-    this.initBipSeed();
+    this.init();
   }
 
-  void initBipSeed() {
+
+  void initBipSeed() async{
     if(GlobalInfo.bip39Seed==null){
-      new Future((){
-        GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic);
-      });
+      print('begin ${DateTime.now()}');
+      await (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));
+      print('end ${DateTime.now()}');
+      print(GlobalInfo.bip39Seed);
     }
+  }
+
+  void init() async{
+    print('begin init ${DateTime.now()}  ${GlobalInfo.bip39Seed}');
+    this.initBipSeed();
+    print('get rate ${DateTime.now()}');
     Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
     future.then((data){
       if(data!=null){

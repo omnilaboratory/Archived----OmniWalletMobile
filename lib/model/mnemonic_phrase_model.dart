@@ -28,7 +28,6 @@ class MnemonicPhrase{
 
   HDWallet createAddress(String phrases,{int index=0}){
     if(GlobalInfo.bip39Seed==null){
-//      Tools.showToast('local creating seed, please wait',toastLength: Toast.LENGTH_LONG);
       GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
     }
     var hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
