@@ -28,6 +28,7 @@ class _AddressManageState extends State<AddressManage> {
 
   bool _isEditing = false;
   bool _isAddressDisplay;
+  bool _autoValidate = false;
 
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
@@ -159,8 +160,13 @@ class _AddressManageState extends State<AddressManage> {
         if (val != null) {
           setState(() {
             _isEditing = false;
+            widget.data.name = _nameController.text; // change locally data.
           });
         }
+      });
+    } else {
+      setState(() {
+        _autoValidate = true;
       });
     }
   }
@@ -168,34 +174,41 @@ class _AddressManageState extends State<AddressManage> {
   ///
   Widget _newNameText() {
     return Expanded(
-      child: Text(widget.data.name)
+      child: Text(
+        widget.data.name,
+        style: TextStyle(fontSize: 16),
+      )
     );
   }
 
   ///
   Widget _inputNewName() {
     return Expanded(
-      child: TextFormField(
-        controller:  _nameController,
-        focusNode:   _nodeText,
-        // keyboardType: TextInputType.emailAddress,
+      child: Form(
+        key: _formKey,
+        autovalidate: _autoValidate,
+        child: TextFormField(
+          controller:  _nameController,
+          focusNode:   _nodeText,
+          // keyboardType: TextInputType.emailAddress,
 
-        // onSaved: (String val) {
-        //   print('_strSave = $val');
-        //   _strSave = val;
-        // },
+          // onSaved: (String val) {
+          //   print('_strSave = $val');
+          //   _strSave = val;
+          // },
 
-        validator: (val) => _validate(val),
+          validator: (val) => _validate(val),
 
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          labelText: WalletLocalizations.of(context).addressManagePageEditTips,
-          labelStyle: TextStyle(fontSize: 13),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5)
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            labelText: WalletLocalizations.of(context).addressManagePageEditTips,
+            labelStyle: TextStyle(fontSize: 13),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5)
+            ),
+            // fillColor: Colors.grey[100],
+            // filled: true,
           ),
-          // fillColor: Colors.grey[100],
-          // filled: true,
         ),
       ),
     );
