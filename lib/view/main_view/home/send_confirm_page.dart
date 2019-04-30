@@ -114,6 +114,7 @@ class SendConfirm extends StatelessWidget {
     );
   }
   transfer(BuildContext context){
+
     print(accountInfo.propertyId);
     //btc send
     if(accountInfo.propertyId==0){
