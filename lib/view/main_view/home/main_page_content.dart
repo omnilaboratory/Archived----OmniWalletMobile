@@ -171,7 +171,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
   //点击item
   void onClickItem(int mainIndex,int subIndex){
     print('clickItem '+mainIndex.toString()+" "+ subIndex.toString());
-    stateModel.currWalletInfo = stateModel.walletInfoes[mainIndex];
+    stateModel.currWalletInfo = _walletInfoes[mainIndex];
     stateModel.currAccountInfo = stateModel.currWalletInfo.accountInfoes[subIndex];
     stateModel.currWalletIndex = mainIndex;
     stateModel.currAccountIndex = subIndex;
