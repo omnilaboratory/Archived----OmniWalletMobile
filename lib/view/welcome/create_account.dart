@@ -334,9 +334,10 @@ class _CreateAccountState extends State<CreateAccount> {
         NetConfig.createUser,
         {'userId':_mnemonic_md5,
         'nickname':_nickNameController.text},
+        errorCallback: (){
+          canCreate = true;
+        }
       );
-
-      canCreate =true;
 
       data.then((data) {
         if(data != null) {

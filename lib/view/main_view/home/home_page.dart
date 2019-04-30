@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
@@ -154,8 +156,13 @@ class _HomePageState extends State<HomePage> {
     int addressIndex = walletInfoes.length;
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
     WalletInfo info = WalletInfo(name: addressName,visible: true,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
-    Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()});
-    canTouchAdd = true;
+    Future result = NetConfig.post(
+        NetConfig.createAddress,
+        {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()},
+        errorCallback: (){
+          canTouchAdd = true;
+        });
+
     result.then((data){
       if(data!=null){
         stateModel.addWalletInfo(info);

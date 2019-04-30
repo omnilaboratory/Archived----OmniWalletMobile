@@ -182,8 +182,13 @@ class _RestoreAccountState extends State<RestoreAccount> {
         var _mnemonic= split.join(' ');
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
-        Future result = NetConfig.post(NetConfig.restoreUser, {'userId':userId});
-        canToucn =true;
+        Future result = NetConfig.post(
+            NetConfig.restoreUser,
+            {'userId':userId},
+            errorCallback: (){
+              canToucn = true;
+            }
+            );
         result.then((data){
           if(data!=null){
 
