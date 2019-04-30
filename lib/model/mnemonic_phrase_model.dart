@@ -18,14 +18,13 @@ class MnemonicPhrase{
   String createPhrases(){
     return bip39.generateMnemonic();
   }
-  String initSeed(String phrases){
-     Future((){
-       if(GlobalInfo.bip39Seed==null){
-         GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
-       }
-     });
+  void initSeed(String phrases){
+    if(GlobalInfo.bip39Seed==null){
+      Future.delayed(Duration(seconds: 1),(){
+           GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
+       });
+    }
   }
-
   HDWallet createAddress(String phrases,{int index=0}){
     if(GlobalInfo.bip39Seed==null){
       GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);

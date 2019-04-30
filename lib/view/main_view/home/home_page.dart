@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   buildShowDialog(BuildContext context) {
+    canTouchAdd =true;
     String _addressName;
     return showDialog(
       context: context,
@@ -145,13 +146,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
+  bool canTouchAdd =true;
   Function onClickAddButton(String addressName){
+    if(canTouchAdd==false) return null;
+    canTouchAdd =false;
     walletInfoes = stateModel.walletInfoes;
     int addressIndex = walletInfoes.length;
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
     WalletInfo info = WalletInfo(name: addressName,visible: true,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
     Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()});
+    canTouchAdd = true;
     result.then((data){
       if(data!=null){
         stateModel.addWalletInfo(info);
