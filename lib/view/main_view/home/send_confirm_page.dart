@@ -9,10 +9,8 @@ import 'package:wallet_app/model/mnemonic_phrase_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/tools/net_config.dart';
-import 'package:wallet_app/tools/simple_rsa.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
-// import 'package:simple_rsa/simple_rsa.dart';
 
 class SendConfirm extends StatelessWidget {
   static String tag = "Send Confirm";
@@ -114,15 +112,14 @@ class SendConfirm extends StatelessWidget {
     );
   }
   transfer(BuildContext context){
-
     print(accountInfo.propertyId);
     //btc send
     if(accountInfo.propertyId==0){
       Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
       futureRSA.then((publicKey){
         HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
-        var encryptedFuture = encryptString(wallet.wif, publicKey);
-        encryptedFuture.then((encryptedString){
+//        var encryptedFuture = encryptString(wallet.wif, publicKey);
+//        encryptedFuture.then((encryptedString){
           Future future = NetConfig.post(NetConfig.btcSend, {
             'fromBitCoinAddress':wallet.address,
             'privkey':wallet.wif,
@@ -138,13 +135,13 @@ class SendConfirm extends StatelessWidget {
             }
           });
         });
-      });
+//      });
     }else{
       Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
       futureRSA.then((publicKey){
         HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
-        var encryptedFuture = encryptString(wallet.wif, publicKey);
-        encryptedFuture.then((encryptedString){
+//        var encryptedFuture = encryptString(wallet.wif, publicKey);
+//        encryptedFuture.then((encryptedString){
         Future future = NetConfig.post(NetConfig.omniRawTransaction, {
           'propertyId':accountInfo.propertyId.toString(),
           'fromBitCoinAddress':wallet.address,
@@ -161,7 +158,7 @@ class SendConfirm extends StatelessWidget {
           }
         });
       });
-      });
+//      });
     }
   }
 }
