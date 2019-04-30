@@ -32,6 +32,9 @@ class _AddressManageState extends State<AddressManage> {
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
 
+  /// form define
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -129,7 +132,7 @@ class _AddressManageState extends State<AddressManage> {
 
             onPressed: () {
               if (_isEditing) {
-                _isEditing = false;
+                // _isEditing = false;
                 _onSubmit();
               } else {
                 _isEditing = true;
@@ -144,9 +147,22 @@ class _AddressManageState extends State<AddressManage> {
 
   /// update address name
   void _onSubmit() {
-    // return Expanded(
-    //   child: Text(widget.data.name)
-    // );
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      /// submit new name to server
+      Future response = NetConfig.post(NetConfig.changeAddressName, {
+        'address': widget.data.address,
+        'addressName': _nameController.text,
+      });
+
+      response.then((val) {
+        if (val != null) {
+          setState(() {
+            _isEditing = false;
+          });
+        }
+      });
+    }
   }
 
   ///

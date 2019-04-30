@@ -77,6 +77,9 @@ class NetConfig{
   ///
   static String setAssetVisible ='wallet/asset/setAssetVisible';
 
+  ///
+  static String changeAddressName ='wallet/address/changeAddressName';
+
 
 
   static post(String url,Map<String, String> data,{Function errorCallback}) async{
