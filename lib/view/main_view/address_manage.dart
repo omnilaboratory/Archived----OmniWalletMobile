@@ -26,13 +26,29 @@ class AddressManage extends StatefulWidget {
 
 class _AddressManageState extends State<AddressManage> {
 
-  bool _isEditing = false;
+  bool _hasClearIcon = false;
   bool _isAddressDisplay;
-  bool _autoValidate = false;
 
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _nodeText.addListener(() {
+      if (_nodeText.hasFocus) { // get focus
+        if (_nameController.text.trim().length == 0) {
+          _hasClearIcon = false;
+        } else {
+          _hasClearIcon = true;
+        }
+      } else {
+        _hasClearIcon = false;
+      }
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,15 +136,9 @@ class _AddressManageState extends State<AddressManage> {
   Widget _addressNameTitle() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
-      child: Row(
-        children: <Widget>[
-          Text(
-            WalletLocalizations.of(context).addressManagePageAddressNameTitle,
-            style: TextStyle(color: Colors.grey),
-          ),
-          
-          _isEditing ? _btnCancel() : Text(''),
-        ],
+      child: Text(
+        WalletLocalizations.of(context).addressManagePageAddressNameTitle,
+        style: TextStyle(color: Colors.grey),
       ),
     );
   }
@@ -143,7 +153,7 @@ class _AddressManageState extends State<AddressManage> {
       ),
     );
   }
-
+  
   ///
   Widget _changeAddressName() {
     return Container(
@@ -151,95 +161,12 @@ class _AddressManageState extends State<AddressManage> {
       color: AppCustomColor.themeBackgroudColor,
       child: Row(
         children: <Widget>[
-
-          // Display address name or textfield for input new name.
-          _isEditing ? _inputNewName() : _addressName(),
-
+          _addressName(),
           SizedBox(width: 20),
-
-          // Edit or Done button.
-          _btnEditOrDone(),
-          
+          _btnEdit(),
         ],
       ),
     );
-  }
-
-  /// _btnEditOrDone
-  Widget _btnTwo() {
-    return Row(
-      children: <Widget>[
-        _btnCancel(),
-        _btnEditOrDone(),
-      ],
-    );
-  }
-
-  /// _btnEditOrDone
-  Widget _btnCancel() {
-    return FlatButton(
-      child: Text(
-        WalletLocalizations.of(context).createNewAddress_Cancel,
-        style: TextStyle(color: Colors.blue),
-      ),
-      onPressed: () {
-        setState(() {
-          _isEditing = false;
-        });
-      },
-    );
-  }
-
-  /// _btnEditOrDone
-  Widget _btnEditOrDone() {
-    return FlatButton(
-      // padding: EdgeInsets.symmetric(vertical: 12),
-      // elevation: 0,
-      // color: AppCustomColor.btnConfirm,
-      child: _isEditing ? Text(
-          WalletLocalizations.of(context).addressManagePageDoneButton,
-          style: TextStyle(color: Colors.blue[800]),
-        ) : 
-        Text(
-          WalletLocalizations.of(context).addressManagePageEditButton,
-          style: TextStyle(color: Colors.blue[800]),
-        ),
-
-      onPressed: () {
-        if (_isEditing) {
-          // _isEditing = false;
-          _onSubmit();
-        } else {
-          _isEditing = true;
-        }
-        setState(() { });
-      },
-    );
-  }
-
-  /// update address name
-  void _onSubmit() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      /// submit new name to server
-      Future response = NetConfig.post(NetConfig.changeAddressName, {
-        'address': widget.data.address,
-        'addressName': _nameController.text,
-      });
-
-      response.then((val) {
-        if (val != null) {
-          setState(() {
-            _isEditing = false;
-            widget.data.name = _nameController.text; // change locally data.
-          });
-        }
-      });
-    } else {
-      setState(() {
-        _autoValidate = true;
-      });
-    }
   }
 
   ///
@@ -252,46 +179,142 @@ class _AddressManageState extends State<AddressManage> {
     );
   }
 
+  /// _btnEdit
+  Widget _btnEdit() {
+    return FlatButton(
+      child: Text(
+          WalletLocalizations.of(context).addressManagePageEditButton,
+          style: TextStyle(color: Colors.blue[800]),
+        ),
+
+      onPressed: () {
+        _dialogEditAddressName();
+      },
+    );
+  }
+
+  ///
+  void _dialogEditAddressName() {
+    _nameController.text = widget.data.name;
+    showDialog(
+      context: context,
+      barrierDismissible: false,  // user must tap button to dismiss dialog.
+      builder:   (BuildContext context) {
+        return SimpleDialog(
+          title: Text(
+            WalletLocalizations.of(context).addressManagePageAddressNameTitle,
+            textAlign: TextAlign.center,
+          ),
+
+          children: <Widget>[
+            _inputNewName(),  // TextFormField
+            Row( // Two buttons.
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _btnCancel(),
+                _btnConfirm(),
+              ],
+            )
+          ],
+        );
+      }
+    );
+  }
+
+  /// 
+  Widget _btnCancel() {
+    return FlatButton(
+      child: Text(
+        WalletLocalizations.of(context).createNewAddress_Cancel,
+        style: TextStyle(color: Colors.grey[600]),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
+
+  /// 
+  Widget _btnConfirm() {
+    return FlatButton(
+      child: Text(
+        WalletLocalizations.of(context).common_btn_confirm,
+        style: TextStyle(color: Colors.blue),
+      ),
+      onPressed: () {
+        _onSubmit();
+      },
+    );
+  }
+
+  /// update address name
+  void _onSubmit() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      /// submit new name to server
+      Future response = NetConfig.post(NetConfig.changeAddressName, {
+        'address': widget.data.address,
+        'addressName': _nameController.text.trim(),
+      });
+
+      response.then((val) {
+        if (val != null) {
+          setState(() {
+            widget.data.name = _nameController.text.trim(); // change locally data.
+            Navigator.of(context).pop();
+          });
+        }
+      });
+    } 
+  }
+
   ///
   Widget _inputNewName() {
-    return Expanded(
-      child: Form(
+    return StatefulBuilder(builder: (context, StateSetter setState) {
+      return Form(
         key: _formKey,
-        autovalidate: _autoValidate,
-        child: TextFormField(
-          controller:  _nameController,
-          focusNode:   _nodeText,
-          // keyboardType: TextInputType.emailAddress,
-
-          // onSaved: (String val) {
-          //   print('_strSave = $val');
-          //   _strSave = val;
-          // },
-
-          validator: (val) => _validate(val),
-
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            labelText: WalletLocalizations.of(context).addressManagePageEditTips,
-            labelStyle: TextStyle(fontSize: 13),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5)
+        autovalidate: true,
+        onChanged: () {
+          // print('==> VAL --> ${_nameController.text}');
+          if (_nameController.text.trim().length == 0) {
+            _hasClearIcon = false;
+          } else {
+            _hasClearIcon = true;
+          }
+          setState(() { });
+        },
+        
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: TextFormField(
+            controller:  _nameController,
+            focusNode:   _nodeText,
+            // autofocus: true,
+            validator: (val) => _validate(val),
+            decoration: InputDecoration(
+              hintText: WalletLocalizations.of(context).addressManagePageEditTips,
+              hintStyle: TextStyle(fontSize: 14),
+              suffixIcon: _hasClearIcon ? 
+                IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  icon: Icon(Icons.highlight_off, color: Colors.grey),
+                  onPressed: () { _nameController.clear(); },
+                ) : null,
             ),
-            // fillColor: Colors.grey[100],
-            // filled: true,
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   /// validate new name
   String _validate(String val) {
     if (val == null || val.trim().length == 0) {
       return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
+    } else {
+      return null;
     }
-
-    return null;
   }
 
   ///

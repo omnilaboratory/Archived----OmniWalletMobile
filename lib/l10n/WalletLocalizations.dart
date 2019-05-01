@@ -408,7 +408,7 @@ class WalletLocalizations{
       'walletAddressPageHidden' : 'Hiddened',
 
       'addressManagePageAppBarTitle' : 'Address Management',
-      'addressManagePageEditTips' : 'New Name',
+      'addressManagePageEditTips' : 'input new name',
       'addressManagePageEditButton' : 'Edit',
       'addressManagePageDoneButton' : 'Done',
       'addressManagePageAddressNameTitle' : 'Address Name',
