@@ -13,6 +13,7 @@ class NetConfig{
 //  static String apiHost='http://192.168.0.106:8080/api/';
 //  static String apiHost='http://172.21.100.248:8080/api/';
 
+//  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
   static String imageHost='http://62.234.169.68:8080';
   static String userMD5Id = null;
@@ -37,6 +38,8 @@ class NetConfig{
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
+  /// wallet/address/getNewestAddressIndex  获取最新的地址索引
+  static String getNewestAddressIndex='wallet/address/getNewestAddressIndex';
   /// wallet/address/create  创建新地址
   static String createAddress='wallet/address/create';
   /// wallet/address/list  地址列表
@@ -105,6 +108,7 @@ class NetConfig{
 
     url = apiHost + url;
     print(url);
+    print(data);
 //    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
     if(reqType=="get"){
@@ -115,6 +119,7 @@ class NetConfig{
 //    Fluttertoast.cancel();
     print(response.statusCode);
     bool isError = true;
+    String msg;
     if(response.statusCode==200){
       var result = json.decode(response.body);
       int status = result['status'];
@@ -126,6 +131,7 @@ class NetConfig{
         return data;
       }
       if(status==0){
+        msg = result['msg'];
         showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
       }
       if(status==403){
@@ -142,7 +148,7 @@ class NetConfig{
       showToast('server is sleep, please wait');
     }
     if(errorCallback!=null&&isError){
-      errorCallback();
+      errorCallback(msg);
     }
   }
 
