@@ -174,17 +174,20 @@ class _RestoreAccountState extends State<RestoreAccount> {
 
     if (split.length == 12) {
       return () {
+
+        var _mnemonic= split.join(' ');
+        if(bip39.validateMnemonic(_mnemonic)==false){
+          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error1);
+          return null;
+        }
+
         String pin = this.controller1.text;
         String pin2 = this.controller2.text;
         if(pin.isEmpty||pin.isEmpty||pin != pin2){
           Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
           return null;
         }
-        var _mnemonic= split.join(' ');
-        if(bip39.validateMnemonic(_mnemonic)){
-          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
-          return null;
-        }
+
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
         Future result = NetConfig.post(

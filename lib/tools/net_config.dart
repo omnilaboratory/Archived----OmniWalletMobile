@@ -28,6 +28,8 @@ class NetConfig{
   static String restoreUser= 'common/restoreUser';
   /// 图片上传
   static String uploadImage='common/uploadImage';
+  /// user/updateUserFace   更新用户头像
+  static String updateUserFace='user/updateUserFace';
   /// 比特币、Usdt和欧元的对美元的实时汇率
   static String btcAndUsdtExchangeRate='common/btcAndUsdtExchangeRate';
 
@@ -161,6 +163,22 @@ class NetConfig{
     var uri = Uri.parse(url);
     var request = http.MultipartRequest("POST", uri);
     var multipartFile = new http.MultipartFile('file', stream, length,filename: basename(imageFile.path));
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+    response.stream.transform(utf8.decoder).listen((data) {
+      print(data);
+    });
+  }
+
+  ///更新用户头像
+  static changeUserFace(File imageFile) async{
+    String url = apiHost + updateUserFace;
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var uri = Uri.parse(url);
+    var request = http.MultipartRequest("POST", uri);
+    var multipartFile = new http.MultipartFile('faceFile', stream, length,filename: basename(imageFile.path));
     request.files.add(multipartFile);
 
     var response = await request.send();

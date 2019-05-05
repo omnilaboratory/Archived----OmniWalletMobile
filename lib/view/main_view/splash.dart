@@ -135,7 +135,6 @@ class _SplashState extends State<Splash> {
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-
         print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
@@ -163,6 +162,7 @@ class _SplashState extends State<Splash> {
         MaterialPageRoute(builder: (context) => BackupWalletIndex()),
             (route) => route == null,
       );
+      print('==> no backup 2 | ${DateTime.now()}');
     }
   }
 
