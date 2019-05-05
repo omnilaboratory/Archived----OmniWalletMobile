@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bip39/bip39.dart' as bip39;
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/net_config.dart';
 
@@ -25,12 +24,14 @@ class UserInfo{
     this.init();
   }
 
+
+
+
   void init() async{
-    Future.delayed(Duration(seconds: 1),(){
-      if(GlobalInfo.bip39Seed==null){
-        (GlobalInfo.bip39Seed = bip39.mnemonicToSeed(this._mnemonic));
-      }
-    });
+    if(GlobalInfo.bip39Seed==null){
+      GlobalInfo.initBipSeed(this._mnemonic);
+    }
+    print('init fun begin gggg ${DateTime.now()}');
     Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
     future.then((data){
       if(data!=null){

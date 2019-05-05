@@ -6,6 +6,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'package:bip39/bip39.dart' as bip39;
 
 class RestoreAccount extends StatefulWidget {
   static String tag = "Restore Account";
@@ -180,6 +181,10 @@ class _RestoreAccountState extends State<RestoreAccount> {
           return null;
         }
         var _mnemonic= split.join(' ');
+        if(bip39.validateMnemonic(_mnemonic)){
+          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
+          return null;
+        }
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
         Future result = NetConfig.post(

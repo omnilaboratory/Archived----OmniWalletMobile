@@ -313,7 +313,6 @@ class _CreateAccountState extends State<CreateAccount> {
       this.canCreate =false;
       /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
-      MnemonicPhrase.getInstance().initSeed(_mnemonic);
       Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
       print('==> [Mnemonic Phrase] ==> $_mnemonic');
 
@@ -344,9 +343,13 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
 
+          MnemonicPhrase.getInstance().initSeed(_mnemonic);
+
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (BuildContext context) {
+
+
                 return BackupWalletIndex(param: null,);
               }
             ),

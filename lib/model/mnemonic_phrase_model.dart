@@ -22,9 +22,7 @@ class MnemonicPhrase{
   }
   void initSeed(String phrases){
     if(GlobalInfo.bip39Seed==null){
-      Future.delayed(Duration(seconds: 1),(){
-           GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
-       });
+      GlobalInfo.initBipSeed(phrases);
     }
   }
   HDWallet createAddress(String phrases,{int index=0}){
