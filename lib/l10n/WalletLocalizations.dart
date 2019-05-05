@@ -431,6 +431,7 @@ class WalletLocalizations{
 
   // Update Nick Name
   get updateNickNamePageAppBarTitle => _localizedValues[locale.languageCode]['updateNickNamePageAppBarTitle'];
+  get updateNickNamePageEditTips => _localizedValues[locale.languageCode]['updateNickNamePageEditTips'];
   
   // Displayed Assets
   get displayedAssetsPageAppBarTitle => _localizedValues[locale.languageCode]['displayedAssetsPageAppBarTitle'];

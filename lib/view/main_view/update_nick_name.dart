@@ -115,7 +115,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
           autofocus: true,
           validator: (val) => _validate(val),
           decoration: InputDecoration(
-            hintText: WalletLocalizations.of(context).addressManagePageEditTips,
+            hintText: WalletLocalizations.of(context).updateNickNamePageEditTips,
             // hintStyle: TextStyle(fontSize: 14),
             suffixIcon: _hasClearIcon ? 
               IconButton(
