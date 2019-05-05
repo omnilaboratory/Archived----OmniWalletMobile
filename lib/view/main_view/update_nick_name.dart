@@ -35,6 +35,9 @@ class _UpdateNickNameState extends State<UpdateNickName> {
       }
       setState(() {});
     });
+
+    _nickNameController.text = GlobalInfo.userInfo.nickname;
+
     super.initState();
   }
 
@@ -50,7 +53,23 @@ class _UpdateNickNameState extends State<UpdateNickName> {
         actions: _actions(),
         child: SafeArea(
           child: Column(
+            children: <Widget>[
+              _inputNewNickName(),
 
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
+                child: CustomRaiseButton( // Next button.
+                  context: context,
+                  hasRow: false,
+                  title: WalletLocalizations.of(context).updateNickNamePageAppBarTitle,
+                  titleColor: Colors.white,
+                  color: AppCustomColor.btnConfirm,
+                  callback: () {
+                    _onSubmit();
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -58,7 +77,23 @@ class _UpdateNickNameState extends State<UpdateNickName> {
   }
   
   ///
+  List<KeyboardAction> _actions() {
+    List<KeyboardAction> _actions = <KeyboardAction> [
+      KeyboardAction(
+        focusNode: _nodeNickName,
+        closeWidget: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(Icons.close),
+        )
+      )
+    ];
+
+    return _actions;
+  }
+
+  ///
   Widget _inputNewNickName() {
+
     return Form(
       key: _formKey,
       autovalidate: true,
@@ -73,7 +108,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
       },
       
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: TextFormField(
           controller:  _nickNameController,
           focusNode:   _nodeNickName,
@@ -81,7 +116,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
           validator: (val) => _validate(val),
           decoration: InputDecoration(
             hintText: WalletLocalizations.of(context).addressManagePageEditTips,
-            hintStyle: TextStyle(fontSize: 14),
+            // hintStyle: TextStyle(fontSize: 14),
             suffixIcon: _hasClearIcon ? 
               IconButton(
                 splashColor: Colors.transparent,
@@ -111,8 +146,8 @@ class _UpdateNickNameState extends State<UpdateNickName> {
       // Tools.loadingAnimation(context);
       /// submit new nick name to server
       Future response = NetConfig.post(NetConfig.changeAddressName, {
-        'address': widget.data.address,
-        'addressName': _nameController.text.trim(),
+        // 'address': widget.data.address,
+        // 'addressName': _nameController.text.trim(),
       });
 
       response.then((val) {

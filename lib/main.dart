@@ -17,6 +17,7 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
+import 'package:wallet_app/view/main_view/update_nick_name.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address.dart';
@@ -83,6 +84,7 @@ class _MyAppState extends State<MyApp> {
     WalletAddress.tag: (context)       => WalletAddress(),
     AddressManage.tag: (context)       => AddressManage(data: null),
     DisplayedAssets.tag: (context)     => DisplayedAssets(),
+    UpdateNickName.tag: (context)      => UpdateNickName(),
   };
 
   Brightness brightness = Brightness.light;

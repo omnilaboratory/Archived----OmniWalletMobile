@@ -205,6 +205,7 @@ class WalletLocalizations{
       'displayedAssetsPageTitle_2' : '其它资产',
 
       'updateNickNamePageAppBarTitle' : '更新昵称',
+      'updateNickNamePageEditTips' : '请输入新昵称',
     },
 
     'en': {
@@ -423,6 +424,7 @@ class WalletLocalizations{
       'displayedAssetsPageTitle_2' : 'Other Assets',
 
       'updateNickNamePageAppBarTitle' : 'Update Nick Name',
+      'updateNickNamePageEditTips' : 'input new nick name',
 
     }
   };

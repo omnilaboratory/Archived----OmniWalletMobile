@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/main_view/update_nick_name.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -54,7 +55,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             
             Divider(height: 0, indent: 15),
 
-            Ink( // user name
+            Ink( // nick name
               color: AppCustomColor.themeBackgroudColor,
               child: ListTile(
                 title: Text(WalletLocalizations.of(context).userInfoPageItem_2_Title),
@@ -71,8 +72,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 ),
 
                 onTap: () {
-                  // TODO: show next page.
-                  // Navigator.of(context).pushNamed(route);
+                  Navigator.of(context).pushNamed(UpdateNickName.tag);
                 },
               ),
             ),
