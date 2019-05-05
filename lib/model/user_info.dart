@@ -1,11 +1,15 @@
 import 'dart:async';
+import 'dart:typed_data';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/net_config.dart';
 
 class UserInfo{
   String userId;
   String _mnemonic;
+  Uint8List _mnemonicSeed;
   String pinCode;
   String faceUrl;
   String nickname;
@@ -23,15 +27,20 @@ class UserInfo{
     this._mnemonic=val;
     this.init();
   }
+  Uint8List get mnemonicSeed{
+    return this._mnemonicSeed;
+  }
 
-
+  void set mnemonicSeed(Uint8List val) {
+    this._mnemonicSeed=val;
+  }
 
 
   void init() async{
     if(GlobalInfo.bip39Seed==null){
       GlobalInfo.initBipSeed(this._mnemonic);
     }
-    print('init fun begin gggg ${DateTime.now()}');
+
     Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
     future.then((data){
       if(data!=null){

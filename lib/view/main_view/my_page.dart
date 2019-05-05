@@ -173,6 +173,7 @@ class _UserCenterState extends State<UserCenter> {
         onTap: () {
           if(BackupWalletIndex.tag == route)
           {
+            print('go to bankup page');
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (BuildContext context) {
