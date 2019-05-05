@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
@@ -56,23 +57,33 @@ class _SplashState extends State<Splash> {
         Scaffold(
           body: SafeArea(
             child: Center(
-              child: Image.asset('assets/logo-png.png', width: 229, height: 180),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset('assets/logo-png.png', width: 229, height: 180),
+                  Text(
+                    'Processing Data ...',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           )
         ),
 
-        Padding(
-          padding: const EdgeInsets.only(top: 200),
-          child: SpinKitFadingCircle(
-            itemBuilder: (context, int index) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: index.isEven ? Colors.red : Colors.green,
-                ),
-              );
-            },
-          ),
-        )
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 200),
+          // child: SpinKitFadingCircle(
+          //   itemBuilder: (context, int index) {
+          //     return DecoratedBox(
+          //       decoration: BoxDecoration(
+          //         color: index.isEven ? Colors.red : Colors.green,
+          //       ),
+          //     );
+          //   },
+          // ),
+          // child: Text('Processing Data ...'),
+        // )
 
       ],
     );
@@ -113,13 +124,13 @@ class _SplashState extends State<Splash> {
 
   // 
   void _getUserInfo(SharedPreferences share) {
-
     GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
     Future data = NetConfig.get(NetConfig.getUserInfo);
-
+    // Tools.loadingAnimation(context);
     data.then((data) {
       if (data != null) {
         print('==> --. DATA | ${DateTime.now()}');
+        
         GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];

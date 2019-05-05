@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,5 +58,27 @@ class Tools{
   static Future<String> getStringKeyValue(String key) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
+  }
+
+  /// loading Animation
+  static void loadingAnimation(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,  // user must tap button to dismiss dialog.
+      builder: (BuildContext context) {
+        return Container(
+          // color: Colors.white,
+          child: SpinKitFadingCircle(
+            itemBuilder: (context, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: index.isEven ? Colors.red : Colors.green,
+                ),
+              );
+            },
+          ),
+        );
+      }
+    );
   }
 }

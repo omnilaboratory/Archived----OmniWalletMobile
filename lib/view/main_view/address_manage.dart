@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
@@ -52,6 +53,42 @@ class _AddressManageState extends State<AddressManage> {
 
   @override
   Widget build(BuildContext context) {
+
+    /*
+    // TESTING CODE
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            title: Text(WalletLocalizations.of(context).addressManagePageAppBarTitle),
+          ),
+
+          body: FormKeyboardActions(
+            actions: _actions(),
+            child: SafeArea(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(top: 10),
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: _content(),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        new Opacity(
+          opacity: 0,
+          child: const ModalBarrier(dismissible: true, color: Colors.grey),
+        ),
+        new Center(
+          child: new CircularProgressIndicator(),
+        ),
+      ],
+    );
+    */
 
     return Scaffold(
       appBar: AppBar(
@@ -110,6 +147,20 @@ class _AddressManageState extends State<AddressManage> {
         )
       );
     // }
+
+    // test loading
+    // var modal = new Stack(
+    //   children: [
+    //     new Opacity(
+    //       opacity: 0.3,
+    //       child: const ModalBarrier(dismissible: false, color: Colors.grey),
+    //     ),
+    //     new Center(
+    //       child: new CircularProgressIndicator(),
+    //     ),
+    //   ],
+    // );
+    // _list.add(modal);
 
     return _list;
   }
@@ -199,7 +250,7 @@ class _AddressManageState extends State<AddressManage> {
     showDialog(
       context: context,
       barrierDismissible: false,  // user must tap button to dismiss dialog.
-      builder:   (BuildContext context) {
+      builder: (BuildContext context) {
         return SimpleDialog(
           title: Text(
             WalletLocalizations.of(context).addressManagePageAddressNameTitle,
@@ -251,6 +302,7 @@ class _AddressManageState extends State<AddressManage> {
   void _onSubmit() {
     final form = _formKey.currentState;
     if (form.validate()) {
+      Tools.loadingAnimation(context);
       /// submit new name to server
       Future response = NetConfig.post(NetConfig.changeAddressName, {
         'address': widget.data.address,
@@ -261,7 +313,8 @@ class _AddressManageState extends State<AddressManage> {
         if (val != null) {
           setState(() {
             widget.data.name = _nameController.text.trim(); // change locally data.
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(); // Pop loading
+            Navigator.of(context).pop(); // Pop dialog
           });
         }
       });
@@ -340,12 +393,30 @@ class _AddressManageState extends State<AddressManage> {
             response.then((val) {
               if (val != null) {
                 widget.data.visible = _isAddressDisplay;
-                setState(() { });
+                setState(() {
+
+                });
               }
             });
           }
         ),
       ),
+    );
+  }
+
+  // test loading
+  Widget _testLoading() {
+    return Stack(
+      children: <Widget>[
+        Opacity(
+          opacity: 0.3,
+          child: const ModalBarrier(dismissible: false, color: Colors.grey),
+        ),
+
+        Center(
+          child: CircularProgressIndicator(),
+        )
+      ],
     );
   }
 

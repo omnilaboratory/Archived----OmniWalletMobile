@@ -29,7 +29,7 @@ class BackupWalletIndex extends StatelessWidget  {
 
       appBar: AppBar(
         title: Text(WalletLocalizations.of(context).backup_index_title),
-        actions: _getActions(context),
+        // actions: _getActions(context),
       ),
       
       body: SafeArea(
@@ -74,15 +74,35 @@ class BackupWalletIndex extends StatelessWidget  {
         Expanded(child: Container()),
         Padding(
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.05),
-          child: CustomRaiseButton(
-            context: context,
-            hasRow: false,
-            title: WalletLocalizations.of(context).backup_index_btn,
-            titleColor: Colors.white,
-            color: AppCustomColor.btnConfirm,
-            callback: () {
-              Navigator.pushNamed(context, BackupWalletWords.tag);
-            },
+          child: Row(
+            children: <Widget>[
+              CustomRaiseButton( // Next button.
+                context: context,
+                flex: 1,
+                title: WalletLocalizations.of(context).backup_index_laterbackup,
+                titleColor: Colors.blue,
+                color: AppCustomColor.btnCancel,
+                callback: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    MainPage.tag,
+                    (route) => route == null,
+                  );
+                },
+              ),
+
+              SizedBox(width: 15),
+              CustomRaiseButton(
+                context: context,
+                flex: 2,
+                // hasRow: false,
+                title: WalletLocalizations.of(context).backup_index_btn,
+                titleColor: Colors.white,
+                color: AppCustomColor.btnConfirm,
+                callback: () {
+                  Navigator.pushNamed(context, BackupWalletWords.tag);
+                },
+              ),
+            ],
           ),
         ),
       ],

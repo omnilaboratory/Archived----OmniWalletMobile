@@ -12,7 +12,7 @@ class WalletLocalizations{
       'backup_index_prompt_btn': '知道了',
       'backup_index_title': '备份钱包',
       'backup_index_laterbackup': '稍后备份',
-      'backup_index_btn': '备份钱包助记词',
+      'backup_index_btn': '立即备份',
       'backup_index_tips_title': '请立即备份您的钱包!',
       'backup_index_tips': '注意：请备份你的钱包账户，Omniwallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。',
       'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
@@ -203,6 +203,8 @@ class WalletLocalizations{
       'displayedAssetsPageAppBarTitle' : '资产显示',
       'displayedAssetsPageTitle_1' : '热门资产',
       'displayedAssetsPageTitle_2' : '其它资产',
+
+      'updateNickNamePageAppBarTitle' : '更新昵称',
     },
 
     'en': {
@@ -210,7 +212,7 @@ class WalletLocalizations{
       'backup_index_prompt_btn': 'I got it',
       'backup_index_title': 'Back Up Wallet',
       'backup_index_laterbackup': 'Later',
-      'backup_index_btn': 'Back Up Mnemonic Phrase',
+      'backup_index_btn': 'Back Up Now!',
       'backup_index_tips_title': 'Back up your wallet now!',
       'backup_index_tips': 'Notice: please back up your wallet, Omni will never visit your account, can not restore your private key or reset your password. You will manage your wallet on your own, and make sure the safety of your asset.',
       'backup_index_prompt_tips': 'Anyone who gets access to your mnemonic will have access to your assets. Please copy it onto paper and store securely for safekeeping.',
@@ -419,9 +421,15 @@ class WalletLocalizations{
       'displayedAssetsPageAppBarTitle' : 'Display Assets',
       'displayedAssetsPageTitle_1' : 'Popular Assets',
       'displayedAssetsPageTitle_2' : 'Other Assets',
+
+      'updateNickNamePageAppBarTitle' : 'Update Nick Name',
+
     }
   };
 
+  // Update Nick Name
+  get updateNickNamePageAppBarTitle => _localizedValues[locale.languageCode]['updateNickNamePageAppBarTitle'];
+  
   // Displayed Assets
   get displayedAssetsPageAppBarTitle => _localizedValues[locale.languageCode]['displayedAssetsPageAppBarTitle'];
   get displayedAssetsPageTitle_1 => _localizedValues[locale.languageCode]['displayedAssetsPageTitle_1'];
