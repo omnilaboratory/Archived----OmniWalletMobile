@@ -13,9 +13,20 @@ class  GlobalInfo{
 
   static initBipSeed(String _mnemonic) async {
     if(GlobalInfo.bip39Seed == null){
-       GlobalInfo.bip39Seed = await bip39.mnemonicToSeed(_mnemonic);
+      Future future = getSedd(_mnemonic);
+      future.then((data){
+        print(data);
+        GlobalInfo.bip39Seed = data;
+      });
     }
   }
+
+  static getSedd(String _mnemonic) async{
+    print('begin seed get');
+    return await bip39.mnemonicToSeed(_mnemonic);
+  }
+
+
 
   static AssetToUSDRateInfo usdRateInfo = AssetToUSDRateInfo();
 
