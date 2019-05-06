@@ -184,7 +184,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
   //
   _openGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    NetConfig.changeUserFace(image,callback:(data){
+
+    // scale image
+    
+    NetConfig.changeUserFace(image, callback:(data) {
       if (data != null) {
         GlobalInfo.userInfo.faceUrl = data; // change locally data.
         setState(() {
