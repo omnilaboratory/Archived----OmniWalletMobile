@@ -182,7 +182,7 @@ class NetConfig{
   }
 
   ///更新用户头像
-  static changeUserFace(File imageFile,{@required Function callback}) async{
+  static changeUserFace(File imageFile,{@required Function callback,Function errorCallback}) async{
     String url = apiHost + updateUserFace;
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
@@ -196,12 +196,16 @@ class NetConfig{
 
     var response = await request.send();
 
+    bool flag = true;
     if(response.statusCode==200){
       await response.stream.transform(utf8.decoder).listen((data){
-        print(data);
         var result = json.decode(data);
         callback(result['data']['faceUrl']);
+        flag = false;
       });
+    }
+    if(flag==true && errorCallback!=null){
+      errorCallback();
     }
 
 //    await response.stream.transform(utf8.decoder).listen((data) {

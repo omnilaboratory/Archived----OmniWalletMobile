@@ -2,6 +2,7 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-29
 
+import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +13,8 @@ import 'package:wallet_app/view/main_view/update_nick_name.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 class UserInfoPage extends StatefulWidget {
   static String tag = "UserInfoPage";
@@ -21,7 +24,7 @@ class UserInfoPage extends StatefulWidget {
 
 class _UserInfoPageState extends State<UserInfoPage> {
 
-  var _imgAvatar;
+  // var _imgAvatar;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    _avatar(_imgAvatar),
+                    _avatar(),
                     SizedBox(width: 15),
                     Icon(Icons.keyboard_arrow_right),
                   ],
@@ -155,7 +158,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
               leading: Icon(Icons.photo_library),
               title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_1),
               onTap: () {
-                _openGallery();
+                _getImage(ImageSource.gallery);
               },
             ),
 
@@ -163,7 +166,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
               leading: Icon(Icons.photo_camera),
               title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_2),
               onTap: () {
-                _takePhoto();
+                _getImage(ImageSource.camera);
               },
             ),
           ],
@@ -173,50 +176,76 @@ class _UserInfoPageState extends State<UserInfoPage> {
   }
   
   //
-  _takePhoto() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _imgAvatar = image;
-    });
-    Navigator.pop(context);
-  }
+  _getImage(ImageSource myImageSource) async {
+    var image = await ImagePicker.pickImage(source: myImageSource);
 
-  //
-  _openGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // compress image
+    var dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path + "/temp.png";
 
-    // scale image
-    
-    NetConfig.changeUserFace(image, callback:(data) {
-      if (data != null) {
-        GlobalInfo.userInfo.faceUrl = data; // change locally data.
-        setState(() {
-          _imgAvatar = image;
-        });
-      }
+    Future response = _compressImage(image, targetPath);
+    response.then((imgCompressed) {
+      print('==> GET FILE = $imgCompressed');
+
+      NetConfig.changeUserFace(
+        imgCompressed,
+        errorCallback: (){
+          Tools.showToast('update fail');
+        },
+        callback:(data){
+          if (data != null) {
+            GlobalInfo.userInfo.faceUrl = data; // change locally data.
+            setState(() {
+              // _imgAvatar = imgCompressed;
+            });
+          }
+        }
+      );
     });
+
     Navigator.pop(context);
   }
 
   // 
-  Widget _avatar(image) {
-    if (image == null) {
-      if (GlobalInfo.userInfo.faceUrl == null) {
-        return CircleAvatar(
-          child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
-          backgroundColor: Colors.transparent,
-        );
-      } else {
-        return CircleAvatar(
-          child: Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
-            width: 35, height: 35),
-          backgroundColor: Colors.transparent,
-        );
-      }
-    } else {
-      return CircleAvatar(
-        backgroundImage: FileImage(image),
+  Widget _avatar() {
+    return ClipRRect(
+      // child: Tools.networkImage(
+      //   context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
+        
+      borderRadius: BorderRadius.all(
+       Radius.circular(5)),
+      child:  Tools.networkImage(
+        context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
+
+    );
+
+    // if (image == null) {
+    //   return CircleAvatar(
+    //     child: Tools.networkImage(
+    //       context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35));
+    //     // backgroundImage: AssetImage('assets/omni-logo.png'),
+    //     // child: Image.asset('assets/omni-logo.png'),
+    //     // backgroundImage: NetworkImage(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl),
+    //   );
+    // } else {
+      
+    //   // return CircleAvatar(
+    //   //   backgroundImage: FileImage(image),
+    //   // );
+    // }
+  }
+
+  /// 
+  Future<File> _compressImage(File file, String targetPath) async {
+    var result = await FlutterImageCompress.compressAndGetFile(
+        file.absolute.path, targetPath,
+        minWidth: 100, minHeight: 100,
+        // quality: 80,
       );
-    }
+
+    print(file.lengthSync());
+    print(result.lengthSync());
+
+    return result;
   }
 }
