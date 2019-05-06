@@ -27,6 +27,8 @@ class MnemonicPhrase{
       GlobalInfo.initBipSeed(phrases);
     }
   }
+
+  HDWallet hdWallet;
   HDWallet createAddress(String phrases,{int index=0}){
     if(GlobalInfo.bip39Seed==null){
       Tools.showToast('address is creating, please wait',toastLength: Toast.LENGTH_LONG);
@@ -36,7 +38,10 @@ class MnemonicPhrase{
         share.setString(KeyConfig.user_mnemonicSeed,GlobalInfo.bip39Seed.toString());
       });
     }
-    var hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
+    if(hdWallet==null){
+      hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
+    }
+    print('createAddress ${hdWallet.seed}');
     return hdWallet.derivePath("m/44'/0'/0'/0/"+index.toString());
   }
 }

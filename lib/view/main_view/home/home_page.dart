@@ -180,9 +180,7 @@ class _HomePageState extends State<HomePage> {
         stateModel.addWalletInfo(info);
       }
     });
-
   }
-
 
   Function showSnackBar(String content){
     Scaffold.of(context).showSnackBar(SnackBar(content: Text(content)));
