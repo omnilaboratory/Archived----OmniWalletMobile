@@ -86,7 +86,8 @@ class Tools{
   }
 
 
-  static Widget networkImage(BuildContext context, String url,{String defaultImage='assets/omni-logo.png',double width =90,double height = 90} ) {
+  static Widget networkImage(BuildContext context, String url,
+    {String defaultImage='assets/omni-logo.png',double width =90,double height = 90} ) {
     if (url == null) {
       return Image.asset(defaultImage, width: width,height: height);
     } else {
@@ -95,6 +96,7 @@ class Tools{
             new CircularProgressIndicator();
           },
           imageUrl:NetConfig.imageHost + url,width: width,height: height,
+          fit: BoxFit.fill,
       );
     }
   }

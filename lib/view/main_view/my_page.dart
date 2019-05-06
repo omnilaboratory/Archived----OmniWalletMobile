@@ -65,49 +65,37 @@ class _UserCenterState extends State<UserCenter> {
 
   // banner area
   Widget _bannerArea() {
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      height: 220,
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          // user avatar.
-          ClipOval(
-            child: Material(
-              color: Colors.blue,
-              child: GestureDetector(
-                child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl),
-                onTap: (){
-                  Navigator.of(context).pushNamed(UserInfoPage.tag);
-                },
-              ),
-              // child: Ink.image(
-              //   image: Image.network(src),
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(UserInfoPage.tag);
+      },
 
-              //   fit: BoxFit.cover,
-              //   width: 70,
-              //   height: 70,
-              //   child: InkWell(
-              //     onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
-              //     child: null,
-              //   ),
-              // ),
-            ),
-          ),
+      child: Container(
+        padding: EdgeInsets.only(top: 40),
+        height: 220,
+        width: double.infinity,
+        child: Column(
           
-          SizedBox(height: 10),
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // user avatar.
+            ClipRRect(
+              borderRadius: BorderRadius.all(
+           Radius.circular(10)),
+              child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl),
+            ),
+            
+            // SizedBox(height: 10),
+            Container(
+              color: Colors.transparent,
+              padding: const EdgeInsets.only(top: 10),
               child: Text(  // user nick name
                 GlobalInfo.userInfo.nickname,
                 style: TextStyle(color: Colors.white),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
