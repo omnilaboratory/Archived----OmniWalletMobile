@@ -164,7 +164,9 @@ class _HomePageState extends State<HomePage> {
 
   createAddressAgain(String addressName ,int addressIndex){
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
+    print('createAddress  1  ${DateTime.now()}');
     WalletInfo info = WalletInfo(name: addressName,visible: true,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
+    print('createAddress  2  ${DateTime.now()}');
     Future result = NetConfig.post(
         NetConfig.createAddress,
         {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()},
