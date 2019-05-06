@@ -187,20 +187,19 @@ class _RestoreAccountState extends State<RestoreAccount> {
           Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
           return null;
         }
-
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
+        Tools.loadingAnimation(context);
         Future result = NetConfig.post(
             NetConfig.restoreUser,
             {'userId':userId},
             errorCallback: (){
+              Navigator.of(context).pop();
               canToucn = true;
             }
             );
         result.then((data){
           if(data!=null){
-
-            MnemonicPhrase.getInstance().initSeed(_mnemonic);
 
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
@@ -216,10 +215,14 @@ class _RestoreAccountState extends State<RestoreAccount> {
             Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
             GlobalInfo.userInfo.pinCode = _pinCode_md5;
 
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => MainPage()), (
-                route) => route == null
-            );
+
+            GlobalInfo.userInfo.init((){
+              Navigator.of(context).pop();
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => MainPage()), (
+                  route) => route == null
+              );
+            });
           }
         });
       };

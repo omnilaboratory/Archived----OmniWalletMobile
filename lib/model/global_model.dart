@@ -26,7 +26,7 @@ class  GlobalInfo{
     userInfo = UserInfo();
   }
 
-  static initBipSeed(String _mnemonic) async {
+  static initBipSeed(String _mnemonic,{Function callback}) async {
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) async {
       var seed = share.get(KeyConfig.user_mnemonicSeed);
@@ -46,6 +46,7 @@ class  GlobalInfo{
         GlobalInfo.bip39Seed = await getSeed(_mnemonic);
         share.setString(KeyConfig.user_mnemonicSeed,GlobalInfo.bip39Seed.toString());
         print('seed init finish ${DateTime.now()}');
+        callback();
       }
     });
   }

@@ -326,12 +326,14 @@ class _CreateAccountState extends State<CreateAccount> {
       String _pinCode_md5 = Tools.convertMD5Str(_pinCodeController.text);
       Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
 
+      Tools.loadingAnimation(context);
       /// 4) [Nick name] (Clear text) and [Mnemonic Phrase] (MD5) save to remote.
       Future data = NetConfig.post(
         NetConfig.createUser,
         {'userId':_mnemonic_md5,
         'nickname':_nickNameController.text},
         errorCallback: (){
+          Navigator.of(context).pop();
           canCreate = true;
         }
       );
@@ -343,17 +345,18 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
 
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
 
-
-                return BackupWalletIndex(param: null,);
-              }
-            ),
-              
-            (route) => route == null,
-          );
+          GlobalInfo.userInfo.init((){
+            Navigator.of(context).pop();
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return BackupWalletIndex(param: null,);
+                  }
+              ),
+                  (route) => route == null,
+            );
+          });
         }
       });
       

@@ -135,6 +135,7 @@ class _SplashState extends State<Splash> {
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+        GlobalInfo.userInfo.init(null);
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
