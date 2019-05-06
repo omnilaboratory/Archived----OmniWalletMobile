@@ -193,6 +193,9 @@ class NetConfig{
     var response = await request.send();
     response.stream.transform(utf8.decoder).listen((data) {
       print(data);
+      var result = json.decode(data);
+      print(result);
+      return result['data'];
     });
   }
 }
