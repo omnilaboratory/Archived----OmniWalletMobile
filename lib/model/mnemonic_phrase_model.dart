@@ -41,7 +41,6 @@ class MnemonicPhrase{
     if(hdWallet==null){
       hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
     }
-    print('createAddress 0  ${DateTime.now()}');
     return hdWallet.derivePath("m/44'/0'/0'/0/"+index.toString());
   }
 }

@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wallet_app/model/global_model.dart';
-import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/net_config.dart';
 
 class UserInfo{

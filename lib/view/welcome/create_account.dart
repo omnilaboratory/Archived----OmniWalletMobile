@@ -343,8 +343,6 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
 
-          MnemonicPhrase.getInstance().initSeed(_mnemonic);
-
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (BuildContext context) {

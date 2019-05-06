@@ -162,7 +162,6 @@ class _SplashState extends State<Splash> {
         MaterialPageRoute(builder: (context) => BackupWalletIndex()),
             (route) => route == null,
       );
-      print('==> no backup 2 | ${DateTime.now()}');
     }
   }
 
