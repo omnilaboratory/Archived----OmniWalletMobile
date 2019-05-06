@@ -151,7 +151,6 @@ class SendConfirm extends StatelessWidget {
           'minerFee':_sendInfo.minerFee.toString(),
         });
         future.then((data){
-          print(data);
           if(data!=null){
             Navigator.of(context).pop();
             Navigator.of(context).pop();
