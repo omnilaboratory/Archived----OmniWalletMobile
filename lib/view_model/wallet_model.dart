@@ -54,16 +54,27 @@ class WalletModel extends Model{
   }
 
   set walletInfoes(List<WalletInfo> info){
-    this._walletInfoes = info;
-//    notifyListeners();
+    if(info==null&&_loadLastTime!=null){
+      var now = DateTime.now();
+      var duration = now.difference(_loadLastTime);
+      if(duration.inSeconds>20){
+        this._walletInfoes = null;
+      }
+    }else{
+      this._walletInfoes = info;
+    }
   }
 
+  DateTime _loadLastTime  = null;
   List<WalletInfo> get walletInfoes {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
       Future future = NetConfig.get(NetConfig.addressList);
       future.then((data){
         if(data!=null){
+
+          _loadLastTime = DateTime.now();
+
           double btcRate = GlobalInfo.usdRateInfo.btcs[0];
           if(GlobalInfo.currLanguage==KeyConfig.languageEn){
             btcRate = GlobalInfo.usdRateInfo.btcs[0];

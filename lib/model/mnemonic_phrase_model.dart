@@ -29,7 +29,7 @@ class MnemonicPhrase{
   }
   HDWallet createAddress(String phrases,{int index=0}){
     if(GlobalInfo.bip39Seed==null){
-      Tools.showToast('address is creating,please wait',toastLength: Toast.LENGTH_LONG);
+      Tools.showToast('address is creating, please wait',toastLength: Toast.LENGTH_LONG);
       GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
       Future<SharedPreferences> prefs = SharedPreferences.getInstance();
       prefs.then((share) {
