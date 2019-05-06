@@ -82,6 +82,9 @@ class NetConfig{
   ///
   static String changeAddressName ='wallet/address/changeAddressName';
 
+  ///
+  static String updateUserNickname ='user/updateUserNickname';
+
 
 
   static post(String url,Map<String, String> data,{Function errorCallback=null}) async{
