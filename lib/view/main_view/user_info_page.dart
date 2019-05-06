@@ -184,17 +184,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
   //
   _openGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    Future response =  NetConfig.changeUserFace(image);
-    response.then( (val) {
-      if (val != null) {
-        GlobalInfo.userInfo.faceUrl = val; // change locally data.
-        print('==> AVATAR = ${GlobalInfo.userInfo.faceUrl}');
+    NetConfig.changeUserFace(image,callback:(data){
+      if (data != null) {
+        GlobalInfo.userInfo.faceUrl = data; // change locally data.
         setState(() {
           _imgAvatar = image;
         });
       }
-    }); 
-    
+    });
     Navigator.pop(context);
   }
 

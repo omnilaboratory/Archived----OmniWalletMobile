@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -181,7 +182,7 @@ class NetConfig{
   }
 
   ///更新用户头像
-  static changeUserFace(File imageFile) async{
+  static changeUserFace(File imageFile,{@required Function callback}) async{
     String url = apiHost + updateUserFace;
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
@@ -194,11 +195,21 @@ class NetConfig{
     request.files.add(multipartFile);
 
     var response = await request.send();
-    response.stream.transform(utf8.decoder).listen((data) {
-      print(data);
-      var result = json.decode(data);
-      print(result);
-      return result['data']['faceUrl'];
-    });
+
+    if(response.statusCode==200){
+      await response.stream.transform(utf8.decoder).listen((data){
+        print(data);
+        var result = json.decode(data);
+        callback(result['data']['faceUrl']);
+      });
+    }
+
+//    await response.stream.transform(utf8.decoder).listen((data) {
+//      print(data);
+//      var result = json.decode(data);
+//      print(result);
+//      return 'abd';
+//      return result['data'];
+//    });
   }
 }
