@@ -184,13 +184,18 @@ class _UserInfoPageState extends State<UserInfoPage> {
   //
   _openGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    NetConfig.changeUserFace(image,callback:(data){
-      if (data != null) {
-        GlobalInfo.userInfo.faceUrl = data; // change locally data.
-        setState(() {
-          _imgAvatar = image;
-        });
-      }
+    NetConfig.changeUserFace(
+        image,
+        errorCallback: (){
+          Tools.showToast('update fail');
+        },
+        callback:(data){
+          if (data != null) {
+            GlobalInfo.userInfo.faceUrl = data; // change locally data.
+            setState(() {
+              _imgAvatar = image;
+            });
+          }
     });
     Navigator.pop(context);
   }
@@ -198,18 +203,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   // 
   Widget _avatar(image) {
     if (image == null) {
-      if (GlobalInfo.userInfo.faceUrl == null) {
-        return CircleAvatar(
-          child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
-          backgroundColor: Colors.transparent,
-        );
-      } else {
-        return CircleAvatar(
-          child: Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
-            width: 35, height: 35),
-          backgroundColor: Colors.transparent,
-        );
-      }
+      return CircleAvatar(child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl,width: 35,height: 35));
     } else {
       return CircleAvatar(
         backgroundImage: FileImage(image),

@@ -7,6 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/net_config.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Tools{
 
@@ -80,5 +83,19 @@ class Tools{
         );
       }
     );
+  }
+
+
+  static Widget networkImage(BuildContext context, String url,{String defaultImage='assets/omni-logo.png',double width =90,double height = 90} ) {
+    if (url == null) {
+      return Image.asset(defaultImage, width: width,height: height);
+    } else {
+      return CachedNetworkImage(
+          placeholder: (BuildContext context, String url){
+            new CircularProgressIndicator();
+          },
+          imageUrl:NetConfig.imageHost + url,width: width,height: height,
+      );
+    }
   }
 }

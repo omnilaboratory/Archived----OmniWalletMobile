@@ -63,25 +63,6 @@ class _UserCenterState extends State<UserCenter> {
   }
 
 
-  // 
-  Widget _avatar() {
-    if (GlobalInfo.userInfo.faceUrl == null) {
-      return Image.asset('assets/omni-logo.png', width: 35, height: 35);
-      // return CircleAvatar(
-      //   child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
-      //   backgroundColor: Colors.transparent,
-      // );
-    } else {
-      return Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
-          width: 35, height: 35);
-      // return CircleAvatar(
-      //   child: Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
-      //     width: 35, height: 35),
-      //   backgroundColor: Colors.transparent,
-      // );
-    }
-  }
-
   // banner area
   Widget _bannerArea() {
     return Container(
@@ -92,20 +73,27 @@ class _UserCenterState extends State<UserCenter> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // user avatar.
-          Material(
-            color: Colors.transparent,
-            child: _avatar(),
-            // child: Ink.image(
-            //   image: Image.network(src),
-              
-            //   fit: BoxFit.cover,
-            //   width: 70,
-            //   height: 70,
-            //   child: InkWell(
-            //     onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
-            //     child: null,
-            //   ),
-            // ),
+          ClipOval(
+            child: Material(
+              color: Colors.blue,
+              child: GestureDetector(
+                child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl),
+                onTap: (){
+                  Navigator.of(context).pushNamed(UserInfoPage.tag);
+                },
+              ),
+              // child: Ink.image(
+              //   image: Image.network(src),
+
+              //   fit: BoxFit.cover,
+              //   width: 70,
+              //   height: 70,
+              //   child: InkWell(
+              //     onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
+              //     child: null,
+              //   ),
+              // ),
+            ),
           ),
           
           SizedBox(height: 10),
