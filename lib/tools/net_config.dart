@@ -187,6 +187,9 @@ class NetConfig{
     var length = await imageFile.length();
     var uri = Uri.parse(url);
     var request = http.MultipartRequest("POST", uri);
+    Map<String, String> header = new Map();
+    header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
+    request.headers.addAll(header);
     var multipartFile = new http.MultipartFile('faceFile', stream, length,filename: basename(imageFile.path));
     request.files.add(multipartFile);
 
