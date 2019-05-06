@@ -340,8 +340,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
       data.then((data) {
         if(data != null) {
-          GlobalInfo.userInfo.mnemonic = _mnemonic;
           GlobalInfo.userInfo.userId   = _mnemonic_md5;
+          GlobalInfo.userInfo.mnemonic = _mnemonic;
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
 

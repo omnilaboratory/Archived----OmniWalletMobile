@@ -71,7 +71,6 @@ class Tools{
       barrierDismissible: false,  // user must tap button to dismiss dialog.
       builder: (BuildContext context) {
         return Container(
-          // color: Colors.white,
           child: SpinKitFadingCircle(
             itemBuilder: (context, int index) {
               return DecoratedBox(
@@ -86,18 +85,21 @@ class Tools{
     );
   }
 
-
+  /// Get image from network.
   static Widget networkImage(BuildContext context, String url,
-    {String defaultImage='assets/omni-logo.png',double width =90,double height = 90} ) {
+    {String defaultImage = 'assets/omni-logo.png', double width = 90, double height = 90} ) {
+
     if (url == null) {
-      return Image.asset(defaultImage, width: width,height: height);
+      return Image.asset(defaultImage, width: width, height: height);
     } else {
       return CachedNetworkImage(
-          placeholder: (BuildContext context, String url){
-            new CircularProgressIndicator();
-          },
-          imageUrl:NetConfig.imageHost + url,width: width,height: height,
-          fit: BoxFit.fill,
+        placeholder: (BuildContext context, String url) {
+          CircularProgressIndicator();
+        },
+        imageUrl: NetConfig.imageHost + url,
+        width:  width,
+        height: height,
+        fit: BoxFit.fill,
       );
     }
   }

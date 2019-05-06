@@ -52,40 +52,12 @@ class _SplashState extends State<Splash> {
     // It will hide status bar and notch.
     SystemChrome.setEnabledSystemUIOverlays([]);
 
-    return Stack(
-      children: <Widget>[
-        Scaffold(
-          body: SafeArea(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/logo-png.png', width: 229, height: 180),
-                  Text(
-                    'Processing Data ...',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          )
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Image.asset('assets/logo-png.png', width: 229, height: 180),
         ),
-
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 200),
-          // child: SpinKitFadingCircle(
-          //   itemBuilder: (context, int index) {
-          //     return DecoratedBox(
-          //       decoration: BoxDecoration(
-          //         color: index.isEven ? Colors.red : Colors.green,
-          //       ),
-          //     );
-          //   },
-          // ),
-          // child: Text('Processing Data ...'),
-        // )
-
-      ],
+      )
     );
   }
 

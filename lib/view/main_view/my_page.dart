@@ -62,11 +62,10 @@ class _UserCenterState extends State<UserCenter> {
     );
   }
 
-
   // banner area
   Widget _bannerArea() {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).pushNamed(UserInfoPage.tag);
       },
 
@@ -75,21 +74,17 @@ class _UserCenterState extends State<UserCenter> {
         height: 220,
         width: double.infinity,
         child: Column(
-          
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // user avatar.
-            ClipRRect(
-              borderRadius: BorderRadius.all(
-           Radius.circular(10)),
+            ClipRRect( // user avatar.
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
               child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl),
             ),
             
-            // SizedBox(height: 10),
-            Container(
+            Container( // user nick name
               color: Colors.transparent,
               padding: const EdgeInsets.only(top: 10),
-              child: Text(  // user nick name
+              child: Text(
                 GlobalInfo.userInfo.nickname,
                 style: TextStyle(color: Colors.white),
               ),

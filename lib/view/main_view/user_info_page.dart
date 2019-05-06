@@ -24,8 +24,6 @@ class UserInfoPage extends StatefulWidget {
 
 class _UserInfoPageState extends State<UserInfoPage> {
 
-  // var _imgAvatar;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,9 +95,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 title: Text(
                   WalletLocalizations.of(context).userInfoPageButton,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
+                  style: TextStyle(color: Colors.red),
                 ),
 
                 onTap: () { _deleteUser(); },
@@ -111,6 +107,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
+  /// Delete current user
   void _deleteUser() {
     showDialog(
       context: context,
@@ -132,6 +129,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 Future<SharedPreferences> prefs = SharedPreferences.getInstance();
                 prefs.then((share) {
                   share.clear();
+
+                  // TODO: Set userInfo = null or only faceUrl ?
+                  GlobalInfo.userInfo.faceUrl = null;
+                  
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => WelcomePageOne()), 
                     (route) => route == null,
@@ -145,12 +146,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
   
-  //
+  ///
   void _bottomSheet() {
     showModalBottomSheet(
       context: context, 
       builder: (BuildContext context) {
-
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -175,7 +175,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
   
-  //
+  ///
   _getImage(ImageSource myImageSource) async {
     var image = await ImagePicker.pickImage(source: myImageSource);
 
@@ -189,15 +189,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
       NetConfig.changeUserFace(
         imgCompressed,
-        errorCallback: (){
-          Tools.showToast('update fail');
+        errorCallback: () {
+          Tools.showToast('Update avatar fail!');
         },
-        callback:(data){
+        callback: (data) {
           if (data != null) {
             GlobalInfo.userInfo.faceUrl = data; // change locally data.
-            setState(() {
-              // _imgAvatar = imgCompressed;
-            });
+            setState(() {});
           }
         }
       );
@@ -206,42 +204,23 @@ class _UserInfoPageState extends State<UserInfoPage> {
     Navigator.pop(context);
   }
 
-  // 
+  /// Show user avatar
   Widget _avatar() {
     return ClipRRect(
-      // child: Tools.networkImage(
-      //   context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
-        
-      borderRadius: BorderRadius.all(
-       Radius.circular(5)),
-      child:  Tools.networkImage(
+      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      child: Tools.networkImage(
         context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
-
     );
-
-    // if (image == null) {
-    //   return CircleAvatar(
-    //     child: Tools.networkImage(
-    //       context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35));
-    //     // backgroundImage: AssetImage('assets/omni-logo.png'),
-    //     // child: Image.asset('assets/omni-logo.png'),
-    //     // backgroundImage: NetworkImage(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl),
-    //   );
-    // } else {
-      
-    //   // return CircleAvatar(
-    //   //   backgroundImage: FileImage(image),
-    //   // );
-    // }
   }
 
-  /// 
+  ///
   Future<File> _compressImage(File file, String targetPath) async {
     var result = await FlutterImageCompress.compressAndGetFile(
-        file.absolute.path, targetPath,
-        minWidth: 100, minHeight: 100,
-        // quality: 80,
-      );
+      file.absolute.path,
+      targetPath,
+      minWidth: 100,
+      minHeight: 100,
+    );
 
     print(file.lengthSync());
     print(result.lengthSync());
