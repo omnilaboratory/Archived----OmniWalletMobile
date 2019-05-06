@@ -198,7 +198,7 @@ class NetConfig{
       print(data);
       var result = json.decode(data);
       print(result);
-      return result['data'];
+      return result['data']['faceUrl'];
     });
   }
 }

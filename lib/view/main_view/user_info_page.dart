@@ -184,20 +184,35 @@ class _UserInfoPageState extends State<UserInfoPage> {
   //
   _openGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _imgAvatar = image;
-      NetConfig.uploadImageFunc(image);
-    });
+    Future response =  NetConfig.changeUserFace(image);
+    response.then( (val) {
+      if (val != null) {
+        GlobalInfo.userInfo.faceUrl = val; // change locally data.
+        print('==> AVATAR = ${GlobalInfo.userInfo.faceUrl}');
+        setState(() {
+          _imgAvatar = image;
+        });
+      }
+    }); 
+    
     Navigator.pop(context);
   }
 
   // 
   Widget _avatar(image) {
     if (image == null) {
-      return CircleAvatar(
-        child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
-        backgroundColor: Colors.transparent,
-      );
+      if (GlobalInfo.userInfo.faceUrl == null) {
+        return CircleAvatar(
+          child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
+          backgroundColor: Colors.transparent,
+        );
+      } else {
+        return CircleAvatar(
+          child: Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
+            width: 35, height: 35),
+          backgroundColor: Colors.transparent,
+        );
+      }
     } else {
       return CircleAvatar(
         backgroundImage: FileImage(image),

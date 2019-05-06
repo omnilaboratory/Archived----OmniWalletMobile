@@ -129,13 +129,13 @@ class _SplashState extends State<Splash> {
     // Tools.loadingAnimation(context);
     data.then((data) {
       if (data != null) {
-        print('==> --. DATA | ${DateTime.now()}');
+        // print('==> --. DATA | ${DateTime.now()}');
         
         GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-        print('==> GET DATA | ${DateTime.now()}');
+        // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
       }

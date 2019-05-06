@@ -8,6 +8,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/about.dart';
@@ -61,6 +62,26 @@ class _UserCenterState extends State<UserCenter> {
     );
   }
 
+
+  // 
+  Widget _avatar() {
+    if (GlobalInfo.userInfo.faceUrl == null) {
+      return Image.asset('assets/omni-logo.png', width: 35, height: 35);
+      // return CircleAvatar(
+      //   child: Image.asset('assets/omni-logo.png', width: 35, height: 35),
+      //   backgroundColor: Colors.transparent,
+      // );
+    } else {
+      return Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
+          width: 35, height: 35);
+      // return CircleAvatar(
+      //   child: Image.network(NetConfig.imageHost + GlobalInfo.userInfo.faceUrl,
+      //     width: 35, height: 35),
+      //   backgroundColor: Colors.transparent,
+      // );
+    }
+  }
+
   // banner area
   Widget _bannerArea() {
     return Container(
@@ -73,16 +94,18 @@ class _UserCenterState extends State<UserCenter> {
           // user avatar.
           Material(
             color: Colors.transparent,
-            child: Ink.image(
-              image: AssetImage('assets/omni-logo.png'),
-              fit: BoxFit.cover,
-              width: 70,
-              height: 70,
-              child: InkWell(
-                onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
-                child: null,
-              ),
-            ),
+            child: _avatar(),
+            // child: Ink.image(
+            //   image: Image.network(src),
+              
+            //   fit: BoxFit.cover,
+            //   width: 70,
+            //   height: 70,
+            //   child: InkWell(
+            //     onTap: () { Navigator.of(context).pushNamed(UserInfoPage.tag); },
+            //     child: null,
+            //   ),
+            // ),
           ),
           
           SizedBox(height: 10),

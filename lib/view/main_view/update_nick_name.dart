@@ -152,7 +152,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
       response.then((val) {
         if (val != null) {
           setState(() {
-            // widget.data.name = _nickNameController.text.trim(); // change locally data.
+            GlobalInfo.userInfo.nickname = _nickNameController.text; // change locally data.
             Navigator.of(context).pop();
           });
         }
