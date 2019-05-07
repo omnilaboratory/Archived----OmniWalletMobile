@@ -1,10 +1,11 @@
-/// About page.
+/// About US page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-29
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
 class About extends StatefulWidget {
   static String tag = "About";
@@ -140,28 +141,19 @@ class _AboutState extends State<About> {
     );
   }
 
-  // Update version button
+  /// Update version button
   Widget _updateVersionButton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: RaisedButton(
-              child: Text(
-                WalletLocalizations.of(context).aboutPageButton,
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(30),
+      child: CustomRaiseButton(
+        context: context,
+        hasRow: false,
+        title: WalletLocalizations.of(context).aboutPageButton,
+        titleColor: Colors.white,
+        color: AppCustomColor.btnConfirm,
+        callback: () {
 
-              color: AppCustomColor.btnConfirm,
-              textColor: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 15),
-              elevation: 0,
-              onPressed: () {
-                // print(_btnWidth - 27);
-              },
-            ),
-          ),
-        ],
+        },
       ),
     );
   }

@@ -85,6 +85,8 @@ class _MyAppState extends State<MyApp> {
     AddressManage.tag: (context)       => AddressManage(data: null),
     DisplayedAssets.tag: (context)     => DisplayedAssets(),
     UpdateNickName.tag: (context)      => UpdateNickName(),
+    SelectCurrency.tag: (context)      => SelectCurrency(),
+    SelectTheme.tag: (context)         => SelectTheme(),
   };
 
   Brightness brightness = Brightness.light;

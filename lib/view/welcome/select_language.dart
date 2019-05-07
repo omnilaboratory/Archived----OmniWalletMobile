@@ -24,7 +24,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
   @override
   Widget build(BuildContext context) {
     //
-    final langModel = MainStateModel().of(context);
+    final model = MainStateModel().of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +34,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
             child: Text(WalletLocalizations.of(context).languagePageSaveButton),
             textColor: Colors.blue,
             onPressed: () {
-              _actionSaveButton(langModel, context);
+              _actionSaveButton(model, context);
             },
           ),
         ],
@@ -42,21 +42,21 @@ class _SelectLanguageState extends State<SelectLanguage> {
 
       body: SafeArea(
         child: ListView(
-          children: _languageList(langModel),
+          children: _languageList(model),
         ),
       )
     );
   }
 
   // 
-  void _actionSaveButton(MainStateModel langModel, BuildContext context) {
+  void _actionSaveButton(MainStateModel model, BuildContext context) {
     print('strClickItem = $strClickItem');
     if (strClickItem != '') {
-      langModel.setSelectedLanguage(strClickItem);
+      model.setSelectedLanguage(strClickItem);
     
       // change app language.
       Locale locale;
-      if (strClickItem == 'English') {
+      if (strClickItem == KeyConfig.languageEn) {
         locale = Locale('en',"US");
       } else {
         locale = Locale('zh',"CH");
@@ -107,14 +107,14 @@ class _SelectLanguageState extends State<SelectLanguage> {
   }
 
   // Build language list
-  List<Widget> _languageList(MainStateModel langModel) {
+  List<Widget> _languageList(MainStateModel model) {
     
-    String setLanguage = langModel.getSelectedLanguage;
+    String setLanguage = model.getSelectedLanguage;
     
     // List content.
     List<Widget> _list = List();
     List<String> items = <String> [
-      'English', '简体中文',
+      KeyConfig.languageEn, KeyConfig.languageCn,
     ];
 
     if (strClickItem != '') {

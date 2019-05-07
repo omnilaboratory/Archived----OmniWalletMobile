@@ -17,14 +17,19 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
 
-  String _selectLanguage;
+  // String _selectLanguage;
+  // String _currencyUnit;
+  // String _colorTheme;
 
   @override
   Widget build(BuildContext context) {
 
     // Set value by model.
-    final langModel = MainStateModel().of(context);
-    _selectLanguage = langModel.getSelectedLanguage;
+    // final model = MainStateModel().of(context);
+    // _selectLanguage = model.getSelectedLanguage;
+    // _currencyUnit   = model.getCurrencyUnit;
+    // _colorTheme     = model.getTheme;
+    // print('==> _currencyUnit = $_currencyUnit');
 
     return Scaffold(
       appBar: AppBar(
@@ -58,17 +63,24 @@ class _SettingsState extends State<Settings> {
     ];
 
     // item content
+    // List<String> values = <String> [
+    //   _selectLanguage, _currencyUnit, _colorTheme
+    // ];
     List<String> values = <String> [
-      _selectLanguage, 'CNY', 'Light'
+      GlobalInfo.currLanguage,
+      GlobalInfo.currencyUnit,
+      GlobalInfo.colorTheme
     ];
 
     // Page routes
     List<String> routes = <String> [
-      SelectLanguage.tag, '', ''
+      SelectLanguage.tag,
+      SelectCurrency.tag,
+      SelectTheme.tag
     ];
 
     for (int i = 0; i < titles.length; i++) {
-      _list.add(_menuItem(titles[i], values[i], routes[i]));
+      _list.add(_oneItem(titles[i], values[i], routes[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -76,7 +88,7 @@ class _SettingsState extends State<Settings> {
   }
 
   //
-  Widget _menuItem(String strTitle, String strValue, String route) {
+  Widget _oneItem(String strTitle, String strValue, String route) {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(

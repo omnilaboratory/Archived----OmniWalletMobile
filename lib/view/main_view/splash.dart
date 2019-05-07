@@ -89,8 +89,8 @@ class _SplashState extends State<Splash> {
         );
       }
 
-      // check language
-      _checkLanguage(share);
+      // check language, currency unit, theme.
+      _checkSettings(share);
     });
   }
 
@@ -138,34 +138,57 @@ class _SplashState extends State<Splash> {
     }
   }
 
-  // get app set language
-  void _checkLanguage(SharedPreferences share) {
+  /// get app settings
+  void _checkSettings(SharedPreferences share) {
 
     Locale locale = Localizations.localeOf(context);
     String languageCode = locale.languageCode;
     print('languageCode = $languageCode');
 
-    String setLanguage = share.getString(KeyConfig.set_language);
-    print('saved setLanguage = $setLanguage');
+    String setLanguage     = share.getString(KeyConfig.set_language);
+    String setCurrencyUnit = share.getString(KeyConfig.set_currency_unit);
+    String setTheme        = share.getString(KeyConfig.set_theme);
+    print('saved setLanguage     = $setLanguage');
+    print('saved setCurrencyUnit = $setCurrencyUnit');
+    print('saved setTheme        = $setTheme');
 
-    if (setLanguage == 'English') {
+    // for language
+    if (setLanguage == KeyConfig.languageEn) {
       locale = Locale('en',"US");
-    } else if (setLanguage == '简体中文') {
+    } else if (setLanguage == KeyConfig.languageCn) {
       locale = Locale('zh',"CH");
     } else { // No select before
       if (languageCode == 'zh') {
-        setLanguage = '简体中文';
+        setLanguage = KeyConfig.languageCn;
       } else if (languageCode == 'en') {
-        setLanguage = 'English';
+        setLanguage = KeyConfig.languageEn;
       } else {
-        setLanguage = 'English';
+        setLanguage = KeyConfig.languageEn;
       }
+    }
+
+    // for currency unit
+    if (setCurrencyUnit == null) {
+      if (languageCode == 'zh') {
+        setCurrencyUnit = KeyConfig.cny;
+      } else if (languageCode == 'en') {
+        setCurrencyUnit = KeyConfig.usd;
+      } else {
+        setCurrencyUnit = KeyConfig.usd;
+      }
+    }
+
+    // for color theme
+    if (setTheme == null) {
+      setTheme = KeyConfig.light;
     }
 
     MyApp.setLocale(context, locale);
 
     // Set value by model.
-    final langModel = MainStateModel().of(context);
-    langModel.setSelectedLanguage(setLanguage);
+    final model = MainStateModel().of(context);
+    model.setSelectedLanguage(setLanguage);
+    model.setCurrencyUnit(setCurrencyUnit);
+    model.setTheme(setTheme);
   }
 }

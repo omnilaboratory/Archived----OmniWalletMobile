@@ -18,6 +18,13 @@ class  GlobalInfo{
   static AssetToUSDRateInfo usdRateInfo = AssetToUSDRateInfo();
 
   static String currLanguage = KeyConfig.languageEn;
+
+  ///
+  static String currencyUnit = KeyConfig.usd;
+
+  ///
+  static String colorTheme = KeyConfig.light;
+
   /// userInfo
   static UserInfo userInfo = UserInfo();
 

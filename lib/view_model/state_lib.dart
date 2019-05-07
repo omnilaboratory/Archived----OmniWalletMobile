@@ -2,6 +2,10 @@ library main_state_model;
 
 export 'package:scoped_model/scoped_model.dart';
 export 'package:wallet_app/view_model/select_language_model.dart';
+export 'package:wallet_app/view_model/select_currency_model.dart';
+export 'package:wallet_app/view_model/select_theme_model.dart';
+export 'package:wallet_app/view/main_view/select_currency.dart';
+export 'package:wallet_app/view/main_view/select_theme.dart';
 export 'package:wallet_app/view_model/user_usual_address_model.dart';
 export 'package:wallet_app/view_model/backup_mnemonic_phrase.dart';
 export 'package:wallet_app/view_model/wallet_model.dart';

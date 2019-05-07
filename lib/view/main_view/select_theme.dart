@@ -1,4 +1,4 @@
-/// Switch currency for assets display.
+/// Switch theme.
 /// [author] Kevin Zhang
 /// [time] 2019-5-7
 
@@ -10,13 +10,13 @@ import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
-class SelectCurrency extends StatefulWidget {
-  static String tag = "SelectCurrency";
+class SelectTheme extends StatefulWidget {
+  static String tag = "SelectTheme";
   @override
-  _SelectCurrencyState createState() => _SelectCurrencyState();
+  _SelectThemeState createState() => _SelectThemeState();
 }
 
-class _SelectCurrencyState extends State<SelectCurrency> {
+class _SelectThemeState extends State<SelectTheme> {
   
   String strClickItem = '';
   
@@ -27,7 +27,7 @@ class _SelectCurrencyState extends State<SelectCurrency> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(WalletLocalizations.of(context).currencyPageAppBarTitle),
+        title: Text(WalletLocalizations.of(context).themePageAppBarTitle),
         actions: <Widget>[
           FlatButton(  // save button
             child: Text(WalletLocalizations.of(context).languagePageSaveButton),
@@ -41,7 +41,7 @@ class _SelectCurrencyState extends State<SelectCurrency> {
 
       body: SafeArea(
         child: ListView(
-          children: _currencyList(model),
+          children: _themeList(model),
         ),
       )
     );
@@ -51,17 +51,17 @@ class _SelectCurrencyState extends State<SelectCurrency> {
   void _actionSaveButton(MainStateModel model, BuildContext context) {
     print('strClickItem = $strClickItem');
     if (strClickItem != '') {
-      model.setCurrencyUnit(strClickItem);
+      model.setTheme(strClickItem);
     
-      // change Currency Unit.
-      if (strClickItem == KeyConfig.usd) {
+      // change theme.
+      if (strClickItem == KeyConfig.light) {
       } else {
       }
     
       // MyApp.setLocale(context, locale);
     
       // save selected value to local storage
-      _saveCurrencyUnit(strClickItem);
+      _saveTheme(strClickItem);
     }
                  
     Navigator.pop(context);
@@ -69,11 +69,11 @@ class _SelectCurrencyState extends State<SelectCurrency> {
 
   /// Build list data.
   /// [item] is list tile content.
-  /// [setCurrencyUnit] is currently selected Currency Unit.
-  Widget _oneItem(BuildContext context, String item, String setCurrencyUnit) {
+  /// [setTheme] is currently selected theme.
+  Widget _oneItem(BuildContext context, String item, String setTheme) {
 
     bool isSelected;
-    if (item == setCurrencyUnit) {
+    if (item == setTheme) {
       isSelected = true;
     } else {
       isSelected = false;
@@ -97,23 +97,23 @@ class _SelectCurrencyState extends State<SelectCurrency> {
     );
   }
 
-  // Build Currency Unit list
-  List<Widget> _currencyList(MainStateModel model) {
+  // Build theme list
+  List<Widget> _themeList(MainStateModel model) {
     
-    String setCurrencyUnit = model.getCurrencyUnit;
+    String setTheme = model.getTheme;
     
     // List content.
     List<Widget> _list = List();
     List<String> items = <String> [
-      KeyConfig.usd, KeyConfig.cny,
+      KeyConfig.light, KeyConfig.dark,
     ];
 
     if (strClickItem != '') {
-      setCurrencyUnit = strClickItem;
+      setTheme = strClickItem;
     }
 
     for (int i = 0; i < items.length; i++) {
-      _list.add(_oneItem(context, items[i], setCurrencyUnit));
+      _list.add(_oneItem(context, items[i], setTheme));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -121,9 +121,9 @@ class _SelectCurrencyState extends State<SelectCurrency> {
   }
 
   //
-  void _saveCurrencyUnit(String value) async{
+  void _saveTheme(String value) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(KeyConfig.set_currency_unit, value);
+    prefs.setString(KeyConfig.set_theme, value);
   }
 
   //

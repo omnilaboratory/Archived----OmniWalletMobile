@@ -97,7 +97,7 @@ class WalletLocalizations{
       'settingsPageTitle' : '设置',
       'settingsPageItem_1_Title' : '多语言',
       'settingsPageItem_2_Title' : '货币单位',
-      'settingsPageItem_3_Title' : '主题颜色',
+      'settingsPageItem_3_Title' : '颜色主题',
 
       'helpPageTitle' : '帮助',
       'helpPageItemTitle' : '常见问题',
@@ -209,6 +209,10 @@ class WalletLocalizations{
       'updateNickNamePageEditTips' : '请输入新昵称',
 
       'currencyPageAppBarTitle' : '货币单位',
+
+      'themePageAppBarTitle' : '颜色主题',
+      'themePageItem_1' : '亮色',
+      'themePageItem_2' : '暗色',
     },
 
     'en': {
@@ -318,7 +322,7 @@ class WalletLocalizations{
       'settingsPageTitle' : 'Settings',
       'settingsPageItem_1_Title' : 'Languages',
       'settingsPageItem_2_Title' : 'Currency Unit',
-      'settingsPageItem_3_Title' : 'Theme',
+      'settingsPageItem_3_Title' : 'Color Theme',
 
       'helpPageTitle' : 'Help',
       'helpPageItemTitle' : 'FAQ',
@@ -432,8 +436,16 @@ class WalletLocalizations{
 
       'currencyPageAppBarTitle' : 'Currency Unit',
 
+      'themePageAppBarTitle' : 'Color Theme',
+      'themePageItem_1' : 'Light',
+      'themePageItem_2' : 'Dark',
     }
   };
+
+  // app theme
+  get themePageAppBarTitle => _localizedValues[locale.languageCode]['themePageAppBarTitle'];
+  get themePageItem_1 => _localizedValues[locale.languageCode]['themePageItem_1'];
+  get themePageItem_2 => _localizedValues[locale.languageCode]['themePageItem_2'];
 
   // currency unit
   get currencyPageAppBarTitle => _localizedValues[locale.languageCode]['currencyPageAppBarTitle'];
