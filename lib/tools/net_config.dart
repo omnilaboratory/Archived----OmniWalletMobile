@@ -143,6 +143,7 @@ class NetConfig{
       }
     }else if(response.statusCode==403){
       GlobalInfo.bip39Seed = null;
+      GlobalInfo.clear();
       Future<SharedPreferences> prefs = SharedPreferences.getInstance();
       prefs.then((share) {
         share.clear();
