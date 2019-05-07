@@ -65,31 +65,46 @@ class _SplashState extends State<Splash> {
   checkVersion() async{
     var data = await NetConfig.get(NetConfig.getNewestVersion);
     if(data!=null){
+      int code = data['code'];
+      bool isForce = data['isForce'];
       if(data['code']>GlobalInfo.currVersionCode){
-        showDialog(
-            context: context,
-            barrierDismissible: false,  // user must tap button!
-            builder:  (BuildContext context) {
-              return AlertDialog(
-                title: Text(WalletLocalizations.of(context).appVersionTitle),
-                content: Text(WalletLocalizations.of(context).appVersionContent1),
-                actions: this.buildActionBtns(data),
-              );
-            }
-        );
+        Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+        prefs.then((share){
+          int codeOld = share.getInt('version');
+          if(codeOld==null||(codeOld!=null&&codeOld!=code)){
+            showDialog(
+                context: context,
+                barrierDismissible: false,  // user must tap button!
+                builder:  (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(WalletLocalizations.of(context).appVersionTitle),
+                    content: Text(WalletLocalizations.of(context).appVersionContent1),
+                    actions: this.buildActionBtns(data),
+                  );
+                }
+            );
+          }else{
+            _processData();
+          }
+        });
       }
     }else {
       _processData();
      }
   }
 
-  buildActionBtns(data){
+  buildActionBtns(data) {
     bool isForce = data['isForce'];
+    final int code = data['code'];
     List<Widget> btns = [];
     if(isForce==false){
       btns.add(FlatButton(
         child: Text(WalletLocalizations.of(context).appVersionBtn1),
         onPressed: () {
+          Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+          prefs.then((share){
+            share.setInt('version', code);
+          });
           Navigator.of(context).pop();
           _processData();
         },
