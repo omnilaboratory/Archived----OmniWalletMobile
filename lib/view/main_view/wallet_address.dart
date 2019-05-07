@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 /// Wallet Addresses List page.
 /// [author] Kevin Zhang
 /// [time] 2019-4-25
@@ -69,9 +70,11 @@ class _WalletAddressState extends State<WalletAddress> {
   Widget _listTitle() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
-      child: Text(
+      child: AutoSizeText(
         WalletLocalizations.of(context).walletAddressPageListTitle,
         style: TextStyle(color: Colors.grey),
+        minFontSize: 10,
+        maxLines: 1,
       ),
     );
   }

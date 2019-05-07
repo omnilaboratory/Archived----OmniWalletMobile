@@ -20,5 +20,11 @@ class SelectLanguageModel extends Model {
     notifyListeners();
   }
 
+  ///
+  void setCurrencyUnit(String setCurrencyUnit) {
+    _selectedLanguage = setCurrencyUnit;
+    GlobalInfo.currLanguage = setCurrencyUnit;
+    notifyListeners();
+  }
 
 }
