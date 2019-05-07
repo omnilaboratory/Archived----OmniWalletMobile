@@ -183,7 +183,7 @@ class _CreateAccountState extends State<CreateAccount> {
       _list.add(Divider(height: 0, indent: 25));
     }
 
-    _list.add(SizedBox(height: 30));
+    // _list.add(Expanded(child: Container()));
     _list.add(_btnCreate());
 
     return _list;
@@ -192,7 +192,7 @@ class _CreateAccountState extends State<CreateAccount> {
   // 
   Widget _titleImage() {
     return Padding(
-      padding: EdgeInsets.only(top: 30, bottom: 50),
+      padding: EdgeInsets.only(top: 20, bottom: 40),
       child: Image.asset(Tools.imagePath('image_account'), width: 68, height: 62)
     );
   }
@@ -203,18 +203,14 @@ class _CreateAccountState extends State<CreateAccount> {
         bool _hasFocus, String _helperText, int _textField) {
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 2),
       child: TextFormField(
         controller:  _controller,
         focusNode:   _node,
+        keyboardType: _textField == 1 ? null : TextInputType.number,
+        maxLength: _textField == 1 ? 18 : 6,
         decoration: _inputDecoration(_iconName, _hintText, 
           _hasFocus, _helperText, _controller),
-
-        // onSaved: (String val) {
-        //   print('_strSave = $val');
-        //   _strSave = val;
-        // },
-
         validator: (val) => _validate(val, _textField),
       ),
     );
@@ -229,7 +225,8 @@ class _CreateAccountState extends State<CreateAccount> {
       border: InputBorder.none,
       filled: true, 
       fillColor: AppCustomColor.themeBackgroudColor,
-      hintText: _hintText,
+      // hintText: _hintText,
+      labelText: _hintText,
       helperText: _hasFocus ? _helperText : null,
       suffixIcon: _hasFocus ? 
         IconButton(
@@ -259,7 +256,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validateNickName(String val) {
     if (val == null || val.trim().length == 0) {
       return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
-    } else if (val.trim().length < 1) {
+    } else if (val.trim().length < 3) {
       return WalletLocalizations.of(context).createAccountPageErrMsgLength;
     } else {
       return null;
@@ -270,7 +267,7 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validatePinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
-    } else if (val.trim().length < 3) {
+    } else if (val.trim().length < 6) {
       return WalletLocalizations.of(context).createAccountPageErrMsgLength;
     } else {
       return null;
@@ -281,8 +278,10 @@ class _CreateAccountState extends State<CreateAccount> {
   String _validateRepeatPinCode(String val) {
     if (val == null || val.trim().length == 0) {
       return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
-    } else if (val.trim().length < 3) {
+    } else if (val.trim().length < 6) {
       return WalletLocalizations.of(context).createAccountPageErrMsgLength;
+    } else if (val != _pinCodeController.text) {  // 2 pin codes are inconsistent 
+      return WalletLocalizations.of(context).createAccountPageErrMsgInconsistent;
     } else {
       return null;
     }
@@ -291,7 +290,7 @@ class _CreateAccountState extends State<CreateAccount> {
   /// Create button
   Widget _btnCreate() {
     return Padding(
-      padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 50),
+      padding: EdgeInsets.all(30),
       child: CustomRaiseButton(
         context: context,
         hasRow: false,
@@ -303,7 +302,7 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
-  bool canCreate =true;
+  bool canCreate = true;
   /// form submit
   void _onSubmit() {
     if(this.canCreate==false) return ;

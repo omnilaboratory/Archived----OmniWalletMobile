@@ -36,7 +36,7 @@ class _SplashState extends State<Splash> {
     _timer = Timer(
       Duration(seconds: 0), 
       () {
-        checkVersion();
+        _checkVersion();
       }
     );
   }
@@ -63,15 +63,23 @@ class _SplashState extends State<Splash> {
     );
   }
 
-  checkVersion() async{
+  /// Check if has a newer version
+  _checkVersion() async {
+
+    // Invoke api.
     var data = await NetConfig.get(NetConfig.getNewestVersion);
-    if(data!=null){
+
+    if (data != null) {
       int code = data['code'];
-      if(data['code'] > GlobalInfo.currVersionCode){
-        // check  whether click  later btn
+
+      /// Check if has a newer version.
+      if (data['code'] > GlobalInfo.currVersionCode) {
         var share = await SharedPreferences.getInstance();
-        int codeOld = share.getInt('version_later_state');// curr version code whether show first times
-        if(codeOld==null||(codeOld!=null&&codeOld!=code)){// curr version do not click
+        int codeOld = share.getInt('version_later_state');
+
+        // If has a newer version and not click the 'Later' button yet.
+        // Then show dialog.
+        if (codeOld == null || (codeOld !=null && codeOld != code)) {
           showDialog(
               context: context,
               barrierDismissible: false,  // user must tap button!
@@ -79,25 +87,35 @@ class _SplashState extends State<Splash> {
                 return AlertDialog(
                   title: Text(WalletLocalizations.of(context).appVersionTitle),
                   content: Text(WalletLocalizations.of(context).appVersionContent1),
-                  actions: this.buildActionBtns(data),
+                  actions: _actions(data),
                 );
               }
           );
-        }else{
+
+        } else { // Already clicked the 'Later' button, then ignore newer version.
           _processData();
         }
+
+      } else { // If has not a newer, continue process data.
+        // TODO: is correct?
       }
-    }else {
+
+    } else { // data is null ?
       _processData();
-     }
+    }
   }
 
-  buildActionBtns(data) {
+  /// Actions for update version
+  List<Widget> _actions(data) {
+
     bool isForce = data['isForce'];
     int code = data['code'];
+
     List<Widget> btns = [];
-    if(isForce == false){
-      // later btn
+
+    // The version can be ignored.
+    if (isForce == false) {
+      // Later button
       btns.add(FlatButton(
         child: Text(WalletLocalizations.of(context).appVersionBtn1),
         onPressed: () {
@@ -106,25 +124,31 @@ class _SplashState extends State<Splash> {
             share.setInt('version_later_state', code);
           });
           Navigator.of(context).pop();
-          _processData();// go to next logic
+          _processData(); // go to next logic
         },
       ));
     }
-    // ok btn
+
+    // OK button - The version must be upgraded.
     btns.add(FlatButton(
       child: Text(WalletLocalizations.of(context).appVersionBtn2),
       onPressed: () {
-        this.onTouchBtnOK(data);
+        _upgradeNewerVersion(data);
       },
     ));
+
     return btns;
   }
 
-  onTouchBtnOK(data) async{
-    // apk download url
+  /// Upgrade to newer version
+  void _upgradeNewerVersion(data) async {
+
+    // APK install file download url for Android.
     var url = NetConfig.imageHost + data['path'];
-    if(Platform.isIOS){ // if ios, go to appStore
-      url = 'https://www.baidu.com/';
+
+    // Go to App Store for iOS.
+    if (Platform.isIOS) {
+      url = 'https://www.baidu.com/'; // temp code
     }
 
     if (await canLaunch(url)) {
@@ -134,7 +158,7 @@ class _SplashState extends State<Splash> {
     }
   }
 
-  //
+  ///
   void _processData() async{
 
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();

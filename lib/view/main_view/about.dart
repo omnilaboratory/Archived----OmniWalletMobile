@@ -2,10 +2,15 @@
 /// [author] Kevin Zhang
 /// [time] 2019-3-29
 
+import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class About extends StatefulWidget {
   static String tag = "About";
@@ -152,10 +157,103 @@ class _AboutState extends State<About> {
         titleColor: Colors.white,
         color: AppCustomColor.btnConfirm,
         callback: () {
-
+          _checkVersion();
         },
       ),
     );
   }
 
+  /// Check if has a newer version
+  void _checkVersion() async {
+
+    // Invoke api.
+    var data = await NetConfig.get(NetConfig.getNewestVersion);
+
+    if (data != null) {
+      // If has a newer version, then show dialog.
+      if (data['code'] < GlobalInfo.currVersionCode) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,  // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(WalletLocalizations.of(context).appVersionTitle),
+              content: Text(WalletLocalizations.of(context).appVersionContent1),
+              actions: _actions(data),
+            );
+          }
+        );
+
+      } else { // If has not a newer, just show promt.
+        // Tools.showToast(
+        //   WalletLocalizations.of(context).appVersionNoNewerVersion,
+        //   toastLength: Toast.LENGTH_LONG
+        // );
+
+        showDialog(
+          context: context,
+          // barrierDismissible: false,  // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              // title: Text(WalletLocalizations.of(context).appVersionTitle),
+              content: Text(WalletLocalizations.of(context).appVersionNoNewerVersion),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(WalletLocalizations.of(context).appVersionBtn2),
+                  onPressed: () { Navigator.of(context).pop(); },
+                ),
+              ]
+            );
+          }
+        );
+      }
+    }
+  }
+
+  /// Actions for update version
+  List<Widget> _actions(data) {
+
+    bool isForce = data['isForce'];
+
+    List<Widget> btns = [];
+
+    // The version can be ignored.
+    if (isForce == false) {
+      btns.add(FlatButton(
+        child: Text(WalletLocalizations.of(context).appVersionBtn1),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ));
+    }
+
+    // The version must be upgraded.
+    btns.add(FlatButton(
+      child: Text(WalletLocalizations.of(context).appVersionBtn2),
+      onPressed: () {
+        Navigator.of(context).pop();
+        _upgradeNewerVersion(data);
+      },
+    ));
+
+    return btns;
+  }
+
+  /// Upgrade to newer version
+  void _upgradeNewerVersion(data) async {
+
+    // APK install file download url for Android.
+    var url = NetConfig.imageHost + data['path'];
+
+    // Go to App Store for iOS.
+    if (Platform.isIOS) {
+      url = 'https://www.baidu.com/'; // temp code
+    }
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

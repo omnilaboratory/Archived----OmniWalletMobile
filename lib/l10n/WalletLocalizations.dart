@@ -140,7 +140,7 @@ class WalletLocalizations{
       'appVersionContent1' : '有新的版本了，更新吧',
       'appVersionBtn1' : '以后再说',
       'appVersionBtn2' : '好的',
-
+      'appVersionNoNewerVersion' : '已经是最新的版本',
 
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
@@ -178,19 +178,18 @@ class WalletLocalizations{
       'wallet_trade_info_detail_item_confirmIndex' : '确认Block',
       'wallet_trade_info_detail_item_confirmCount' : '确认数',
 
-
-
       'languagePageAppBarTitle' : '多语言',
       'languagePageSaveButton' : '保存',
       
       'createAccountPageAppBarTitle' : '创建新账号',
       'createAccountPageTooltip_1' : '昵称',
       'createAccountPageTooltip_2' : 'PIN码',
-      'createAccountPageTooltip_3' : '重复PIN码',
-      'createAccountPageTooltip_4' : '最少8个字符',
+      'createAccountPageTooltip_3' : '确认PIN码',
+      'createAccountPageTooltip_4' : '输入6位数字保护资产',
       'createAccountPageButton' : '创建',
       'createAccountPageErrMsgEmpty' : '不能为空',
       'createAccountPageErrMsgLength' : '长度不够',
+      'createAccountPageErrMsgInconsistent' : '两个PIN码不一致',
 
       'imagePickerBottomSheet_1' : '从手机相册选择',
       'imagePickerBottomSheet_2' : '拍照',
@@ -370,9 +369,10 @@ class WalletLocalizations{
         "make sure all data have been backed up already!",
 
       'appVersionTitle' : 'New version',
-      'appVersionContent1' : 'Has new Version,please update the app',
+      'appVersionContent1' : 'Has a newer version, you should update.',
       'appVersionBtn1' : 'Later',
       'appVersionBtn2' : 'OK',
+      'appVersionNoNewerVersion' : 'The version already is latest.',
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
@@ -419,10 +419,11 @@ class WalletLocalizations{
       'createAccountPageTooltip_1' : 'Nick Name',
       'createAccountPageTooltip_2' : 'PIN Code',
       'createAccountPageTooltip_3' : 'Confirm PIN Code',
-      'createAccountPageTooltip_4' : 'Should be at least 8 characters',
+      'createAccountPageTooltip_4' : '6 numbers to protect your assets.',
       'createAccountPageButton' : 'Create',
       'createAccountPageErrMsgEmpty' : 'Should not be empty',
       'createAccountPageErrMsgLength' : 'Length is not enough',
+      'createAccountPageErrMsgInconsistent' : '2 pin codes are inconsistent',
 
       'imagePickerBottomSheet_1' : 'Choose from Album',
       'imagePickerBottomSheet_2' : 'Take Photo',
@@ -496,6 +497,7 @@ class WalletLocalizations{
   get createAccountPageButton => _localizedValues[locale.languageCode]['createAccountPageButton'];
   get createAccountPageErrMsgEmpty => _localizedValues[locale.languageCode]['createAccountPageErrMsgEmpty'];
   get createAccountPageErrMsgLength => _localizedValues[locale.languageCode]['createAccountPageErrMsgLength'];
+  get createAccountPageErrMsgInconsistent => _localizedValues[locale.languageCode]['createAccountPageErrMsgInconsistent'];
 
   // Select Language Page
   get languagePageAppBarTitle => _localizedValues[locale.languageCode]['languagePageAppBarTitle'];
@@ -532,6 +534,7 @@ class WalletLocalizations{
   get appVersionContent1 => _localizedValues[locale.languageCode]['appVersionContent1'];
   get appVersionBtn1 => _localizedValues[locale.languageCode]['appVersionBtn1'];
   get appVersionBtn2 => _localizedValues[locale.languageCode]['appVersionBtn2'];
+  get appVersionNoNewerVersion => _localizedValues[locale.languageCode]['appVersionNoNewerVersion'];
 
   // Service Terms page
   get serviceTermsPageAppBarTitle => _localizedValues[locale.languageCode]['serviceTermsPageAppBarTitle'];
