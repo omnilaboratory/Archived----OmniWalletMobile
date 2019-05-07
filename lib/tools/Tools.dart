@@ -86,7 +86,7 @@ class Tools{
   }
 
   /// Get image from network.
-  static Widget networkImage(BuildContext context, String url,
+  static Widget networkImage(String url,
     {String defaultImage = 'assets/omni-logo.png', double width = 90, double height = 90} ) {
 
     if (url == null) {

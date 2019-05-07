@@ -78,7 +78,7 @@ class _UserCenterState extends State<UserCenter> {
           children: <Widget>[
             ClipRRect( // user avatar.
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              child: Tools.networkImage(context, GlobalInfo.userInfo.faceUrl),
+              child: Tools.networkImage(GlobalInfo.userInfo.faceUrl),
             ),
             
             Container( // user nick name

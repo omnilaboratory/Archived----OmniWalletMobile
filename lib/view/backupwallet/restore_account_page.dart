@@ -201,6 +201,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
         result.then((data){
           if(data!=null){
 
+
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
 
