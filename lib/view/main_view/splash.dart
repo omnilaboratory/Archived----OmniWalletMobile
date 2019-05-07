@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
@@ -66,27 +67,25 @@ class _SplashState extends State<Splash> {
     var data = await NetConfig.get(NetConfig.getNewestVersion);
     if(data!=null){
       int code = data['code'];
-      bool isForce = data['isForce'];
-      if(data['code']>GlobalInfo.currVersionCode){
-        Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-        prefs.then((share){
-          int codeOld = share.getInt('version_later_state');
-          if(codeOld==null||(codeOld!=null&&codeOld!=code)){
-            showDialog(
-                context: context,
-                barrierDismissible: false,  // user must tap button!
-                builder:  (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(WalletLocalizations.of(context).appVersionTitle),
-                    content: Text(WalletLocalizations.of(context).appVersionContent1),
-                    actions: this.buildActionBtns(data),
-                  );
-                }
-            );
-          }else{
-            _processData();
-          }
-        });
+      if(data['code'] > GlobalInfo.currVersionCode){
+        // check  whether click  later btn
+        var share = await SharedPreferences.getInstance();
+        int codeOld = share.getInt('version_later_state');// curr version code whether show first times
+        if(codeOld==null||(codeOld!=null&&codeOld!=code)){// curr version do not click
+          showDialog(
+              context: context,
+              barrierDismissible: false,  // user must tap button!
+              builder:  (BuildContext context) {
+                return AlertDialog(
+                  title: Text(WalletLocalizations.of(context).appVersionTitle),
+                  content: Text(WalletLocalizations.of(context).appVersionContent1),
+                  actions: this.buildActionBtns(data),
+                );
+              }
+          );
+        }else{
+          _processData();
+        }
       }
     }else {
       _processData();
@@ -95,9 +94,10 @@ class _SplashState extends State<Splash> {
 
   buildActionBtns(data) {
     bool isForce = data['isForce'];
-    final int code = data['code'];
+    int code = data['code'];
     List<Widget> btns = [];
-    if(isForce==false){
+    if(isForce == false){
+      // later btn
       btns.add(FlatButton(
         child: Text(WalletLocalizations.of(context).appVersionBtn1),
         onPressed: () {
@@ -106,29 +106,31 @@ class _SplashState extends State<Splash> {
             share.setInt('version_later_state', code);
           });
           Navigator.of(context).pop();
-          _processData();
+          _processData();// go to next logic
         },
       ));
     }
+    // ok btn
     btns.add(FlatButton(
       child: Text(WalletLocalizations.of(context).appVersionBtn2),
       onPressed: () {
-        this.onTouchBtn(data);
+        this.onTouchBtnOK(data);
       },
     ));
     return btns;
   }
 
-  onTouchBtn(data) async{
+  onTouchBtnOK(data) async{
+    // apk download url
     var url = NetConfig.imageHost + data['path'];
-    if(Platform.isIOS){
+    if(Platform.isIOS){ // if ios, go to appStore
       url = 'https://www.baidu.com/';
     }
 
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      throw 'Could not launch $url';
+       Tools.showToast('Could not launch $url');
     }
   }
 
