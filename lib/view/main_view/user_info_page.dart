@@ -78,6 +78,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
               ),
             ),
             
+            Divider(height: 0, indent: 15),
+            
             Ink( // Update PIN Code
               color: AppCustomColor.themeBackgroudColor,
               child: ListTile(
@@ -129,10 +131,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 Future<SharedPreferences> prefs = SharedPreferences.getInstance();
                 prefs.then((share) {
                   share.clear();
-
-                  // TODO: Set userInfo = null or only faceUrl ?
-                  GlobalInfo.userInfo.faceUrl = null;
-                  
+                  GlobalInfo.clear();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => WelcomePageOne()), 
                     (route) => route == null,

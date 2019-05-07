@@ -138,29 +138,12 @@ class _AddressManageState extends State<AddressManage> {
     _list.add(_changeAddressName());
     _list.add(_addressDisplayTitle());
     _list.add(_switchAddressDisplay());
-
-    // if (_isAddressDisplay) {
-      _list.add(_assetListTitle());
-      _list.add(
-        Column(
-          children: _assetList(),
-        )
-      );
-    // }
-
-    // test loading
-    // var modal = new Stack(
-    //   children: [
-    //     new Opacity(
-    //       opacity: 0.3,
-    //       child: const ModalBarrier(dismissible: false, color: Colors.grey),
-    //     ),
-    //     new Center(
-    //       child: new CircularProgressIndicator(),
-    //     ),
-    //   ],
-    // );
-    // _list.add(modal);
+    _list.add(_assetListTitle());
+    _list.add(
+      Column(
+        children: _assetList(),
+      )
+    );
 
     return _list;
   }
@@ -404,7 +387,7 @@ class _AddressManageState extends State<AddressManage> {
     );
   }
 
-  // test loading
+  // TODO: test loading
   Widget _testLoading() {
     return Stack(
       children: <Widget>[

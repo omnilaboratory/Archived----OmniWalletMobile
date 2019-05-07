@@ -91,12 +91,12 @@ class WalletLocalizations{
       'myProfilePageMenu3' : '帮助和反馈',
       'myProfilePageMenu4' : '服务条款',
       'myProfilePageMenu5' : '备份钱包',
-      'myProfilePageMenu6' : '关于',
+      'myProfilePageMenu6' : '关于我们',
       'myProfilePageMenu7' : '钱包地址管理',
 
       'settingsPageTitle' : '设置',
       'settingsPageItem_1_Title' : '多语言',
-      'settingsPageItem_2_Title' : '货币',
+      'settingsPageItem_2_Title' : '货币单位',
       'settingsPageItem_3_Title' : '主题颜色',
 
       'helpPageTitle' : '帮助',
@@ -119,7 +119,7 @@ class WalletLocalizations{
 
       'serviceTermsPageAppBarTitle' : '服务条款',
 
-      'aboutPageAppBarTitle' : '关于',
+      'aboutPageAppBarTitle' : '关于我们',
       'aboutPageAppName' : 'Omni 钱包',
       'aboutPageItem_1' : '版本日志',
       'aboutPageItem_2' : '官方网站',
@@ -128,12 +128,12 @@ class WalletLocalizations{
       'aboutPageItem_5' : '电报群',
       'aboutPageButton' : '版本更新',
 
-      'userInfoPageAppBarTitle' : '用户信息',
+      'userInfoPageAppBarTitle' : '我的身份',
       'userInfoPageItem_1_Title' : '头像',
-      'userInfoPageItem_2_Title' : '用户名',
-      'userInfoPageItem_3_Title' : '更新 PIN',
-      'userInfoPageButton' : '删除当前钱包',
-      'userInfoPageDeleteMsg' : '即将移除所有信息，请确保所有数据已经备份！',
+      'userInfoPageItem_2_Title' : '昵称',
+      'userInfoPageItem_3_Title' : '更新PIN码',
+      'userInfoPageButton' : '退出当前身份',
+      'userInfoPageDeleteMsg' : '即将移除所有钱包数据，请确保所有数据已经备份！',
 
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
@@ -207,6 +207,8 @@ class WalletLocalizations{
 
       'updateNickNamePageAppBarTitle' : '更新昵称',
       'updateNickNamePageEditTips' : '请输入新昵称',
+
+      'currencyPageAppBarTitle' : '货币单位',
     },
 
     'en': {
@@ -310,12 +312,12 @@ class WalletLocalizations{
       'myProfilePageMenu3' : 'Help and Feedback',
       'myProfilePageMenu4' : 'Service Terms',
       'myProfilePageMenu5' : 'Back Up Wallet',
-      'myProfilePageMenu6' : 'About',
+      'myProfilePageMenu6' : 'About US',
       'myProfilePageMenu7' : 'Wallet Address',
 
       'settingsPageTitle' : 'Settings',
       'settingsPageItem_1_Title' : 'Languages',
-      'settingsPageItem_2_Title' : 'Currency',
+      'settingsPageItem_2_Title' : 'Currency Unit',
       'settingsPageItem_3_Title' : 'Theme',
 
       'helpPageTitle' : 'Help',
@@ -338,7 +340,7 @@ class WalletLocalizations{
 
       'serviceTermsPageAppBarTitle' : 'Service Terms',
 
-      'aboutPageAppBarTitle' : 'About',
+      'aboutPageAppBarTitle' : 'About US',
       'aboutPageAppName' : 'Omni Wallet',
       'aboutPageItem_1' : 'Version History',
       'aboutPageItem_2' : 'Website',
@@ -347,13 +349,13 @@ class WalletLocalizations{
       'aboutPageItem_5' : 'Telegram',
       'aboutPageButton' : 'Version Update',
 
-      'userInfoPageAppBarTitle' : 'User Information',
+      'userInfoPageAppBarTitle' : 'My Identity',
       'userInfoPageItem_1_Title' : 'Avatar',
       'userInfoPageItem_2_Title' : 'Nick Name',
-      'userInfoPageItem_3_Title' : 'Update PIN',
-      'userInfoPageButton' : 'Delete Current Wallet',
-      'userInfoPageDeleteMsg' : "All data will be removed, "
-        "please make sure all data has been backed up!",
+      'userInfoPageItem_3_Title' : 'Update PIN Code',
+      'userInfoPageButton' : 'Logout Current Identity',
+      'userInfoPageDeleteMsg' : "All wallet data will be removed, "
+        "make sure all data have been backed up already!",
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
@@ -428,8 +430,13 @@ class WalletLocalizations{
       'updateNickNamePageAppBarTitle' : 'Update Nick Name',
       'updateNickNamePageEditTips' : 'input new nick name',
 
+      'currencyPageAppBarTitle' : 'Currency Unit',
+
     }
   };
+
+  // currency unit
+  get currencyPageAppBarTitle => _localizedValues[locale.languageCode]['currencyPageAppBarTitle'];
 
   // Update Nick Name
   get updateNickNamePageAppBarTitle => _localizedValues[locale.languageCode]['updateNickNamePageAppBarTitle'];
