@@ -90,7 +90,7 @@ class Tools{
     {String defaultImage = 'assets/omni-logo.png', double width = 90, double height = 90} ) {
 
     if (url == null) {
-      return Image.asset(defaultImage, width: width, height: height);
+      return Image.asset(defaultImage, width: width, height: height,);
     } else {
       return CachedNetworkImage(
         placeholder: (BuildContext context, String url) {

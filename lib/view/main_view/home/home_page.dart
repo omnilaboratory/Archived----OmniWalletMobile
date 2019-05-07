@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 //                    });
               },
               icon: Icon(
-                Icons.add_circle_outline,
+                Icons.add,
                 size: 30,
                 color: AppCustomColor.themeFrontColor,
               ))
