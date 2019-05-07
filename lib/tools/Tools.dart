@@ -18,6 +18,10 @@ class Tools{
   static bool getCurrRunningMode() {
     return bool.fromEnvironment("dart.vm.product");
   }
+  /** 返回当前时间戳 */
+  static bool getCurrPlafrom() {
+    return bool.fromEnvironment("dart.vm.product");
+  }
 
   ///生成md5
   static String convertMD5Str(String data){

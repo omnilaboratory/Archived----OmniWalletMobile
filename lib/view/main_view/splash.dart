@@ -3,6 +3,7 @@
 /// [time] 2019-4-4
 
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -104,24 +105,11 @@ class _SplashState extends State<Splash> {
   }
 
   onTouchBtn(data) async{
-//    var url = NetConfig.imageHost + data['path'];
-//    final taskId = await FlutterDownloader.enqueue(
-//      url: url,
-//      savedDir:'',
-//      showNotification:true, // show download progress in status bar (for Android)
-//      openFileFromNotification: true, // click on notification to open downloaded file (for Android)
-//    );
-//    final tasks = await FlutterDownloader.loadTasks();
-//
-//    FlutterDownloader.registerCallback((id, status, progress) {
-//      print(
-//          'Download task ($id) is in status ($status) and process ($progress)');
-//      if (status == DownloadTaskStatus.complete) {
-////        OpenFile.open('');
-//        FlutterDownloader.open(taskId: id);
-//      }
-//    });
     var url = NetConfig.imageHost + data['path'];
+    if(Platform.isIOS){
+      url = 'https://www.baidu.com/';
+    }
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {
