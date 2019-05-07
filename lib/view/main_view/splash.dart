@@ -16,7 +16,6 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -122,12 +121,12 @@ class _SplashState extends State<Splash> {
 //        FlutterDownloader.open(taskId: id);
 //      }
 //    });
-//    var url = NetConfig.imageHost + data['path'];
-//    if (await canLaunch(url)) {
-//    await launch(url);
-//    } else {
-//    throw 'Could not launch $url';
-//    }
+    var url = NetConfig.imageHost + data['path'];
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   //
