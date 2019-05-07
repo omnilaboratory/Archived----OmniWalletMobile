@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/main_view/home/main_page_content.dart';
-import 'package:wallet_app/view/widgets/dialog_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,12 +31,6 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               onPressed: (){
                 buildShowDialog(context);
-//                showDialog(
-//                    context: context,
-//                    barrierDismissible: true,
-//                    builder: (BuildContext context){
-//                      return CreateNewAddressDialog(callback: onClickAddButton,showSnackBar: showSnackBar,);
-//                    });
               },
               icon: Icon(
                 Icons.add,
@@ -54,10 +47,90 @@ class _HomePageState extends State<HomePage> {
 
   buildShowDialog(BuildContext context) {
     canTouchAdd =true;
+    /// 地址名称 用于接收用户输入
     String _addressName;
+
+    /// 地址名称输入框
+    var inputAddressNameField = Padding(
+      padding: const EdgeInsets.symmetric (vertical: 8),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: TextFormField(
+          validator: (val){
+            if(val==null||val.length==0){
+              return WalletLocalizations.of(context).createNewAddress_WrongAddress;
+            }
+          },
+          onSaved: (val){
+            _addressName = val;
+          },
+          style: TextStyle(fontSize: 12),
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: WalletLocalizations.of(context).createNewAddress_hint1
+          ),
+        ),
+      ),
+    );
+
+    /**
+     * 按钮组
+      */
+    var btnGroup = Padding(
+      padding: const EdgeInsets.only(top: 6,bottom: 6),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: RaisedButton(
+              elevation: 0,
+              highlightElevation: 0,
+              onPressed:  () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                  WalletLocalizations.of(context).createNewAddress_Cancel,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color:Colors.blue,
+                  )
+              ),
+              color: AppCustomColor.btnCancel,
+            ),
+          ),
+          SizedBox(width: 20,),
+          Expanded(
+            child: RaisedButton(
+              elevation: 0,
+              highlightElevation: 0,
+              onPressed:  () {
+                var _form = _formKey.currentState;
+                if (_form.validate()) {
+                  _form.save();
+                  this.onClickAddButton(_addressName);
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(
+                  WalletLocalizations.of(context).createNewAddress_Add,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color:Colors.white,
+                  )
+              ),
+              color: AppCustomColor.btnConfirm,
+            ),
+          ),
+        ],
+      ),
+    );
+
+
     return showDialog(
       context: context,
       builder:(BuildContext context){
+
         return Form(
           key: _formKey,
           child: SimpleDialog(
@@ -65,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             titlePadding: EdgeInsets.only(top: 12,bottom: 12),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
+            contentPadding: EdgeInsets.symmetric(horizontal: 1),
             title: Container(
               child: Column(
                   children: <Widget>[
@@ -75,73 +148,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric (vertical: 8),
-                child: TextFormField(
-                  validator: (val){
-                    if(val==null||val.length==0){
-                      return WalletLocalizations.of(context).createNewAddress_WrongAddress;
-                    }
-                  },
-                  onSaved: (val){
-                    _addressName = val;
-                  },
-                  style: TextStyle(fontSize: 12),
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: WalletLocalizations.of(context).createNewAddress_hint1
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6,bottom: 6),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: RaisedButton(
-                        elevation: 0,
-                        highlightElevation: 0,
-                        onPressed:  () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                            WalletLocalizations.of(context).createNewAddress_Cancel,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color:Colors.blue,
-                            )
-                        ),
-                        color: AppCustomColor.btnCancel,
-                      ),
-                    ),
-                    SizedBox(width: 20,),
-                    Expanded(
-                      child: RaisedButton(
-                        elevation: 0,
-                        highlightElevation: 0,
-                        onPressed:  () {
-                          var _form = _formKey.currentState;
-                          if (_form.validate()) {
-                            _form.save();
-                            this.onClickAddButton(_addressName);
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        child: Text(
-                            WalletLocalizations.of(context).createNewAddress_Add,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color:Colors.white,
-                            )
-                        ),
-                        color: AppCustomColor.btnConfirm,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              inputAddressNameField,
+              btnGroup,
             ],
           ),
         );
@@ -150,7 +158,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool canTouchAdd =true;
-  Function onClickAddButton(String addressName){
+  onClickAddButton(String addressName){
     if(canTouchAdd==false) return null;
 
     canTouchAdd =false;
@@ -183,7 +191,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Function showSnackBar(String content){
+  showSnackBar(String content){
     Scaffold.of(context).showSnackBar(SnackBar(content: Text(content)));
   }
 }
