@@ -208,7 +208,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(5.0)),
       child: Tools.networkImage(
-        context, GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
+        GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
     );
   }
 

@@ -16,85 +16,23 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin {
 
-  TabController controller;
   Brightness brightness ;
-  final _bottomNavigationColor = Colors.grey;
-  final _bottomNavigationActiveColor = Colors.blue;
+  final _bottomNavigationActiveColor = Colors.black;
   List<Widget> pages = List();
+
+  int _currentIndex = 0;
 
   @override void initState() {
     super.initState();
 
-    pages..add(HomePage())
+    pages
+      ..add(HomePage())
       ..add(MarketPage())
       ..add(OmniPage())
       ..add(UserCenter());
-    controller = TabController(length: 4, vsync: this);
-  }
-
-  List<BottomNavigationBarItem>  bulidTabBars(){
-    List<BottomNavigationBarItem> list = [];
-    list.add(BottomNavigationBarItem(
-        backgroundColor: Color(0xffEAEAEA),
-        icon: Icon(
-          Icons.home,
-          color: _bottomNavigationColor,
-        ),
-        activeIcon: Icon(
-          Icons.home,
-          color: _bottomNavigationActiveColor,
-        ),
-        title: Text(
-          '钱包',
-          style: TextStyle(color: _bottomNavigationColor),
-        )));
-    list.add(BottomNavigationBarItem(
-        backgroundColor: Color(0xffEAEAEA),
-        icon: Icon(
-          Icons.filter_drama,
-          color: _bottomNavigationColor,
-        ),
-        activeIcon: Icon(
-          Icons.filter_drama,
-          color: _bottomNavigationActiveColor,
-        ),
-        title: Text(
-          '市场',
-          style: TextStyle(color: _bottomNavigationColor),
-        )));
-    list.add(BottomNavigationBarItem(
-        backgroundColor: Color(0xffEAEAEA),
-        icon: Icon(
-          Icons.pages,
-          color: _bottomNavigationColor,
-        ),
-        activeIcon: Icon(
-          Icons.pages,
-          color: _bottomNavigationActiveColor,
-        ),
-        title: Text(
-          'OmniDe',
-          style: TextStyle(color: _bottomNavigationColor),
-        )));
-    list.add(BottomNavigationBarItem(
-        backgroundColor: Color(0xffEAEAEA),
-        icon: Icon(
-          Icons.my_location,
-          color: _bottomNavigationColor,
-        ),
-        activeIcon: Icon(
-          Icons.my_location,
-          color: _bottomNavigationActiveColor,
-        ),
-        title: Text(
-          '我的',
-          style: TextStyle(color: _bottomNavigationColor),
-        )));
-    return list;
   }
 
   @override void dispose() {
-    controller.dispose();
     super.dispose();
   }
   @override
@@ -102,85 +40,46 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     this.brightness = Theme.of(context).brightness;
     AppCustomColor.themeFrontColor =this.brightness==Brightness.dark?Colors.white:Colors.black;
     AppCustomColor.themeBackgroudColor =this.brightness==Brightness.dark?Colors.black:Colors.white;
-    return Scaffold(
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          height: 60,
-          decoration: BoxDecoration(
-            color: this.brightness==Brightness.dark?Colors.black:Colors.white,
-            border: Border(top: BorderSide(
-                color: Theme.of(context).dividerColor,
-              width: 1
-            ),
-            )
-          ),
-          child: TabBar(
-            indicatorWeight: 0.1,
-            controller: controller,
-            labelColor: Colors.blue,
-            unselectedLabelColor: Colors.grey,
-            tabs:createTabs(),
-          ),
-        ),
-      ),
 
-      body: TabBarView(
-        controller: controller,
-        children: this.pages,
+    var navList = [
+          BottomNavigationBarItem(
+              icon: Image.asset(Tools.imagePath('nav_wallet_off'),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_wallet_on'),width: 24,height: 24,),
+              title: Text(
+                WalletLocalizations.of(context).buttom_tab1_name,
+              )),
+          BottomNavigationBarItem(
+              icon: Image.asset(Tools.imagePath('nav_market_off'),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_market_on'),width: 24,height: 24,),
+              title: Text(
+                WalletLocalizations.of(context).buttom_tab2_name,
+              )),
+          BottomNavigationBarItem(
+              icon: Image.asset(Tools.imagePath('nav_dex_off'),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_dex_on'),width: 24,height: 24,),
+              title: Text(
+                WalletLocalizations.of(context).buttom_tab3_name,
+              )),
+          BottomNavigationBarItem(
+              icon: Image.asset(Tools.imagePath('nav_my_off'),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_my_on'),width: 24,height: 24,),
+              title: Text(
+                WalletLocalizations.of(context).buttom_tab4_name,
+              )),
+        ];
+    return Scaffold(
+      body: pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: navList,
+        currentIndex: _currentIndex,
+        fixedColor: this._bottomNavigationActiveColor,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
-
-  createTabs(){
-    var iconWidth = 22.0;
-    var fontSize = 14.0;
-     List<Tab> tabs=[
-      Tab(
-        child: Column(
-          children: <Widget>[
-            Image.asset(Tools.imagePath('nav_wallet_on'),width: iconWidth,height: iconWidth,),
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Text(WalletLocalizations.of(context).buttom_tab1_name,style: TextStyle(fontSize: fontSize) ),
-            ),
-          ],
-        ),
-      ),
-      Tab(
-        child: Column(
-          children: <Widget>[
-            Image.asset(Tools.imagePath('nav_market_on'),width: iconWidth,height: iconWidth,),
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Text(WalletLocalizations.of(context).buttom_tab2_name,style: TextStyle(fontSize: fontSize),),
-            ),
-          ],
-        ),
-      ),
-      Tab(
-        child: Column(
-          children: <Widget>[
-            Image.asset(Tools.imagePath('nav_dex_on'),width: iconWidth,height: iconWidth,),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(WalletLocalizations.of(context).buttom_tab3_name,style: TextStyle(fontSize: fontSize)),
-            ),
-          ],
-        ),
-      ),
-      Tab(
-        child: Column(
-          children: <Widget>[
-            Image.asset(Tools.imagePath('nav_my_on'),width: iconWidth,height: iconWidth,),
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Text(WalletLocalizations.of(context).buttom_tab4_name,style: TextStyle(fontSize: fontSize)),
-            ),
-          ],
-        ),
-      ),
-    ];
-    return tabs;
-  }
-
 }
