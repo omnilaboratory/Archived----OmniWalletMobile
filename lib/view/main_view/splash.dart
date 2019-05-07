@@ -8,14 +8,15 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
-import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -34,7 +35,7 @@ class _SplashState extends State<Splash> {
     _timer = Timer(
       Duration(seconds: 0), 
       () {
-        _processData();
+        checkVersion();
       }
     );
   }
@@ -61,8 +62,76 @@ class _SplashState extends State<Splash> {
     );
   }
 
+  checkVersion() async{
+    var data = await NetConfig.get(NetConfig.getNewestVersion);
+    if(data!=null){
+      if(data['code']>GlobalInfo.currVersionCode){
+        showDialog(
+            context: context,
+            barrierDismissible: false,  // user must tap button!
+            builder:  (BuildContext context) {
+              return AlertDialog(
+                title: Text(WalletLocalizations.of(context).appVersionTitle),
+                content: Text(WalletLocalizations.of(context).appVersionContent1),
+                actions: this.buildActionBtns(data),
+              );
+            }
+        );
+      }
+    }else {
+      _processData();
+     }
+  }
+
+  buildActionBtns(data){
+    bool isForce = data['isForce'];
+    List<Widget> btns = [];
+    if(isForce==false){
+      btns.add(FlatButton(
+        child: Text(WalletLocalizations.of(context).appVersionBtn1),
+        onPressed: () {
+          Navigator.of(context).pop();
+          _processData();
+        },
+      ));
+    }
+    btns.add(FlatButton(
+      child: Text(WalletLocalizations.of(context).appVersionBtn2),
+      onPressed: () {
+        this.onTouchBtn(data);
+      },
+    ));
+    return btns;
+  }
+
+  onTouchBtn(data) async{
+//    var url = NetConfig.imageHost + data['path'];
+//    final taskId = await FlutterDownloader.enqueue(
+//      url: url,
+//      savedDir:'',
+//      showNotification:true, // show download progress in status bar (for Android)
+//      openFileFromNotification: true, // click on notification to open downloaded file (for Android)
+//    );
+//    final tasks = await FlutterDownloader.loadTasks();
+//
+//    FlutterDownloader.registerCallback((id, status, progress) {
+//      print(
+//          'Download task ($id) is in status ($status) and process ($progress)');
+//      if (status == DownloadTaskStatus.complete) {
+////        OpenFile.open('');
+//        FlutterDownloader.open(taskId: id);
+//      }
+//    });
+//    var url = NetConfig.imageHost + data['path'];
+//    if (await canLaunch(url)) {
+//    await launch(url);
+//    } else {
+//    throw 'Could not launch $url';
+//    }
+  }
+
   //
-  void _processData() {
+  void _processData() async{
 
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {

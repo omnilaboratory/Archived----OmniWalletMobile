@@ -30,6 +30,9 @@ class NetConfig{
   static String restoreUser= 'common/restoreUser';
   /// 图片上传
   static String uploadImage='common/uploadImage';
+  /// 获取最新的版本信息
+  static String getNewestVersion='common/getNewestVersion';
+
   /// user/updateUserFace   更新用户头像
   static String updateUserFace='user/updateUserFace';
   /// 比特币、Usdt和欧元的对美元的实时汇率
@@ -38,6 +41,8 @@ class NetConfig{
 
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
+
+
 
   /// wallet/address/getNewestAddressIndex  获取最新的地址索引
   static String getNewestAddressIndex='wallet/address/getNewestAddressIndex';

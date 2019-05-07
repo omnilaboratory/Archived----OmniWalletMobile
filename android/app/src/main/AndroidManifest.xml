@@ -7,6 +7,16 @@
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <provider
+        android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
+        android:authorities="${applicationId}.flutter_downloader.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths"/>
+    </provider>
+
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide

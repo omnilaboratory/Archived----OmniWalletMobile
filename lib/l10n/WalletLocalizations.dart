@@ -135,6 +135,13 @@ class WalletLocalizations{
       'userInfoPageButton' : '退出当前身份',
       'userInfoPageDeleteMsg' : '即将移除所有钱包数据，请确保所有数据已经备份！',
 
+
+      'appVersionTitle' : '新版本',
+      'appVersionContent1' : '有新的版本了，更新吧',
+      'appVersionBtn1' : '以后再说',
+      'appVersionBtn2' : '好的',
+
+
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
       'buttom_tab3_name' : 'DEX',
@@ -358,8 +365,14 @@ class WalletLocalizations{
       'userInfoPageItem_2_Title' : 'Nick Name',
       'userInfoPageItem_3_Title' : 'Update PIN Code',
       'userInfoPageButton' : 'Logout Current Identity',
+
       'userInfoPageDeleteMsg' : "All wallet data will be removed, "
         "make sure all data have been backed up already!",
+
+      'appVersionTitle' : 'New version',
+      'appVersionContent1' : 'Has new Version,please update the app',
+      'appVersionBtn1' : 'Later',
+      'appVersionBtn2' : 'OK',
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
@@ -513,6 +526,12 @@ class WalletLocalizations{
   get userInfoPageItem_3_Title => _localizedValues[locale.languageCode]['userInfoPageItem_3_Title'];
   get userInfoPageButton => _localizedValues[locale.languageCode]['userInfoPageButton'];
   get userInfoPageDeleteMsg => _localizedValues[locale.languageCode]['userInfoPageDeleteMsg'];
+
+
+  get appVersionTitle => _localizedValues[locale.languageCode]['appVersionTitle'];
+  get appVersionContent1 => _localizedValues[locale.languageCode]['appVersionContent1'];
+  get appVersionBtn1 => _localizedValues[locale.languageCode]['appVersionBtn1'];
+  get appVersionBtn2 => _localizedValues[locale.languageCode]['appVersionBtn2'];
 
   // Service Terms page
   get serviceTermsPageAppBarTitle => _localizedValues[locale.languageCode]['serviceTermsPageAppBarTitle'];
