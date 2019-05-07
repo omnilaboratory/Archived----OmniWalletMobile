@@ -70,7 +70,7 @@ class _SplashState extends State<Splash> {
       if(data['code']>GlobalInfo.currVersionCode){
         Future<SharedPreferences> prefs = SharedPreferences.getInstance();
         prefs.then((share){
-          int codeOld = share.getInt('version');
+          int codeOld = share.getInt('version_later_state');
           if(codeOld==null||(codeOld!=null&&codeOld!=code)){
             showDialog(
                 context: context,
@@ -103,7 +103,7 @@ class _SplashState extends State<Splash> {
         onPressed: () {
           Future<SharedPreferences> prefs = SharedPreferences.getInstance();
           prefs.then((share){
-            share.setInt('version', code);
+            share.setInt('version_later_state', code);
           });
           Navigator.of(context).pop();
           _processData();
