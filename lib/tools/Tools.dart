@@ -9,6 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -21,6 +22,14 @@ class Tools{
   /** 返回当前时间戳 */
   static bool getCurrPlafrom() {
     return bool.fromEnvironment("dart.vm.product");
+  }
+
+  static String getCurrMoneyFlag(){
+    if(GlobalInfo.currLanguage==KeyConfig.languageEn){
+      return '\$ ';
+    }else{
+      return '\￥ ';
+    }
   }
 
   ///生成md5

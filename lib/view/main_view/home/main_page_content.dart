@@ -14,11 +14,39 @@ class BodyContentWidget extends StatefulWidget {
   _BodyContentWidgetState createState() => _BodyContentWidgetState();
 }
 
-class _BodyContentWidgetState extends State<BodyContentWidget> {
+class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTickerProviderStateMixin {
 
   List<WalletInfo> walletInfoes;
   List<WalletInfo> _walletInfoes;
   MainStateModel stateModel = null;
+
+  Animation animation;
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = new AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    animation = new Tween(begin: 0.0, end: 0.5).animate(animationController);
+  }
+
+
+  /// trailing anim
+  _changeOpacity(bool expand) {
+    setState(() {
+      if (expand) {
+        animationController.forward();
+      } else {
+        animationController.reverse();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +73,34 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   ),
                   child: CustemExpansionTile(
                     title: buildFirstLevelHeader(index),
+                    trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
                     children: buildItemes(context,index),
                   ),
                 );
               });
           }
         );
+  }
+
+  Widget buildExpandTrailing(int index){
+    WalletInfo dataInfo = _walletInfoes[index];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        AutoSizeText(
+          Tools.getCurrMoneyFlag()+dataInfo.totalLegalTender.toStringAsFixed(2),
+          textAlign: TextAlign.right,
+          style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
+          minFontSize: 10,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        RotationTransition(
+          turns: animation,
+          child: const Icon(Icons.expand_more),
+        ),
+      ],
+    );
   }
 
   Widget buildFirstLevelHeader(int index) {
@@ -60,7 +110,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(right: 10,bottom: 20,top: 20),
+          padding: const EdgeInsets.only(right: 10,bottom: 10,top: 10),
           child: CircleAvatar(
             radius: 24,
             backgroundColor: Colors.lightBlue[50],
@@ -76,27 +126,17 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   Expanded(
                     child: AutoSizeText(
                       dataInfo.name,
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 14,color: AppCustomColor.themeFrontColor),
                       minFontSize: 10,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Expanded(
-                    child: AutoSizeText(
-                      '\$'+dataInfo.totalLegalTender.toStringAsFixed(2),
-                      textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 18),
-                      minFontSize: 11,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  )
                 ],
               ),
               SizedBox(height: 10,),
               AutoSizeText(
-                dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
+                dataInfo.address.replaceRange(9, dataInfo.address.length-9, '...'),
                 minFontSize: 9,
                 style: TextStyle(
                   color: Colors.grey,
@@ -120,7 +160,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
       if(accountInfo.visible==false) continue;
       list.add(
         Container(
-          margin: EdgeInsets.only(left: 50,bottom: 12,top: 6),
+          margin: EdgeInsets.only(left: 50,bottom: 6,top: 6),
           child: InkWell(
             onTap: (){ this.onClickItem(index,i);},
             child: Container(
@@ -130,7 +170,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                   Image.asset(Tools.imagePath(accountInfo.iconUrl),width: 25,height: 25,),
                   Container(
                     margin: EdgeInsets.only(left: 16),
-                      child: AutoSizeText('${accountInfo.name}',style: TextStyle(fontSize: 18),minFontSize: 16,)
+                      child: AutoSizeText('${accountInfo.name}',style: TextStyle(fontSize: 15),minFontSize: 12,)
                   ),
                   Expanded(child: Container(),),
                   Container(
@@ -139,21 +179,21 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 6),
+                          padding: const EdgeInsets.only(bottom: 4),
                           child: AutoSizeText(
                             '${accountInfo.amount.toString()}',
                             textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 15,color: AppCustomColor.themeFrontColor),
                             minFontSize: 12,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 6),
+                          padding: const EdgeInsets.only(bottom: 0),
                           child: AutoSizeText(
-                            '\$'+accountInfo.legalTender.toStringAsFixed(2),
+                            Tools.getCurrMoneyFlag() + accountInfo.legalTender.toStringAsFixed(2),
                             textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 16,color: Colors.grey),
-                            minFontSize: 12,
+                            style: TextStyle(fontSize: 12,color: Colors.grey),
+                            minFontSize: 9,
                           ),
                         ),
                       ],
@@ -165,6 +205,12 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
           ),
         )
       );
+      if(i<(dataInfo.accountInfoes.length-1)){
+        list.add(Padding(
+          padding: const EdgeInsets.only(left: 50),
+          child: Divider(height: 1,),
+        ));
+      }
     }
     return list;
   }

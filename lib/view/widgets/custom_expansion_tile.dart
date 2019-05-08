@@ -2,7 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_app/tools/app_data_setting.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
@@ -34,6 +36,7 @@ class CustemExpansionTile extends StatefulWidget {
     this.onExpansionChanged,
     this.children = const <Widget>[],
     this.trailing,
+    this.trailingContent,
     this.initiallyExpanded = false,
   }) : assert(initiallyExpanded != null),
         super(key: key);
@@ -42,6 +45,8 @@ class CustemExpansionTile extends StatefulWidget {
   ///
   /// Typically a [CircleAvatar] widget.
   final Widget leading;
+
+  final String trailingContent;
 
   /// The primary content of the list item.
   ///
@@ -159,10 +164,7 @@ class _CustemExpansionTileState extends State<CustemExpansionTile> with SingleTi
               onTap: _handleTap,
               leading: widget.leading,
               title: widget.title,
-              trailing: widget.trailing ?? RotationTransition(
-                turns: _iconTurns,
-                child: const Icon(Icons.expand_more),
-              ),
+              trailing: buildExpandTrailing(),
             ),
           ),
           ClipRect(
@@ -173,6 +175,26 @@ class _CustemExpansionTileState extends State<CustemExpansionTile> with SingleTi
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildExpandTrailing(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        AutoSizeText(
+          widget.trailingContent,
+          textAlign: TextAlign.right,
+          style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
+          minFontSize: 10,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        RotationTransition(
+          turns: _iconTurns,
+          child: const Icon(Icons.expand_more),
+        ),
+      ],
     );
   }
 
@@ -200,6 +222,5 @@ class _CustemExpansionTileState extends State<CustemExpansionTile> with SingleTi
       builder: _buildChildren,
       child: closed ? null : Column(children: widget.children),
     );
-
   }
 }
