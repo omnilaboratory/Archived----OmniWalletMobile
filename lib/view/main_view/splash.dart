@@ -32,18 +32,19 @@ class _SplashState extends State<Splash> {
 
   @override
   void initState() {
-    super.initState();
     _timer = Timer(
       Duration(seconds: 0), 
       () {
         _checkVersion();
       }
     );
+    super.initState();
   }
 
   @override
   void dispose() {
     _timer.cancel();
+    _timer = null;
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     super.dispose();
   }

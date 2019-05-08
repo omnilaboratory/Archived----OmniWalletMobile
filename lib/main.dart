@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +59,7 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   // Create the model.
   MainStateModel mainStateModel = MainStateModel();
@@ -90,6 +92,55 @@ class _MyAppState extends State<MyApp> {
   };
 
   Brightness brightness = Brightness.light;
+
+  ///----------------------
+  /// TEST FOR App Lifecycle
+  /// 
+  
+  Timer _timer;
+  bool _isInputPIN = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("==> lifeChanged = $state");
+
+    if (state == AppLifecycleState.paused) {
+      _timer = Timer(
+        Duration(seconds: 5), 
+        () {
+          _isInputPIN = true;
+          _timer.cancel();
+        }
+      );
+    }
+
+    if (state == AppLifecycleState.resumed) {
+      print("==> _isInputPIN = $_isInputPIN");
+      if (_isInputPIN) {  // Must input PIN code to use app.
+        
+      }
+    }
+
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _timer = null;
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+
+  ///----------------------
+  
 
   @override
   Widget build(BuildContext context) {
