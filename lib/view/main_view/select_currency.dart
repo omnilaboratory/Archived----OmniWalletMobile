@@ -52,6 +52,7 @@ class _SelectCurrencyState extends State<SelectCurrency> {
     print('strClickItem = $strClickItem');
     if (strClickItem != '') {
       model.setCurrencyUnit(strClickItem);
+      model.setWalletInfoes(null,rightNow: true);
     
       // change Currency Unit.
       if (strClickItem == KeyConfig.usd) {

@@ -52,7 +52,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
   Widget build(BuildContext context) {
     if(stateModel==null){
       stateModel = MainStateModel().of(context);
-      stateModel.walletInfoes = null;
+      stateModel.setWalletInfoes(null);
     }
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {

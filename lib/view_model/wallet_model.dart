@@ -54,15 +54,19 @@ class WalletModel extends Model{
     return _currTradeInfo;
   }
 
-  set walletInfoes(List<WalletInfo> info){
-    if(info==null&&_loadLastTime!=null){
-      var now = DateTime.now();
-      var duration = now.difference(_loadLastTime);
-      if(duration.inSeconds>20){
-        this._walletInfoes = null;
-      }
-    }else{
+  setWalletInfoes(List<WalletInfo> info,{bool rightNow = false}){
+    if(rightNow){
       this._walletInfoes = info;
+    }else{
+      if(info==null&&_loadLastTime!=null){
+        var now = DateTime.now();
+        var duration = now.difference(_loadLastTime);
+        if(duration.inSeconds>20){
+          this._walletInfoes = null;
+        }
+      }else{
+        this._walletInfoes = info;
+      }
     }
   }
 
