@@ -113,7 +113,7 @@ class NetConfig{
 
     url = apiHost + url;
     print(url);
-    print(data);
+    print('seed to server data: $data');
 //    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
     if(reqType=="get"){
