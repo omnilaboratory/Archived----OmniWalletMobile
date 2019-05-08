@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
     if(canTouchAdd==false) return null;
 
     canTouchAdd =false;
-    Future future = NetConfig.get(NetConfig.getNewestAddressIndex);
+    Future future = NetConfig.get(context,NetConfig.getNewestAddressIndex);
     future.then((data){
       if(data!=null){
         int addressIndex = data;
@@ -175,6 +175,7 @@ class _HomePageState extends State<HomePage> {
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
     WalletInfo info = WalletInfo(name: addressName,visible: true,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
     Future result = NetConfig.post(
+        context,
         NetConfig.createAddress,
         {'address':wallet.address,'addressName':addressName,'addressIndex':addressIndex.toString()},
         errorCallback: (msg){

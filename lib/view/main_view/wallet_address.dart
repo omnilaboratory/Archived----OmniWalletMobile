@@ -48,7 +48,7 @@ class _WalletAddressState extends State<WalletAddress> {
 
     if (stateModel == null) {
       stateModel = MainStateModel().of(context);
-      _walletInfoes = stateModel.walletInfoes;
+      _walletInfoes = stateModel.getWalletInfoes(context);
     }
     print('==> address amount = ${_walletInfoes.length}');
 

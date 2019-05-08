@@ -115,12 +115,14 @@ class SendConfirm extends StatelessWidget {
     print(accountInfo.propertyId);
     //btc send
     if(accountInfo.propertyId==0){
-      Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
+      Future futureRSA = NetConfig.get(context,NetConfig.getUserRSAEncrypt);
       futureRSA.then((publicKey){
         HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
 //        var encryptedFuture = encryptString(wallet.wif, publicKey);
 //        encryptedFuture.then((encryptedString){
-          Future future = NetConfig.post(NetConfig.btcSend, {
+          Future future = NetConfig.post(
+              context,
+              NetConfig.btcSend, {
             'fromBitCoinAddress':wallet.address,
             'privkey':wallet.wif,
             'toBitCoinAddress':_sendInfo.toAddress,
@@ -137,12 +139,14 @@ class SendConfirm extends StatelessWidget {
         });
 //      });
     }else{
-      Future futureRSA = NetConfig.get(NetConfig.getUserRSAEncrypt);
+      Future futureRSA = NetConfig.get(context,NetConfig.getUserRSAEncrypt);
       futureRSA.then((publicKey){
         HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
 //        var encryptedFuture = encryptString(wallet.wif, publicKey);
 //        encryptedFuture.then((encryptedString){
-        Future future = NetConfig.post(NetConfig.omniRawTransaction, {
+        Future future = NetConfig.post(
+            context,
+            NetConfig.omniRawTransaction, {
           'propertyId':accountInfo.propertyId.toString(),
           'fromBitCoinAddress':wallet.address,
           'privkey':wallet.wif,

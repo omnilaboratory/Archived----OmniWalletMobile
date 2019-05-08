@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
@@ -17,12 +19,6 @@ class NetConfig{
 //  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
   static String imageHost='http://62.234.169.68:8080';
-  static String userMD5Id = null;
-  static setUserID(String data) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(KeyConfig.user_mnemonic_md5,data);
-    userMD5Id = prefs.get(KeyConfig.user_mnemonic_md5);
-  }
 
   /// 创建新用户
   static String createUser='common/createUser';
@@ -96,23 +92,23 @@ class NetConfig{
 
 
 
-  static post(String url,Map<String, String> data,{Function errorCallback=null}) async{
-    return _sendData("post", url, data,errorCallback: errorCallback);
+  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null}) async{
+    return _sendData(context,"post", url, data,errorCallback: errorCallback);
   }
 
-  static get(String url,{Function errorCallback}) async{
-    return _sendData("get", url,null,errorCallback: errorCallback);
+  static get(BuildContext context,String url,{Function errorCallback}) async{
+    return _sendData(context,"get", url,null,errorCallback: errorCallback);
   }
 
-  static _sendData(String reqType, String url,Map<String, String> data,{Function errorCallback=null}) async{
+  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null}) async{
 
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
-      if(GlobalInfo.userInfo.userId==null){
+      if(GlobalInfo.userInfo.loginToken==null){
         showToast('user have not login');
         return null;
       }
-      header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
+      header['authorization']='Bearer '+GlobalInfo.userInfo.loginToken;
     }
 
     url = apiHost + url;
@@ -147,13 +143,17 @@ class NetConfig{
 
       }
     }else if(response.statusCode==403){
-      GlobalInfo.bip39Seed = null;
       GlobalInfo.clear();
       Future<SharedPreferences> prefs = SharedPreferences.getInstance();
       prefs.then((share) {
         share.clear();
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => WelcomePageOne()),
+              (route) => route == null,
+        );
       });
       showToast('user not exist');
+
     } else{
       showToast('server is sleep, please wait');
     }
@@ -195,7 +195,7 @@ class NetConfig{
     var uri = Uri.parse(url);
     var request = http.MultipartRequest("POST", uri);
     Map<String, String> header = new Map();
-    header['authorization']='Bearer '+GlobalInfo.userInfo.userId;
+    header['authorization']='Bearer '+GlobalInfo.userInfo.loginToken;
     request.headers.addAll(header);
     var multipartFile = new http.MultipartFile('faceFile', stream, length,filename: basename(imageFile.path));
     request.files.add(multipartFile);

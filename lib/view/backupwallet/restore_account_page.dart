@@ -190,7 +190,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
         Tools.loadingAnimation(context);
-        Future result = NetConfig.post(
+        Future result = NetConfig.post(context,
             NetConfig.restoreUser,
             {'userId':userId},
             errorCallback: (){
@@ -204,6 +204,8 @@ class _RestoreAccountState extends State<RestoreAccount> {
 
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
+            GlobalInfo.userInfo.loginToken = data['token'];
+            Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
 
             GlobalInfo.bip39Seed = null;
             Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
@@ -217,7 +219,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             GlobalInfo.userInfo.pinCode = _pinCode_md5;
 
 
-            GlobalInfo.userInfo.init((){
+            GlobalInfo.userInfo.init(context,(){
               Navigator.of(context).pop();
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => MainPage()), (

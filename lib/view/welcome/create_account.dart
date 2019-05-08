@@ -327,7 +327,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
       Tools.loadingAnimation(context);
       /// 4) [Nick name] (Clear text) and [Mnemonic Phrase] (MD5) save to remote.
-      Future data = NetConfig.post(
+      Future data = NetConfig.post(context,
         NetConfig.createUser,
         {'userId':_mnemonic_md5,
         'nickname':_nickNameController.text},
@@ -343,8 +343,10 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.mnemonic = _mnemonic;
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
           GlobalInfo.userInfo.nickname = _nickNameController.text;
+          GlobalInfo.userInfo.loginToken = data['token'];
+          Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
 
-          GlobalInfo.userInfo.init((){
+          GlobalInfo.userInfo.init(context,(){
             Navigator.of(context).pop();
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(

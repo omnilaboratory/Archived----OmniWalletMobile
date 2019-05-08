@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
+import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 
@@ -66,10 +67,10 @@ class WalletModel extends Model{
   }
 
   DateTime _loadLastTime  = null;
-  List<WalletInfo> get walletInfoes {
+  List<WalletInfo> getWalletInfoes(BuildContext context) {
     if(this._walletInfoes==null){
       this._walletInfoes = [];
-      Future future = NetConfig.get(NetConfig.addressList);
+      Future future = NetConfig.get(context,NetConfig.addressList);
       future.then((data){
         if(data!=null){
 
@@ -120,7 +121,7 @@ class WalletModel extends Model{
             _walletInfoes.add(info);
           }
           if(_walletInfoes.length==0){
-            int addressIndex = walletInfoes.length;
+            int addressIndex = 0;
             String defaultName = 'name0';
             HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
             WalletInfo info = WalletInfo(
@@ -132,7 +133,7 @@ class WalletModel extends Model{
                 note: '',
                 accountInfoes: []
             );
-            Future result = NetConfig.post(NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
+            Future result = NetConfig.post(context,NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
               this.addWalletInfo(info);
             });
@@ -178,14 +179,14 @@ class WalletModel extends Model{
   }
 
   List<TradeInfo> tradeInfoes = null;
-  List<TradeInfo> getTradeInfoes(String address,{int propertyId=0}){
+  List<TradeInfo> getTradeInfoes(BuildContext context, String address,{int propertyId=0}){
     print('getTradeInfoes');
     if(tradeInfoes==null){
       String url  = NetConfig.getTransactionsByAddress+'?address='+address;
       if(propertyId>0){
         url  = NetConfig.getOmniTransactionsByAddress+'?address='+address+'&assetId='+propertyId.toString();
       }
-      Future future = NetConfig.get(url);
+      Future future = NetConfig.get(context,url);
       future.then((data){
         if(data!=null){
           tradeInfoes = [];

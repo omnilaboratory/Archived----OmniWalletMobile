@@ -127,11 +127,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
             FlatButton(
               child: Text(WalletLocalizations.of(context).common_btn_confirm),
               onPressed: () {
-                GlobalInfo.bip39Seed = null;
+                GlobalInfo.clear();
                 Future<SharedPreferences> prefs = SharedPreferences.getInstance();
                 prefs.then((share) {
                   share.clear();
-                  GlobalInfo.clear();
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => WelcomePageOne()), 
                     (route) => route == null,

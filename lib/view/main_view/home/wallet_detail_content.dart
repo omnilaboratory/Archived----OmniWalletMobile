@@ -63,7 +63,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
     }
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
-          tradeInfoes = model.getTradeInfoes(walletInfo.address,propertyId: accountInfo.propertyId);
+          tradeInfoes = model.getTradeInfoes(context,walletInfo.address,propertyId: accountInfo.propertyId);
           initData();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,

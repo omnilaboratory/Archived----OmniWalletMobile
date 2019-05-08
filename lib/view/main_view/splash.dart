@@ -68,7 +68,7 @@ class _SplashState extends State<Splash> {
   _checkVersion() async {
 
     // Invoke api.
-    var data = await NetConfig.get(NetConfig.getNewestVersion);
+    var data = await NetConfig.get(context,NetConfig.getNewestVersion);
 
     if (data != null) {
       int code = data['code'];
@@ -165,7 +165,7 @@ class _SplashState extends State<Splash> {
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {
       // Check login status
-      String val = share.getString(KeyConfig.user_mnemonic_md5);
+      String val = share.getString(KeyConfig.user_login_token);
       if ( val != null && val != '') { // has login
         print('==> has login | ${DateTime.now()}');
 
@@ -194,8 +194,9 @@ class _SplashState extends State<Splash> {
 
   // 
   void _getUserInfo(SharedPreferences share) {
+    GlobalInfo.userInfo.loginToken = share.getString(KeyConfig.user_login_token);
     GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
-    Future data = NetConfig.get(NetConfig.getUserInfo);
+    Future data = NetConfig.get(context,NetConfig.getUserInfo);
     // Tools.loadingAnimation(context);
     data.then((data) {
       if (data != null) {
@@ -205,7 +206,7 @@ class _SplashState extends State<Splash> {
         GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-        GlobalInfo.userInfo.init(null);
+        GlobalInfo.userInfo.init(context,null);
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);

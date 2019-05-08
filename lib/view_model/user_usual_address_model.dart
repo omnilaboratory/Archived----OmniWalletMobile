@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 /**
@@ -30,10 +31,10 @@ class UserUsualAddressModel extends Model{
     _usualAddressList = list;
   }
 
-  get usualAddressList{
+  getUsualAddressList(BuildContext context){
     if(_usualAddressList==null){
       _usualAddressList = [];
-      Future future = NetConfig.get(NetConfig.transferAddressList);
+      Future future = NetConfig.get(context,NetConfig.transferAddressList);
       future.then((data){
         if(data!=null){
           List list = data ;
@@ -48,9 +49,9 @@ class UserUsualAddressModel extends Model{
     return this._usualAddressList;
   }
 
-  addAddress(UsualAddressInfo info){
+  addAddress(BuildContext context,UsualAddressInfo info){
     if(info!=null){
-      Future future = NetConfig.post(NetConfig.createTransferAddress,{'id':info.id==null?'':info.id.toString(),'address':info.address,'note':info.note,'nickname':info.name});
+      Future future = NetConfig.post(context,NetConfig.createTransferAddress,{'id':info.id==null?'':info.id.toString(),'address':info.address,'note':info.note,'nickname':info.name});
       future.then((data){
         _usualAddressList = null;
         notifyListeners();
@@ -58,8 +59,8 @@ class UserUsualAddressModel extends Model{
     }
   }
 
-  delAddress(int index){
-    Future future = NetConfig.get(NetConfig.delAddress+'?id='+index.toString());
+  delAddress(BuildContext context, int index){
+    Future future = NetConfig.get(context,NetConfig.delAddress+'?id='+index.toString());
     future.then((data){
       _usualAddressList = null;
       notifyListeners();

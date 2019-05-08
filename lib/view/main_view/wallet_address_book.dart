@@ -27,7 +27,7 @@ class _AddressBookState extends State<AddressBook> {
       stateModel.usualAddressList = null;
     }
     _newAddressInfo = UsualAddressInfo();
-    _usualAddressList = stateModel.usualAddressList;
+    _usualAddressList = stateModel.getUsualAddressList(context);
 
     return ScopedModelDescendant<MainStateModel>(builder: (context, child, model)
     {
@@ -157,11 +157,11 @@ class _AddressBookState extends State<AddressBook> {
                             if (_form.validate()) {
                               _form.save();
                               if(_selectItem==null){
-                                stateModel.addAddress(_newAddressInfo);
+                                stateModel.addAddress(context, _newAddressInfo);
                               }else
                               {
                                 _newAddressInfo.id = _selectItem.id;
-                                stateModel.addAddress(_newAddressInfo);
+                                stateModel.addAddress(context,_newAddressInfo);
                               }
                               Navigator.of(context).pop();
                             }
@@ -216,7 +216,7 @@ class _AddressBookState extends State<AddressBook> {
             caption: 'Delete',
             color: Colors.red,
             icon: Icons.delete,
-            onTap: () => stateModel.delAddress(node.id),
+            onTap: () => stateModel.delAddress(context,node.id),
           ),
         ],
         child: Container(

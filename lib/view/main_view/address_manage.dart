@@ -287,7 +287,7 @@ class _AddressManageState extends State<AddressManage> {
     if (form.validate()) {
       Tools.loadingAnimation(context);
       /// submit new name to server
-      Future response = NetConfig.post(NetConfig.changeAddressName, {
+      Future response = NetConfig.post(context,NetConfig.changeAddressName, {
         'address': widget.data.address,
         'addressName': _nameController.text.trim(),
       });
@@ -368,7 +368,7 @@ class _AddressManageState extends State<AddressManage> {
             _isAddressDisplay = !_isAddressDisplay;
             print('==> _isAddressDisplay = $_isAddressDisplay');
 
-            Future response = NetConfig.post(NetConfig.setAddressVisible, {
+            Future response = NetConfig.post(context,NetConfig.setAddressVisible, {
               'address': widget.data.address, 
               'visible': _isAddressDisplay.toString(),
             });
@@ -469,7 +469,7 @@ class _AddressManageState extends State<AddressManage> {
             print('==> address = ${widget.data.address}');
             print('==> assetId = ${assetData.propertyId}');
 
-            Future response = NetConfig.post(NetConfig.setAssetVisible, {
+            Future response = NetConfig.post(context,NetConfig.setAssetVisible, {
               'address': widget.data.address,
               'assetId': assetData.propertyId.toString(),
               'visible': flag.toString(),

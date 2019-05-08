@@ -29,7 +29,7 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
   /// 
   void _gePopularAsset() {
 
-    Future data = NetConfig.get(NetConfig.getPopularAssetList);
+    Future data = NetConfig.get(context,NetConfig.getPopularAssetList);
 
     data.then((data) {
       if (data != null) {

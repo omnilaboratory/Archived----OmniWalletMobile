@@ -28,7 +28,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> {
     }
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
-          walletInfoes = model.walletInfoes;
+          walletInfoes = model.getWalletInfoes(context);
           _walletInfoes=[];
           for(var node in walletInfoes){
             if(node.visible){

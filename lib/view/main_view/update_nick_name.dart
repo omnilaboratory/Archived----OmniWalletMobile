@@ -145,7 +145,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
     if (form.validate()) {
       // Tools.loadingAnimation(context);
       /// submit new nick name to server
-      Future response = NetConfig.post(NetConfig.updateUserNickname, {
+      Future response = NetConfig.post(context,NetConfig.updateUserNickname, {
         'nickname': _nickNameController.text,
       });
 

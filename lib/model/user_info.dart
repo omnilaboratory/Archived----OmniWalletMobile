@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/net_config.dart';
 
@@ -9,6 +10,7 @@ class UserInfo{
   String _mnemonic;
   Uint8List _mnemonicSeed;
   String pinCode;
+  String loginToken;
   String faceUrl;
   String nickname;
   UserInfo({
@@ -33,12 +35,12 @@ class UserInfo{
   }
 
 
-  void init(Function callback) async{
+  void init(BuildContext context,Function callback) async{
     if(GlobalInfo.bip39Seed==null){
       GlobalInfo.initBipSeed(this._mnemonic,callback: callback);
     }
 
-    Future future = NetConfig.get(NetConfig.btcAndUsdtExchangeRate);
+    Future future = NetConfig.get(context,NetConfig.btcAndUsdtExchangeRate);
     future.then((data){
       if(data!=null){
         AssetToUSDRateInfo info = AssetToUSDRateInfo();
