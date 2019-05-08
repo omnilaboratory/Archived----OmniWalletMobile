@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(8.0),
             ),
             titlePadding: EdgeInsets.only(top: 12,bottom: 12),
-            contentPadding: EdgeInsets.symmetric(horizontal: 1),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20),
             title: Container(
               child: Column(
                   children: <Widget>[
