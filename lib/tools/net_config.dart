@@ -38,6 +38,8 @@ class NetConfig{
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
+  /// 更新用户pin
+  static String updateUserPassword= 'user/updateUserPassword';
 
 
   /// wallet/address/getNewestAddressIndex  获取最新的地址索引
