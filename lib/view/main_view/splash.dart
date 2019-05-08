@@ -97,10 +97,10 @@ class _SplashState extends State<Splash> {
         }
 
       } else { // If has not a newer, continue process data.
-        // TODO: is correct?
+        _processData();
       }
 
-    } else { // data is null ?
+    } else { // data is null
       _processData();
     }
   }
