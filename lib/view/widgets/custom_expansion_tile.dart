@@ -191,7 +191,10 @@ class _CustemExpansionTileState extends State<CustemExpansionTile> with SingleTi
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-
+          RotationTransition(
+            turns: _iconTurns,
+            child: const Icon(Icons.expand_more),
+          )
         ],
       );
     }else{
