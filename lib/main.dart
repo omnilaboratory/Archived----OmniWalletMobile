@@ -59,7 +59,7 @@ class MyApp extends StatefulWidget {
     });
   }
 
-  // for unlock test
+  /// Restart app when unlock.
   static void restartApp(BuildContext context) {
     _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
     state.setState(() {});
@@ -101,11 +101,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Brightness brightness = Brightness.light;
 
   ///----------------------
-  /// TEST FOR App Lifecycle
-  /// 
+  /// App Lifecycle coding for lock and unlock app.
   
   Timer _timer;
-  // bool _isInputPIN = false;
 
   @override
   void initState() {
@@ -119,24 +117,26 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     // Enter background.
     if (state == AppLifecycleState.paused) {
-      // _isInputPIN = false;
-      GlobalInfo.isInputPIN = false;
-
-      _timer = Timer(
-        Duration(seconds: 3), 
-        () {
-          // _isInputPIN = true;
-          GlobalInfo.isInputPIN = true;
-          _timer.cancel();
-        }
-      );
+      print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+      if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
+        _timer = Timer(
+          Duration(seconds: 3), 
+          () {
+            GlobalInfo.isInputPIN = true;
+            _timer.cancel();
+          }
+        );
+      }
     }
 
     // Back from background.
     if (state == AppLifecycleState.resumed) {
-      print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
-      _timer.cancel();
-      setState(() {});
+      print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+      if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
+        print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
+        _timer.cancel();
+        setState(() {});
+      }
     }
 
     super.didChangeAppLifecycleState(state);
@@ -160,10 +160,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     print("==> _isInputPIN At BULID = ${GlobalInfo.isInputPIN}");
 
     // Unclock app by input pin code.
-    // if (_isInputPIN) {
     if (GlobalInfo.isInputPIN) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
+
+        theme: ThemeData(
+          brightness:brightness,
+          appBarTheme: AppBarTheme(
+            elevation: 0,
+            color: brightness==Brightness.dark? Colors.black:Colors.white,
+            brightness: brightness,
+            textTheme: brightness==Brightness.dark?
+                TextTheme(title: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.normal))
+                :TextTheme(title: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.normal)),
+            iconTheme: brightness==Brightness.dark?IconThemeData(color: Colors.white):IconThemeData(color: Colors.black)
+          )
+        ),
 
         localeResolutionCallback: (deviceLocale, supportedLocales) {
           if (this.locale == null) {

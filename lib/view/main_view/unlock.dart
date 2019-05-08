@@ -56,12 +56,9 @@ class _UnlockState extends State<Unlock> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Text('Unlock App'),
-        // title: Text(WalletLocalizations.of(context).aboutPageAppBarTitle),
+        title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
       ),
 
       body: FormKeyboardActions(
@@ -71,20 +68,6 @@ class _UnlockState extends State<Unlock> {
             child: Column(
               children: <Widget>[
                 _inputPIN(),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
-                  child: CustomRaiseButton( // 
-                    context: context,
-                    hasRow: false,
-                    title: WalletLocalizations.of(context).updateNickNamePageAppBarTitle,
-                    titleColor: Colors.white,
-                    color: AppCustomColor.btnConfirm,
-                    callback: () {
-                      _onSubmit();
-                    },
-                  ),
-                ),
               ],
             ),
           ),
@@ -120,6 +103,9 @@ class _UnlockState extends State<Unlock> {
           _hasClearIcon = false;
         } else {
           _hasClearIcon = true;
+          if (_pinCodeController.text.trim().length == 6) {
+            _unlockApp();
+          }
         }
         setState(() { });
       },
@@ -130,10 +116,11 @@ class _UnlockState extends State<Unlock> {
           controller:  _pinCodeController,
           focusNode:   _nodePin,
           autofocus: true,
-          validator: (val) => _validate(val),
+          maxLength: 6,
+          // validator: (val) => _validate(val),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
-            labelText: WalletLocalizations.of(context).updateNickNamePageEditTips,
+            labelText: WalletLocalizations.of(context).createAccountPageTooltip_2,
             // hintStyle: TextStyle(fontSize: 14), 
             suffixIcon: _hasClearIcon ? 
               IconButton(
@@ -149,26 +136,22 @@ class _UnlockState extends State<Unlock> {
   }
   
   /// validate pin
-  String _validate(String val) {
-    if (val == null || val.trim().length == 0) {
-      return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
-    } else if (val.trim().length < 6) {
-      return WalletLocalizations.of(context).createAccountPageErrMsgLength;
-    } else {
-      return null;
-    }
-  }
+  // String _validate(String val) {
+  //   if (val == null || val.trim().length == 0) {
+  //     return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
+  //   } else if (val.trim().length < 6) {
+  //     return WalletLocalizations.of(context).createAccountPageErrMsgLength;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   /// Unlock app.
-  void _onSubmit() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      // Tools.loadingAnimation(context);
-
-      /// Unlock app
-      GlobalInfo.isInputPIN = false;
-      MyApp.restartApp(context);
-    }
+  void _unlockApp() {
+    // Unlock app
+    // TODO: check pin is correct
+    GlobalInfo.isInputPIN = false;
+    MyApp.restartApp(context);
   }
 
 }

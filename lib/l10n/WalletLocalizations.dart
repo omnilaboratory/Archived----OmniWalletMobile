@@ -221,6 +221,8 @@ class WalletLocalizations{
       'themePageAppBarTitle' : '颜色主题',
       'themePageItem_1' : '亮色',
       'themePageItem_2' : '暗色',
+
+      'unlockPageAppBarTitle' : '解锁',
     },
 
     'en': {
@@ -457,8 +459,13 @@ class WalletLocalizations{
       'themePageAppBarTitle' : 'Color Theme',
       'themePageItem_1' : 'Light',
       'themePageItem_2' : 'Dark',
+
+      'unlockPageAppBarTitle' : 'Unlock App',
     }
   };
+
+  // unlock page
+  get unlockPageAppBarTitle => _localizedValues[locale.languageCode]['unlockPageAppBarTitle'];
 
   // app theme
   get themePageAppBarTitle => _localizedValues[locale.languageCode]['themePageAppBarTitle'];

@@ -167,16 +167,10 @@ class _SplashState extends State<Splash> {
       // Check login status
       String val = share.getString(KeyConfig.user_login_token);
       if ( val != null && val != '') { // has login
-        print('==> has login | ${DateTime.now()}');
+        print('==> has logged in | ${DateTime.now()}');
 
         // get user info from server - FINAL CODE
         _getUserInfo(share);
-
-        // TEST CODE
-        // Navigator.of(context).pushAndRemoveUntil(
-        //   MaterialPageRoute(builder: (context) => WelcomePageOne()), 
-        //   (route) => route == null,
-        // );
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');
