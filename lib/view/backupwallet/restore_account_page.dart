@@ -16,15 +16,18 @@ class RestoreAccount extends StatefulWidget {
 
 class _RestoreAccountState extends State<RestoreAccount> {
   FocusNode _nodeText1 = FocusNode();
+  FocusNode _nodeText0 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
   FocusNode _nodeText3 = FocusNode();
   TextEditingController controller;
+  TextEditingController controller0;
   TextEditingController controller1;
   TextEditingController controller2;
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
+    controller0 = TextEditingController();
     controller1 = TextEditingController();
     controller2 = TextEditingController();
   }
@@ -57,6 +60,13 @@ class _RestoreAccountState extends State<RestoreAccount> {
           )
       ),
 
+      KeyboardAction(
+          focusNode: _nodeText0,
+          closeWidget: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.close),
+          )
+      ),
       KeyboardAction(
           focusNode: _nodeText2,
           closeWidget: Padding(
@@ -109,6 +119,19 @@ class _RestoreAccountState extends State<RestoreAccount> {
           },
         );
     ///input pin
+    var inputOldPin = TextField( // content
+          controller: controller0,
+          decoration: InputDecoration(
+            labelText: WalletLocalizations.of(context).restore_account_tip_OldPin,
+            border: InputBorder.none,
+            fillColor: AppCustomColor.themeBackgroudColor,
+            filled: true,
+          ),
+          maxLines: 1,
+          obscureText:true,
+          focusNode: _nodeText0,
+        );
+    ///input pin
     var inputPin = TextField( // content
           controller: controller1,
           decoration: InputDecoration(
@@ -145,6 +168,8 @@ class _RestoreAccountState extends State<RestoreAccount> {
           padding: const EdgeInsets.only(top: 30,bottom: 12),
           child: Text(WalletLocalizations.of(context).restore_account_resetPIN),
         ),
+        inputOldPin,
+        Divider(height: 0,),
         inputPin,
         Divider(height: 0,),
         inputConfirmPin,
@@ -181,26 +206,38 @@ class _RestoreAccountState extends State<RestoreAccount> {
           return null;
         }
 
+        String pin0 = this.controller0.text;
+        if(pin0.isEmpty){
+          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
+          return null;
+        }
+
         String pin = this.controller1.text;
         String pin2 = this.controller2.text;
         if(pin.isEmpty||pin.isEmpty||pin != pin2){
           Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
           return null;
         }
+
+        String _pinCode_md5 = Tools.convertMD5Str(pin0);
+        String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
+
         var  userId = Tools.convertMD5Str(_mnemonic);
         canToucn =false;
         Tools.loadingAnimation(context);
         Future result = NetConfig.post(context,
             NetConfig.restoreUser,
-            {'userId':userId},
-            errorCallback: (){
-              Navigator.of(context).pop();
+            {
+              'userId':userId,
+              'password':_pinCode_md5,
+              'newPsw':_pinCode_new_md5
+            },
+            errorCallback: (msg){
               canToucn = true;
             }
             );
         result.then((data){
           if(data!=null){
-
 
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
@@ -214,9 +251,8 @@ class _RestoreAccountState extends State<RestoreAccount> {
             Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
             GlobalInfo.userInfo.userId = userId;
 
-            String _pinCode_md5 =  Tools.convertMD5Str(pin);
-            Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
-            GlobalInfo.userInfo.pinCode = _pinCode_md5;
+            Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
+            GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
 
 
             GlobalInfo.userInfo.init(context,(){
@@ -226,6 +262,8 @@ class _RestoreAccountState extends State<RestoreAccount> {
                   route) => route == null
               );
             });
+          }else{
+            Navigator.of(context).pop();
           }
         });
       };

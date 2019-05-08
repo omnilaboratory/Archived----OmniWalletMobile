@@ -137,7 +137,10 @@ class NetConfig{
       }
       if(status==0){
         msg = result['msg'];
-        showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
+        if(msg!=null&&msg.length>0){
+          showToast(msg,toastLength:Toast.LENGTH_LONG);
+        }
+
       }
       if(status==403){
 
