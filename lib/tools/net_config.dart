@@ -152,7 +152,7 @@ class NetConfig{
               (route) => route == null,
         );
       });
-      showToast('user not exist');
+      showToast('user not exist',toastLength: Toast.LENGTH_LONG);
 
     } else{
       showToast('server is sleep, please wait');

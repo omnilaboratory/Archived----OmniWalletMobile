@@ -19,13 +19,9 @@ class Tools{
   static bool getCurrRunningMode() {
     return bool.fromEnvironment("dart.vm.product");
   }
-  /** 返回当前时间戳 */
-  static bool getCurrPlafrom() {
-    return bool.fromEnvironment("dart.vm.product");
-  }
 
   static String getCurrMoneyFlag(){
-    if(GlobalInfo.currLanguage==KeyConfig.languageEn){
+    if(GlobalInfo.currencyUnit==KeyConfig.usd){
       return '\$ ';
     }else{
       return '\￥ ';

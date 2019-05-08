@@ -77,7 +77,7 @@ class WalletModel extends Model{
           _loadLastTime = DateTime.now();
 
           double btcRate = GlobalInfo.usdRateInfo.btcs[0];
-          if(GlobalInfo.currLanguage==KeyConfig.languageEn){
+          if(GlobalInfo.currencyUnit==KeyConfig.usd){
             btcRate = GlobalInfo.usdRateInfo.btcs[0];
           }else{
             btcRate = GlobalInfo.usdRateInfo.btcs[1];
