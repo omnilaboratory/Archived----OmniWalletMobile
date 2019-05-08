@@ -26,6 +26,9 @@ class  GlobalInfo{
   ///
   static String colorTheme = KeyConfig.light;
 
+  /// for unlock test
+  static bool isInputPIN = false;
+
   /// userInfo
   static UserInfo userInfo = UserInfo();
 

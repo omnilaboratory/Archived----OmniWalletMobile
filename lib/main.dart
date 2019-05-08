@@ -19,6 +19,7 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
+import 'package:wallet_app/view/main_view/unlock.dart';
 import 'package:wallet_app/view/main_view/update_nick_name.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info_page.dart';
@@ -56,6 +57,12 @@ class MyApp extends StatefulWidget {
       state.brightness = brightness;
       AppCustomColor.setColors(brightness);
     });
+  }
+
+  // for unlock test
+  static void restartApp(BuildContext context) {
+    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+    state.setState(() {});
   }
 }
 
@@ -98,7 +105,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   /// 
   
   Timer _timer;
-  bool _isInputPIN = false;
+  // bool _isInputPIN = false;
 
   @override
   void initState() {
@@ -110,21 +117,26 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     print("==> lifeChanged = $state");
 
+    // Enter background.
     if (state == AppLifecycleState.paused) {
+      // _isInputPIN = false;
+      GlobalInfo.isInputPIN = false;
+
       _timer = Timer(
-        Duration(seconds: 5), 
+        Duration(seconds: 3), 
         () {
-          _isInputPIN = true;
+          // _isInputPIN = true;
+          GlobalInfo.isInputPIN = true;
           _timer.cancel();
         }
       );
     }
 
+    // Back from background.
     if (state == AppLifecycleState.resumed) {
-      print("==> _isInputPIN = $_isInputPIN");
-      if (_isInputPIN) {  // Must input PIN code to use app.
-        
-      }
+      print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
+      _timer.cancel();
+      setState(() {});
     }
 
     super.didChangeAppLifecycleState(state);
@@ -138,13 +150,56 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-
+  /// For unclock code end.
   ///----------------------
   
 
   @override
   Widget build(BuildContext context) {
+
+    print("==> _isInputPIN At BULID = ${GlobalInfo.isInputPIN}");
+
+    // Unclock app by input pin code.
+    // if (_isInputPIN) {
+    if (GlobalInfo.isInputPIN) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+
+        localeResolutionCallback: (deviceLocale, supportedLocales) {
+          if (this.locale == null) {
+            this.locale = deviceLocale;
+          }
+          return this.locale;
+        },
+
+        // set app language
+        locale: this.locale,
+
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          WalletLocalizationsDelegate.delegate,
+          ChineseCupertinoLocalizations.delegate,  // Fix for Flutter Bug
+        ],
+        supportedLocales: [
+          const Locale('zh','CH'),
+          const Locale('en','US'),
+          const Locale('zh',''),  // Fix for Flutter Bug
+        ],
+
+        home: Unlock(),
+      );
+
+    } else {  // No need unclock. 
+      return _backFromBackground();
+    }
+  }
+
+  ///
+  Widget _backFromBackground() {
+
     AppCustomColor.setColors(brightness);
+
     return ScopedModel<MainStateModel>(
       model: mainStateModel,
       child: MaterialApp(

@@ -167,7 +167,13 @@ class _AboutState extends State<About> {
   void _checkVersion() async {
 
     // Invoke api.
-    var data = await NetConfig.get(context,NetConfig.getNewestVersion);
+    var data = await NetConfig.get(
+      context,
+      NetConfig.getNewestVersion,
+      errorCallback: () {  // No newer version.
+
+      }
+    );
 
     if (data != null) {
       // If has a newer version, then show dialog.
