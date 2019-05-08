@@ -179,23 +179,27 @@ class _CustemExpansionTileState extends State<CustemExpansionTile> with SingleTi
   }
 
   Widget buildExpandTrailing(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        AutoSizeText(
-          widget.trailingContent,
-          textAlign: TextAlign.right,
-          style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
-          minFontSize: 10,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        RotationTransition(
-          turns: _iconTurns,
-          child: const Icon(Icons.expand_more),
-        ),
-      ],
-    );
+    if(widget.trailingContent!=null){
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          AutoSizeText(
+            widget.trailingContent,
+            textAlign: TextAlign.right,
+            style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
+            minFontSize: 10,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+
+        ],
+      );
+    }else{
+      return RotationTransition(
+        turns: _iconTurns,
+        child: const Icon(Icons.expand_more),
+      );
+    }
   }
 
   @override

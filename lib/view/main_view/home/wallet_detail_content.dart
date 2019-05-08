@@ -239,7 +239,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Text(
-                  "≈ \$ "+accountInfo.legalTender.toStringAsFixed(2),
+                  "≈"+ Tools.getCurrMoneyFlag() +accountInfo.legalTender.toStringAsFixed(2),
                   style: TextStyle(fontSize: 20,color: Colors.white54),
               ),
             ),

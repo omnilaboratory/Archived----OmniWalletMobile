@@ -76,34 +76,7 @@ class BackupWalletIndex extends StatelessWidget  {
         Padding(
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.05),
           child: Row(
-            children: <Widget>[
-              CustomRaiseButton( // Next button.
-                context: context,
-                flex: 1,
-                title: WalletLocalizations.of(context).backup_index_laterbackup,
-                titleColor: Colors.blue,
-                color: AppCustomColor.btnCancel,
-                callback: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    MainPage.tag,
-                    (route) => route == null,
-                  );
-                },
-              ),
-
-              SizedBox(width: 15),
-              CustomRaiseButton(
-                context: context,
-                flex: 2,
-                // hasRow: false,
-                title: WalletLocalizations.of(context).backup_index_btn,
-                titleColor: Colors.white,
-                color: AppCustomColor.btnConfirm,
-                callback: () {
-                  Navigator.pushNamed(context, BackupWalletWords.tag);
-                },
-              ),
-            ],
+            children: this._getActions(context),
           ),
         ),
       ],
@@ -112,22 +85,39 @@ class BackupWalletIndex extends StatelessWidget  {
 
   //
   List<Widget> _getActions(BuildContext context){
-
+    List<Widget> list = [];
     if (this.param == null ) {
-      List<Widget> list = [];
-      list.add(FlatButton(
-        child: Text(WalletLocalizations.of(context).backup_index_laterbackup),
-        textColor: AppCustomColor.btnConfirm,
-        onPressed: () {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-            MainPage.tag,
-            (route) => route == null,
-          );
-        },
-      ));
-      return list;
+      list.add(
+          CustomRaiseButton( // later button.
+            context: context,
+            flex: 1,
+            title: WalletLocalizations.of(context).backup_index_laterbackup,
+            titleColor: Colors.blue,
+            color: AppCustomColor.btnCancel,
+            callback: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                MainPage.tag,
+                    (route) => route == null,
+              );
+            },
+        )
+      );
+      list.add(SizedBox(width: 15));
     }
+    list.add(
+        CustomRaiseButton(
+          context: context,
+          flex: 2,
+          // hasRow: false,
+          title: WalletLocalizations.of(context).backup_index_btn,
+          titleColor: Colors.white,
+          color: AppCustomColor.btnConfirm,
+          callback: () {
+            Navigator.pushNamed(context, BackupWalletWords.tag);
+          },
+      )
+    );
 
-    return null;
+    return list;
   }
 }
