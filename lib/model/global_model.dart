@@ -14,7 +14,7 @@ class  GlobalInfo{
   static Uint8List bip39Seed;
 
   ///当前版本号
-  static int currVersionCode = 4;
+  static int currVersionCode = 2;
 
   static AssetToUSDRateInfo usdRateInfo = AssetToUSDRateInfo();
 

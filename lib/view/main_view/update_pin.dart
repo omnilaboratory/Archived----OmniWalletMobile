@@ -10,14 +10,17 @@ class UpdatePIN extends StatefulWidget {
 }
 
 class _UpdatePINState extends State<UpdatePIN> {
+  FocusNode _nodeText0 = FocusNode();
   FocusNode _nodeText1 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
+  TextEditingController controller0;
   TextEditingController controller1;
   TextEditingController controller2;
 
   @override
   void initState() {
     super.initState();
+    controller0 = TextEditingController();
     controller1 = TextEditingController();
     controller2 = TextEditingController();
   }
@@ -31,6 +34,18 @@ class _UpdatePINState extends State<UpdatePIN> {
     );
   }
   Widget buildBody(){
+    var inputOldPin = TextField( // content
+      controller: controller0,
+      decoration: InputDecoration(
+        labelText: WalletLocalizations.of(context).restore_account_tip_OldPin,
+        border: InputBorder.none,
+        fillColor: AppCustomColor.themeBackgroudColor,
+        filled: true,
+      ),
+      maxLines: 1,
+      obscureText:true,
+      focusNode: _nodeText0,
+    );
     ///input pin
     var inputPin = TextField( // content
       controller: controller1,
@@ -66,6 +81,8 @@ class _UpdatePINState extends State<UpdatePIN> {
         padding: const EdgeInsets.only(left: 20,right: 20),
         child: Column(
           children: <Widget>[
+            inputOldPin,
+            Divider(height: 0,),
             inputPin,
             Divider(height: 0,),
             inputConfirmPin,
@@ -86,24 +103,45 @@ class _UpdatePINState extends State<UpdatePIN> {
       ),
     );
   }
-  Function clickBtn() {
+  clickBtn() async {
+    String pin0 = this.controller0.text;
+    if(pin0.isEmpty){
+      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
+      return null;
+    }
+    String _pinCode_md5 =  Tools.convertMD5Str(pin0);
+    if(_pinCode_md5 != GlobalInfo.userInfo.pinCode){
+      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error2);
+      return null;
+    }
+
     String pin = this.controller1.text;
     String pin2 = this.controller2.text;
     if(pin.isEmpty||pin.isEmpty||pin != pin2){
       NetConfig.showToast(WalletLocalizations.of(context).restore_account_tip_error);
       return null;
     }
-    return (){
-      String _pinCode_md5 =  Tools.convertMD5Str(pin);
-      Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
-      GlobalInfo.userInfo.pinCode = _pinCode_md5;
-
-      Navigator.of(context).pop();
-    };
+    String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
+    await NetConfig.post(context,NetConfig.updateUserPassword,
+      {
+        'oldPsw':_pinCode_md5,
+        'newPsw':_pinCode_new_md5
+      },
+    );
+    Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
+    GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
+    Navigator.of(context).pop();
   }
 
   List<KeyboardAction> _keyboardActions() {
     List<KeyboardAction> actions = <KeyboardAction> [
+      KeyboardAction(
+          focusNode: _nodeText0,
+          closeWidget: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.close),
+          )
+      ),
       KeyboardAction(
           focusNode: _nodeText1,
           closeWidget: Padding(

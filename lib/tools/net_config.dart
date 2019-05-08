@@ -38,6 +38,8 @@ class NetConfig{
   /// 获取用户信息
   static String getUserInfo='user/getUserInfo';
 
+  /// 更新用户pin
+  static String updateUserPassword= 'user/updateUserPassword';
 
 
   /// wallet/address/getNewestAddressIndex  获取最新的地址索引
@@ -137,7 +139,10 @@ class NetConfig{
       }
       if(status==0){
         msg = result['msg'];
-        showToast(result['msg'],toastLength:Toast.LENGTH_LONG);
+        if(msg!=null&&msg.length>0){
+          showToast(msg,toastLength:Toast.LENGTH_LONG);
+        }
+
       }
       if(status==403){
 

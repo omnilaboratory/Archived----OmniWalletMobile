@@ -330,8 +330,11 @@ class _CreateAccountState extends State<CreateAccount> {
       /// 4) [Nick name] (Clear text) and [Mnemonic Phrase] (MD5) save to remote.
       Future data = NetConfig.post(context,
         NetConfig.createUser,
-        {'userId':_mnemonic_md5,
-        'nickname':_nickNameController.text},
+        {
+          'userId':_mnemonic_md5,
+          'nickname':_nickNameController.text,
+          'password':_pinCode_md5
+        },
         errorCallback: (){
           Navigator.of(context).pop();
           canCreate = true;

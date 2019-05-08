@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -52,6 +51,7 @@ class _SelectCurrencyState extends State<SelectCurrency> {
     print('strClickItem = $strClickItem');
     if (strClickItem != '') {
       model.setCurrencyUnit(strClickItem);
+      model.setWalletInfoes(null,rightNow: true);
     
       // change Currency Unit.
       if (strClickItem == KeyConfig.usd) {

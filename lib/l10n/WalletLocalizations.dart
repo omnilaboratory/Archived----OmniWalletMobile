@@ -30,10 +30,12 @@ class WalletLocalizations{
       'restore_account_phrase_title': '请输入助记词',
       'restore_account_tips': '注意：使用助记词导入账号后，你可以重置PIN',
       'restore_account_resetPIN': '重置 PIN',
-      'restore_account_tip_pin': 'PIN',
+      'restore_account_tip_pin': '新的PIN',
+      'restore_account_tip_OldPin': '原有PIN',
       'restore_account_tip_confirmPin': '确认 PIN',
       'restore_account_btn_restore': '恢复',
       'restore_account_tip_error': '错误PIN',
+      'restore_account_tip_error2': '错误原始PIN',
       'restore_account_tip_error1': '错误助记词',
 
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
@@ -245,10 +247,12 @@ class WalletLocalizations{
       'restore_account_tips': 'Notice: after importing account by Mnemonic Phrase, you can reset PIN for safety concerns.',
       'restore_account_phrase_title': 'Input Mnemonic words',
       'restore_account_resetPIN': 'Reset PIN',
-      'restore_account_tip_pin': 'PIN',
+      'restore_account_tip_pin': 'New PIN',
+      'restore_account_tip_OldPin': 'Old PIN',
       'restore_account_tip_confirmPin': 'Confirm PIN',
       'restore_account_btn_restore': 'Restore',
       'restore_account_tip_error': 'Wrong PIN input',
+      'restore_account_tip_error2': 'Wrong Old PIN input',
       'restore_account_tip_error1': 'Wrong Mnemonic',
 
 
@@ -643,10 +647,12 @@ class WalletLocalizations{
   get restore_account_phrase_title => _localizedValues[locale.languageCode]['restore_account_phrase_title'];
   get restore_account_resetPIN => _localizedValues[locale.languageCode]['restore_account_resetPIN'];
   get restore_account_tip_pin => _localizedValues[locale.languageCode]['restore_account_tip_pin'];
+  get restore_account_tip_OldPin => _localizedValues[locale.languageCode]['restore_account_tip_OldPin'];
   get restore_account_tip_confirmPin => _localizedValues[locale.languageCode]['restore_account_tip_confirmPin'];
   get restore_account_btn_restore => _localizedValues[locale.languageCode]['restore_account_btn_restore'];
   get restore_account_tip_error => _localizedValues[locale.languageCode]['restore_account_tip_error'];
   get restore_account_tip_error1 => _localizedValues[locale.languageCode]['restore_account_tip_error1'];
+  get restore_account_tip_error2 => _localizedValues[locale.languageCode]['restore_account_tip_error2'];
 
 
 
