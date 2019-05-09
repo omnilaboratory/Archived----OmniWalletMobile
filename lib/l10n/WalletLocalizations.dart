@@ -223,6 +223,7 @@ class WalletLocalizations{
       'themePageItem_2' : '暗色',
 
       'unlockPageAppBarTitle' : '解锁',
+      'unlockPageAppTips' : 'PIN码不正确',
     },
 
     'en': {
@@ -461,11 +462,13 @@ class WalletLocalizations{
       'themePageItem_2' : 'Dark',
 
       'unlockPageAppBarTitle' : 'Unlock App',
+      'unlockPageAppTips' : 'PIN Code is incorrect.',
     }
   };
 
   // unlock page
   get unlockPageAppBarTitle => _localizedValues[locale.languageCode]['unlockPageAppBarTitle'];
+  get unlockPageAppTips => _localizedValues[locale.languageCode]['unlockPageAppTips'];
 
   // app theme
   get themePageAppBarTitle => _localizedValues[locale.languageCode]['themePageAppBarTitle'];

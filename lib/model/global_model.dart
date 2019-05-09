@@ -29,6 +29,9 @@ class  GlobalInfo{
   /// Is input PIN code for unlock app. 
   static bool isInputPIN = false;
 
+  /// From where - 0: reload  1: background.
+  static int fromWhere;
+
   /// userInfo
   static UserInfo userInfo = UserInfo();
 

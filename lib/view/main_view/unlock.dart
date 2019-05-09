@@ -1,9 +1,8 @@
-import 'dart:async';
-
 /// Unlock app.
 /// [author] Kevin Zhang
 /// [time] 2019-5-8
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -96,7 +95,7 @@ class _UnlockState extends State<Unlock> {
 
     return Form(
       key: _formKey,
-      autovalidate: true,
+      // autovalidate: true,
       onChanged: () {
         // print('==> VAL --> ${_nameController.text}');
         if (_pinCodeController.text.trim().length == 0) {
@@ -117,7 +116,7 @@ class _UnlockState extends State<Unlock> {
           focusNode:   _nodePin,
           autofocus: true,
           maxLength: 6,
-          // validator: (val) => _validate(val),
+          validator: (val) => _validatePIN(val),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: WalletLocalizations.of(context).createAccountPageTooltip_2,
@@ -136,39 +135,22 @@ class _UnlockState extends State<Unlock> {
   }
   
   /// validate pin
-  // String _validate(String val) {
-  //   if (val == null || val.trim().length == 0) {
-  //     return WalletLocalizations.of(context).createAccountPageErrMsgEmpty;
-  //   } else if (val.trim().length < 6) {
-  //     return WalletLocalizations.of(context).createAccountPageErrMsgLength;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  _validatePIN(String val) {
+    // print('==> Unlock PAGE -> PIN MD5 = ${Tools.convertMD5Str(val)}');
+    if (Tools.convertMD5Str(val) != GlobalInfo.userInfo.pinCode) {
+      return WalletLocalizations.of(context).unlockPageAppTips;
+    }
+
+    return null;
+  }
 
   /// Unlock app.
   void _unlockApp() {
-    // Unlock app
-    // TODO: check pin is correct
-
-    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-    prefs.then((share) {
-      String val = share.getString(KeyConfig.unlock_flag);
-      print('==> Unlock PAGE -> Where From = $val');
-
-      if (val == KeyConfig.from_reload) {
-        share.setString(KeyConfig.unlock_flag, KeyConfig.from_background);
-      }
-
+    // print('==> Unlock PAGE -> Where From = ${GlobalInfo.fromWhere}');
+    final form = _formKey.currentState;
+    if (form.validate()) {
       GlobalInfo.isInputPIN = false;
       MyApp.restartApp(context);
-    });
-
+    }
   }
-
-  //
-  // void _saveUnlockFlag(String value) async{
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setString(KeyConfig.unlock_flag, value);
-  // }
 }

@@ -138,17 +138,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
 
-        if (GlobalInfo.isInputPIN) { // Will be unlocked.
-          Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-          prefs.then((share) {
-            share.setString(KeyConfig.unlock_flag, KeyConfig.from_background);
-            _timer.cancel();
-            setState(() {});
-          });
-        } else {
-          _timer.cancel();
-          setState(() {});
+        if (GlobalInfo.isInputPIN) { // Will be locked.
+          GlobalInfo.fromWhere = 1; // from background.
         }
+
+        _timer.cancel();
+        setState(() {});
       }
     }
 

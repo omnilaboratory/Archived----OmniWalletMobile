@@ -18,6 +18,7 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/view_model/state_lib.dart';
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -159,38 +160,26 @@ class _SplashState extends State<Splash> {
     }
   }
 
-  /// Check
-  void _checkIsUnlock() {
-    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-    prefs.then((share) {
-      String val = share.getString(KeyConfig.unlock_flag);
-      print('==> Splash PAGE -> Where From = $val');
+  /// Check if will be locked.
+  _willBeLocked() {
+    
+    // Tools.showToast(
+    //   GlobalInfo.fromWhere.toString(),
+    //   toastLength: Toast.LENGTH_LONG
+    // );
 
-      if (val == null || val == KeyConfig.from_reload) { // Will be unlocked.
-        share.setString(KeyConfig.unlock_flag, KeyConfig.from_reload);
-        GlobalInfo.isInputPIN = true;
-        MyApp.restartApp(context);
+    if (GlobalInfo.fromWhere == null) { // Will be locked.
+      GlobalInfo.fromWhere = 0; // from reload
+      GlobalInfo.isInputPIN = true;
+      MyApp.restartApp(context);
+      return true;
+    }
 
-        // SHOW UNLOCK PAGE
-
-
-      // } else if (val == KeyConfig.from_background) {
-
-      } else {
-        
-        share.remove(KeyConfig.unlock_flag);
-
-        // get user info from server
-        _getUserInfo(share);
-
-        // check language, currency unit, theme.
-        _getSettings(share);
-      }
-    });
+    return false;
   }
 
   ///
-  void _processData() async{
+  void _processData() async {
 
     Future<SharedPreferences> prefs = SharedPreferences.getInstance();
     prefs.then((share) {
@@ -199,11 +188,16 @@ class _SplashState extends State<Splash> {
       if ( val != null && val != '') { // has login
         print('==> has logged in | ${DateTime.now()}');
 
-        // unlock
-        _checkIsUnlock();
+        GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
+        
+        // check lock
+        if( !_willBeLocked() ) {  // No lock
+          // get user info from server
+          _getUserInfo(share);
 
-        // get user info from server
-        // _getUserInfo(share);
+          // check language, currency unit, theme.
+          _getSettings(share);
+        }
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');
@@ -230,7 +224,7 @@ class _SplashState extends State<Splash> {
         // print('==> --. DATA | ${DateTime.now()}');
         
         GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
-        GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
+        // GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
         GlobalInfo.userInfo.init(context,null);
