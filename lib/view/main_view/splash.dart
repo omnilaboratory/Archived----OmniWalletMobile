@@ -18,11 +18,7 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-<<<<<<< HEAD
 import 'package:wallet_app/view_model/state_lib.dart';
-=======
-import 'package:bip39/bip39.dart' as bip39;
->>>>>>> aad5bcd827cc35ba3b5af90be41fe72bfbdfb1d9
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -228,11 +224,6 @@ class _SplashState extends State<Splash> {
     data.then((data) {
       if (data != null) {
         // print('==> --. DATA | ${DateTime.now()}');
-<<<<<<< HEAD
-        
-        GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
-        // GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
-=======
         String user_mnemonic = share.get(KeyConfig.user_mnemonic);
         var words = user_mnemonic.split(' ');
         if(words.length!=12){
@@ -240,7 +231,6 @@ class _SplashState extends State<Splash> {
         }
         GlobalInfo.userInfo.mnemonic = user_mnemonic;
 
->>>>>>> aad5bcd827cc35ba3b5af90be41fe72bfbdfb1d9
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
         GlobalInfo.userInfo.init(context,null);
