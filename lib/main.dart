@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/chinese_local.dart';
 
 import 'package:wallet_app/tools/app_data_setting.dart';
@@ -118,6 +119,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // Enter background.
     if (state == AppLifecycleState.paused) {
       print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         _timer = Timer(
           Duration(seconds: 3),
@@ -132,10 +134,21 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // Back from background.
     if (state == AppLifecycleState.resumed) {
       print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
-        _timer.cancel();
-        setState(() {});
+
+        if (GlobalInfo.isInputPIN) { // Will be unlocked.
+          Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+          prefs.then((share) {
+            share.setString(KeyConfig.unlock_flag, KeyConfig.from_background);
+            _timer.cancel();
+            setState(() {});
+          });
+        } else {
+          _timer.cancel();
+          setState(() {});
+        }
       }
     }
 

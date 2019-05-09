@@ -169,49 +169,57 @@ class _AboutState extends State<About> {
       context,
       NetConfig.getNewestVersion,
       errorCallback: () {  // No newer version.
-
+        _isLatestVersion();
       }
     );
 
     if (data != null) {
       // If has a newer version, then show dialog.
       if (data['code'] < GlobalInfo.currVersionCode) {
-        showDialog(
-          context: context,
-          barrierDismissible: false,  // user must tap button!
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(WalletLocalizations.of(context).appVersionTitle),
-              content: Text(WalletLocalizations.of(context).appVersionContent1),
-              actions: _actions(data),
-            );
-          }
-        );
-
+        _hasNewerVersion(data);
       } else { // If has not a newer, just show promt.
         // Tools.showToast(
         //   WalletLocalizations.of(context).appVersionNoNewerVersion,
         //   toastLength: Toast.LENGTH_LONG
         // );
-
-        showDialog(
-          context: context,
-          // barrierDismissible: false,  // user must tap button!
-          builder: (BuildContext context) {
-            return AlertDialog(
-              // title: Text(WalletLocalizations.of(context).appVersionTitle),
-              content: Text(WalletLocalizations.of(context).appVersionNoNewerVersion),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text(WalletLocalizations.of(context).appVersionBtn2),
-                  onPressed: () { Navigator.of(context).pop(); },
-                ),
-              ]
-            );
-          }
-        );
+        _isLatestVersion();
       }
     }
+  }
+
+  /// Has a newer version.
+  void _hasNewerVersion(data) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,  // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(WalletLocalizations.of(context).appVersionTitle),
+          content: Text(WalletLocalizations.of(context).appVersionContent1),
+          actions: _actions(data),
+        );
+      }
+    );
+  }
+
+  /// Currently is latest version.
+  void _isLatestVersion() {
+    showDialog(
+      context: context,
+      // barrierDismissible: false,  // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          // title: Text(WalletLocalizations.of(context).appVersionTitle),
+          content: Text(WalletLocalizations.of(context).appVersionNoNewerVersion),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(WalletLocalizations.of(context).appVersionBtn2),
+              onPressed: () { Navigator.of(context).pop(); },
+            ),
+          ]
+        );
+      }
+    );
   }
 
   /// Actions for update version

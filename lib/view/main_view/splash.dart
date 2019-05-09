@@ -159,6 +159,36 @@ class _SplashState extends State<Splash> {
     }
   }
 
+  /// Check
+  void _checkIsUnlock() {
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+    prefs.then((share) {
+      String val = share.getString(KeyConfig.unlock_flag);
+      print('==> Splash PAGE -> Where From = $val');
+
+      if (val == null || val == KeyConfig.from_reload) { // Will be unlocked.
+        share.setString(KeyConfig.unlock_flag, KeyConfig.from_reload);
+        GlobalInfo.isInputPIN = true;
+        MyApp.restartApp(context);
+
+        // SHOW UNLOCK PAGE
+
+
+      // } else if (val == KeyConfig.from_background) {
+
+      } else {
+        
+        share.remove(KeyConfig.unlock_flag);
+
+        // get user info from server
+        _getUserInfo(share);
+
+        // check language, currency unit, theme.
+        _getSettings(share);
+      }
+    });
+  }
+
   ///
   void _processData() async{
 
@@ -169,8 +199,11 @@ class _SplashState extends State<Splash> {
       if ( val != null && val != '') { // has login
         print('==> has logged in | ${DateTime.now()}');
 
-        // get user info from server - FINAL CODE
-        _getUserInfo(share);
+        // unlock
+        _checkIsUnlock();
+
+        // get user info from server
+        // _getUserInfo(share);
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');
@@ -179,10 +212,10 @@ class _SplashState extends State<Splash> {
           MaterialPageRoute(builder: (context) => WelcomePageOne()), 
           (route) => route == null,
         );
-      }
 
-      // check language, currency unit, theme.
-      _checkSettings(share);
+        // check language, currency unit, theme.
+        _getSettings(share);
+      }
     });
   }
 
@@ -232,7 +265,7 @@ class _SplashState extends State<Splash> {
   }
 
   /// get app settings
-  void _checkSettings(SharedPreferences share) {
+  void _getSettings(SharedPreferences share) {
 
     Locale locale = Localizations.localeOf(context);
     String languageCode = locale.languageCode;

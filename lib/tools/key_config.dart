@@ -19,4 +19,7 @@ class KeyConfig {
   static const String usd = 'USD';
   static const String light = 'Light';
   static const String dark = 'Dark';
+  static const String unlock_flag = 'unlock_flag';
+  static const String from_background = 'from_background';
+  static const String from_reload = 'from_reload';
 }

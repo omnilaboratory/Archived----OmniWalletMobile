@@ -150,8 +150,25 @@ class _UnlockState extends State<Unlock> {
   void _unlockApp() {
     // Unlock app
     // TODO: check pin is correct
-    GlobalInfo.isInputPIN = false;
-    MyApp.restartApp(context);
+
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+    prefs.then((share) {
+      String val = share.getString(KeyConfig.unlock_flag);
+      print('==> Unlock PAGE -> Where From = $val');
+
+      if (val == KeyConfig.from_reload) {
+        share.setString(KeyConfig.unlock_flag, KeyConfig.from_background);
+      }
+
+      GlobalInfo.isInputPIN = false;
+      MyApp.restartApp(context);
+    });
+
   }
 
+  //
+  // void _saveUnlockFlag(String value) async{
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setString(KeyConfig.unlock_flag, value);
+  // }
 }
