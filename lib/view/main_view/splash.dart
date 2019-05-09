@@ -31,6 +31,8 @@ class _SplashState extends State<Splash> {
 
   Timer _timer;
 
+  double refreshOpacity = 0.0;
+
   @override
   void initState() {
     _timer = Timer(
@@ -59,17 +61,52 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Image.asset('assets/logo-png.png', width: 229, height: 180),
+          child: Column(
+            mainAxisAlignment:  MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(child: Container()),
+              Image.asset('assets/logo-png.png', width: 229, height: 180),
+              Expanded(child: Container()),
+              InkWell(
+                onTap: this._onTouchRefresh(),
+                child: AnimatedOpacity(
+                  opacity: refreshOpacity,
+                  duration: Duration(milliseconds: 500),
+                  child: Text('get again',style: TextStyle(fontSize: 20),),
+                ),
+              ),
+              Expanded(child: Container()),
+            ],
+          ),
         ),
       )
     );
+  }
+
+  _onTouchRefresh(){
+    if(this.refreshOpacity==0){
+      return null;
+    }else{
+      return (){
+        refreshOpacity = 0;
+        _checkVersion();
+        setState(() {
+        });
+      };
+    }
   }
 
   /// Check if has a newer version
   _checkVersion() async {
 
     // Invoke api.
-    var data = await NetConfig.get(context,NetConfig.getNewestVersion);
+    var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5);
+
+    if(data!=null&&data==504){
+      refreshOpacity = 1;
+      setState(() {});
+      return;
+    }
 
     if (data != null) {
       int code = data['code'];

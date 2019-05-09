@@ -94,15 +94,15 @@ class NetConfig{
 
 
 
-  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null}) async{
-    return _sendData(context,"post", url, data,errorCallback: errorCallback);
+  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
+    return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut);
   }
 
-  static get(BuildContext context,String url,{Function errorCallback}) async{
-    return _sendData(context,"get", url,null,errorCallback: errorCallback);
+  static get(BuildContext context,String url,{Function errorCallback,int timeOut=30}) async{
+    return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut);
   }
 
-  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null}) async{
+  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
 
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
@@ -118,11 +118,17 @@ class NetConfig{
     print('seed to server data: $data');
 //    showToast('begin get data from server ',toastLength:Toast.LENGTH_LONG);
     Response response = null;
-    if(reqType=="get"){
-      response = await http.get(url,headers: header);
-    }else{
-      response =  await http.post(url,headers: header, body: data);
+    try{
+      if(reqType=="get"){
+        response = await http.get(url,headers: header).timeout(Duration(seconds: timeOut));
+      }else{
+        response =  await http.post(url,headers: header, body: data).timeout(Duration(seconds: timeOut));
+      }
+    } on TimeoutException{
+      print('TimeoutException');
+      return 504;
     }
+
 //    Fluttertoast.cancel();
     print(response.statusCode);
     bool isError = true;
