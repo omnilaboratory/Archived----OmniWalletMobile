@@ -32,12 +32,12 @@ class _CreateAccountState extends State<CreateAccount> {
   TextEditingController _repeatPinCodeController = TextEditingController();
 
   //
-  FocusNode _nodeText1 = FocusNode();
-  FocusNode _nodeText2 = FocusNode();
-  FocusNode _nodeText3 = FocusNode();
+  FocusNode _nodeNickName = FocusNode();
+  FocusNode _nodePinCode = FocusNode();
+  FocusNode _nodeRepeatPinCode = FocusNode();
 
   /// textFormField focus 
-  bool _accountNameHasFocus   = false;
+  bool _nickNameHasFocus      = false;
   bool _pinCodeHasFocus       = false;
   bool _repeatPinCodeHasFocus = false;
 
@@ -48,27 +48,48 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   void initState() {
 
-    _nodeText1.addListener(() {
-      if (_nodeText1.hasFocus) { // get focus
-        _accountNameHasFocus = true;
+    // Nick name
+    _nodeNickName.addListener(() {
+      if (_nodeNickName.hasFocus) { // get focus
+        // _pinCodeHasFocus = false;
+        // _repeatPinCodeHasFocus = false;
+        if (_nickNameController.text.trim().length == 0) {
+          _nickNameHasFocus = false;
+        } else {
+          _nickNameHasFocus = true;
+        }
       } else {
-        _accountNameHasFocus = false;
+        _nickNameHasFocus = false;
       }
       setState(() {});
     });
 
-    _nodeText2.addListener(() {
-      if (_nodeText2.hasFocus) { // get focus
-        _pinCodeHasFocus = true;
+    // Pin code
+    _nodePinCode.addListener(() {
+      if (_nodePinCode.hasFocus) { // get focus
+        // _nickNameHasFocus = false;
+        // _repeatPinCodeHasFocus = false;
+        if (_pinCodeController.text.trim().length == 0) {
+          _pinCodeHasFocus = false;
+        } else {
+          _pinCodeHasFocus = true;
+        }
       } else {
         _pinCodeHasFocus = false;
       }
       setState(() {});
     });
 
-    _nodeText3.addListener(() {
-      if (_nodeText3.hasFocus) { // get focus
-        _repeatPinCodeHasFocus = true;
+    // Repeat pin code
+    _nodeRepeatPinCode.addListener(() {
+      if (_nodeRepeatPinCode.hasFocus) { // get focus
+        // _nickNameHasFocus = false;
+        // _pinCodeHasFocus  = false;
+        if (_repeatPinCodeController.text.trim().length == 0) {
+          _repeatPinCodeHasFocus = false;
+        } else {
+          _repeatPinCodeHasFocus = true;
+        }
       } else {
         _repeatPinCodeHasFocus = false;
       }
@@ -98,6 +119,9 @@ class _CreateAccountState extends State<CreateAccount> {
             child: Form(
               key: _formKey,
               autovalidate: _autoValidate,
+              onChanged: () {
+                _processTextInput();
+              },
               child: Column(
                 children: _content(),
               ),
@@ -107,12 +131,53 @@ class _CreateAccountState extends State<CreateAccount> {
       ),
     );
   }
+ 
+  /// Process text input about length, clear button.
+  _processTextInput() {
+    // Nick name
+    if (_nodeNickName.hasFocus) { 
+      if (_nickNameController.text.trim().length == 0) {
+        _nickNameHasFocus = false;
+      } else {
+        _nickNameHasFocus = true;
+        if (_nickNameController.text.trim().length > 12) {
+          _nickNameController.text = _nickNameController.text.substring(0, 12);
+        }
+      }
+    }
+
+    // Pin code
+    if (_nodePinCode.hasFocus) { 
+      if (_pinCodeController.text.trim().length == 0) {
+        _pinCodeHasFocus = false;
+      } else {
+        _pinCodeHasFocus = true;
+        if (_pinCodeController.text.trim().length > 6) {
+          _pinCodeController.text = _pinCodeController.text.substring(0, 6);
+        }
+      }
+    }
+
+    // Repeat Pin code
+    if (_nodeRepeatPinCode.hasFocus) {
+      if (_repeatPinCodeController.text.trim().length == 0) {
+        _repeatPinCodeHasFocus = false;
+      } else {
+        _repeatPinCodeHasFocus = true;
+        if (_repeatPinCodeController.text.trim().length > 6) {
+          _repeatPinCodeController.text = _repeatPinCodeController.text.substring(0, 6);
+        }
+      }
+    }
+
+    setState(() {});
+  }
 
   /// Keyboard Actions
   List<KeyboardAction> _actions() {
     List<KeyboardAction> _actions = List();
     List<FocusNode> _nodes = <FocusNode> [
-      _nodeText1, _nodeText2, _nodeText3
+      _nodeNickName, _nodePinCode, _nodeRepeatPinCode
     ];
 
     for (int i = 0; i < _nodes.length; i++) {
@@ -143,7 +208,7 @@ class _CreateAccountState extends State<CreateAccount> {
     ];
 
     List<FocusNode> _nodes = <FocusNode> [
-      _nodeText1, _nodeText2, _nodeText3
+      _nodeNickName, _nodePinCode, _nodeRepeatPinCode
     ];
 
     // List<String> _saveData = <String> [
@@ -161,7 +226,7 @@ class _CreateAccountState extends State<CreateAccount> {
     ];
     
     List<bool> _hasFocus = <bool> [
-      _accountNameHasFocus, _pinCodeHasFocus, _repeatPinCodeHasFocus
+      _nickNameHasFocus, _pinCodeHasFocus, _repeatPinCodeHasFocus
     ];
 
     List<String> _helperText = <String> [
@@ -193,7 +258,7 @@ class _CreateAccountState extends State<CreateAccount> {
   // 
   Widget _titleImage() {
     return Padding(
-      padding: EdgeInsets.only(top: 20, bottom: 40),
+      padding: EdgeInsets.only(top: 30, bottom: 40),
       child: Image.asset(Tools.imagePath('image_account'), width: 68, height: 62)
     );
   }
@@ -204,12 +269,13 @@ class _CreateAccountState extends State<CreateAccount> {
         bool _hasFocus, String _helperText, int _textField) {
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 2),
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: TextFormField(
         controller:  _controller,
         focusNode:   _node,
+        obscureText: _textField == 1 ? false : true,
         keyboardType: _textField == 1 ? null : TextInputType.number,
-        maxLength: _textField == 1 ? 18 : 6,
+        // maxLength: _textField == 1 ? 18 : 6,
         decoration: _inputDecoration(_iconName, _hintText, 
           _hasFocus, _helperText, _controller),
         validator: (val) => _validate(val, _textField),

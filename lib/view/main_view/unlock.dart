@@ -110,7 +110,7 @@ class _UnlockState extends State<Unlock> {
       },
       
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 70),
         child: TextFormField(
           controller:  _pinCodeController,
           focusNode:   _nodePin,
