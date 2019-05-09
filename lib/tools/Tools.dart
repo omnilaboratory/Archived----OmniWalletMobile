@@ -11,6 +11,7 @@ import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
 
 class Tools{
 
@@ -112,21 +113,21 @@ class Tools{
     }
   }
 
-//  static encryptAes(String content) async{
-//    String encryptedString;
-//    String key = 'xxxxxxxxxxxxxxxx';
-//    String iv = 'yyyyyyyyyyyyyyyy';
-//    encryptedString = await Cipher2.encryptAesCbc128Padding7(content, key, iv);
-//    return encryptedString;
-//  }
-//
-//  static decryptAes(String encryptedString) async{
-//    String decryptedString;
-//    String key = 'xxxxxxxxxxxxxxxx';
-//    String iv = 'yyyyyyyyyyyyyyyy';
-//    decryptedString = await Cipher2.decryptAesCbc128Padding7(encryptedString, key, iv);
-//    return decryptedString;
-//  }
+  static encryptAes(String content) {
+    final key = encrypt.Key.fromUtf8(GlobalInfo.userInfo.pinCode);
+    final iv = encrypt.IV.fromUtf8(GlobalInfo.userInfo.userId.substring(0,16));
+    final encrypter = encrypt.Encrypter(encrypt.AES(key,mode:encrypt.AESMode.cbc));
+    final encrypted = encrypter.encrypt(content, iv: iv);
+    return encrypted.base64;
+  }
+
+  static decryptAes(String encryptedString) {
+    final key = encrypt.Key.fromUtf8(GlobalInfo.userInfo.pinCode);
+    final iv = encrypt.IV.fromUtf8(GlobalInfo.userInfo.userId.substring(0,16));
+    final encrypter = encrypt.Encrypter(encrypt.AES(key,mode:encrypt.AESMode.cbc));
+    final decrypted = encrypter.decrypt64(encryptedString, iv: iv);
+    return decrypted;
+  }
 
 
 

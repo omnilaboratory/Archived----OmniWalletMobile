@@ -136,7 +136,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
               ),
               SizedBox(height: 10,),
               AutoSizeText(
-                dataInfo.address.replaceRange(10, dataInfo.address.length-10, '......'),
+                dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
                 minFontSize: 9,
                 style: TextStyle(
                   color: Colors.grey,

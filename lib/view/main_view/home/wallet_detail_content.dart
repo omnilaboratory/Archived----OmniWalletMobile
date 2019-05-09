@@ -180,7 +180,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: AutoSizeText(
-                        '${tradeInfo.objAddress.replaceRange(10, tradeInfo.objAddress.length-10, '......')}',
+                        '${tradeInfo.objAddress.replaceRange(6, tradeInfo.objAddress.length-6, '...')}',
                         style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                         maxLines: 1,
                         minFontSize: 9,

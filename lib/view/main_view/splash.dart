@@ -18,6 +18,7 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:bip39/bip39.dart' as bip39;
 
 class Splash extends StatefulWidget {
   static String tag = "Splash";
@@ -196,8 +197,13 @@ class _SplashState extends State<Splash> {
     prefs.then((share) {
       // Check login status
       String val = share.getString(KeyConfig.user_login_token);
+
       if ( val != null && val != '') { // has login
         print('==> has logged in | ${DateTime.now()}');
+
+        GlobalInfo.userInfo.loginToken = val;
+        GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
+        GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
 
         // unlock
         _checkIsUnlock();
@@ -221,16 +227,19 @@ class _SplashState extends State<Splash> {
 
   // 
   void _getUserInfo(SharedPreferences share) {
-    GlobalInfo.userInfo.loginToken = share.getString(KeyConfig.user_login_token);
-    GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
+
     Future data = NetConfig.get(context,NetConfig.getUserInfo);
     // Tools.loadingAnimation(context);
     data.then((data) {
       if (data != null) {
         // print('==> --. DATA | ${DateTime.now()}');
-        
-        GlobalInfo.userInfo.mnemonic = share.get(KeyConfig.user_mnemonic);
-        GlobalInfo.userInfo.pinCode = share.get(KeyConfig.user_pinCode_md5);
+        String user_mnemonic = share.get(KeyConfig.user_mnemonic);
+        var words = user_mnemonic.split(' ');
+        if(words.length!=12){
+          user_mnemonic = Tools.decryptAes(user_mnemonic);
+        }
+        GlobalInfo.userInfo.mnemonic = user_mnemonic;
+
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
         GlobalInfo.userInfo.init(context,null);

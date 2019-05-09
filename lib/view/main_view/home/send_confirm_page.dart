@@ -10,11 +10,12 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/model/mnemonic_phrase_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
-import 'package:encrypt/encrypt.dart' as encrypt;
+
 
 class SendConfirm extends StatelessWidget {
   static String tag = "Send Confirm";
@@ -117,83 +118,42 @@ class SendConfirm extends StatelessWidget {
   }
   transfer(BuildContext context){
     print(accountInfo.propertyId);
+    HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
     //btc send
     if(accountInfo.propertyId==0){
-      Future futureRSA = NetConfig.get(context,NetConfig.getUserRSAEncrypt);
-      futureRSA.then((publicKeyStr) async {
-
-        final plainText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
-        final key = encrypt.Key.fromUtf8('my 32 length key................');
-        final iv = encrypt.IV.fromUtf8('my 32 length key');
-
-        final encrypter = encrypt.Encrypter(encrypt.AES(key,mode:encrypt.AESMode.cbc));
-
-        final encrypted = encrypter.encrypt(plainText, iv: iv);
-        final decrypted = encrypter.decrypt(encrypted, iv: iv);
-
-        print(decrypted); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
-        print(encrypted.base64); // R4PxiU3h8YoIRqVowBXm36ZcCeNeZ4s1OvVBTfFlZRdmohQqOpPQqD1YecJeZMAop/hZ4OxqgC1WtwvX/hP9mw==
-
-
-
-
-
-        return;
-        String dir = (await getApplicationDocumentsDirectory()).path;
-        final publicKeyFile = File('$dir/public_key.pem');
-        publicKeyFile.create();
-        publicKeyFile.openWrite();
-        publicKeyFile.writeAsStringSync(publicKeyStr);
-        final parser = encrypt.RSAKeyParser();
-        print(publicKeyStr);
-        final RSAPublicKey publicKey = parser.parse(publicKeyFile.readAsStringSync());
-        print(publicKey);
-        HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
-        final encrypter1 = encrypt.Encrypter(encrypt.RSA(publicKey: publicKey));
-        var encrypted1  = encrypter.encrypt(wallet.wif);
-        print(wallet.wif);
-        print(encrypter);
-        Future future = NetConfig.post(
-            context,
-            NetConfig.btcSend, {
+      Future future = NetConfig.post(
+         context,
+         NetConfig.btcSend, {
           'fromBitCoinAddress':wallet.address,
-          'privkey':encrypted.base64,
+          'privkey':Tools.encryptAes(wallet.wif),
           'toBitCoinAddress':_sendInfo.toAddress,
           'amount':_sendInfo.amount.toString(),
           'minerFee':_sendInfo.minerFee.toString(),
-        });
-        future.then((data){
-          print(data);
-          if(data!=null){
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
-          }
-        });
+      });
+      future.then((data){
+        print(data);
+        if(data!=null){
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        }
       });
     }else{
-      Future futureRSA = NetConfig.get(context,NetConfig.getUserRSAEncrypt);
-      futureRSA.then((publicKey){
-        HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
-//        var encryptedFuture = encryptString(wallet.wif, publicKey);
-//        encryptedFuture.then((encryptedString){
-        Future future = NetConfig.post(
-            context,
-            NetConfig.omniRawTransaction, {
-          'propertyId':accountInfo.propertyId.toString(),
-          'fromBitCoinAddress':wallet.address,
-          'privkey':wallet.wif,
-          'toBitCoinAddress':_sendInfo.toAddress,
-          'amount':_sendInfo.amount.toString(),
-          'minerFee':_sendInfo.minerFee.toString(),
-        });
-        future.then((data){
-          if(data!=null){
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
-          }
-        });
+      Future future = NetConfig.post(
+          context,
+          NetConfig.omniRawTransaction, {
+            'propertyId':accountInfo.propertyId.toString(),
+            'fromBitCoinAddress':wallet.address,
+            'privkey':Tools.encryptAes(wallet.wif),
+            'toBitCoinAddress':_sendInfo.toAddress,
+            'amount':_sendInfo.amount.toString(),
+            'minerFee':_sendInfo.minerFee.toString(),
       });
-//      });
+      future.then((data){
+        if(data!=null){
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        }
+      });
     }
   }
 }

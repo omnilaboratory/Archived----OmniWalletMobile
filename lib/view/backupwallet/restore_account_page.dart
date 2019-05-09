@@ -214,7 +214,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
 
         String pin = this.controller1.text;
         String pin2 = this.controller2.text;
-        if(pin.isEmpty||pin.isEmpty||pin != pin2){
+        if(pin.isEmpty||pin2.isEmpty||pin != pin2){
           Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
           return null;
         }
@@ -238,23 +238,23 @@ class _RestoreAccountState extends State<RestoreAccount> {
             );
         result.then((data){
           if(data!=null){
-
+            GlobalInfo.userInfo.userId = userId;
             GlobalInfo.userInfo.faceUrl = data['faceUrl'];
             GlobalInfo.userInfo.nickname = data['nickname'];
             GlobalInfo.userInfo.loginToken = data['token'];
             Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
 
-            GlobalInfo.bip39Seed = null;
-            Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
-            GlobalInfo.userInfo.mnemonic = _mnemonic;
-
-            Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
-            GlobalInfo.userInfo.userId = userId;
-
             Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
             GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
 
 
+            Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(_mnemonic));
+            GlobalInfo.userInfo.mnemonic = _mnemonic;
+
+            Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
+
+
+            GlobalInfo.bip39Seed = null;
             GlobalInfo.userInfo.init(context,(){
               Navigator.of(context).pop();
               Navigator.of(context).pushAndRemoveUntil(

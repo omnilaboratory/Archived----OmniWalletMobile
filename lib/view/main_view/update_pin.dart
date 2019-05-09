@@ -117,8 +117,8 @@ class _UpdatePINState extends State<UpdatePIN> {
 
     String pin = this.controller1.text;
     String pin2 = this.controller2.text;
-    if(pin.isEmpty||pin.isEmpty||pin != pin2){
-      NetConfig.showToast(WalletLocalizations.of(context).restore_account_tip_error);
+    if(pin.isEmpty||pin2.isEmpty||pin != pin2){
+      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
       return null;
     }
     String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
@@ -128,8 +128,14 @@ class _UpdatePINState extends State<UpdatePIN> {
         'newPsw':_pinCode_new_md5
       },
     );
-    Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
     GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
+
+    Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
+    //更新加密的助记词
+    Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(GlobalInfo.userInfo.mnemonic));
+    //更新加密的助记词种子
+    Tools.saveStringKeyValue(KeyConfig.user_mnemonicSeed, Tools.encryptAes(GlobalInfo.bip39Seed.toString()));
+
     Navigator.of(context).pop();
   }
 
