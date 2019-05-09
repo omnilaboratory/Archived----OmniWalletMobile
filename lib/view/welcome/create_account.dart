@@ -313,18 +313,15 @@ class _CreateAccountState extends State<CreateAccount> {
       this.canCreate =false;
       /// 1) create [Mnemonic Phrase] and save it to locally (Clear text)
       String _mnemonic =  MnemonicPhrase.getInstance().createPhrases();
-      Tools.saveStringKeyValue(KeyConfig.user_mnemonic, _mnemonic);
       print('==> [Mnemonic Phrase] ==> $_mnemonic');
 
       /// 2) Encrypt the [Mnemonic Phrase] with the MD5 algorithm and
       /// save it locally and remotely as User ID. 
       /// (User ID is used to associate user data)
       String _mnemonic_md5 =  Tools.convertMD5Str(_mnemonic);
-      Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, _mnemonic_md5);
 
       /// 3) Encrypt the [PIN code] with the MD5 algorithm and save it locally
       String _pinCode_md5 = Tools.convertMD5Str(_pinCodeController.text);
-      Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
 
       Tools.loadingAnimation(context);
       /// 4) [Nick name] (Clear text) and [Mnemonic Phrase] (MD5) save to remote.
@@ -349,6 +346,12 @@ class _CreateAccountState extends State<CreateAccount> {
           GlobalInfo.userInfo.nickname = _nickNameController.text;
           GlobalInfo.userInfo.loginToken = data['token'];
           Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
+
+          Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(_mnemonic));
+          Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, _mnemonic_md5);
+          Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_md5);
+
+          GlobalInfo.userInfo.mnemonicSeed = null;
 
           GlobalInfo.userInfo.init(context,(){
             Navigator.of(context).pop();

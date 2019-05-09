@@ -102,7 +102,7 @@ class _WalletAddressState extends State<WalletAddress> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              walletData.address.replaceRange(10, walletData.address.length - 10, '......'),
+              walletData.address.replaceRange(6, walletData.address.length - 6, '...'),
               style: TextStyle(
                 color: Colors.grey,
               ),

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/model/user_info.dart';
+import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:bip39/bip39.dart' as bip39;
 
@@ -47,6 +48,10 @@ class  GlobalInfo{
       var seed = share.get(KeyConfig.user_mnemonicSeed);
       if(seed!=null){
         var seedStr = seed.toString();
+        //兼容没有加密的之前的种子
+        if(seedStr.startsWith('[')==false&&seedStr.endsWith(']')==false){
+          seedStr = Tools.decryptAes(seedStr);
+        }
         seedStr = seedStr.substring(1,seedStr.length-1);
         List<String> seedStrArr = seedStr.split(',');
         List<int> seedArr = [];
@@ -59,7 +64,8 @@ class  GlobalInfo{
 //        Tools.showToast('data is initing,please wait',toastLength: Toast.LENGTH_LONG);
         print('seed init begin ${DateTime.now()}');
         GlobalInfo.bip39Seed = await getSeed(_mnemonic);
-        share.setString(KeyConfig.user_mnemonicSeed,GlobalInfo.bip39Seed.toString());
+        share.setString(KeyConfig.user_mnemonicSeed,Tools.encryptAes(GlobalInfo.bip39Seed.toString()));
+
         print('seed init finish ${DateTime.now()}');
         callback();
       }
