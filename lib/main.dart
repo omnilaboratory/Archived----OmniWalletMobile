@@ -120,7 +120,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         _timer = Timer(
-          Duration(seconds: 3), 
+          Duration(seconds: 3),
           () {
             GlobalInfo.isInputPIN = true;
             _timer.cancel();
@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  /// For unclock code end.
+
   ///----------------------
   
 
@@ -202,7 +202,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         home: Unlock(),
       );
 
-    } else {  // No need unclock. 
+    } else {  // No need unclock.
       return _backFromBackground();
     }
   }

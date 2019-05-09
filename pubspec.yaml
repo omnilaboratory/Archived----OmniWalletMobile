@@ -73,7 +73,7 @@ dependencies:
 
   fluttertoast: ^3.0.4
   #  Flutter plugin to encrypt, decrypt (RSA/ECB/PCSK1), verify and sign string with a public and a private key
-  # simple_rsa: ^0.0.5
+  simple_rsa: ^0.0.5
 
   url_launcher: ^5.0.2
 

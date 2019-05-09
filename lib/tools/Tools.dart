@@ -111,4 +111,24 @@ class Tools{
       );
     }
   }
+
+//  static encryptAes(String content) async{
+//    String encryptedString;
+//    String key = 'xxxxxxxxxxxxxxxx';
+//    String iv = 'yyyyyyyyyyyyyyyy';
+//    encryptedString = await Cipher2.encryptAesCbc128Padding7(content, key, iv);
+//    return encryptedString;
+//  }
+//
+//  static decryptAes(String encryptedString) async{
+//    String decryptedString;
+//    String key = 'xxxxxxxxxxxxxxxx';
+//    String iv = 'yyyyyyyyyyyyyyyy';
+//    decryptedString = await Cipher2.decryptAesCbc128Padding7(encryptedString, key, iv);
+//    return decryptedString;
+//  }
+
+
+
+
 }
