@@ -14,6 +14,7 @@ import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
+import 'package:wallet_app/view/main_view/unlock.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -196,20 +197,36 @@ class _SplashState extends State<Splash> {
 
   /// Check if will be locked.
   _willBeLocked() {
-    
-    // Tools.showToast(
-    //   GlobalInfo.fromWhere.toString(),
-    //   toastLength: Toast.LENGTH_LONG
-    // );
+    // if (GlobalInfo.fromWhere == null) { // Will be locked.
+    //   GlobalInfo.fromWhere = 0; // from reload
+    //   // GlobalInfo.isInputPIN = true;
+    //   // MyApp.restartApp(context);
 
-    if (GlobalInfo.fromWhere == null) { // Will be locked.
-      GlobalInfo.fromWhere = 0; // from reload
-      GlobalInfo.isInputPIN = true;
-      MyApp.restartApp(context);
+      
+    // }
+
+    Navigator.of(context).pushAndRemoveUntil( // show unlock page.
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return Unlock(callback: _continue); 
+          }
+        ),
+        (route) => route == null,
+      );
+
       return true;
-    }
+  }
 
-    return false;
+  ///
+  _continue() async {
+
+    SharedPreferences share = await SharedPreferences.getInstance();
+
+    // get user info from server
+    _getUserInfo(share);
+
+    // check language, currency unit, theme.
+    // _getSettings(share);
   }
 
   ///
@@ -228,13 +245,7 @@ class _SplashState extends State<Splash> {
         GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
         
         // check lock
-        if( !_willBeLocked() ) {  // No lock
-          // get user info from server
-          _getUserInfo(share);
-
-          // check language, currency unit, theme.
-          _getSettings(share);
-        }
+        _willBeLocked();
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');

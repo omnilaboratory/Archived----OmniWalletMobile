@@ -166,7 +166,7 @@ class _UserCenterState extends State<UserCenter> {
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
           if (BackupWalletIndex.tag == route) { // will be go back up page.
-            Tools.showToast(GlobalInfo.userInfo.mnemonic);
+            // Tools.showToast(GlobalInfo.userInfo.mnemonic);
             Navigator.of(context).push( // show unlock page.
               MaterialPageRoute(
                 builder: (BuildContext context) {

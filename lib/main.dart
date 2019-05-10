@@ -144,12 +144,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
         if (GlobalInfo.isInputPIN) { // Will be locked.
           GlobalInfo.fromWhere = 1; // from background.
+          routeObserver.navigator.pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return Unlock(); 
+              }
+            ),
+            (route) => route == null,
+          );
         }
 
-//        routeObserver.navigator.push(route)
-
-        _timer.cancel();
-        setState(() {});
+        // _timer.cancel();
+        // setState(() {});
       }
     }
 
@@ -163,7 +169,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
-
 
   ///----------------------
   
@@ -271,6 +276,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ],
         routes: routes,
         // home: BackupWalletIndex(),
+
+        navigatorObservers: [routeObserver],
         home: Splash(),
       ),
     );

@@ -17,10 +17,9 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class Unlock extends StatefulWidget {
   static String tag = "Unlock";
 
+  // for unlock to back up page from my page.
   final Function callback;
-
-  Unlock({Key key,this.callback}):super(key:key);
-
+  Unlock({Key key, this.callback}) : super(key: key);
 
   @override
   _UnlockState createState() => _UnlockState();
@@ -103,23 +102,16 @@ class _UnlockState extends State<Unlock> {
       key: _formKey,
       // autovalidate: true,
       onChanged: () {
-        bool bflag = true;
         if (_pinCodeController.text.trim().length == 0) {
           _hasClearIcon = false;
         } else {
           _hasClearIcon = true;
           if (_pinCodeController.text.trim().length == 6) {
-            bflag = false;
-        print('==> VAL--------');
+            // print('==> _unlockApp --------');
             _unlockApp();
-            return;
           }
         }
-
-        if (bflag) {
-        setState(() { });
-          
-        }
+        setState(() {});
       },
       
       child: Padding(
@@ -163,13 +155,14 @@ class _UnlockState extends State<Unlock> {
     final form = _formKey.currentState;
 
     if (form.validate()) { // Unlocked successfully.
-
       if (widget.callback != null) { // from send or my page.
         // print('==> ${widget.callback}');
         widget.callback();
+        Navigator.of(context).pop();
       } else {
         GlobalInfo.isInputPIN = false;
-        MyApp.restartApp(context);
+        Navigator.of(context).pop();
+        // MyApp.restartApp(context);
       }
     }
   }
