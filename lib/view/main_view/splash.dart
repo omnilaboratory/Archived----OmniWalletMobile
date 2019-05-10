@@ -205,14 +205,23 @@ class _SplashState extends State<Splash> {
       
     // }
 
-    Navigator.of(context).pushAndRemoveUntil( // show unlock page.
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return Unlock(callback: _continue); 
-          }
-        ),
-        (route) => route == null,
-      );
+    routeObserver.navigator.push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return Unlock(callback: _continue); 
+              }
+            ),
+            // (route) => route == null,
+          );
+
+    // Navigator.of(context).pushAndRemoveUntil( // show unlock page.
+    //     MaterialPageRoute(
+    //       builder: (BuildContext context) {
+    //         return Unlock(callback: _continue); 
+    //       }
+    //     ),
+    //     (route) => route == null,
+    //   );
 
       return true;
   }
@@ -221,12 +230,11 @@ class _SplashState extends State<Splash> {
   _continue() async {
 
     SharedPreferences share = await SharedPreferences.getInstance();
-
     // get user info from server
     _getUserInfo(share);
 
     // check language, currency unit, theme.
-    // _getSettings(share);
+    _getSettings(share);
   }
 
   ///

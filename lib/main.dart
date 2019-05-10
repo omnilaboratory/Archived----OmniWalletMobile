@@ -137,6 +137,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     // Back from background.
     if (state == AppLifecycleState.resumed) {
+      _timer.cancel();
+      
       print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
 
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.

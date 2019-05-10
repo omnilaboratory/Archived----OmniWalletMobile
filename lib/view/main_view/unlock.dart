@@ -157,8 +157,8 @@ class _UnlockState extends State<Unlock> {
     if (form.validate()) { // Unlocked successfully.
       if (widget.callback != null) { // from send or my page.
         // print('==> ${widget.callback}');
-        widget.callback();
         Navigator.of(context).pop();
+        widget.callback();
       } else {
         GlobalInfo.isInputPIN = false;
         Navigator.of(context).pop();
