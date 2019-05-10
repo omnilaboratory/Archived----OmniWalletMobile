@@ -31,6 +31,7 @@ class _UnlockState extends State<Unlock> {
   TextEditingController _pinCodeController = TextEditingController();
   FocusNode _nodePin = FocusNode();
   bool _hasClearIcon = false;
+  bool hasSixWord = false;
 
   @override
   void initState() {
@@ -54,7 +55,7 @@ class _UnlockState extends State<Unlock> {
 
   @override
   void dispose() {
-    _pinCodeController.clear();
+    _pinCodeController.dispose();
     _nodePin.removeListener(_listener);
     super.dispose();
   }
@@ -108,8 +109,11 @@ class _UnlockState extends State<Unlock> {
         } else {
           _hasClearIcon = true;
           if (_pinCodeController.text.trim().length == 6) {
-            // print('==> _unlockApp --------');
-            _unlockApp();
+            if(hasSixWord==false){
+              hasSixWord = true;
+              FocusScope.of(context).requestFocus(new FocusNode());
+              _unlockApp();
+            }
           }
         }
         setState(() {});
@@ -159,13 +163,10 @@ class _UnlockState extends State<Unlock> {
       _pinCodeController.clear();
 
       if (widget.callback != null) { // from send or my page.
-        // print('==> ${widget.callback}');
-//        Navigator.of(context).pop();
         widget.callback();
       } else {
         GlobalInfo.isInputPIN = false;
         Navigator.of(context).pop();
-        // MyApp.restartApp(context);
       }
     }
   }
