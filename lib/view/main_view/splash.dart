@@ -60,14 +60,12 @@ class _SplashState extends State<Splash> {
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment:  MainAxisAlignment.start,
-            children: <Widget>[
-              Expanded(child: Container()),
-              Image.asset('assets/logo-png.png', width: 229, height: 180),
-              Expanded(child: Container()),
-              InkWell(
+        child: Stack(
+          children: <Widget>[
+            Center(child: Image.asset('assets/logo-png.png', width: 229, height: 180)),
+            Align(
+              alignment: Alignment(0, 0.7),
+              child: InkWell(
                 onTap: this._onTouchRefresh(),
                 child: AnimatedOpacity(
                   opacity: refreshOpacity,
@@ -75,9 +73,8 @@ class _SplashState extends State<Splash> {
                   child: Text('get again',style: TextStyle(fontSize: 20),),
                 ),
               ),
-              Expanded(child: Container()),
-            ],
-          ),
+            ),
+          ],
         ),
       )
     );
