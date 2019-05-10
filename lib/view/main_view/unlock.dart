@@ -54,6 +54,7 @@ class _UnlockState extends State<Unlock> {
 
   @override
   void dispose() {
+    _pinCodeController.clear();
     _nodePin.removeListener(_listener);
     super.dispose();
   }
@@ -155,9 +156,11 @@ class _UnlockState extends State<Unlock> {
     final form = _formKey.currentState;
 
     if (form.validate()) { // Unlocked successfully.
+      _pinCodeController.clear();
+
       if (widget.callback != null) { // from send or my page.
         // print('==> ${widget.callback}');
-        Navigator.of(context).pop();
+//        Navigator.of(context).pop();
         widget.callback();
       } else {
         GlobalInfo.isInputPIN = false;

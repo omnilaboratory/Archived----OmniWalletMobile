@@ -158,10 +158,12 @@ class NetConfig{
       Future<SharedPreferences> prefs = SharedPreferences.getInstance();
       prefs.then((share) {
         share.clear();
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => WelcomePageOne()),
-              (route) => route == null,
-        );
+        if(context!=null){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => WelcomePageOne()),
+                (route) => route == null,
+          );
+        }
       });
       showToast('user not exist',toastLength: Toast.LENGTH_LONG);
 

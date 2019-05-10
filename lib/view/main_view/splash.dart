@@ -205,23 +205,14 @@ class _SplashState extends State<Splash> {
       
     // }
 
-    routeObserver.navigator.push(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return Unlock(callback: _continue); 
-              }
-            ),
-            // (route) => route == null,
-          );
-
-    // Navigator.of(context).pushAndRemoveUntil( // show unlock page.
-    //     MaterialPageRoute(
-    //       builder: (BuildContext context) {
-    //         return Unlock(callback: _continue); 
-    //       }
-    //     ),
-    //     (route) => route == null,
-    //   );
+    Navigator.of(context).pushAndRemoveUntil( // show unlock page.
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return Unlock(callback: _continue); 
+          }
+        ),
+        (route) => route == null,
+      );
 
       return true;
   }
@@ -230,11 +221,12 @@ class _SplashState extends State<Splash> {
   _continue() async {
 
     SharedPreferences share = await SharedPreferences.getInstance();
+
     // get user info from server
     _getUserInfo(share);
 
     // check language, currency unit, theme.
-    _getSettings(share);
+     _getSettings(share);
   }
 
   ///
@@ -253,7 +245,12 @@ class _SplashState extends State<Splash> {
         GlobalInfo.userInfo.userId = share.getString(KeyConfig.user_mnemonic_md5);
         
         // check lock
-        _willBeLocked();
+//        _willBeLocked();
+        // get user info from server
+        _getUserInfo(share);
+
+        // check language, currency unit, theme.
+        _getSettings(share);
 
       } else { // new user or logout (delete id)
         print('==> new user or logout (delete id)');
@@ -304,16 +301,28 @@ class _SplashState extends State<Splash> {
 
       // show wallet main page
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => MainPage()),
+        MaterialPageRoute(builder: (context) => Unlock(callback: (){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => MainPage()),
+                (route) => route == null,
+          );
+        },)),
             (route) => route == null,
       );
     } else { // no backup
       print('==> no backup | ${DateTime.now()}');
-      // show mnimonic back up page
+
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => BackupWalletIndex()),
+        MaterialPageRoute(builder: (context) => Unlock(callback: (){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => BackupWalletIndex()),
+                (route) => route == null,
+          );
+        },)),
             (route) => route == null,
       );
+      // show mnimonic back up page
+
     }
   }
 
