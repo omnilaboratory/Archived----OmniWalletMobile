@@ -19,12 +19,7 @@ class BackupMnemonicPhrase extends Model{
   }
 
   List<WordInfo> get mnemonicPhrases{
-    if(this.wordList==null){
-      Tools.getStringKeyValue('user.mnemonic').then((data){
-        createNewWords(data);
-        notifyListeners();
-      });
-    }
+    createNewWords(GlobalInfo.userInfo.mnemonic);
     return this.wordList;
   }
 
