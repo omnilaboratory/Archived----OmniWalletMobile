@@ -13,6 +13,7 @@ import 'package:wallet_app/view/main_view/Help.dart';
 import 'package:wallet_app/view/main_view/about.dart';
 import 'package:wallet_app/view/main_view/service_terms.dart';
 import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view/main_view/unlock.dart';
 import 'package:wallet_app/view/main_view/user_info_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
@@ -164,20 +165,32 @@ class _UserCenterState extends State<UserCenter> {
         title: Text(item),
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          if(BackupWalletIndex.tag == route)
-          {
-            print('go to bankup page');
-            Navigator.of(context).push(
+          if (BackupWalletIndex.tag == route) { // will be go back up page.
+            Tools.showToast(GlobalInfo.userInfo.mnemonic);
+            Navigator.of(context).push( // show unlock page.
               MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return BackupWalletIndex(param: 1,);
-                  }
+                builder: (BuildContext context) {
+                  return Unlock(callback: _goBackup); 
+                }
               ),
             );
-          }else{
+
+          } else { // will be go others page.
             Navigator.of(context).pushNamed(route);
           }
         },
+      ),
+    );
+  }
+
+  /// go to back up page
+  _goBackup() {
+    print('go to backup page');
+    Navigator.of(context).pushReplacement(  // Replace unlock page.
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return BackupWalletIndex(param: 1); // param 1 indicate to back up page from my page.
+        }
       ),
     );
   }
