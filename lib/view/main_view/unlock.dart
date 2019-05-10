@@ -104,7 +104,6 @@ class _UnlockState extends State<Unlock> {
       key: _formKey,
       // autovalidate: true,
       onChanged: () {
-        print('aaaa ${hasSixWord}');
         if (_pinCodeController.text.trim().length == 0) {
           _hasClearIcon = false;
         } else {
@@ -112,7 +111,6 @@ class _UnlockState extends State<Unlock> {
           if (_pinCodeController.text.trim().length == 6) {
             if(hasSixWord==false){
               hasSixWord = true;
-              FocusScope.of(context).requestFocus(new FocusNode());
               _unlockApp();
             }
           }
@@ -147,13 +145,9 @@ class _UnlockState extends State<Unlock> {
   
   /// validate pin
   _validatePIN(String val) {
-     print('==> Unlock PAGE -> PIN MD5 = ${Tools.convertMD5Str(val)}');
     if (Tools.convertMD5Str(val) != GlobalInfo.userInfo.pinCode) {
       return WalletLocalizations.of(context).unlockPageAppTips;
     }
-     setState(() {
-
-     });
     return null;
 
   }
@@ -164,6 +158,7 @@ class _UnlockState extends State<Unlock> {
     final form = _formKey.currentState;
 
     if (form.validate()) { // Unlocked successfully.
+      FocusScope.of(context).requestFocus(new FocusNode());
       _pinCodeController.clear();
 
       if (widget.callback != null) { // from send or my page.
