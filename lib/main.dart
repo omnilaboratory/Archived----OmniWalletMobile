@@ -31,6 +31,9 @@ import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
+
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 void main() {
 //   debugPaintSizeEnabled = true;
   runApp(MyApp());
@@ -116,6 +119,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     print("==> lifeChanged = $state");
 
+
     // Enter background.
     if (state == AppLifecycleState.paused) {
       print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
@@ -141,6 +145,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         if (GlobalInfo.isInputPIN) { // Will be locked.
           GlobalInfo.fromWhere = 1; // from background.
         }
+
+//        routeObserver.navigator.push(route)
 
         _timer.cancel();
         setState(() {});

@@ -21,6 +21,7 @@ class _BackupWalletWordsState extends State<BackupWalletWords> {
 
   @override
   Widget build(BuildContext context) {
+
     if(stateModel==null){
       stateModel = MainStateModel().of(context) ;
     }
