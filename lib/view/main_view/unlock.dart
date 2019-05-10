@@ -104,6 +104,7 @@ class _UnlockState extends State<Unlock> {
       key: _formKey,
       // autovalidate: true,
       onChanged: () {
+        print('aaaa ${hasSixWord}');
         if (_pinCodeController.text.trim().length == 0) {
           _hasClearIcon = false;
         } else {
@@ -146,12 +147,15 @@ class _UnlockState extends State<Unlock> {
   
   /// validate pin
   _validatePIN(String val) {
-    // print('==> Unlock PAGE -> PIN MD5 = ${Tools.convertMD5Str(val)}');
+     print('==> Unlock PAGE -> PIN MD5 = ${Tools.convertMD5Str(val)}');
     if (Tools.convertMD5Str(val) != GlobalInfo.userInfo.pinCode) {
       return WalletLocalizations.of(context).unlockPageAppTips;
     }
+     setState(() {
 
+     });
     return null;
+
   }
 
   /// Unlock app.
@@ -168,6 +172,8 @@ class _UnlockState extends State<Unlock> {
         GlobalInfo.isInputPIN = false;
         Navigator.of(context).pop();
       }
+    }else{
+      hasSixWord = false;
     }
   }
 }
