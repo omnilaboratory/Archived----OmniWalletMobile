@@ -64,10 +64,10 @@ class MyApp extends StatefulWidget {
   }
 
   /// Restart app when unlock.
-  static void restartApp(BuildContext context) {
-    _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
-    state.setState(() {});
-  }
+  // static void restartApp(BuildContext context) {
+  //   _MyAppState state = context.ancestorStateOfType(TypeMatcher<_MyAppState>());
+  //   state.setState(() {});
+  // }
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
@@ -122,13 +122,15 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     // Enter background.
     if (state == AppLifecycleState.paused) {
-      print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
-
+      // print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+      print("==> paused -> isLocked = ${GlobalInfo.isLocked}");
+      
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
+        GlobalInfo.isLocked = false;
         _timer = Timer(
           Duration(seconds: 3),
           () {
-            GlobalInfo.isInputPIN = true;
+            GlobalInfo.isLocked = true;
             _timer.cancel();
           }
         );
@@ -138,29 +140,25 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     // Back from background.
     if (state == AppLifecycleState.resumed) {
       _timer.cancel();
-      
-      print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
+
+      // print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
 
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
-        print("==> _isInputPIN = ${GlobalInfo.isInputPIN}");
+        print("==> resumed -> isLocked = ${GlobalInfo.isLocked}");
 
-        if (GlobalInfo.isInputPIN) { // Will be locked.
-//          GlobalInfo.fromWhere = 1; // from background.
-          routeObserver.navigator.push(
-            MaterialPageRoute(
+        if (GlobalInfo.isLocked) { // Will be locked.
+          // print("==> resumed -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
+          // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
+          if (GlobalInfo.isUnlockSuccessfully) {
+            routeObserver.navigator.push(
+              MaterialPageRoute(
                 builder: (BuildContext context) {
                   return Unlock();
                 }
-            ),
-          );
-
-
+              ),
+            );
+          }
         }
-
-//        routeObserver.navigator.push(route)
-
-//        _timer.cancel();
-//        setState(() {});
       }
     }
 
@@ -175,65 +173,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-
   ///----------------------
   
 
   @override
   Widget build(BuildContext context) {
-
-    print("==> _isInputPIN At BULID = ${GlobalInfo.isInputPIN}");
-
-    // Unclock app by input pin code.
-    if (GlobalInfo.isInputPIN) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-
-        theme: ThemeData(
-          brightness:brightness,
-          appBarTheme: AppBarTheme(
-            elevation: 0,
-            color: brightness==Brightness.dark? Colors.black:Colors.white,
-            brightness: brightness,
-            textTheme: brightness==Brightness.dark?
-                TextTheme(title: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.normal))
-                :TextTheme(title: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.normal)),
-            iconTheme: brightness==Brightness.dark?IconThemeData(color: Colors.white):IconThemeData(color: Colors.black)
-          )
-        ),
-
-        localeResolutionCallback: (deviceLocale, supportedLocales) {
-          if (this.locale == null) {
-            this.locale = deviceLocale;
-          }
-          return this.locale;
-        },
-
-        // set app language
-        locale: this.locale,
-
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          WalletLocalizationsDelegate.delegate,
-          ChineseCupertinoLocalizations.delegate,  // Fix for Flutter Bug
-        ],
-        supportedLocales: [
-          const Locale('zh','CH'),
-          const Locale('en','US'),
-          const Locale('zh',''),  // Fix for Flutter Bug
-        ],
-
-        home: Unlock(),
-      );
-
-    } else {  // No need unclock.
-      return _backFromBackground();
-    }
+    return _buildApp();
   }
 
   ///
-  Widget _backFromBackground() {
+  Widget _buildApp() {
 
     AppCustomColor.setColors(brightness);
 

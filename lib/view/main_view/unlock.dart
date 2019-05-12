@@ -25,10 +25,12 @@ class _UnlockState extends State<Unlock> {
   TextEditingController _pinCodeController = TextEditingController();
   FocusNode _nodePin = FocusNode();
   bool _hasClearIcon = false;
-  bool hasSixWord = false;
+  bool _hasSixNumber = false;
 
   @override
   void initState() {
+    GlobalInfo.isUnlockSuccessfully = false;
+    // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
     _nodePin.addListener(_listener);
     super.initState();
   }
@@ -54,21 +56,28 @@ class _UnlockState extends State<Unlock> {
     super.dispose();
   }
 
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
-      ),
 
-      body: FormKeyboardActions(
-        actions: _actions(),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                _inputPIN(),
-              ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          // leading: Text(''),
+          automaticallyImplyLeading: false,
+          title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
+        ),
+
+        body: FormKeyboardActions(
+          actions: _actions(),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  _inputPIN(),
+                ],
+              ),
             ),
           ),
         ),
@@ -93,7 +102,6 @@ class _UnlockState extends State<Unlock> {
 
   ///
   Widget _inputPIN() {
-
     return Form(
       key: _formKey,
       // autovalidate: true,
@@ -103,8 +111,8 @@ class _UnlockState extends State<Unlock> {
         } else {
           _hasClearIcon = true;
           if (_pinCodeController.text.trim().length == 6) {
-            if(hasSixWord==false){
-              hasSixWord = true;
+            if (_hasSixNumber == false) {
+              _hasSixNumber = true;
               _unlockApp();
             }
           }
@@ -118,6 +126,7 @@ class _UnlockState extends State<Unlock> {
           controller:  _pinCodeController,
           focusNode:   _nodePin,
           autofocus: true,
+          obscureText: true,
           maxLength: 6,
           validator: (val) => _validatePIN(val),
           keyboardType: TextInputType.number,
@@ -143,7 +152,6 @@ class _UnlockState extends State<Unlock> {
       return WalletLocalizations.of(context).unlockPageAppTips;
     }
     return null;
-
   }
 
   /// Unlock app.
@@ -155,14 +163,18 @@ class _UnlockState extends State<Unlock> {
       FocusScope.of(context).requestFocus(new FocusNode());
       _pinCodeController.clear();
 
+      GlobalInfo.isUnlockSuccessfully = true;  // Not be locked. (Unlock successfully)
+
       if (widget.callback != null) { // from send or my page.
         widget.callback();
-      } else {
-        GlobalInfo.isInputPIN = false;
+      } else { // from background
         Navigator.of(context).pop();
       }
-    }else{
-      hasSixWord = false;
+
+      print("==> _unlockApp -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
+
+    } else {
+      _hasSixNumber = false;
     }
   }
 }

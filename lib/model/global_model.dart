@@ -27,8 +27,11 @@ class  GlobalInfo{
   ///
   static String colorTheme = KeyConfig.light;
 
-  /// Is input PIN code for unlock app. 
-  static bool isInputPIN = false;
+  /// Is Unlock Successfully
+  static bool isUnlockSuccessfully = true;
+
+  /// Check currently status if be locked. - False: not be locked.
+  static bool isLocked = false;
 
   /// From where - 0: reload  1: background.
   static int fromWhere;
