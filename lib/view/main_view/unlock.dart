@@ -65,10 +65,11 @@ class _UnlockState extends State<Unlock> {
 
 
     return WillPopScope(
-      onWillPop: () async {
+      onWillPop: widget.parentID==null?() async {
+          print('aaaaaaaaaaaaaa');
           GlobalInfo.isUnlockSuccessfully = true;
           return true;
-      },
+      }:null,
       child: Scaffold(
         appBar: AppBar(
           // leading: Text(''),
