@@ -11,6 +11,7 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class Unlock extends StatefulWidget {
   static String tag = "Unlock";
 
+  ///  1: Splash 2:Background 11:Backup 12:Send
   final int parentID;
 
 
@@ -33,7 +34,9 @@ class _UnlockState extends State<Unlock> {
   @override
   void initState() {
     GlobalInfo.isUnlockSuccessfully = false;
-    // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
+    GlobalInfo.fromParent = widget.parentID;
+
+    print('==> initState -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
     _nodePin.addListener(_listener);
     super.initState();
   }
@@ -54,6 +57,8 @@ class _UnlockState extends State<Unlock> {
 
   @override
   void dispose() {
+    // GlobalInfo.isUnlockSuccessfully = true;
+    // print("==> dispose -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
     _pinCodeController.dispose();
     _nodePin.removeListener(_listener);
     super.dispose();
@@ -65,15 +70,13 @@ class _UnlockState extends State<Unlock> {
 
 
     return WillPopScope(
-      // null: enable device's back. false: disable.
-      onWillPop: () async {
-          GlobalInfo.isUnlockSuccessfully = true;
-          return false;
-      },
+      onWillPop: widget.parentID > 10 ? () async {
+        GlobalInfo.isUnlockSuccessfully = true;
+        return true;
+      } : () async => false,
       child: Scaffold(
         appBar: AppBar(
-          // leading: Text(''),f
-          automaticallyImplyLeading: widget.parentID != null? false:true,
+          automaticallyImplyLeading: widget.parentID > 10 ? true : false,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
         ),
 
