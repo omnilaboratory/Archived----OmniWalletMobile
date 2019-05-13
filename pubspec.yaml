@@ -61,7 +61,7 @@ dependencies:
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
   qr_flutter: ^2.0.0+51
   #------------------------
-  flutter_webview_plugin: ^0.3.3
+  flutter_webview_plugin: ^0.3.5
 
   flutter_slidable: "^0.4.9"
 

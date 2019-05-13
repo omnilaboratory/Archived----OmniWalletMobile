@@ -11,8 +11,8 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class Unlock extends StatefulWidget {
   static String tag = "Unlock";
 
-  final int parentID; 
-  
+  final int parentID;
+
 
   // for unlock to back up page from my page.
   final Function callback;
@@ -65,7 +65,10 @@ class _UnlockState extends State<Unlock> {
 
 
     return WillPopScope(
-      onWillPop: widget.parentID == null ? null: () async => false,
+      onWillPop: widget.parentID == null ? null: () async{
+        GlobalInfo.isUnlockSuccessfully = true;
+        return false;
+      },
       child: Scaffold(
         appBar: AppBar(
           // leading: Text(''),
