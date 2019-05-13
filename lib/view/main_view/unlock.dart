@@ -11,9 +11,11 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class Unlock extends StatefulWidget {
   static String tag = "Unlock";
 
+  final int parentID;
+
   // for unlock to back up page from my page.
   final Function callback;
-  Unlock({Key key, this.callback}) : super(key: key);
+  Unlock({Key key, this.callback, this.parentID = null}) : super(key: key);
 
   @override
   _UnlockState createState() => _UnlockState();
@@ -60,12 +62,13 @@ class _UnlockState extends State<Unlock> {
   @override
   Widget build(BuildContext context) {
 
+
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: widget.parentID == null ? null: () async => false,
       child: Scaffold(
         appBar: AppBar(
           // leading: Text(''),
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: widget.parentID == null ? true : false,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
         ),
 
