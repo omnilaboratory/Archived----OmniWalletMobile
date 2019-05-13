@@ -65,13 +65,14 @@ class _UnlockState extends State<Unlock> {
 
 
     return WillPopScope(
+      // null: enable device's back. false: disable.
       onWillPop: () async {
           GlobalInfo.isUnlockSuccessfully = true;
-          return true;
+          return false;
       },
       child: Scaffold(
         appBar: AppBar(
-          // leading: Text(''),
+          // leading: Text(''),f
           automaticallyImplyLeading: widget.parentID != null? false:true,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
         ),

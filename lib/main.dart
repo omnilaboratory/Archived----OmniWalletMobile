@@ -147,13 +147,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         print("==> resumed -> isLocked = ${GlobalInfo.isLocked}");
 
         if (GlobalInfo.isLocked) { // Will be locked.
-          // print("==> resumed -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
+          print("==> resumed -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
           // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
           if (GlobalInfo.isUnlockSuccessfully) {
             routeObserver.navigator.push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Unlock(parentID: 1,);
+                  return Unlock(parentID: 1);
                 }
               ),
             );
