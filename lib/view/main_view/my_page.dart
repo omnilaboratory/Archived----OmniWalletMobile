@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 /// My profile page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-21
@@ -168,7 +169,8 @@ class _UserCenterState extends State<UserCenter> {
           if (BackupWalletIndex.tag == route) { // will be go back up page.
             // Tools.showToast(GlobalInfo.userInfo.mnemonic);
             Navigator.of(context).push( // show unlock page.
-              MaterialPageRoute(
+              CupertinoPageRoute(
+              // MaterialPageRoute(
                 builder: (BuildContext context) {
                   return Unlock(parentID: 11, callback: _goBackup); 
                 }

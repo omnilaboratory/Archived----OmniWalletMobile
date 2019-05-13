@@ -11,7 +11,7 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class Unlock extends StatefulWidget {
   static String tag = "Unlock";
 
-  ///  1: Splash 2:Background 11:Backup 12:Send
+  /// 1:Splash 2:Background 11:Backup 12:Send
   final int parentID;
 
 
@@ -67,15 +67,18 @@ class _UnlockState extends State<Unlock> {
   
   @override
   Widget build(BuildContext context) {
-
-
     return WillPopScope(
       onWillPop: widget.parentID > 10 ? () async {
         GlobalInfo.isUnlockSuccessfully = true;
         return true;
       } : () async => false,
+
       child: Scaffold(
         appBar: AppBar(
+          // leading: FlatButton(
+          //   child: Text('Cancel'),
+          //   onPressed: () {},
+          // ),
           automaticallyImplyLeading: widget.parentID > 10 ? true : false,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
         ),
