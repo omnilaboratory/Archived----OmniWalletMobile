@@ -33,6 +33,9 @@ class  GlobalInfo{
   /// Check currently status if be locked. - False: not be locked.
   static bool isLocked = false;
 
+  /// 1: Splash 2:Background 11:Backup 12:Send
+  static int fromParent = null;
+
   /// From where - 0: reload  1: background.
   static int fromWhere;
 

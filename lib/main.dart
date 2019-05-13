@@ -127,6 +127,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         GlobalInfo.isLocked = false;
         print("==> paused -> isLocked = ${GlobalInfo.isLocked}");
+
+        // if (GlobalInfo.fromParent > 10) {
+        //   routeObserver.navigator.pop();
+        // }
+
         _timer = Timer(
           Duration(seconds: 3),
           () {
@@ -153,10 +158,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             routeObserver.navigator.push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Unlock(parentID: 1);
+                  return Unlock(parentID: 2);
                 }
               ),
             );
+          } else {
+            print("==> fromParent = ${GlobalInfo.fromParent}");
+            if (GlobalInfo.fromParent > 10) {
+              // routeObserver.navigator.pop();
+              routeObserver.navigator.pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return Unlock(parentID: 2);
+                  }
+                ),
+              );
+            }
           }
         }
       }

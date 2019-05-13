@@ -170,7 +170,7 @@ class _UserCenterState extends State<UserCenter> {
             Navigator.of(context).push( // show unlock page.
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Unlock(callback: _goBackup); 
+                  return Unlock(parentID: 11, callback: _goBackup); 
                 }
               ),
             );

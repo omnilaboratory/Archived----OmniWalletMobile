@@ -267,7 +267,7 @@ class _SplashState extends State<Splash> {
 
       // show wallet main page
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Unlock(callback: () {
+        MaterialPageRoute(builder: (context) => Unlock(parentID: 1, callback: () {
           Navigator.of(context).pushAndRemoveUntil( // remove unlock page
             MaterialPageRoute(builder: (context) => MainPage()),
             (route) => route == null,
@@ -280,7 +280,7 @@ class _SplashState extends State<Splash> {
       print('==> no backup | ${DateTime.now()}');
 
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Unlock(callback: () {
+        MaterialPageRoute(builder: (context) => Unlock(parentID: 1, callback: () {
           Navigator.of(context).pushAndRemoveUntil( // remove unlock page
             MaterialPageRoute(builder: (context) => BackupWalletIndex()),
             (route) => route == null,
