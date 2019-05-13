@@ -30,6 +30,8 @@ class  GlobalInfo{
   /// Is Unlock Successfully
   static bool isUnlockSuccessfully = true;
 
+  /// need auto lock?
+  static bool isNeedLock = true;
   /// Check currently status if be locked. - False: not be locked.
   static bool isLocked = false;
 

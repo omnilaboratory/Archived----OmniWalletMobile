@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -22,6 +23,20 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   FocusNode _nodeText1 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
   FocusNode _nodeText3 = FocusNode();
+
+
+  @override
+  void initState() {
+    GlobalInfo.isLocked = false;
+    GlobalInfo.isNeedLock =  false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    GlobalInfo.isNeedLock =  true;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +60,33 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
 
     List<KeyboardAction> actions = <KeyboardAction> [
       KeyboardAction(
-        focusNode: _nodeText1,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
+          focusNode: _nodeText1,
+          closeWidget: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.close),
+          )
       ),
 
       KeyboardAction(
-        focusNode: _nodeText2,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
+          focusNode: _nodeText2,
+          closeWidget: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.close),
+          )
       ),
 
       KeyboardAction(
-        focusNode: _nodeText3,
-        closeWidget: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.close),
-        )
+          focusNode: _nodeText3,
+          closeWidget: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.close),
+          )
       ),
     ];
 
     return actions;
   }
-  
+
   //
   Widget _content() {
     return SingleChildScrollView(
@@ -87,7 +102,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
               ),
               border: InputBorder.none,
               fillColor: AppCustomColor.themeBackgroudColor,
-              filled: true, 
+              filled: true,
             ),
 
             focusNode: _nodeText1,
@@ -103,7 +118,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
               ),
               border: InputBorder.none,
               fillColor: AppCustomColor.themeBackgroudColor,
-              filled: true, 
+              filled: true,
             ),
 
             maxLines: null,
@@ -117,7 +132,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
               WalletLocalizations.of(context).feedbackPageUploadPicTitle,
             ),
           ),
-          
+
           Container(  // Upload Picture Button
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Material(
@@ -149,7 +164,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
               ),
               border: InputBorder.none,
               fillColor: AppCustomColor.themeBackgroudColor,
-              filled: true, 
+              filled: true,
             ),
 
             focusNode: _nodeText3,
@@ -185,42 +200,42 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   //
   void _bottomSheet() {
     showModalBottomSheet(
-      context: context, 
-      builder: (BuildContext context) {
+        context: context,
+        builder: (BuildContext context) {
 
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.photo_album),
-              title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_1),
-              onTap: () {
-                _openGallery();
-              },
-            ),
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.photo_album),
+                title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_1),
+                onTap: () {
+                  _openGallery();
+                },
+              ),
 
-            ListTile(
-              leading: Icon(Icons.photo_camera),
-              title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_2),
-              onTap: () {
-                _takePhoto();
-              },
-            ),
-          ],
-        );
-      }
+              ListTile(
+                leading: Icon(Icons.photo_camera),
+                title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_2),
+                onTap: () {
+                  _takePhoto();
+                },
+              ),
+            ],
+          );
+        }
     );
   }
 
   //
   _takePhoto() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    
+
   }
 
   //
   _openGallery() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    
+
   }
 }
