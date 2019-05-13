@@ -65,14 +65,14 @@ class _UnlockState extends State<Unlock> {
 
 
     return WillPopScope(
-      onWillPop: widget.parentID == null ?  () async{
-        GlobalInfo.isUnlockSuccessfully = true;
-        return true;
-      }:null,
+      onWillPop: () async {
+          GlobalInfo.isUnlockSuccessfully = true;
+          return true;
+      },
       child: Scaffold(
         appBar: AppBar(
           // leading: Text(''),
-          automaticallyImplyLeading: widget.parentID == null ? true : false,
+          automaticallyImplyLeading: widget.parentID != null? false:true,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),
         ),
 
