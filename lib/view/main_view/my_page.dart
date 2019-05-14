@@ -169,8 +169,8 @@ class _UserCenterState extends State<UserCenter> {
           if (BackupWalletIndex.tag == route) { // will be go back up page.
             // Tools.showToast(GlobalInfo.userInfo.mnemonic);
             Navigator.of(context).push( // show unlock page.
-              CupertinoPageRoute(
-              // MaterialPageRoute(
+              // CupertinoPageRoute(
+              MaterialPageRoute(
                 builder: (BuildContext context) {
                   return Unlock(parentID: 11, callback: _goBackup); 
                 }

@@ -14,7 +14,6 @@ class Unlock extends StatefulWidget {
   /// 1:Splash 2:Background 11:Backup 12:Send
   final int parentID;
 
-
   // for unlock to back up page from my page.
   final Function callback;
   Unlock({Key key, this.callback, this.parentID = null}) : super(key: key);
@@ -70,6 +69,7 @@ class _UnlockState extends State<Unlock> {
     return WillPopScope(
       onWillPop: widget.parentID > 10 ? () async {
         GlobalInfo.isUnlockSuccessfully = true;
+        // print("==> CANCEL -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
         return true;
       } : () async => false,
 
@@ -77,7 +77,9 @@ class _UnlockState extends State<Unlock> {
         appBar: AppBar(
           // leading: FlatButton(
           //   child: Text('Cancel'),
-          //   onPressed: () {},
+          //   onPressed: () {
+          //     Navigator.of(context).pop();
+          //   },
           // ),
           automaticallyImplyLeading: widget.parentID > 10 ? true : false,
           title: Text(WalletLocalizations.of(context).unlockPageAppBarTitle),

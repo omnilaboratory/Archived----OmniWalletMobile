@@ -164,7 +164,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           } else {
             print("==> fromParent = ${GlobalInfo.fromParent}");
-            if (GlobalInfo.fromParent > 10) {
+            if (GlobalInfo.fromParent > 10) { // from Back up page or Send page.
               // routeObserver.navigator.pop();
               routeObserver.navigator.pushReplacement(
                 MaterialPageRoute(
