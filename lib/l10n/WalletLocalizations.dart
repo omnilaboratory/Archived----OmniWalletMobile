@@ -81,6 +81,8 @@ class WalletLocalizations{
       'common_btn_copy' : '复制',
       'common_btn_save': '保存',
       'common_btn_confirm': '确定',
+      'common_tips_input': '请输入',
+      'common_tips_finish': '提交成功',
 
       'marketPageAppBarTitle' : '行情',
       'marketPageFav' : '自选',
@@ -317,6 +319,8 @@ class WalletLocalizations{
       'common_btn_copy' : 'Copy',
       'common_btn_save' : 'Save',
       'common_btn_confirm' : 'Confirm',
+      'common_tips_input' : 'please input ',
+      'common_tips_finish' : 'submit succuess ',
 
       'marketPageAppBarTitle' : 'Quotation',
       'marketPageFav' : 'Favorites',
@@ -580,7 +584,8 @@ class WalletLocalizations{
   get feedbackPageSubmitButton => _localizedValues[locale.languageCode]['feedbackPageSubmitButton'];
   get imagePickerBottomSheet_1 => _localizedValues[locale.languageCode]['imagePickerBottomSheet_1'];
   get imagePickerBottomSheet_2 => _localizedValues[locale.languageCode]['imagePickerBottomSheet_2'];
-  
+
+
   // Help and Feedback page
   get helpPageTitle => _localizedValues[locale.languageCode]['helpPageTitle'];
   get helpPageItemTitle => _localizedValues[locale.languageCode]['helpPageItemTitle'];
@@ -682,6 +687,8 @@ class WalletLocalizations{
   String get common_btn_copy => _localizedValues[locale.languageCode]['common_btn_copy'];
   String get common_btn_save => _localizedValues[locale.languageCode]['common_btn_save'];
   String get common_btn_confirm => _localizedValues[locale.languageCode]['common_btn_confirm'];
+  String get common_tips_input => _localizedValues[locale.languageCode]['common_tips_input'];
+  String get common_tips_finish => _localizedValues[locale.languageCode]['common_tips_finish'];
 
 
   String get wallet_detail_content_send => _localizedValues[locale.languageCode]['wallet_detail_content_send'];

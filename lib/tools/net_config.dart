@@ -91,6 +91,10 @@ class NetConfig{
 
   ///
   static String updateUserNickname ='user/updateUserNickname';
+  /// feedback/submit 用户反馈
+  static String feedback ='feedback/submit';
+
+
 
 
 
