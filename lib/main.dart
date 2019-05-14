@@ -118,13 +118,15 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     print("==> lifeChanged = $state");
+    print("==> lifeChanged -> isLocked = ${GlobalInfo.isLocked}");
 
 
     // Enter background.
     if (state == AppLifecycleState.paused) {
       // print("==> paused -> loginToken = ${GlobalInfo.userInfo.loginToken}");
-      
-      if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
+       print("==> paused -> GlobalInfo.isLocked = ${GlobalInfo.isNeedLock}");
+
+      if (GlobalInfo.userInfo.loginToken != null&&GlobalInfo.isNeedLock==true) { // User has logged in.
         GlobalInfo.isLocked = false;
         print("==> paused -> isLocked = ${GlobalInfo.isLocked}");
 
@@ -144,14 +146,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     // Back from background.
     if (state == AppLifecycleState.resumed) {
-      _timer.cancel();
 
       // print("==> resumed -> loginToken = ${GlobalInfo.userInfo.loginToken}");
 
       if (GlobalInfo.userInfo.loginToken != null) { // User has logged in.
         print("==> resumed -> isLocked = ${GlobalInfo.isLocked}");
 
-        if (GlobalInfo.isLocked) { // Will be locked.
+        if (GlobalInfo.isLocked==true) { // Will be locked.
           print("==> resumed -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
           // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
           if (GlobalInfo.isUnlockSuccessfully) {

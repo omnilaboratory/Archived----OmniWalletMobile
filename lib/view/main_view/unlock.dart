@@ -1,3 +1,5 @@
+import 'dart:async';
+
 /// Unlock app.
 /// [author] Kevin Zhang
 /// [time] 2019-5-8
@@ -34,8 +36,7 @@ class _UnlockState extends State<Unlock> {
   void initState() {
     GlobalInfo.isUnlockSuccessfully = false;
     GlobalInfo.fromParent = widget.parentID;
-
-    print('==> initState -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
+    // Tools.showToast('isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}');
     _nodePin.addListener(_listener);
     super.initState();
   }
@@ -67,11 +68,10 @@ class _UnlockState extends State<Unlock> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: widget.parentID > 10 ? () async {
+      onWillPop: widget.parentID > 10 ? () {
         GlobalInfo.isUnlockSuccessfully = true;
-        // print("==> CANCEL -> isUnlockSuccessfully = ${GlobalInfo.isUnlockSuccessfully}");
-        return true;
-      } : () async => false,
+        return Future.value(true);
+      } : () => Future.value(false),
 
       child: Scaffold(
         appBar: AppBar(

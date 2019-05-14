@@ -25,7 +25,7 @@ class _MarketPageState extends State<MarketPage> {
         child: Center(
           child: Text('Coming Soon ...'),
         ),
-        
+
         /*
         child: Column(
           children: <Widget>[
@@ -111,22 +111,22 @@ class _MarketPageState extends State<MarketPage> {
     return InkWell(
       splashColor: Colors.blue[100],
       highlightColor: Colors.blue[100],
-      
+
       onTap: () {
         // Show detail page.
         Navigator.push(
-          context, 
+          context,
           MaterialPageRoute(
             builder: (context) => MarketDetail(),
-          ), 
+          ),
         );
       },
-          
+
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: Theme.of(context).dividerColor)
+              bottom: BorderSide(color: Theme.of(context).dividerColor)
           ),
         ),
 
@@ -170,7 +170,7 @@ class _MarketPageState extends State<MarketPage> {
                       ),
                     ],
                   ),
-                  
+
                   SizedBox(height: 10),
 
                   AutoSizeText( // exchange name
@@ -187,7 +187,7 @@ class _MarketPageState extends State<MarketPage> {
             SizedBox(width: 20),
 
             Expanded(
-              child: Column( 
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   AutoSizeText( // Assets amount
@@ -221,7 +221,7 @@ class _MarketPageState extends State<MarketPage> {
                 color: Colors.green,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              
+
               child: AutoSizeText(
                 '+8.12%',
                 style: TextStyle(color: Colors.white),

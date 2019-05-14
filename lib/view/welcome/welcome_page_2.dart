@@ -10,23 +10,23 @@ class WelcomePageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppCustomColor.themeBackgroudColor,
+        backgroundColor: AppCustomColor.themeBackgroudColor,
 
-      appBar: PreferredSize(
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          // brightness: Theme.of(context).brightness == 
-          //   Brightness.dark ? Brightness.light : Brightness.dark,
+        appBar: PreferredSize(
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            // brightness: Theme.of(context).brightness ==
+            //   Brightness.dark ? Brightness.light : Brightness.dark,
+          ),
+          preferredSize: Size.fromHeight(0),
         ),
-        preferredSize: Size.fromHeight(0),
-      ),
 
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          children: _content(context)
-        ),
-      )
+        body: SafeArea(
+          child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              children: _content(context)
+          ),
+        )
     );
   }
 
@@ -128,7 +128,7 @@ class WelcomePageTwo extends StatelessWidget {
           color: AppCustomColor.btnConfirm,
           callback: () {
             Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WelcomePageThree()));
+                MaterialPageRoute(builder: (context) => WelcomePageThree()));
           },
         ),
       ],
