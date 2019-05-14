@@ -128,6 +128,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             filled: true,
           ),
           maxLines: 1,
+          keyboardType: TextInputType.number,
           obscureText:true,
           focusNode: _nodeText0,
         );
@@ -142,6 +143,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
           ),
           maxLines: 1,
           obscureText:true,
+          keyboardType: TextInputType.number,
           focusNode: _nodeText2,
         );
     /**
@@ -157,6 +159,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
           ),
           maxLines: 1,
           obscureText:true,
+          keyboardType: TextInputType.number,
           focusNode: _nodeText3,
         );
     var body = Column(

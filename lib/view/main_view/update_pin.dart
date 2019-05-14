@@ -43,6 +43,7 @@ class _UpdatePINState extends State<UpdatePIN> {
         filled: true,
       ),
       maxLines: 1,
+      keyboardType: TextInputType.number,
       obscureText:true,
       focusNode: _nodeText0,
     );
@@ -57,6 +58,7 @@ class _UpdatePINState extends State<UpdatePIN> {
       ),
       maxLines: 1,
       obscureText:true,
+      keyboardType: TextInputType.number,
       focusNode: _nodeText1,
     );
     /**
@@ -72,6 +74,7 @@ class _UpdatePINState extends State<UpdatePIN> {
       ),
       maxLines: 1,
       obscureText:true,
+      keyboardType: TextInputType.number,
       focusNode: _nodeText2,
     );
 

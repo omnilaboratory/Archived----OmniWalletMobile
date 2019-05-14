@@ -19,14 +19,6 @@ class WalletModel extends Model{
     return _currWalletInfo;
   }
 
-//  num _currWalletIndex=0;
-//  set currWalletIndex(num value){
-//    this._currWalletIndex = value;
-//  }
-//  num get currWalletIndex{
-//    return _currWalletIndex;
-//  }
-
   AccountInfo _currAccountInfo;
   set currAccountInfo(AccountInfo info){
     this._currAccountInfo = info;
@@ -35,14 +27,6 @@ class WalletModel extends Model{
   AccountInfo get currAccountInfo{
     return _currAccountInfo;
   }
-
-//  num _currAccountIndex=0;
-//  set currAccountIndex(num value){
-//    this._currAccountIndex = value;
-//  }
-//  num get currAccountIndex{
-//    return _currAccountIndex;
-//  }
 
 
   TradeInfo _currTradeInfo;
@@ -105,7 +89,7 @@ class WalletModel extends Model{
               accountInfo.add(AccountInfo(
                   name: asset['name'],
                   amount:amount,
-                  iconUrl: propertyId==0||propertyId==1||propertyId==361?'coin_logo_'+asset['name'].toString().toUpperCase():'coin_logo_OMNI',
+                  iconUrl: propertyId==0||propertyId==1||propertyId==361?'coin_logo_'+asset['name'].toString().toUpperCase().split(' ')[0]:'coin_logo_OMN',
                   legalTender:money,
                   jsonData: asset,
                   visible: asset['visible'],
@@ -162,9 +146,9 @@ class WalletModel extends Model{
         propertyId: 0
     ));
     accountInfo.add(AccountInfo(
-        name: 'OMNI',
+        name: 'OMN',
         amount:0,
-        iconUrl: 'coin_logo_OMNI',
+        iconUrl: 'coin_logo_OMN',
         legalTender:0,
         visible: true,
         propertyId: 1
