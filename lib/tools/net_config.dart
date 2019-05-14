@@ -189,7 +189,7 @@ class NetConfig{
     );
   }
 
-  static uploadImageFunc(File imageFile) async{
+  static uploadImageFunc(File imageFile,{@required Function callback,Function errorCallback}) async{
     String url = apiHost + uploadImage;
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
@@ -197,11 +197,20 @@ class NetConfig{
     var request = http.MultipartRequest("POST", uri);
     var multipartFile = new http.MultipartFile('file', stream, length,filename: basename(imageFile.path));
     request.files.add(multipartFile);
-
     var response = await request.send();
-    response.stream.transform(utf8.decoder).listen((data) {
-      print(data);
-    });
+    bool flag = true;
+
+    if(response.statusCode==200){
+      await response.stream.transform(utf8.decoder).listen((data){
+        var result = json.decode(data);
+        print(data);
+        callback(result['data']);
+        flag = false;
+      });
+    }
+    if(flag==true && errorCallback!=null){
+      errorCallback();
+    }
   }
 
   ///更新用户头像
@@ -230,13 +239,5 @@ class NetConfig{
     if(flag==true && errorCallback!=null){
       errorCallback();
     }
-
-//    await response.stream.transform(utf8.decoder).listen((data) {
-//      print(data);
-//      var result = json.decode(data);
-//      print(result);
-//      return 'abd';
-//      return result['data'];
-//    });
   }
 }

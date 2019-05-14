@@ -10,6 +10,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 class SubmitFeedback extends StatefulWidget {
   static String tag = "SubmitFeedback";
@@ -21,7 +22,7 @@ class SubmitFeedback extends StatefulWidget {
 class FeedBackInfo{
   String title;
   String content;
-  String urls;
+  String urls='';
   String email;
 }
 
@@ -33,15 +34,21 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   FocusNode _nodeText3 = FocusNode();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  FeedBackInfo _feedBackInfo = FeedBackInfo();
+  FeedBackInfo _feedBackInfo;
+  List<Widget> images ;
+  List<String> imageUrls ;
 
 
   @override
   void initState() {
+    super.initState();
     GlobalInfo.isLocked = false;
     GlobalInfo.isNeedLock =  false;
     submitFinish =false;
-    super.initState();
+    _feedBackInfo = FeedBackInfo();
+    _feedBackInfo.urls='';
+    images = [];
+    imageUrls = [];
   }
 
   @override
@@ -97,6 +104,47 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     ];
 
     return actions;
+  }
+
+  List<Widget> buildImageWidget(){
+    var width = 80.0;
+    images.clear();
+    if(images.isEmpty){
+      images.add(
+          GestureDetector(
+            child: Image.asset('assets/upload_picture.png',width: width,height: width,fit: BoxFit.fill,),
+            onTap: (){
+              _bottomSheet();
+            },
+      ));
+    }
+    if(imageUrls!=null&&imageUrls.length>0){
+      for(int i=0;i<imageUrls.length;i++){
+        String url = imageUrls[i];
+        images.add(
+          Container(
+            width: width,
+            height: width,
+            child: Stack(children: <Widget>[
+              Tools.networkImage(url, width: width, height: width),
+              Align(
+                alignment: Alignment(0.95, -0.95),
+                child: GestureDetector(
+                  child: Image.asset(Tools.imagePath('icon_close'),width: 20,height: 20,),
+                  onTap: (){
+                    imageUrls.remove(url);
+                    setState(() {
+                    });
+                  },
+                ),
+              )
+            ],
+            ),
+          )
+        );
+      }
+    }
+    return images;
   }
 
   //
@@ -163,22 +211,10 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
 
             Container(  // Upload Picture Button
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Material(
-                // elevation: 4.0,
-                shape: CircleBorder(),
-                color: Colors.transparent,
-                child: Ink.image(
-                  image: AssetImage('assets/upload_picture.png'),
-                  fit: BoxFit.cover,
-                  width: 80,
-                  height: 80,
-                  child: InkWell(
-                    onTap: () {
-                      _bottomSheet();
-                    },
-                    child: null,
-                  ),
-                ),
+              child: Wrap(
+                spacing: 16,
+                runSpacing: 20,
+                children: this.buildImageWidget(),
               ),
             ),
 
@@ -238,10 +274,17 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     final form = _formKey.currentState;
     if(form.validate()){
       form.save();
+      if(_feedBackInfo.urls==null){
+        _feedBackInfo.urls = '';
+      }
+      if(imageUrls!=null&&imageUrls.length>0){
+        _feedBackInfo.urls = imageUrls.join(',');
+      }
+
       Future future = NetConfig.post(context, NetConfig.feedback, {
           'title':_feedBackInfo.title,
           'content':_feedBackInfo.content,
-          'imageUrls':_feedBackInfo.urls==null?'':_feedBackInfo.urls,
+          'imageUrls':_feedBackInfo.urls,
           'email':_feedBackInfo.email,
         });
       future.then((data){
@@ -267,7 +310,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
                 leading: Icon(Icons.photo_album),
                 title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_1),
                 onTap: () {
-                  _openGallery();
+                  _getImage(ImageSource.gallery);
                 },
               ),
 
@@ -275,7 +318,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
                 leading: Icon(Icons.photo_camera),
                 title: Text(WalletLocalizations.of(context).imagePickerBottomSheet_2),
                 onTap: () {
-                  _takePhoto();
+                  _getImage(ImageSource.camera);
                 },
               ),
             ],
@@ -285,14 +328,29 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   }
 
   //
-  _takePhoto() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  _getImage(ImageSource myImageSource) async {
+    var image = await ImagePicker.pickImage(source: myImageSource);
 
+    // compress image
+    var dir = await path_provider.getTemporaryDirectory();
+    var targetPath = dir.absolute.path + "/temp.png";
+
+    Future response = Tools.compressImage(image, targetPath);
+    response.then((imgCompressed) {
+
+      NetConfig.uploadImageFunc(
+          imgCompressed,
+          callback: (data) {
+            if (data != null) {
+              this.imageUrls.add(data);
+              setState(() {});
+            }
+          }
+      );
+    });
+
+    Navigator.pop(context);
   }
 
-  //
-  _openGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-  }
 }

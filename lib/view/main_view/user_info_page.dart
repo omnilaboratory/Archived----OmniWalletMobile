@@ -182,7 +182,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     var dir = await path_provider.getTemporaryDirectory();
     var targetPath = dir.absolute.path + "/temp.png";
 
-    Future response = _compressImage(image, targetPath);
+    Future response = Tools.compressImage(image, targetPath);
     response.then((imgCompressed) {
       print('==> GET FILE = $imgCompressed');
 
@@ -210,20 +210,5 @@ class _UserInfoPageState extends State<UserInfoPage> {
       child: Tools.networkImage(
         GlobalInfo.userInfo.faceUrl, width: 35, height: 35),
     );
-  }
-
-  ///
-  Future<File> _compressImage(File file, String targetPath) async {
-    var result = await FlutterImageCompress.compressAndGetFile(
-      file.absolute.path,
-      targetPath,
-      minWidth: 100,
-      minHeight: 100,
-    );
-
-    print(file.lengthSync());
-    print(result.lengthSync());
-
-    return result;
   }
 }
