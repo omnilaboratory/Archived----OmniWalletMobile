@@ -336,7 +336,7 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     var dir = await path_provider.getTemporaryDirectory();
     var targetPath = dir.absolute.path + "/temp.png";
 
-    Future response = Tools.compressImage(image, targetPath);
+    Future response = Tools.compressImage(image, targetPath,minWidth: 300,minHeight: 300);
     response.then((imgCompressed) {
 
       NetConfig.uploadImageFunc(
