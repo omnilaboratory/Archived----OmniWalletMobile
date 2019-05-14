@@ -109,15 +109,16 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   List<Widget> buildImageWidget(){
     var width = 80.0;
     images.clear();
-    if(images.isEmpty){
+    if(imageUrls.length<9){
       images.add(
           GestureDetector(
             child: Image.asset('assets/upload_picture.png',width: width,height: width,fit: BoxFit.fill,),
             onTap: (){
               _bottomSheet();
             },
-      ));
+          ));
     }
+
     if(imageUrls!=null&&imageUrls.length>0){
       for(int i=0;i<imageUrls.length;i++){
         String url = imageUrls[i];
