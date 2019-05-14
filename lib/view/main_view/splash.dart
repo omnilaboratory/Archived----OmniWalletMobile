@@ -4,9 +4,12 @@
 
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -17,8 +20,6 @@ import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/main_view/unlock.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/main_model.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class Splash extends StatefulWidget {

@@ -1,10 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 /// Market quotatio main page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-13
 
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+
 import 'market_detail.dart';
 
 class MarketPage extends StatefulWidget {

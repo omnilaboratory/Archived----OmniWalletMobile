@@ -1,10 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fcharts/fcharts.dart';
 /// Market detail info page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-18
 
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:fcharts/fcharts.dart';
 import 'package:wallet_app/tools/Tools.dart';
 
 class MarketDetail extends StatefulWidget {

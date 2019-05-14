@@ -1,11 +1,14 @@
+import 'dart:async';
 /// User Info page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-29
 
 import 'dart:io';
-import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
@@ -13,8 +16,6 @@ import 'package:wallet_app/view/main_view/update_nick_name.dart';
 import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
 
 class UserInfoPage extends StatefulWidget {
   static String tag = "UserInfoPage";

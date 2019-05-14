@@ -1,7 +1,8 @@
-/*___Generated_by_IDEA___*/
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-package com.example.walletapp;
+#
 
-/* This stub is only used by the IDE. It is NOT the Manifest class actually packed into the APK */
-public final class Manifest {
-}
+<Flutter/Flutter.h>
+#im

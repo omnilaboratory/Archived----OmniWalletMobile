@@ -3,6 +3,7 @@
 /// [time] 2019-4-25
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view_model/state_lib.dart';

@@ -4,11 +4,11 @@
 
 // import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:image_picker/image_picker.dart';
 
 class SubmitFeedback extends StatefulWidget {
   static String tag = "SubmitFeedback";

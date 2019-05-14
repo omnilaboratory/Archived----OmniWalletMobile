@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-
 import 'package:wallet_app/view/welcome/welcome_page_3.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 

@@ -4,7 +4,6 @@ import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
-
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class WalletModel extends Model{
@@ -89,11 +88,11 @@ class WalletModel extends Model{
               accountInfo.add(AccountInfo(
                   name: asset['name'],
                   amount:amount,
-                  iconUrl: propertyId==0||propertyId==1||propertyId==361?'coin_logo_'+asset['name'].toString().toUpperCase().split(' ')[0]:'coin_logo_OMN',
+                  iconUrl: _configAssetLogoUrl(propertyId),
                   legalTender:money,
                   jsonData: asset,
                   visible: asset['visible'],
-                  propertyId: asset['propertyid']
+                  propertyId: propertyId
               ));
               totalMoney+=money;
             }
@@ -137,30 +136,18 @@ class WalletModel extends Model{
 
   addWalletInfo(WalletInfo info) {
     List<AccountInfo> accountInfo = [];
-    accountInfo.add(AccountInfo(
-        name: 'BTC',
-        amount:0,
-        iconUrl: 'coin_logo_BTC',
-        legalTender:0,
-        visible: true,
-        propertyId: 0
-    ));
-    accountInfo.add(AccountInfo(
-        name: 'OMN',
-        amount:0,
-        iconUrl: 'coin_logo_OMN',
-        legalTender:0,
-        visible: true,
-        propertyId: 1
-    ));
-    accountInfo.add(AccountInfo(
-        name: 'LunarX',
-        amount:0,
-        iconUrl: 'coin_logo_LUNARX',
-        legalTender:0,
-        visible: true,
-        propertyId: 361
-    ));
+    List names=['BTC','OMN','LunarX'];
+    List assetIds=[0,1,361];
+    for(int i=0;i<names.length;i++){
+      accountInfo.add(AccountInfo(
+          name: names[i],
+          amount:0,
+          iconUrl: _configAssetLogoUrl(assetIds[i]),
+          legalTender:0,
+          visible: true,
+          propertyId: assetIds[i]
+      ));
+    }
     info.accountInfoes = accountInfo;
     _walletInfoes.insert(0,info);
     notifyListeners();
@@ -230,5 +217,19 @@ class WalletModel extends Model{
       this._sendInfo = SendInfo();
     }
     return _sendInfo;
+  }
+
+
+  String _configAssetLogoUrl(int assetId){
+    switch(assetId){
+      case 0:
+        return 'coin_logo_BTC';
+      case 1:
+        return 'coin_logo_OMN';
+      case 361:
+        return 'coin_logo_LUNARX';
+      default:
+        return 'coin_logo_OMN';
+    }
   }
 }

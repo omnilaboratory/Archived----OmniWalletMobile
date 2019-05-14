@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bip39/bip39.dart' as bip39;
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
-import 'package:bip39/bip39.dart' as bip39;
 
 class RestoreAccount extends StatefulWidget {
   static String tag = "Restore Account";
