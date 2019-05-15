@@ -44,7 +44,7 @@ class WalletModel extends Model{
       if(info==null&&_loadLastTime!=null){
         var now = DateTime.now();
         var duration = now.difference(_loadLastTime);
-        if(duration.inSeconds>20){
+        if(duration.inSeconds>15){
           this._walletInfoes = null;
         }
       }else{
