@@ -39,7 +39,7 @@ class AppCustomColor{
     brightness == Brightness.dark ? Colors.white : Color(0xFF1F253B);
 
     AppCustomColor.themeBackgroudColor =
-    brightness == Brightness.dark ? Color(0xFF1F253B) : Colors.white;
+    brightness == Brightness.dark ? Colors.black : Colors.white;
 
     AppCustomColor.aboutPageBannerBGColor =
     brightness == Brightness.dark ? Colors.black45 : Colors.blue[50];
