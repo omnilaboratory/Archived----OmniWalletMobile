@@ -43,26 +43,26 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
 
     var navList = [
           BottomNavigationBarItem(
-              icon: Image.asset(Tools.imagePath('nav_wallet_off'),width: 24,height: 24,),
-              activeIcon: Image.asset(Tools.imagePath('nav_wallet_on'),width: 24,height: 24,),
+              icon: Image.asset(Tools.imagePath('nav_wallet_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_wallet_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
               title: Text(
                 WalletLocalizations.of(context).buttom_tab1_name,
               )),
           BottomNavigationBarItem(
-              icon: Image.asset(Tools.imagePath('nav_market_off'),width: 24,height: 24,),
-              activeIcon: Image.asset(Tools.imagePath('nav_market_on'),width: 24,height: 24,),
+              icon: Image.asset(Tools.imagePath('nav_market_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_market_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
               title: Text(
                 WalletLocalizations.of(context).buttom_tab2_name,
               )),
           BottomNavigationBarItem(
-              icon: Image.asset(Tools.imagePath('nav_dex_off'),width: 24,height: 24,),
-              activeIcon: Image.asset(Tools.imagePath('nav_dex_on'),width: 24,height: 24,),
+              icon: Image.asset(Tools.imagePath('nav_dex_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_dex_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
               title: Text(
                 WalletLocalizations.of(context).buttom_tab3_name,
               )),
           BottomNavigationBarItem(
-              icon: Image.asset(Tools.imagePath('nav_my_off'),width: 24,height: 24,),
-              activeIcon: Image.asset(Tools.imagePath('nav_my_on'),width: 24,height: 24,),
+              icon: Image.asset(Tools.imagePath('nav_my_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+              activeIcon: Image.asset(Tools.imagePath('nav_my_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
               title: Text(
                 WalletLocalizations.of(context).buttom_tab4_name,
               )),
@@ -72,7 +72,8 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       bottomNavigationBar: BottomNavigationBar(
         items: navList,
         currentIndex: _currentIndex,
-        fixedColor: this._bottomNavigationActiveColor,
+        backgroundColor: AppCustomColor.navBgColor,
+        fixedColor: AppCustomColor.themeFrontColor,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;

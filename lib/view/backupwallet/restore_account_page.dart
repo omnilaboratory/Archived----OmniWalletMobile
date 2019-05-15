@@ -15,6 +15,9 @@ class RestoreAccount extends StatefulWidget {
 }
 
 class _RestoreAccountState extends State<RestoreAccount> {
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   FocusNode _nodeText1 = FocusNode();
   FocusNode _nodeText0 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
@@ -43,7 +46,10 @@ class _RestoreAccountState extends State<RestoreAccount> {
                 actions: _keyboardActions(),
                 child: SingleChildScrollView(
                     padding: EdgeInsets.only(left: 20,right: 20,top: 10),
-                    child:  this.buildBody(context)
+                    child:  Form(
+                      key: _formKey,
+                      child: this.buildBody(context)
+                    )
                 )
             );
         },
@@ -107,7 +113,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6)
             ),
-            fillColor: Colors.grey[100],
+            fillColor: AppCustomColor.themeBackgroudColor,
             filled: true,
           ),
           maxLines: null,
@@ -119,7 +125,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
           },
         );
     ///input pin
-    var inputOldPin = TextField( // content
+    var inputOldPin = TextFormField( // content
           controller: controller0,
           decoration: InputDecoration(
             labelText: WalletLocalizations.of(context).restore_account_tip_OldPin,
@@ -127,13 +133,19 @@ class _RestoreAccountState extends State<RestoreAccount> {
             fillColor: AppCustomColor.themeBackgroudColor,
             filled: true,
           ),
+          validator: (val){
+            if(val.isEmpty){
+              return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_OldPin;
+            }
+          },
           maxLines: 1,
+          maxLength: 6,
           keyboardType: TextInputType.number,
           obscureText:true,
           focusNode: _nodeText0,
         );
     ///input pin
-    var inputPin = TextField( // content
+    var inputPin = TextFormField( // content
           controller: controller1,
           decoration: InputDecoration(
             labelText: WalletLocalizations.of(context).restore_account_tip_pin,
@@ -141,15 +153,21 @@ class _RestoreAccountState extends State<RestoreAccount> {
             fillColor: AppCustomColor.themeBackgroudColor,
             filled: true,
           ),
+          validator: (val){
+            if(val.isEmpty){
+              return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_pin;
+            }
+          },
           maxLines: 1,
           obscureText:true,
+          maxLength: 6,
           keyboardType: TextInputType.number,
           focusNode: _nodeText2,
         );
     /**
      * PIN confirm
      */
-    var inputConfirmPin = TextField( // content
+    var inputConfirmPin = TextFormField( // content
           controller: controller2,
           decoration: InputDecoration(
             labelText: WalletLocalizations.of(context).restore_account_tip_confirmPin,
@@ -157,8 +175,14 @@ class _RestoreAccountState extends State<RestoreAccount> {
             fillColor: AppCustomColor.themeBackgroudColor,
             filled: true,
           ),
+          validator: (val){
+            if(val.isEmpty){
+              return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_confirmPin;
+            }
+          },
           maxLines: 1,
           obscureText:true,
+          maxLength: 6,
           keyboardType: TextInputType.number,
           focusNode: _nodeText3,
         );
@@ -209,66 +233,64 @@ class _RestoreAccountState extends State<RestoreAccount> {
           return null;
         }
 
-        String pin0 = this.controller0.text;
-        if(pin0.isEmpty){
-          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
-          return null;
-        }
-
-        String pin = this.controller1.text;
-        String pin2 = this.controller2.text;
-        if(pin.isEmpty||pin2.isEmpty||pin != pin2){
-          Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
-          return null;
-        }
-
-        String _pinCode_md5 = Tools.convertMD5Str(pin0);
-        String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
-
-        var  userId = Tools.convertMD5Str(_mnemonic);
-        canToucn =false;
-        Tools.loadingAnimation(context);
-        Future result = NetConfig.post(context,
-            NetConfig.restoreUser,
-            {
-              'userId':userId,
-              'password':_pinCode_md5,
-              'newPsw':_pinCode_new_md5
-            },
-            errorCallback: (msg){
-              canToucn = true;
-            }
-            );
-        result.then((data){
-          if(data!=null){
-            GlobalInfo.userInfo.userId = userId;
-            GlobalInfo.userInfo.faceUrl = data['faceUrl'];
-            GlobalInfo.userInfo.nickname = data['nickname'];
-            GlobalInfo.userInfo.loginToken = data['token'];
-            Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
-
-            Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
-            GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
-
-
-            Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(_mnemonic));
-            GlobalInfo.userInfo.mnemonic = _mnemonic;
-
-            Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
-
-
-            GlobalInfo.bip39Seed = null;
-            GlobalInfo.userInfo.init(context,(){
-              Navigator.of(context).pop();
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => MainPage()), (
-                  route) => route == null
-              );
-            });
-          }else{
-            Navigator.of(context).pop();
+        final form = _formKey.currentState;
+        if(form.validate()){
+          String pin0 = this.controller0.text;
+          String pin = this.controller1.text;
+          String pin2 = this.controller2.text;
+          if(pin != pin2){
+            Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error3);
+            return null;
           }
-        });
+
+          String _pinCode_md5 = Tools.convertMD5Str(pin0);
+          String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
+
+          var  userId = Tools.convertMD5Str(_mnemonic);
+          canToucn =false;
+          Tools.loadingAnimation(context);
+          Future result = NetConfig.post(context,
+              NetConfig.restoreUser,
+              {
+                'userId':userId,
+                'password':_pinCode_md5,
+                'newPsw':_pinCode_new_md5
+              },
+              errorCallback: (msg){
+                canToucn = true;
+              }
+          );
+          result.then((data){
+            if(data!=null){
+              GlobalInfo.userInfo.userId = userId;
+              GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+              GlobalInfo.userInfo.nickname = data['nickname'];
+              GlobalInfo.userInfo.loginToken = data['token'];
+              Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
+
+              Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
+              GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
+
+
+              Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(_mnemonic));
+              GlobalInfo.userInfo.mnemonic = _mnemonic;
+
+              Tools.saveStringKeyValue(KeyConfig.user_mnemonic_md5, userId);
+
+
+              GlobalInfo.bip39Seed = null;
+              GlobalInfo.userInfo.init(context,(){
+                Navigator.of(context).pop();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => MainPage()), (
+                    route) => route == null
+                );
+              });
+            }else{
+              Navigator.of(context).pop();
+            }
+          });
+        }
       };
     }
     return null;

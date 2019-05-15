@@ -10,6 +10,10 @@ class UpdatePIN extends StatefulWidget {
 }
 
 class _UpdatePINState extends State<UpdatePIN> {
+
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   FocusNode _nodeText0 = FocusNode();
   FocusNode _nodeText1 = FocusNode();
   FocusNode _nodeText2 = FocusNode();
@@ -34,7 +38,7 @@ class _UpdatePINState extends State<UpdatePIN> {
     );
   }
   Widget buildBody(){
-    var inputOldPin = TextField( // content
+    var inputOldPin = TextFormField( // content
       controller: controller0,
       decoration: InputDecoration(
         labelText: WalletLocalizations.of(context).restore_account_tip_OldPin,
@@ -42,13 +46,19 @@ class _UpdatePINState extends State<UpdatePIN> {
         fillColor: AppCustomColor.themeBackgroudColor,
         filled: true,
       ),
+      validator: (val){
+        if(val.isEmpty){
+          return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_OldPin;
+        }
+      },
       maxLines: 1,
+      maxLength: 6,
       keyboardType: TextInputType.number,
       obscureText:true,
       focusNode: _nodeText0,
     );
     ///input pin
-    var inputPin = TextField( // content
+    var inputPin = TextFormField( // content
       controller: controller1,
       decoration: InputDecoration(
         labelText: WalletLocalizations.of(context).restore_account_tip_pin,
@@ -56,15 +66,21 @@ class _UpdatePINState extends State<UpdatePIN> {
         fillColor: AppCustomColor.themeBackgroudColor,
         filled: true,
       ),
+      validator: (val){
+        if(val.isEmpty){
+          return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_pin;
+        }
+      },
       maxLines: 1,
       obscureText:true,
+      maxLength: 6,
       keyboardType: TextInputType.number,
       focusNode: _nodeText1,
     );
     /**
      * PIN confirm
      */
-    var inputConfirmPin = TextField( // content
+    var inputConfirmPin = TextFormField( // content
       controller: controller2,
       decoration: InputDecoration(
         labelText: WalletLocalizations.of(context).restore_account_tip_confirmPin,
@@ -72,8 +88,14 @@ class _UpdatePINState extends State<UpdatePIN> {
         fillColor: AppCustomColor.themeBackgroudColor,
         filled: true,
       ),
+      validator: (val){
+        if(val.isEmpty){
+          return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_confirmPin;
+        }
+      },
       maxLines: 1,
       obscureText:true,
+      maxLength: 6,
       keyboardType: TextInputType.number,
       focusNode: _nodeText2,
     );
@@ -82,64 +104,69 @@ class _UpdatePINState extends State<UpdatePIN> {
       actions: _keyboardActions(),
       child: Padding(
         padding: const EdgeInsets.only(left: 20,right: 20),
-        child: Column(
-          children: <Widget>[
-            inputOldPin,
-            Divider(height: 0,),
-            inputPin,
-            Divider(height: 0,),
-            inputConfirmPin,
-            Divider(height: 0,),
-            SizedBox(height: 30,),
-            CustomRaiseButton( // Next button.
-              context: context,
-              hasRow: false,
-              title: WalletLocalizations.of(context).userInfoPageItem_3_Title,
-              titleColor: Colors.white,
-              color: AppCustomColor.btnConfirm,
-              callback: (){
-                this.clickBtn();
-              },
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                inputOldPin,
+                Divider(height: 0,),
+                inputPin,
+                Divider(height: 0,),
+                inputConfirmPin,
+                Divider(height: 0,),
+                SizedBox(height: 30,),
+                CustomRaiseButton( // Next button.
+                  context: context,
+                  hasRow: false,
+                  title: WalletLocalizations.of(context).userInfoPageItem_3_Title,
+                  titleColor: Colors.white,
+                  color: AppCustomColor.btnConfirm,
+                  callback: (){
+                    this.clickBtn();
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
   clickBtn() async {
-    String pin0 = this.controller0.text;
-    if(pin0.isEmpty){
-      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
-      return null;
-    }
-    String _pinCode_md5 =  Tools.convertMD5Str(pin0);
-    if(_pinCode_md5 != GlobalInfo.userInfo.pinCode){
-      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error2);
-      return null;
-    }
+    final form = _formKey.currentState;
+    if(form.validate()){
+      String pin0 = this.controller0.text;
+      String _pinCode_md5 =  Tools.convertMD5Str(pin0);
+      if(_pinCode_md5 != GlobalInfo.userInfo.pinCode){
+        Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error2);
+        return null;
+      }
 
-    String pin = this.controller1.text;
-    String pin2 = this.controller2.text;
-    if(pin.isEmpty||pin2.isEmpty||pin != pin2){
-      Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error);
-      return null;
+      String pin = this.controller1.text;
+      String pin2 = this.controller2.text;
+      if(pin.isEmpty||pin2.isEmpty||pin != pin2){
+        Tools.showToast(WalletLocalizations.of(context).restore_account_tip_error3);
+        return null;
+      }
+      String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
+      await NetConfig.post(context,NetConfig.updateUserPassword,
+        {
+          'oldPsw':_pinCode_md5,
+          'newPsw':_pinCode_new_md5
+        },
+      );
+      GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
+
+      Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
+      //更新加密的助记词
+      Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(GlobalInfo.userInfo.mnemonic));
+      //更新加密的助记词种子
+      Tools.saveStringKeyValue(KeyConfig.user_mnemonicSeed, Tools.encryptAes(GlobalInfo.bip39Seed.toString()));
+
+      Navigator.of(context).pop();
+
     }
-    String _pinCode_new_md5 =  Tools.convertMD5Str(pin);
-    await NetConfig.post(context,NetConfig.updateUserPassword,
-      {
-        'oldPsw':_pinCode_md5,
-        'newPsw':_pinCode_new_md5
-      },
-    );
-    GlobalInfo.userInfo.pinCode = _pinCode_new_md5;
-
-    Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
-    //更新加密的助记词
-    Tools.saveStringKeyValue(KeyConfig.user_mnemonic, Tools.encryptAes(GlobalInfo.userInfo.mnemonic));
-    //更新加密的助记词种子
-    Tools.saveStringKeyValue(KeyConfig.user_mnemonicSeed, Tools.encryptAes(GlobalInfo.bip39Seed.toString()));
-
-    Navigator.of(context).pop();
   }
 
   List<KeyboardAction> _keyboardActions() {

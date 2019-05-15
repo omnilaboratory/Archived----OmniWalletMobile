@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     stateModel = MainStateModel().of(context);
     return Scaffold(
+      backgroundColor:AppCustomColor.themeBackgroudColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text(WalletLocalizations.of(context).main_page_title),

@@ -11,26 +11,26 @@ import 'package:wallet_app/view_model/main_model.dart';
 
 //收款页面
 class ReceivePage extends StatefulWidget {
+
+  final WalletInfo walletInfo;
+  ReceivePage({Key key,@required this.walletInfo}):super(key:key);
+
   @override
   _ReceivePageState createState() => _ReceivePageState();
 }
 
 class _ReceivePageState extends State<ReceivePage> {
-  MainStateModel stateModel = null;
   WalletInfo walletInfo;
-  AccountInfo accountInfo;
 
   final key = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    stateModel = MainStateModel().of(context);
-    walletInfo = stateModel.currWalletInfo;
-    accountInfo = stateModel.currAccountInfo;
+    walletInfo = widget.walletInfo;
     return Scaffold(
       key: this.key,
       backgroundColor: AppCustomColor.themeBackgroudColor,
-      appBar: AppBar(title: Text(accountInfo.name+' '+WalletLocalizations.of(context).wallet_detail_content_receive),),
+      appBar: AppBar(title: Text(WalletLocalizations.of(context).wallet_detail_content_receive),),
       body: this.body()
     );
   }

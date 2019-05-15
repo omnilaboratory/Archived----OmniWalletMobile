@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/main.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -54,11 +55,10 @@ class _SelectThemeState extends State<SelectTheme> {
     
       // change theme.
       if (strClickItem == KeyConfig.light) {
+        MyApp.setThemeColor(context, Brightness.light);
       } else {
+        MyApp.setThemeColor(context, Brightness.dark);
       }
-    
-      // MyApp.setLocale(context, locale);
-    
       // save selected value to local storage
       _saveTheme(strClickItem);
     }
