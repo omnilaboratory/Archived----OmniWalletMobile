@@ -72,7 +72,7 @@ class _SplashState extends State<Splash> {
                 child: AnimatedOpacity(
                   opacity: refreshOpacity,
                   duration: Duration(milliseconds: 500),
-                  child: Text('get again',style: TextStyle(fontSize: 20),),
+                  child: Text(WalletLocalizations.of(context).common_tips_refresh,style: TextStyle(fontSize: 20),),
                 ),
               ),
             ),

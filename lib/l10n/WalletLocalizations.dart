@@ -35,7 +35,8 @@ class WalletLocalizations{
       'restore_account_tip_confirmPin': '确认 PIN',
       'restore_account_btn_restore': '恢复',
       'restore_account_tip_error': '错误PIN',
-      'restore_account_tip_error2': '错误原始PIN',
+      'restore_account_tip_error2': '原始PIN错误',
+      'restore_account_tip_error3': '新的pin和确认pin不一样',
       'restore_account_tip_error1': '错误助记词',
 
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
@@ -83,6 +84,7 @@ class WalletLocalizations{
       'common_btn_confirm': '确定',
       'common_tips_input': '请输入',
       'common_tips_finish': '提交成功',
+      'common_tips_refresh': '刷新',
 
       'marketPageAppBarTitle' : '行情',
       'marketPageFav' : '自选',
@@ -257,8 +259,10 @@ class WalletLocalizations{
       'restore_account_tip_confirmPin': 'Confirm PIN',
       'restore_account_btn_restore': 'Restore',
       'restore_account_tip_error': 'Wrong PIN input',
-      'restore_account_tip_error2': 'Wrong Old PIN input',
       'restore_account_tip_error1': 'Wrong Mnemonic',
+      'restore_account_tip_error2': 'Wrong Old PIN input',
+      'restore_account_tip_error3': 'new pin and comfirm pin is not same',
+
 
 
       'welcomePageOneTitle' : 'Welcome to the Omni Platform!',
@@ -321,6 +325,7 @@ class WalletLocalizations{
       'common_btn_confirm' : 'Confirm',
       'common_tips_input' : 'please input ',
       'common_tips_finish' : 'submit succuess ',
+      'common_tips_refresh' : 'Refresh',
 
       'marketPageAppBarTitle' : 'Quotation',
       'marketPageFav' : 'Favorites',
@@ -668,6 +673,7 @@ class WalletLocalizations{
   get restore_account_tip_error => _localizedValues[locale.languageCode]['restore_account_tip_error'];
   get restore_account_tip_error1 => _localizedValues[locale.languageCode]['restore_account_tip_error1'];
   get restore_account_tip_error2 => _localizedValues[locale.languageCode]['restore_account_tip_error2'];
+  get restore_account_tip_error3 => _localizedValues[locale.languageCode]['restore_account_tip_error3'];
 
 
 
@@ -689,6 +695,7 @@ class WalletLocalizations{
   String get common_btn_confirm => _localizedValues[locale.languageCode]['common_btn_confirm'];
   String get common_tips_input => _localizedValues[locale.languageCode]['common_tips_input'];
   String get common_tips_finish => _localizedValues[locale.languageCode]['common_tips_finish'];
+  String get common_tips_refresh => _localizedValues[locale.languageCode]['common_tips_refresh'];
 
 
   String get wallet_detail_content_send => _localizedValues[locale.languageCode]['wallet_detail_content_send'];
