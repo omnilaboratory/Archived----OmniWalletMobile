@@ -4,12 +4,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
+import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
 import 'package:wallet_app/model/mnemonic_phrase_model.dart';
 import 'package:wallet_app/model/wallet_info.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/tools/net_config.dart';
+import 'package:wallet_app/view/main_view/unlock.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 
@@ -102,7 +104,16 @@ class SendConfirm extends StatelessWidget {
               hasRow: false,
               context: context,
               callback: (){
-                this.transfer(context);
+                routeObserver.navigator.push(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return Unlock(parentID: 12,callback: (){
+                          Navigator.of(context).pop();
+                          this.transfer(context);
+                        },);
+                      }
+                  ),
+                );
               },
               title: WalletLocalizations.of(context).common_btn_confirm,
               titleColor: Colors.white,

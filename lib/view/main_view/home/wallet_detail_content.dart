@@ -91,20 +91,17 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                     ListView.builder(
                         itemCount:tradeInfoes.length,
                         itemBuilder: (BuildContext context, int index){
-                          print("all");
                           return detailTile(context,index,tradeInfoes);
                         }),
                     ListView.builder(
                         itemCount:tradeInfoes1.length,
                         itemBuilder: (BuildContext context, int index){
                           print(tradeInfoes1);
-                          print("out");
                           return detailTile(context,index,tradeInfoes1);
                         }),
                     ListView.builder(
                         itemCount:tradeInfoes2.length,
                         itemBuilder: (BuildContext context, int index){
-                          print("in");
                           return detailTile(context,index,tradeInfoes2);
                         }),
                     ListView.builder(
@@ -158,7 +155,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                       Container(
                           margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(
-                            color: Colors.grey[200],
+                            color: AppCustomColor.aboutPageBannerBGColor,
                             borderRadius: BorderRadius.circular(10)
                           ),
                           child: Padding(
@@ -167,7 +164,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                               tradeInfo.state==0?
                                   WalletLocalizations.of(context).wallet_trade_info_detail_finish_state1
                                 : WalletLocalizations.of(context).wallet_trade_info_detail_finish_state2,
-                              style: TextStyle(color:Colors.grey[500],fontSize: 12),
+                              style: TextStyle(color:AppCustomColor.themeFrontColor,fontSize: 12),
                               minFontSize: 9,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

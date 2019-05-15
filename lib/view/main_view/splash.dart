@@ -336,6 +336,11 @@ class _SplashState extends State<Splash> {
     if (setTheme == null) {
       setTheme = KeyConfig.light;
     }
+    if (setTheme == KeyConfig.light) {
+      MyApp.setThemeColor(context, Brightness.light);
+    } else {
+      MyApp.setThemeColor(context, Brightness.dark);
+    }
 
     MyApp.setLocale(context, locale);
 

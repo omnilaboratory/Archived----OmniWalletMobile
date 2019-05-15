@@ -107,7 +107,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6)
             ),
-            fillColor: Colors.grey[100],
+            fillColor: AppCustomColor.themeBackgroudColor,
             filled: true,
           ),
           maxLines: null,

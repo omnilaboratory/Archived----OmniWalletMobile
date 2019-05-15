@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
       bottomNavigationBar: BottomNavigationBar(
         items: navList,
         currentIndex: _currentIndex,
-        fixedColor: this._bottomNavigationActiveColor,
+        fixedColor: AppCustomColor.themeFrontColor,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
