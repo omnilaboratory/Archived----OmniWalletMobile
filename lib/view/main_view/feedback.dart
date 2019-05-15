@@ -1,3 +1,5 @@
+import 'dart:async';
+
 /// Submit Feedback page.
 /// [author] Kevin Zhang
 /// [time] 2019-3-25
@@ -42,8 +44,8 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
   @override
   void initState() {
     super.initState();
-    GlobalInfo.isLocked = false;
-    GlobalInfo.isNeedLock =  false;
+//    GlobalInfo.isLocked = false;
+//    GlobalInfo.isNeedLock =  false;
     submitFinish =false;
     _feedBackInfo = FeedBackInfo();
     _feedBackInfo.urls='';
@@ -330,6 +332,8 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
 
   //
   _getImage(ImageSource myImageSource) async {
+    GlobalInfo.isLocked = false;
+    GlobalInfo.isNeedLock =  false;
     var image = await ImagePicker.pickImage(source: myImageSource);
 
     // compress image
@@ -351,7 +355,6 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
     });
 
     Navigator.pop(context);
+    GlobalInfo.isNeedLock =  true;
   }
-
-
 }
