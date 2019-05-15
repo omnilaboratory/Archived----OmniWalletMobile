@@ -136,16 +136,16 @@ class WalletModel extends Model{
 
   addWalletInfo(WalletInfo info) {
     List<AccountInfo> accountInfo = [];
-    List names=['BTC','OMN','LunarX'];
-    List assetIds=[0,1,361];
-    for(int i=0;i<names.length;i++){
+
+    for(int i=0;i<GlobalInfo.defaultAssetInfoes.length;i++){
+      var info = GlobalInfo.defaultAssetInfoes[i];
       accountInfo.add(AccountInfo(
-          name: names[i],
+          name: info.name,
           amount:0,
-          iconUrl: _configAssetLogoUrl(assetIds[i]),
+          iconUrl: _configAssetLogoUrl(info.assetId),
           legalTender:0,
           visible: true,
-          propertyId: assetIds[i]
+          propertyId: info.assetId
       ));
     }
     info.accountInfoes = accountInfo;
@@ -226,6 +226,8 @@ class WalletModel extends Model{
         return 'coin_logo_BTC';
       case 1:
         return 'coin_logo_OMN';
+      case 31:
+        return 'coin_logo_USDT';
       case 361:
         return 'coin_logo_LUNARX';
       default:

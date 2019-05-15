@@ -13,7 +13,7 @@ import 'package:wallet_app/view/welcome/welcome_page_1.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class NetConfig{
-//  static String apiHost='http://192.168.0.106:8080/api/';
+//  static String apiHost='http://192.168.0.103:8080/api/';
 //  static String apiHost='http://172.21.100.248:8080/api/';
 
 //  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
@@ -28,6 +28,8 @@ class NetConfig{
   static String uploadImage='common/uploadImage';
   /// 获取最新的版本信息
   static String getNewestVersion='common/getNewestVersion';
+  /// 获取默认资产列表
+  static String getDefautAssetList='common/getDefautAssetList';
 
   /// user/updateUserFace   更新用户头像
   static String updateUserFace='user/updateUserFace';
@@ -97,9 +99,6 @@ class NetConfig{
   static String appVersionList ='common/getVersionList';
 
 
-
-
-
   static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
     return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut);
   }
@@ -113,7 +112,7 @@ class NetConfig{
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
       if(GlobalInfo.userInfo.loginToken==null){
-        showToast('user have not login');
+        Tools.showToast('user have not login');
         return null;
       }
       header['authorization']='Bearer '+GlobalInfo.userInfo.loginToken;
@@ -128,6 +127,10 @@ class NetConfig{
       if(reqType=="get"){
         response = await http.get(url,headers: header).timeout(Duration(seconds: timeOut));
       }else{
+        var dataStr = json.encode(data);
+        var dataMD5 = Tools.convertMD5Str(dataStr+GlobalInfo.dataEncodeString);
+        data['dataStr']=dataStr;
+        data['dataMD5']=dataMD5;
         response =  await http.post(url,headers: header, body: data).timeout(Duration(seconds: timeOut));
       }
     } on TimeoutException{
@@ -151,9 +154,8 @@ class NetConfig{
       if(status==0){
         msg = result['msg'];
         if(msg!=null&&msg.length>0){
-          showToast(msg,toastLength:Toast.LENGTH_LONG);
+          Tools.showToast(msg,toastLength:Toast.LENGTH_LONG);
         }
-
       }
       if(status==403){
 
@@ -170,24 +172,14 @@ class NetConfig{
           );
         }
       });
-      showToast('user not exist',toastLength: Toast.LENGTH_LONG);
+      Tools.showToast('user not exist',toastLength: Toast.LENGTH_LONG);
 
     } else{
-      showToast('server is sleep, please wait');
+      Tools.showToast('server is sleep, please wait');
     }
     if(errorCallback!=null&&isError){
       errorCallback(msg);
     }
-  }
-
-  static showToast(String msg,{Toast toastLength = Toast.LENGTH_SHORT}){
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: msg,
-      toastLength: toastLength,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIos: 1,
-    );
   }
 
   static uploadImageFunc(File imageFile,{@required Function callback,Function errorCallback}) async{

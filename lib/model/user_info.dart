@@ -49,5 +49,19 @@ class UserInfo{
         GlobalInfo.usdRateInfo = info;
       }
     });
+    Future futureAsset = NetConfig.get(context,NetConfig.getDefautAssetList);
+    futureAsset.then((data){
+      if(data!=null){
+        List list = data;
+        GlobalInfo.defaultAssetInfoes.clear();
+        for(int i=0;i<list.length;i++){
+          DefaultAssetInfo info = DefaultAssetInfo();
+          info.name = list[i]['assetName'];
+          info.url = list[i]['imageUrl'];
+          info.assetId = list[i]['assetId'];
+          GlobalInfo.defaultAssetInfoes.add(info);
+        }
+      }
+    });
   }
 }

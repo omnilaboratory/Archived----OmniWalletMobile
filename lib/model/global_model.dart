@@ -14,6 +14,8 @@ class  GlobalInfo{
 
   static Uint8List bip39Seed;
 
+  static String dataEncodeString= 'P@ssw)2d!UPRETSCLIENT';
+
   ///当前版本号
   static int currVersionCode = 2;
 
@@ -43,6 +45,8 @@ class  GlobalInfo{
 
   /// userInfo
   static UserInfo userInfo = UserInfo();
+
+  static List<DefaultAssetInfo> defaultAssetInfoes=[];
 
 
   static clear(){
@@ -115,4 +119,10 @@ class  GlobalInfo{
 class AssetToUSDRateInfo {
   List<double> btcs = [5000,35000];
   AssetToUSDRateInfo();
+}
+
+class DefaultAssetInfo{
+  String name;
+  String url;
+  int assetId;
 }
