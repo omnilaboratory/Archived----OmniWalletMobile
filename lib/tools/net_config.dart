@@ -93,6 +93,10 @@ class NetConfig{
 
   ///
   static String updateUserNickname ='user/updateUserNickname';
+
+  /// Add a asset to a wallet address.
+  static String addAsset = 'wallet/address/addAsset';
+
   /// feedback/submit 用户反馈
   static String feedback ='feedback/submit';
   /// common/getVersionList app版本历史

@@ -29,6 +29,7 @@ class _AddressManageState extends State<AddressManage> {
 
   bool _hasClearIcon = false;
   bool _isAddressDisplay;
+  int  _hideAssetIndex;
 
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
@@ -416,14 +417,22 @@ class _AddressManageState extends State<AddressManage> {
             ),
           ),
 
-          Padding( // manage displayed assets.
+          Padding( // (+) button for manage displayed assets.
             padding: const EdgeInsets.only(right: 12),
             child: IconButton(
               icon: Icon(Icons.add_circle),
               color: Colors.blue,
               disabledColor: Colors.grey[300],
               onPressed: !_isAddressDisplay ? null : 
-                () { Navigator.of(context).pushNamed(DisplayedAssets.tag); },
+                () {
+                  // Navigator.of(context).pushNamed(DisplayedAssets.tag);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DisplayedAssets(address_data: widget.data),
+                    ),
+                  );
+                },
             ),
           )
         ],
@@ -434,16 +443,24 @@ class _AddressManageState extends State<AddressManage> {
   /// asset list
   List<Widget> _assetList() {
     int assetAmount = widget.data.accountInfoes.length;
-    print('==> asset amount = $assetAmount');
+    print('==> total asset amount = $assetAmount');
 
     // list tile
     List<Widget> _list = List();
 
     for (int i = 0; i < assetAmount; i++) {
-      _list.add(_assetItem(widget.data.accountInfoes[i], i));
-      _list.add(Divider(height: 0, indent: 15));
+      if (widget.data.accountInfoes[i].visible) {
+        _list.add(_assetItem(widget.data.accountInfoes[i], i));
+        _list.add(Divider(height: 0, indent: 15));
+      } else { // visible = false
+        if (_hideAssetIndex == i) { // not pop.
+          _list.add(_assetItem(widget.data.accountInfoes[i], i));
+          _list.add(Divider(height: 0, indent: 15));
+        }
+      }
     }
 
+    print('==> should displayed asset amount = ${_list.length / 2}');
     return _list;
   }
 
@@ -464,6 +481,7 @@ class _AddressManageState extends State<AddressManage> {
         trailing: Switch(
           value: assetData.visible,
           onChanged: !_isAddressDisplay ? null : (bool value) {
+            _hideAssetIndex = index;
             bool flag  = !assetData.visible;
 
             print('==> address = ${widget.data.address}');

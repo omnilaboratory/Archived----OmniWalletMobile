@@ -11,38 +11,52 @@ import 'package:wallet_app/view_model/state_lib.dart';
 class DisplayedAssets extends StatefulWidget {
   static String tag = "DisplayedAssets";
 
+  /// Holds assets data of an address
+  final WalletInfo address_data;
+
+  // In the constructor, require a WalletInfo
+  DisplayedAssets({Key key, @required this.address_data}) : super(key: key);
+
   @override
   _DisplayedAssetsState createState() => _DisplayedAssetsState();
 }
 
 class _DisplayedAssetsState extends State<DisplayedAssets> {
 
-  List<String> _assetList = List();
-  List<bool> _isPopularAssetDisplay = List();
-  List<bool> _isOtherAssetDisplay   = List();
+  List _assetList = List();
+  List<AccountInfo> _assetData = List();
 
   @override
   void initState() {
     super.initState();
-    _gePopularAsset();
+    _getPopularAsset();
   }
 
   /// 
-  void _gePopularAsset() {
+  void _getPopularAsset() {
 
-    Future data = NetConfig.get(context,NetConfig.getPopularAssetList);
+    Future data = NetConfig.get(context, NetConfig.getPopularAssetList);
 
     data.then((data) {
       if (data != null) {
-        List response = data;
-        for (var i = 0; i < response.length; i++) {
-          var node = response[i];
-          print('==> assetName = ${node['assetName']}');
-          _assetList.add(node['assetName']);
+        _assetList = data;
+        _assetData = widget.address_data.accountInfoes;
 
-          _isPopularAssetDisplay.add(true);
-          _isOtherAssetDisplay.add(true);
+        print('==> PopularAsset amount = ${_assetList.length}');
+
+        for (var index = 0; index < _assetData.length; index++) {
+          for (var i = 0; i < _assetList.length; i++) {
+            var node = _assetList[i];
+            // print('==> assetName = ${node['assetName']}');
+            if (_assetData[index].propertyId == node['assetId']) { // found
+              if (_assetData[index].visible) { // 
+                _assetList.removeAt(i);
+                break;
+              }
+            }
+          }
         }
+
         setState(() { });
       }
     });
@@ -119,7 +133,7 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
     List<Widget> _list = List();
 
     for (int i = 0; i < _assetList.length; i++) {
-      _list.add(_popularAssetItem(_assetList[i], i));
+      _list.add(_popularAssetItem(_assetList[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -127,21 +141,48 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
   }
 
   /// every popular asset
-  Widget _popularAssetItem(String assetName, int index) {
-    // print('==> asset icon = ${assetData.iconUrl}');
+  Widget _popularAssetItem(var node) {
+    print('==> node = ${node}');
     return Container(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        // leading: Image.asset(assetData.iconUrl),
-        title: Text(assetName),
-        trailing: Switch(
-          value: _isPopularAssetDisplay[index], 
-          onChanged: (bool value) {
-            setState(() {
-              _isPopularAssetDisplay[index] = !_isPopularAssetDisplay[index];
-            });
-          },
-        ),
+        // leading: Image.asset(_assetData.iconUrl),
+        title: Text(node['assetName']),
+        trailing: Icon(Icons.add),
+        onTap: () {
+          print('==> add asset = ${node['assetName']}');
+
+          bool isFound = false;
+
+          for (var i = 0; i < _assetData.length; i++) {
+            if (_assetData[i].propertyId == node['assetId']) { // found
+              _assetData[i].visible = true;
+              isFound = true;
+              break;
+            }
+          }
+
+          Future response = NetConfig.post(context, NetConfig.addAsset, {
+            'address': widget.address_data.address,
+            'assetId': node['assetId'].toString(),
+            'assetName': node['assetName'].toString(),
+          });
+
+          response.then((val) {
+            if (val != null) {
+              if (!isFound) {
+                AccountInfo info = AccountInfo();
+                info.name = node['assetName'];
+                info.propertyId = node['assetId'];
+                info.amount = 0;
+                info.visible = true;
+                _assetData.add(info);
+              }
+
+              setState(() { });
+            }
+          });
+        },
       ),
     );
   }
