@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/main_view/home/receive_page.dart';
 import 'package:wallet_app/view/main_view/home/wallet_detail.dart';
 import 'package:wallet_app/view/widgets/custom_expansion_tile.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -135,15 +136,30 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
                 ],
               ),
               SizedBox(height: 10,),
-              AutoSizeText(
-                dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
-                minFontSize: 9,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              Row(
+                children: <Widget>[
+                  AutoSizeText(
+                    dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
+                    minFontSize: 9,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Icon(Icons.center_focus_weak),
+                      ),
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                          return ReceivePage(walletInfo: dataInfo,);
+                        }));
+                      },
+                  )
+                ],
               ),
             ],
           ),

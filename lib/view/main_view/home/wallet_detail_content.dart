@@ -262,19 +262,19 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
               leftIconName: 'icon_send',
               color: AppCustomColor.btnCancel,
             ),
-            SizedBox(width: 30,),
-            CustomRaiseButton(
-              context: context,
-              callback: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                  return ReceivePage();
-                }));
-              },
-              title: WalletLocalizations.of(context).wallet_detail_content_receive,
-              titleColor: Colors.white,
-              leftIconName: 'icon_receive',
-              color: AppCustomColor.btnConfirm,
-            ),
+//            SizedBox(width: 30,),
+//            CustomRaiseButton(
+//              context: context,
+//              callback: (){
+//                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+//                  return ReceivePage();
+//                }));
+//              },
+//              title: WalletLocalizations.of(context).wallet_detail_content_receive,
+//              titleColor: Colors.white,
+//              leftIconName: 'icon_receive',
+//              color: AppCustomColor.btnConfirm,
+//            ),
           ],
         ),
       );
