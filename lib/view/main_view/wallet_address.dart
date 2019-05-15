@@ -56,10 +56,10 @@ class _WalletAddressState extends State<WalletAddress> {
     List<Widget> _list = List();
 
     // title
-    _list.add(_listTitle());
+    _list.add(_addressListTitle());
 
     for (int i = 0; i < _walletInfoes.length; i++) {
-      _list.add(_everyAddress(_walletInfoes[i]));
+      _list.add(_addressItem(_walletInfoes[i]));
       _list.add(Divider(height: 0, indent: 15));
     }
 
@@ -67,7 +67,7 @@ class _WalletAddressState extends State<WalletAddress> {
   }
 
   ///
-  Widget _listTitle() {
+  Widget _addressListTitle() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
       child: AutoSizeText(
@@ -80,7 +80,7 @@ class _WalletAddressState extends State<WalletAddress> {
   }
 
   ///
-  Widget _everyAddress(WalletInfo walletData) {
+  Widget _addressItem(WalletInfo walletData) {
     return Ink(
       color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
