@@ -34,7 +34,6 @@ class UserInfo{
     this._mnemonicSeed=val;
   }
 
-
   void init(BuildContext context,Function callback) async{
     if(GlobalInfo.bip39Seed==null){
       GlobalInfo.initBipSeed(this._mnemonic,callback: callback);
