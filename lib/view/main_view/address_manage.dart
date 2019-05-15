@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:wallet_app/view/main_view/displayed_assets.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class AddressManage extends StatefulWidget {
@@ -29,7 +28,6 @@ class _AddressManageState extends State<AddressManage> {
 
   bool _hasClearIcon = false;
   bool _isAddressDisplay;
-  int  _hideAssetIndex;
 
   FocusNode _nodeText = FocusNode();
   TextEditingController _nameController = TextEditingController();
@@ -54,43 +52,6 @@ class _AddressManageState extends State<AddressManage> {
 
   @override
   Widget build(BuildContext context) {
-
-    /*
-    // TESTING CODE
-    return Stack(
-      children: <Widget>[
-        Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Text(WalletLocalizations.of(context).addressManagePageAppBarTitle),
-          ),
-
-          body: FormKeyboardActions(
-            actions: _actions(),
-            child: SafeArea(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(top: 10),
-                child: ListView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: _content(),
-                ),
-              ),
-            ),
-          ),
-        ),
-
-        new Opacity(
-          opacity: 0,
-          child: const ModalBarrier(dismissible: true, color: Colors.grey),
-        ),
-        new Center(
-          child: new CircularProgressIndicator(),
-        ),
-      ],
-    );
-    */
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -377,9 +338,7 @@ class _AddressManageState extends State<AddressManage> {
             response.then((val) {
               if (val != null) {
                 widget.data.visible = _isAddressDisplay;
-                setState(() {
-
-                });
+                setState(() {});
               }
             });
           }
@@ -404,6 +363,18 @@ class _AddressManageState extends State<AddressManage> {
     );
   }
 
+  ///
+  Widget _assetListTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+      child: Text(
+        WalletLocalizations.of(context).addressManagePageAssetsDisplay,
+        style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+
+  /* COMMENT FOR NEW DESIGN.
   ///
   Widget _assetListTitle() {
     return Padding(
@@ -439,6 +410,7 @@ class _AddressManageState extends State<AddressManage> {
       ),
     );
   }
+  */ // COMMENT FOR NEW DESIGN.
 
   /// asset list
   List<Widget> _assetList() {
@@ -449,18 +421,20 @@ class _AddressManageState extends State<AddressManage> {
     List<Widget> _list = List();
 
     for (int i = 0; i < assetAmount; i++) {
-      if (widget.data.accountInfoes[i].visible) {
-        _list.add(_assetItem(widget.data.accountInfoes[i], i));
-        _list.add(Divider(height: 0, indent: 15));
-      } else { // visible = false
-        if (_hideAssetIndex == i) { // not pop.
-          _list.add(_assetItem(widget.data.accountInfoes[i], i));
-          _list.add(Divider(height: 0, indent: 15));
-        }
-      }
+      _list.add(_assetItem(widget.data.accountInfoes[i], i));
+      _list.add(Divider(height: 0, indent: 15));
+
+      // if (widget.data.accountInfoes[i].visible) {
+      //   _list.add(_assetItem(widget.data.accountInfoes[i], i));
+      //   _list.add(Divider(height: 0, indent: 15));
+      // } else { // visible = false
+      //   if (_hideAssetIndex == i) { // not pop.
+      //     _list.add(_assetItem(widget.data.accountInfoes[i], i));
+      //     _list.add(Divider(height: 0, indent: 15));
+      //   }
+      // }
     }
 
-    print('==> should displayed asset amount = ${_list.length / 2}');
     return _list;
   }
 
@@ -481,10 +455,9 @@ class _AddressManageState extends State<AddressManage> {
         trailing: Switch(
           value: assetData.visible,
           onChanged: !_isAddressDisplay ? null : (bool value) {
-            _hideAssetIndex = index;
             bool flag  = !assetData.visible;
 
-            print('==> address = ${widget.data.address}');
+            // print('==> address = ${widget.data.address}');
             print('==> assetId = ${assetData.propertyId}');
 
             Future response = NetConfig.post(context,NetConfig.setAssetVisible, {
@@ -496,7 +469,7 @@ class _AddressManageState extends State<AddressManage> {
             response.then((val) {
               if (val != null) {
                 assetData.visible = !assetData.visible;
-                setState(() { });
+                setState(() {});
               }
             });
           },
