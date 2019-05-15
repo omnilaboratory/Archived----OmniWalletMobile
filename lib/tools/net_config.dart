@@ -93,6 +93,8 @@ class NetConfig{
   static String updateUserNickname ='user/updateUserNickname';
   /// feedback/submit 用户反馈
   static String feedback ='feedback/submit';
+  /// common/getVersionList app版本历史
+  static String appVersionList ='common/getVersionList';
 
 
 
@@ -143,7 +145,6 @@ class NetConfig{
       print(result);
       if(status==1){
         var data = result['data'];
-        print(data);
         isError = false;
         return data;
       }

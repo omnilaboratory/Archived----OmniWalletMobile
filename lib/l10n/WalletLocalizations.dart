@@ -228,6 +228,8 @@ class WalletLocalizations{
 
       'unlockPageAppBarTitle' : '解锁',
       'unlockPageAppTips' : 'PIN码不正确',
+
+      'me_about_app_upgrade_log_title' : 'App更新日志',
     },
 
     'en': {
@@ -472,6 +474,8 @@ class WalletLocalizations{
 
       'unlockPageAppBarTitle' : 'Unlock App',
       'unlockPageAppTips' : 'PIN Code is incorrect.',
+
+      'me_about_app_upgrade_log_title' : 'App upgrade log',
     }
   };
 
@@ -715,6 +719,8 @@ class WalletLocalizations{
   String get wallet_send_page_input_note => _localizedValues[locale.languageCode]['wallet_send_page_input_note'];
   String get wallet_send_page_title_minerFee => _localizedValues[locale.languageCode]['wallet_send_page_title_minerFee'];
   String get wallet_send_page_title_minerFee_input_title => _localizedValues[locale.languageCode]['wallet_send_page_title_minerFee_input_title'];
+
+  String get me_about_app_upgrade_log_title => _localizedValues[locale.languageCode]['me_about_app_upgrade_log_title'];
 
   static WalletLocalizations of (BuildContext context){
     return Localizations.of(context, WalletLocalizations);

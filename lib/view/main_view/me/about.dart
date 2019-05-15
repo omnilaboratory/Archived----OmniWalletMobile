@@ -109,7 +109,7 @@ class _AboutState extends State<About> {
 
     // Page routes
     List<String> routes = <String> [
-      '','','','',''
+      'AppUpgradeLogPage','','','',''
     ];
 
     for (int i = 0; i < items.length; i++) {

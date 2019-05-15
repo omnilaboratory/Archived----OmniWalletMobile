@@ -7,20 +7,15 @@ import 'package:wallet_app/l10n/chinese_local.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
-import 'package:wallet_app/view/main_view/about.dart';
 import 'package:wallet_app/view/main_view/address_manage.dart';
 import 'package:wallet_app/view/main_view/displayed_assets.dart';
-import 'package:wallet_app/view/main_view/feedback.dart';
-import 'package:wallet_app/view/main_view/help.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
 import 'package:wallet_app/view/main_view/home/send_page.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
-import 'package:wallet_app/view/main_view/service_terms.dart';
-import 'package:wallet_app/view/main_view/settings.dart';
+import 'package:wallet_app/view/main_view/me/app_upgrade_log_page.dart';
+import 'package:wallet_app/view/main_view/me/me_page_group.dart';
 import 'package:wallet_app/view/main_view/splash.dart';
 import 'package:wallet_app/view/main_view/unlock.dart';
-import 'package:wallet_app/view/main_view/update_nick_name.dart';
-import 'package:wallet_app/view/main_view/update_pin.dart';
 import 'package:wallet_app/view/main_view/user_info_page.dart';
 import 'package:wallet_app/view/main_view/wallet_address.dart';
 import 'package:wallet_app/view/main_view/wallet_address_book.dart';
@@ -98,6 +93,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UpdateNickName.tag: (context)      => UpdateNickName(),
     SelectCurrency.tag: (context)      => SelectCurrency(),
     SelectTheme.tag: (context)         => SelectTheme(),
+    AppUpgradeLogPage.tag: (context)         => AppUpgradeLogPage(),
   };
 
   Brightness brightness = Brightness.light;
@@ -210,7 +206,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           brightness:brightness,
           appBarTheme: AppBarTheme(
             elevation:   0,
-            color: brightness==Brightness.dark? Colors.black:Colors.white,
+            color: brightness==Brightness.dark? Color(0xFF191E32):Colors.white,
             brightness: brightness,
             textTheme: brightness==Brightness.dark?
                 TextTheme(title: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.normal))
