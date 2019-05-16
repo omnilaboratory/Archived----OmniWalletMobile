@@ -14,7 +14,8 @@ class WalletLocalizations{
       'backup_index_laterbackup': '稍后备份',
       'backup_index_btn': '立即备份',
       'backup_index_tips_title': '请立即备份您的钱包!',
-      'backup_index_tips': '注意：请备份你的钱包账户，Omniwallet 不会访问你的账户、不能恢复私钥、重置密码。你自己控制自己的钱包和资产安全。',
+      'backup_index_tips': '注意：请备份你的钱包账户，Omniwallet 不会访问你的账户、不能恢复私钥、'
+        '重置密码。你自己控制自己的钱包和资产安全。',
       'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
       'backup_index_prompt_title': '不要截屏',
       'backup_words_title': '备份助记词',
@@ -28,34 +29,34 @@ class WalletLocalizations{
 
       'restore_account_title': '恢复已有帐号',
       'restore_account_phrase_title': '请输入助记词',
-      'restore_account_tips': '注意：使用助记词导入账号后，你可以重置PIN',
-      'restore_account_resetPIN': '重置 PIN',
-      'restore_account_tip_pin': '新的PIN',
-      'restore_account_tip_OldPin': '原有PIN',
-      'restore_account_tip_confirmPin': '确认 PIN',
+      'restore_account_tips': '注意：使用助记词导入账号后，你可以重置PIN码。',
+      'restore_account_resetPIN': '重置PIN码',
+      'restore_account_tip_pin': '新的PIN码',
+      'restore_account_tip_OldPin': '原有PIN码',
+      'restore_account_tip_confirmPin': '确认PIN码',
       'restore_account_btn_restore': '恢复',
-      'restore_account_tip_error': '错误PIN',
-      'restore_account_tip_error2': '原始PIN错误',
-      'restore_account_tip_error3': '新的pin和确认pin不一样',
+      'restore_account_tip_error': '错误PIN码',
+      'restore_account_tip_error2': '旧PIN码错误',
+      'restore_account_tip_error3': '两个新PIN码不一致',
       'restore_account_tip_error1': '错误助记词',
 
       'welcomePageOneTitle' : '欢迎加入 Omni 平台！',
       'welcomePageOneContent' : "为了您的安全，请您抽时间来了解一些重要信息。\n\n"
-          "如果您访问了钓鱼网站或丢失备份短语（SEED短语），我们无法恢复您的资金或冻结您的帐户。\n\n"
-          "如您愿意继续使用我们的平台，您同意接受与您SEED损失相关的所有风险。如果您丢失了SEED，"
+          "如果您访问了钓鱼网站或丢失备份的助记词，我们无法恢复您的资金或冻结您的帐户。\n\n"
+          "如您愿意继续使用我们的平台，您同意接受与您助记词损失相关的所有风险。如果您丢失了助记词，"
           "您同意并承认 Omni 平台不会对此造成的负面后果承担责任。",
-      'welcomePageOneButton' : '您需要知道的关于您的SEED信息',
+      'welcomePageOneButton' : '您需要知道的关于助记词的信息',
 
-      'welcomePageTwoTitle' : '您需要知道关于您的SEED的信息',
-      'welcomePageTwoContentOne' : "注册您的账户时，您要保存您的密码（SEED）并使用密码来保护您的账户。"
-          "用普通的中央服务器上，您特别注意密码, 而且您可以通过电子邮件更改和重置密码。然而，Omni 与众不同 — "
+      'welcomePageTwoTitle' : '您需要知道的关于助记词的信息',
+      'welcomePageTwoContentOne' : "注册您的账户时，您要保存您的助记词并使用助记词来保护您的账户。"
+          "在普通的中央服务器上，您特别注意密码, 而且您可以通过电子邮件更改和重置密码。然而，Omni 与众不同 — "
           "该钱包安全地储存在您使用的设备上 ：",
       'welcomePageTwoContentTwo' : "您匿名地使用您的钱包，指的是您的账户未连接到电子邮件账户或任何其他识别数据。",
-      'welcomePageTwoContentThree' : "用某个设备或浏览器时，您的密码可以保护您的账户，"
-          "为了确保您的密码短语不被保存在存储器中。",
-      'welcomePageTwoContentFour' : "如果您忘记了密码，您可以通过您的密码短语使用账户恢复表单并轻松创建"
-          "一个新密码。但是，如果您遗失了密码，您将无法访问您的帐户。",
-      'welcomePageTwoContentFive' : "你不能改变你的秘密短语。如果您不小心将其发送给某人或怀疑诈骗者已将"
+      'welcomePageTwoContentThree' : "用某个设备或浏览器时，您的助记词可以保护您的账户，"
+          "为了确保您的助记词不被保存在存储器中。",
+      'welcomePageTwoContentFour' : "如果您忘记了PIN码，可以联系我们的客服人员。"
+          "但是，如果遗失了助记词，将无法访问您的帐户。",
+      'welcomePageTwoContentFive' : "你不能改变你的助记词。如果您不小心将其发送给某人或怀疑诈骗者已将"
           "其移交给他人，请立即创建一个新的 Omni 钱包并将资金转入其中。",
       'welcomePageTwoButtonBack' : '返回',
       'welcomePageTwoButtonNext' : '保护自己',
@@ -150,7 +151,7 @@ class WalletLocalizations{
 
       'buttom_tab1_name' : '钱包',
       'buttom_tab2_name' : '市场',
-      'buttom_tab3_name' : 'DEX',
+      'buttom_tab3_name' : 'OTC',
       'buttom_tab4_name' : '我的',
 
       'wallet_detail_content_send' : '转账',
@@ -229,7 +230,7 @@ class WalletLocalizations{
       'unlockPageAppBarTitle' : '解锁',
       'unlockPageAppTips' : 'PIN码不正确',
 
-      'me_about_app_upgrade_log_title' : 'App更新日志',
+      'me_about_app_upgrade_log_title' : '版本日志',
     },
 
     'en': {
@@ -239,21 +240,27 @@ class WalletLocalizations{
       'backup_index_laterbackup': 'Later',
       'backup_index_btn': 'Back Up Now!',
       'backup_index_tips_title': 'Back up your wallet now!',
-      'backup_index_tips': 'Notice: please back up your wallet, Omni will never visit your account, can not restore your private key or reset your password. You will manage your wallet on your own, and make sure the safety of your asset.',
-      'backup_index_prompt_tips': 'Anyone who gets access to your mnemonic will have access to your assets. Please copy it onto paper and store securely for safekeeping.',
+      'backup_index_tips': 'Notice: please back up your wallet, Omni will never visit your '
+        'account, can not restore your private key or reset your password. You will manage '
+        'your wallet on your own, and make sure the safety of your asset.',
+      'backup_index_prompt_tips': 'Anyone who gets access to your Mnemonic Phrase will have '
+        'access to your assets. Please copy it onto paper and store securely for safekeeping.',
       'backup_index_prompt_title': "Do Not Use Screenshots!",
       'backup_words_title': 'Back Up Mnemonic Phrase',
       'backup_words_next': 'Next',
-      'backup_words_content': "Write down or copy these words in the right order and save them somewhere safe.",
-      'backup_words_warn': "Never share recovery phrase with anyone,store it securely!",
+      'backup_words_content': "Write down or copy these words in the right order and save "
+        "them somewhere safe.",
+      'backup_words_warn': "Never share recovery phrase with anyone, store it securely!",
 
       'backup_words_order_title': 'Confirm mnemonic words',
-      'backup_words_order_content': 'Click the following 12-word phrase in exact sequence, to make sure you have a correct backup.',
-      'backup_words_order_error': 'Invalid order.Try again!',
+      'backup_words_order_content': 'Click the following 12-word phrase in exact sequence, '
+        'to make sure you have a correct backup.',
+      'backup_words_order_error': 'Invalid order. Try again!',
       'backup_words_order_finish': 'Finish',
 
       'restore_account_title': 'Restore Account',
-      'restore_account_tips': 'Notice: after importing account by Mnemonic Phrase, you can reset PIN for safety concerns.',
+      'restore_account_tips': 'Notice: after importing account by Mnemonic Phrase, you can '
+        'reset PIN for safety concerns.',
       'restore_account_phrase_title': 'Input Mnemonic words',
       'restore_account_resetPIN': 'Reset PIN',
       'restore_account_tip_pin': 'New PIN',
@@ -263,7 +270,7 @@ class WalletLocalizations{
       'restore_account_tip_error': 'Wrong PIN input',
       'restore_account_tip_error1': 'Wrong Mnemonic',
       'restore_account_tip_error2': 'Wrong Old PIN input',
-      'restore_account_tip_error3': 'new pin and comfirm pin is not same',
+      'restore_account_tip_error3': 'New pin and comfirm pin is not same',
 
 
 
@@ -271,17 +278,17 @@ class WalletLocalizations{
       'welcomePageOneContent' : "Please take some time to understand some "
           "important things for your own safety. \n\nWe cannot recover your "
           "funds or freeze your account if you visit a phishing site or lose "
-          "your backup phrase (aka SEED phrase).  \n\nBy continuing to use our "
+          "your backup mnemonic phrase.  \n\nBy continuing to use our "
           "platform, you agree to accept all risks associated with the loss of "
-          "your SEED, including but not limited to the inability to obtain your "
-          "funds and dispose of them. In case you lose your SEED, you agree and "
+          "your mnemonic phrase, including but not limited to the inability to obtain your "
+          "funds and dispose of them. In case you lose your mnemonic phrase, you agree and "
           "acknowledge that the Omni Platform would not be responsible for the "
           "negative consequences of this.",
-      'welcomePageOneButton' : 'What you need to know about your SEED',
+      'welcomePageOneButton' : 'About Mnemonic Phrase',
 
-      'welcomePageTwoTitle' : 'What you need to know \nabout your SEED',
+      'welcomePageTwoTitle' : 'What you need to know \nabout your Mnemonic Phrase',
       'welcomePageTwoContentOne' : "When registering your account, you will be asked "
-          "to save your secret phrase (SEED) and to protect your account with a password. "
+          "to save your mnemonic phrase and to protect your account with a PIN code. "
           "On normal centralized servers, special attention is paid to the password, which "
           "can be changed and reset via email, if the need arises. However, on decentralized "
           "platforms such as Omni, everything is arranged differently:",
@@ -289,11 +296,11 @@ class WalletLocalizations{
           "is not connected to an email account or any other identifying data.",
       'welcomePageTwoContentThree' : "Your password protects your account when working on "
           "a certain device or browser. It is needed in order to ensure that your secret "
-          "phrase is not saved in storage.",
-      'welcomePageTwoContentFour' : "If you forget your password, you can easily create a "
-          "new one by using the account recovery form via your secret phrase. If you lose "
-          "your secret phrase, however, you will have no way to access your account.",
-      'welcomePageTwoContentFive' : "You cannot change your secret phrase. If you "
+          "mnemonic phrase is not saved in storage.",
+      'welcomePageTwoContentFour' : "If you forget your PIN code, you can contact our customer "
+        "service staff. If you lose your mnemonic phrase, however, you will have no way to access "
+        "your account.",
+      'welcomePageTwoContentFive' : "You cannot change your mnemonic phrase. If you "
           "accidentally sent it to someone or suspect that scammers have taken it over, "
           "then create a new Omniwallet immediately and transfer your funds to it.",
       'welcomePageTwoButtonBack' : 'Go Back',
@@ -394,7 +401,7 @@ class WalletLocalizations{
 
       'buttom_tab1_name' : 'Wallet',
       'buttom_tab2_name' : 'Market',
-      'buttom_tab3_name' : 'DEX',
+      'buttom_tab3_name' : 'OTC',
       'buttom_tab4_name' : 'Me',
 
       'wallet_detail_content_send' : 'Send',
@@ -475,7 +482,7 @@ class WalletLocalizations{
       'unlockPageAppBarTitle' : 'Unlock App',
       'unlockPageAppTips' : 'PIN Code is incorrect.',
 
-      'me_about_app_upgrade_log_title' : 'App upgrade log',
+      'me_about_app_upgrade_log_title' : 'Version History',
     }
   };
 

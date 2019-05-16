@@ -248,7 +248,8 @@ class _AddressManageState extends State<AddressManage> {
     final form = _formKey.currentState;
     if (form.validate()) {
       Tools.loadingAnimation(context);
-      /// submit new name to server
+
+      // submit new name to server
       Future response = NetConfig.post(context,NetConfig.changeAddressName, {
         'address': widget.data.address,
         'addressName': _nameController.text.trim(),
