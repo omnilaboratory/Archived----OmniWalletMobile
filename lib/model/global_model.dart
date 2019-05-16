@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/model/user_info.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
-
 /**
  * Global data
  */
