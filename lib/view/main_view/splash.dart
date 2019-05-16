@@ -122,10 +122,13 @@ class _SplashState extends State<Splash> {
             context: context,
             barrierDismissible: false,  // user must tap button!
             builder:  (BuildContext context) {
-              return AlertDialog(
-                title: Text(WalletLocalizations.of(context).appVersionTitle),
-                content: Text(WalletLocalizations.of(context).appVersionContent1),
-                actions: _actions(data),
+              return WillPopScope(
+                onWillPop: () async => false,
+                child: AlertDialog(
+                  title: Text(WalletLocalizations.of(context).appVersionTitle),
+                  content: Text(WalletLocalizations.of(context).appVersionContent1),
+                  actions: _actions(data),
+                ),
               );
             }
           );
