@@ -66,25 +66,24 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
           }
 
           if(walletInfoes.length==0){
-            return Center(child:  CircularProgressIndicator());
-          }else{
-            return ListView.builder(
-                itemCount: _walletInfoes.length,
-                itemBuilder: (BuildContext context, int index){
-                  return Container(
-                    margin: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      color: AppCustomColor.themeBackgroudColor,
-                    ),
-                    child: CustemExpansionTile(
-                      title: buildFirstLevelHeader(index),
-                      trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
-                      children: buildItemes(context,index),
-                    ),
-                  );
-                }
-            );
+            return Center(child:CircularProgressIndicator());
           }
+          return ListView.builder(
+              itemCount: _walletInfoes.length,
+              itemBuilder: (BuildContext context, int index){
+                return Container(
+                  margin: EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: AppCustomColor.themeBackgroudColor,
+                  ),
+                  child: CustemExpansionTile(
+                    title: buildFirstLevelHeader(index),
+                    trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
+                    children: buildItemes(context,index),
+                  ),
+                );
+              }
+          );
           }
         );
   }
@@ -141,31 +140,35 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10),
               Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  AutoSizeText(
-                    dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
-                    minFontSize: 9,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Stack(
+                    children: <Widget>[
+                      InkWell(
+                        child: Padding(
+                          padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.28),
+                          child: Image.asset(Tools.imagePath('icon_qr_code'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 16,height: 16,),
+                        ),
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                            return ReceivePage(walletInfo: dataInfo,);
+                          }));
+                        },
+                      ),
+                      AutoSizeText(
+                        dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
+                        minFontSize: 9,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
-                  InkWell(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 18),
-                      child: Image.asset(Tools.imagePath('icon_qr_code'),width: 16,height: 16,),
-                    ),
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                        return ReceivePage(walletInfo: dataInfo,);
-                      }));
-                    },
-                  )
                 ],
               ),
             ],

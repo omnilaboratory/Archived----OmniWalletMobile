@@ -155,7 +155,7 @@ class WalletModel extends Model{
 
   List<TradeInfo> tradeInfoes = null;
   List<TradeInfo> getTradeInfoes(BuildContext context, String address,{int propertyId=0}){
-    print('getTradeInfoes');
+    print('getTradeInfoes1111');
     if(tradeInfoes==null){
       String url  = NetConfig.getTransactionsByAddress+'?address='+address;
       if(propertyId>0){
@@ -201,7 +201,7 @@ class WalletModel extends Model{
       });
     }
 
-    if(tradeInfoes==null) tradeInfoes=[];
+//    if(tradeInfoes==null) tradeInfoes=[];
     return tradeInfoes;
   }
 

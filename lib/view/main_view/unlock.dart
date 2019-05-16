@@ -69,6 +69,7 @@ class _UnlockState extends State<Unlock> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: widget.parentID > 10 ? () {
+        FocusScope.of(context).requestFocus(new FocusNode());
         GlobalInfo.isUnlockSuccessfully = true;
         return Future.value(true);
       } : () => Future.value(false),

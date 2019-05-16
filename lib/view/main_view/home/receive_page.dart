@@ -88,9 +88,9 @@ class _ReceivePageState extends State<ReceivePage> {
               SizedBox(width: 30,),
               CustomRaiseButton(
                 context: context,
-                callback: (){
-                  this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_share);
-                },
+//                callback: (){
+//                  this.showTips(WalletLocalizations.of(context).wallet_receive_page_tips_share);
+//                },
                 title: WalletLocalizations.of(context).wallet_receive_page_share,
                 titleColor: Colors.white,
                 leftIconName: 'icon_share',
