@@ -13,7 +13,7 @@ class _OmniPageState extends State<OmniPage> {
         automaticallyImplyLeading: false,
         leading: null,
         centerTitle: true,
-        title: Text('Omni DEX'),
+        title: Text('Flash Payment and OTC'),
       ),
 
       body: SafeArea(
