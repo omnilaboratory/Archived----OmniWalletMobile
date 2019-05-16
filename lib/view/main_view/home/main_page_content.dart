@@ -21,31 +21,36 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
   List<WalletInfo> _walletInfoes;
   MainStateModel stateModel = null;
 
-  Animation animation;
-  AnimationController animationController;
+  RefreshController _refreshController;
 
   @override
   void initState() {
     super.initState();
-    animationController = new AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-    animation = new Tween(begin: 0.0, end: 0.5).animate(animationController);
+    _refreshController = RefreshController();
   }
 
+  void _onRefresh(){
 
-  /// trailing anim
-  _changeOpacity(bool expand) {
-    setState(() {
-      if (expand) {
-        animationController.forward();
-      } else {
-        animationController.reverse();
-      }
-    });
+    /*.  after the data return,
+        use _refreshController.refreshComplete() or refreshFailed() to end refreshing
+   */
+    stateModel.setWalletInfoes(null,rightNow: true);
+    walletInfoes = stateModel.getWalletInfoes(context);
+    if(walletInfoes!=null){
+      _refreshController.refreshCompleted();
+    }
   }
+
+  void _onLoading(){
+    /*
+        use _refreshController.loadComplete() or loadNoData() to end loading
+   */
+  }
+
 
   @override
   void dispose() {
-    animationController.dispose();
+    _refreshController.dispose();
     super.dispose();
   }
 
@@ -68,46 +73,55 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
           if(walletInfoes.length==0){
             return Center(child:CircularProgressIndicator());
           }
-          return ListView.builder(
-              itemCount: _walletInfoes.length,
-              itemBuilder: (BuildContext context, int index){
-                return Container(
-                  margin: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    color: AppCustomColor.themeBackgroudColor,
-                  ),
-                  child: CustemExpansionTile(
-                    title: buildFirstLevelHeader(index),
-                    trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
-                    children: buildItemes(context,index),
-                  ),
-                );
-              }
+
+          return SmartRefresher(
+            enablePullDown: true,
+            enablePullUp: true,
+            header: WaterDropHeader(),
+            controller: _refreshController,
+            onRefresh: _onRefresh,
+            onLoading: _onLoading,
+            child: ListView.builder(
+                itemCount: _walletInfoes.length,
+                itemBuilder: (BuildContext context, int index){
+                  return Container(
+                    margin: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: AppCustomColor.themeBackgroudColor,
+                    ),
+                    child: CustemExpansionTile(
+                      title: buildFirstLevelHeader(index),
+                      trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
+                      children: buildItemes(context,index),
+                    ),
+                  );
+                }
+            ),
           );
           }
         );
   }
 
-  Widget buildExpandTrailing(int index){
-    WalletInfo dataInfo = _walletInfoes[index];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        AutoSizeText(
-          Tools.getCurrMoneyFlag()+dataInfo.totalLegalTender.toStringAsFixed(2),
-          textAlign: TextAlign.right,
-          style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
-          minFontSize: 10,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        RotationTransition(
-          turns: animation,
-          child: const Icon(Icons.expand_more),
-        ),
-      ],
-    );
-  }
+//  Widget buildExpandTrailing(int index){
+//    WalletInfo dataInfo = _walletInfoes[index];
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.end,
+//      children: <Widget>[
+//        AutoSizeText(
+//          Tools.getCurrMoneyFlag()+dataInfo.totalLegalTender.toStringAsFixed(2),
+//          textAlign: TextAlign.right,
+//          style: TextStyle(fontSize: 18,color: AppCustomColor.themeFrontColor),
+//          minFontSize: 10,
+//          maxLines: 1,
+//          overflow: TextOverflow.ellipsis,
+//        ),
+//        RotationTransition(
+//          turns: animation,
+//          child: const Icon(Icons.expand_more),
+//        ),
+//      ],
+//    );
+//  }
 
   Widget buildFirstLevelHeader(int index) {
     WalletInfo dataInfo = _walletInfoes[index];
