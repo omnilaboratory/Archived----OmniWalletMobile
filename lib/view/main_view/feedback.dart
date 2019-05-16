@@ -342,7 +342,6 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
 
     Future response = Tools.compressImage(image, targetPath,minWidth: 300,minHeight: 300);
     response.then((imgCompressed) {
-
       NetConfig.uploadImageFunc(
           imgCompressed,
           callback: (data) {
@@ -353,8 +352,6 @@ class _SubmitFeedbackState extends State<SubmitFeedback> {
           }
       );
     });
-
     Navigator.pop(context);
-    GlobalInfo.isNeedLock =  true;
   }
 }

@@ -66,9 +66,7 @@ class _AppUpgradeLogPageState extends State<AppUpgradeLogPage> {
   }
   Widget body(){
     if(this.isLoadingData){
-      return Center(
-        child: Text('loading Data'),
-      );
+        return Center(child:CircularProgressIndicator());
     }else{
       return SingleChildScrollView(
         child: Column(
