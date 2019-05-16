@@ -258,9 +258,9 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                 }));
               },
               title: WalletLocalizations.of(context).wallet_detail_content_send,
-              titleColor: Colors.white,
+              titleColor: AppCustomColor.themeFrontColor,
               leftIconName: 'icon_send',
-              color: AppCustomColor.btnConfirm,
+              color: AppCustomColor.btnCancel,
             ),
 //            SizedBox(width: 30,),
 //            CustomRaiseButton(

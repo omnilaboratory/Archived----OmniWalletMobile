@@ -229,7 +229,6 @@ class _RestoreAccountState extends State<RestoreAccount> {
   Function clickBtn(BuildContext context) {
     if(canToucn ==false) return null;
 
-    FocusScope.of(context).requestFocus(new FocusNode());
 
     String text = this.controller.text;
     var split = text.split(' ');
@@ -248,6 +247,9 @@ class _RestoreAccountState extends State<RestoreAccount> {
 
         final form = _formKey.currentState;
         if(form.validate()){
+
+          FocusScope.of(context).requestFocus(new FocusNode());
+
           String pin0 = this.controller0.text;
           String pin = this.controller1.text;
           String pin2 = this.controller2.text;

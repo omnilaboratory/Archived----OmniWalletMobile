@@ -64,21 +64,27 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
               _walletInfoes.add(node);
             }
           }
-          return ListView.builder(
-              itemCount: _walletInfoes.length,
-              itemBuilder: (BuildContext context, int index){
-                return Container(
-                  margin: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    color: AppCustomColor.themeBackgroudColor,
-                  ),
-                  child: CustemExpansionTile(
-                    title: buildFirstLevelHeader(index),
-                    trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
-                    children: buildItemes(context,index),
-                  ),
-                );
-              });
+
+          if(walletInfoes.length==0){
+            return Center(child:  CircularProgressIndicator());
+          }else{
+            return ListView.builder(
+                itemCount: _walletInfoes.length,
+                itemBuilder: (BuildContext context, int index){
+                  return Container(
+                    margin: EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: AppCustomColor.themeBackgroudColor,
+                    ),
+                    child: CustemExpansionTile(
+                      title: buildFirstLevelHeader(index),
+                      trailingContent: Tools.getCurrMoneyFlag()+_walletInfoes[index].totalLegalTender.toStringAsFixed(2),
+                      children: buildItemes(context,index),
+                    ),
+                  );
+                }
+            );
+          }
           }
         );
   }
@@ -136,31 +142,31 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
                 ],
               ),
               SizedBox(height: 10,),
-              InkWell(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    AutoSizeText(
-                      dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
-                      minFontSize: 9,
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AutoSizeText(
+                    dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
+                    minFontSize: 9,
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12
                     ),
-                    Padding(
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  InkWell(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 18),
                       child: Image.asset(Tools.imagePath('icon_qr_code'),width: 16,height: 16,),
-                    )
-                  ],
-                ),
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                    return ReceivePage(walletInfo: dataInfo,);
-                  }));
-                },
+                    ),
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                        return ReceivePage(walletInfo: dataInfo,);
+                      }));
+                    },
+                  )
+                ],
               ),
             ],
           ),
