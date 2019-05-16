@@ -18,10 +18,13 @@ class ServiceTerms extends StatelessWidget {
         ),
 
         body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
-            // child: _childColumn(context),
+          child: Center(
+            child: Text('Coming Soon ...'),
           ),
+          // child: Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+          //   // child: _childColumn(context),
+          // ),
         )
     );
   }
