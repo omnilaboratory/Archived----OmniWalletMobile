@@ -139,7 +139,13 @@ class NetConfig{
       }
     } on TimeoutException{
       print('TimeoutException');
-      return 504;
+      return 408;
+    } on Exception {
+      Tools.showToast('check your network');
+      if(errorCallback!=null){
+        errorCallback();
+      }
+      return 600;
     }
 
 //    Fluttertoast.cancel();

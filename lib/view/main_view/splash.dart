@@ -99,9 +99,10 @@ class _SplashState extends State<Splash> {
   _checkVersion() async {
 
     // Invoke api.
-    var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5);
+    var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5,);
 
-    if(data!=null&&data==504){
+    print(data);
+    if(data!=null&&(data==408||data==600)){
       refreshOpacity = 1;
       setState(() {});
       return;
@@ -238,8 +239,19 @@ class _SplashState extends State<Splash> {
 
   // 
   void _getUserInfo(SharedPreferences share) {
-
-    Future data = NetConfig.get(context,NetConfig.getUserInfo);
+    Future data = NetConfig.get(
+        context, NetConfig.getUserInfo,
+        errorCallback: () {
+          share.clear();
+          GlobalInfo.clear();
+          print('==> user is not exist');
+          // show welcome page
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => WelcomePageOne()),
+                (route) => route == null,
+          );
+        }
+    );
     // Tools.loadingAnimation(context);
     data.then((data) {
       if (data != null) {
