@@ -150,7 +150,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
                     children: <Widget>[
                       InkWell(
                         child: Padding(
-                          padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.28),
+                          padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.3),
                           child: Image.asset(Tools.imagePath('icon_qr_code'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 16,height: 16,),
                         ),
                         onTap: (){
