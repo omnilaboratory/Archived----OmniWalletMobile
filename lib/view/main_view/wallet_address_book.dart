@@ -26,11 +26,11 @@ class _AddressBookState extends State<AddressBook> {
       stateModel = MainStateModel().of(context);
       stateModel.usualAddressList = null;
     }
-    _newAddressInfo = UsualAddressInfo();
-    _usualAddressList = stateModel.getUsualAddressList(context);
 
     return ScopedModelDescendant<MainStateModel>(builder: (context, child, model)
     {
+      _newAddressInfo = UsualAddressInfo();
+      _usualAddressList = stateModel.getUsualAddressList(context);
       return Scaffold(
         appBar: AppBar(
           title: Text(AddressBook.tag), elevation: 0,
@@ -187,8 +187,8 @@ class _AddressBookState extends State<AddressBook> {
       );
   }
   Widget body(){
-    if(this._usualAddressList.length==0){
-        return Center(child: Text('book is empty'),);
+    if(this._usualAddressList==null){
+      return Center(child:CircularProgressIndicator());
     }else
     {
       return ListView.builder(

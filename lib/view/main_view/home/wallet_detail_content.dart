@@ -32,7 +32,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
   @override void initState() {
     super.initState();
     mController = TabController(
-      length: 4,
+      length: 3,
       vsync: this,
     );
   }
@@ -64,6 +64,11 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
     return ScopedModelDescendant<MainStateModel>(
         builder: (context, child, model) {
           tradeInfoes = model.getTradeInfoes(context,walletInfo.address,propertyId: accountInfo.propertyId);
+
+          print('$tradeInfoes');
+          if(tradeInfoes==null){
+            return Center(child:CircularProgressIndicator());
+          }
           initData();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,14 +79,14 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                 child: TabBar(
                     controller: mController,
                     labelColor: Colors.blue,
-                    labelPadding: EdgeInsets.only(bottom: 4),
+                    labelPadding: EdgeInsets.only(bottom: 3),
                     indicatorSize: TabBarIndicatorSize.label,
                     unselectedLabelColor: Colors.grey,
                     tabs: [
                       Text('All'),
                       Text('Out'),
                       Text('In'),
-                      Text('Failed'),
+//                      Text('Failed'),
                     ]),
               ),
               Expanded(
@@ -104,11 +109,11 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                         itemBuilder: (BuildContext context, int index){
                           return detailTile(context,index,tradeInfoes2);
                         }),
-                    ListView.builder(
-                        itemCount:tradeInfoes3.length,
-                        itemBuilder: (BuildContext context, int index){
-                          return detailTile(context,index,tradeInfoes3);
-                        }),
+//                    ListView.builder(
+//                        itemCount:tradeInfoes3.length,
+//                        itemBuilder: (BuildContext context, int index){
+//                          return detailTile(context,index,tradeInfoes3);
+//                        }),
                   ],
                 ),
               ),
@@ -246,7 +251,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
   }
   Widget buildFooter() {
     return Container(
-        margin: EdgeInsets.only(top: 2,bottom: 6,left: 10,right: 10),
+        margin: EdgeInsets.only(top: 10,bottom: 10,left: 30,right: 30),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -258,9 +263,10 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                 }));
               },
               title: WalletLocalizations.of(context).wallet_detail_content_send,
-              titleColor: AppCustomColor.themeFrontColor,
-              leftIconName: 'icon_send',
-              color: AppCustomColor.btnCancel,
+              titleColor: AppCustomColor.themeBackgroudColor,
+              titleSize: 18.0,
+//              leftIconName: 'icon_send',
+              color: AppCustomColor.btnConfirm,
             ),
 //            SizedBox(width: 30,),
 //            CustomRaiseButton(

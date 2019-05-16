@@ -33,19 +33,19 @@ class UserUsualAddressModel extends Model{
 
   getUsualAddressList(BuildContext context){
     if(_usualAddressList==null){
-      _usualAddressList = [];
       Future future = NetConfig.get(context,NetConfig.transferAddressList);
       future.then((data){
         if(data!=null){
+          _usualAddressList = [];
           List list = data ;
           for(int i=0;i<list.length;i++){
             _usualAddressList.add(UsualAddressInfo(id:list[i]['id'], name: list[i]['nickname'],address:list[i]['address'],note: list[i]['note']));
           }
         }
         notifyListeners();
+        return this._usualAddressList;
       });
     }
-    notifyListeners();
     return this._usualAddressList;
   }
 
