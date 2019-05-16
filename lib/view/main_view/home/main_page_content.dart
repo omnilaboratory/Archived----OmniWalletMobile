@@ -80,7 +80,7 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
             header: WaterDropHeader(),
             controller: _refreshController,
             onRefresh: _onRefresh,
-            onLoading: _onLoading,
+//            onLoading: _onLoading,
             child: ListView.builder(
                 itemCount: _walletInfoes.length,
                 itemBuilder: (BuildContext context, int index){
