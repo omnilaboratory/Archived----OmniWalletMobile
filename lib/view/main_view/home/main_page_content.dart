@@ -136,30 +136,31 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
                 ],
               ),
               SizedBox(height: 10,),
-              Row(
-                children: <Widget>[
-                  AutoSizeText(
-                    dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
-                    minFontSize: 9,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Icon(Icons.center_focus_weak),
+              InkWell(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    AutoSizeText(
+                      dataInfo.address.replaceRange(6, dataInfo.address.length-6, '...'),
+                      minFontSize: 9,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12
                       ),
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                          return ReceivePage(walletInfo: dataInfo,);
-                        }));
-                      },
-                  )
-                ],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18),
+                      child: Image.asset(Tools.imagePath('icon_qr_code'),width: 16,height: 16,),
+                    )
+                  ],
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                    return ReceivePage(walletInfo: dataInfo,);
+                  }));
+                },
               ),
             ],
           ),
