@@ -30,23 +30,12 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
   }
 
   void _onRefresh(){
-
-    /*.  after the data return,
-        use _refreshController.refreshComplete() or refreshFailed() to end refreshing
-   */
     stateModel.setWalletInfoes(null,rightNow: true);
     walletInfoes = stateModel.getWalletInfoes(context);
     if(walletInfoes!=null){
       _refreshController.refreshCompleted();
     }
   }
-
-  void _onLoading(){
-    /*
-        use _refreshController.loadComplete() or loadNoData() to end loading
-   */
-  }
-
 
   @override
   void dispose() {
@@ -76,11 +65,10 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
 
           return SmartRefresher(
             enablePullDown: true,
-            enablePullUp: true,
+            enablePullUp: false,
             header: WaterDropHeader(),
             controller: _refreshController,
             onRefresh: _onRefresh,
-//            onLoading: _onLoading,
             child: ListView.builder(
                 itemCount: _walletInfoes.length,
                 itemBuilder: (BuildContext context, int index){
