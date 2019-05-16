@@ -43,6 +43,9 @@ class  GlobalInfo{
   /// From where - 0: reload  1: background.
   static int fromWhere;
 
+  /// Will be lock how many seconds when app enter background. Default is 5 mins.
+  static int sleepTime = 5;
+
   /// userInfo
   static UserInfo userInfo = UserInfo();
 

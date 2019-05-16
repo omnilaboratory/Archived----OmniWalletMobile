@@ -129,7 +129,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         // }
 
         _timer = Timer(
-          Duration(seconds: 3),
+          Duration(minutes: GlobalInfo.sleepTime), // Default is 5 mins.
           () {
             GlobalInfo.isLocked = true; // will be locked.
             _timer.cancel();

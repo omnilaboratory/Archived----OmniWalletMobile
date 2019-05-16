@@ -63,7 +63,7 @@ class _AboutState extends State<About> {
               ),
               SizedBox(height: 10),
               Text(
-                'v1.0.0 Beta 1',
+                'v1.0.0 Beta 4',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
@@ -176,7 +176,7 @@ class _AboutState extends State<About> {
 
     if (data != null) {
       // If has a newer version, then show dialog.
-      if (data['code'] < GlobalInfo.currVersionCode) {
+      if (data['code'] > GlobalInfo.currVersionCode) {
         _hasNewerVersion(data);
       } else { // If has not a newer, just show promt.
         // Tools.showToast(
