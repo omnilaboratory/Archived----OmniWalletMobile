@@ -34,6 +34,16 @@ class _RestoreAccountState extends State<RestoreAccount> {
     controller1 = TextEditingController();
     controller2 = TextEditingController();
   }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    controller0.dispose();
+    controller1.dispose();
+    controller2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     canToucn =true;
@@ -134,7 +144,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             filled: true,
           ),
           validator: (val){
-            if(val.isEmpty){
+            if(val.isEmpty||val.length!=6){
               return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_OldPin;
             }
           },
@@ -154,7 +164,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             filled: true,
           ),
           validator: (val){
-            if(val.isEmpty){
+            if(val.isEmpty||val.length!=6){
               return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_pin;
             }
           },
@@ -176,7 +186,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
             filled: true,
           ),
           validator: (val){
-            if(val.isEmpty){
+            if(val.isEmpty||val.length!=6){
               return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_confirmPin;
             }
           },
@@ -218,6 +228,9 @@ class _RestoreAccountState extends State<RestoreAccount> {
   bool canToucn =true;
   Function clickBtn(BuildContext context) {
     if(canToucn ==false) return null;
+
+    FocusScope.of(context).requestFocus(new FocusNode());
+
     String text = this.controller.text;
     var split = text.split(' ');
     split.removeWhere((item) {

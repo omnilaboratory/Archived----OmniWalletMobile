@@ -28,6 +28,13 @@ class _UpdatePINState extends State<UpdatePIN> {
     controller1 = TextEditingController();
     controller2 = TextEditingController();
   }
+  @override
+  void dispose() {
+    controller0.dispose();
+    controller1.dispose();
+    controller2.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +54,7 @@ class _UpdatePINState extends State<UpdatePIN> {
         filled: true,
       ),
       validator: (val){
-        if(val.isEmpty){
+        if(val.isEmpty||val.length!=6){
           return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_OldPin;
         }
       },
@@ -67,7 +74,7 @@ class _UpdatePINState extends State<UpdatePIN> {
         filled: true,
       ),
       validator: (val){
-        if(val.isEmpty){
+        if(val.isEmpty||val.length!=6){
           return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_pin;
         }
       },
@@ -89,7 +96,7 @@ class _UpdatePINState extends State<UpdatePIN> {
         filled: true,
       ),
       validator: (val){
-        if(val.isEmpty){
+        if(val.isEmpty||val.length!=6){
           return WalletLocalizations.of(context).common_tips_input+WalletLocalizations.of(context).restore_account_tip_confirmPin;
         }
       },
@@ -134,6 +141,9 @@ class _UpdatePINState extends State<UpdatePIN> {
     );
   }
   clickBtn() async {
+
+    FocusScope.of(context).requestFocus(new FocusNode());
+
     final form = _formKey.currentState;
     if(form.validate()){
       String pin0 = this.controller0.text;
