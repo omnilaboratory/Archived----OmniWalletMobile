@@ -20,16 +20,23 @@ class MarketPage extends StatefulWidget {
 class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateMixin{
 
   List dataList = null;
+  Map<int,Object> dataMap = Map();
   List<String> exchanges=['OKcoin','Binance','Bittrex'];
   RefreshController _refreshController;
   TabController _tabController;
+
+  bool onTouchTab = false;
+
+
   @override
   void initState() {
     super.initState();
     _refreshController = RefreshController();
     _tabController = TabController(length: exchanges.length, vsync: this);
     _tabController.addListener((){
-      this._loadDataFromServer(this._tabController.index);
+      if(this._tabController.offset==0&&onTouchTab==false){
+        this._loadDataFromServer(this._tabController.index);
+      }
     });
     this._loadDataFromServer(0);
   }
@@ -43,17 +50,31 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
   }
 
   _loadDataFromServer(int currTabIndex) async{
-    String exchange = exchanges[currTabIndex];
-    String currMoneyFlag = GlobalInfo.currencyUnit==KeyConfig.usd?'usd':'cny';
-    currMoneyFlag = 'unit='+currMoneyFlag;
-    String url = 'http://market.jinse.com/api/v1/ticks/'+exchange+'?'+currMoneyFlag;
-    print(url);
-    http.Response response = await http.get(url);
-    this.dataList = json.decode(response.body);
+    print(this.dataMap.containsKey(currTabIndex));
+    if(this.dataMap.containsKey(currTabIndex)){
+       this.dataList = this.dataMap[currTabIndex];
+    }else{
+      String exchange = exchanges[currTabIndex].toLowerCase();
+      String currMoneyFlag = GlobalInfo.currencyUnit==KeyConfig.usd?'usd':'cny';
+      currMoneyFlag = 'unit='+currMoneyFlag;
+      String url = 'http://market.jinse.com/api/v1/ticks/'+exchange+'?'+currMoneyFlag;
+      print(url);
+      try{
+        http.Response response = await http.get(url).timeout(Duration(seconds: 5));
+        this.dataList = json.decode(response.body);
+        if(this.dataMap.containsKey(currTabIndex)==false){
+          this.dataMap[currTabIndex] = this.dataList;
+        }
+      }on Exception{
+        this.dataList =[];
+      }
+    }
     setState(() {});
+    onTouchTab = false;
   }
 
   void _onRefresh(){
+    this.dataMap.remove(this._tabController.index);
     this._loadDataFromServer(this._tabController.index);
     _refreshController.refreshCompleted();
   }
@@ -92,7 +113,8 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
         controller: _tabController,
         labelColor: Colors.blue,
         onTap: (index){
-          this._loadDataFromServer(index);
+//          this._loadDataFromServer(index);
+//          onTouchTab = true;
         },
         labelPadding: EdgeInsets.only(bottom: 3),
         indicatorSize: TabBarIndicatorSize.label,
