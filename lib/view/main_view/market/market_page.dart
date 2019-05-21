@@ -21,7 +21,10 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
 
   List dataList = null;
   Map<int,Object> dataMap = Map();
-  List<String> exchanges=['OKcoin','Binance','Bittrex'];
+  List<String> exchanges=[
+    'Bitfinex',
+    'Binance',
+  ];
   RefreshController _refreshController;
   TabController _tabController;
 
@@ -54,6 +57,11 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     if(this.dataMap.containsKey(currTabIndex)){
        this.dataList = this.dataMap[currTabIndex];
     }else{
+      if(this.dataList!=null){
+        setState(() {
+          this.dataList = null;
+        });
+      }
       String exchange = exchanges[currTabIndex].toLowerCase();
       String currMoneyFlag = GlobalInfo.currencyUnit==KeyConfig.usd?'usd':'cny';
       currMoneyFlag = 'unit='+currMoneyFlag;
@@ -75,6 +83,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
 
   void _onRefresh(){
     this.dataMap.remove(this._tabController.index);
+    this.dataList = null;
     this._loadDataFromServer(this._tabController.index);
     _refreshController.refreshCompleted();
   }
@@ -112,15 +121,31 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     return TabBar(
         controller: _tabController,
         labelColor: Colors.blue,
-        onTap: (index){
-//          this._loadDataFromServer(index);
-//          onTouchTab = true;
-        },
         labelPadding: EdgeInsets.only(bottom: 3),
         indicatorSize: TabBarIndicatorSize.label,
         unselectedLabelColor: Colors.grey,
         tabs: this.createTabBarHeader()
     );
+  }
+
+  List<Widget> createTabView(){
+    List<Widget> list = [];
+    for(int i=0;i<exchanges.length;i++){
+      list.add(SmartRefresher(
+        enablePullDown: true,
+        enablePullUp: false,
+        header: WaterDropHeader(),
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        child: ListView.builder(
+          itemCount: this.dataList.length,
+          itemBuilder: (context, index) {
+            return _quotationItem(index);
+          },
+        ),
+      ));
+    }
+    return list;
   }
 
   // Quotation title.
@@ -160,47 +185,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     return Expanded(
       child: TabBarView(
         controller: _tabController,
-        children: <Widget>[
-          SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: false,
-            header: WaterDropHeader(),
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            child: ListView.builder(
-              itemCount: this.dataList.length,
-              itemBuilder: (context, index) {
-                return _quotationItem(index);
-              },
-            ),
-          ),
-          SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: false,
-            header: WaterDropHeader(),
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            child: ListView.builder(
-              itemCount: this.dataList.length,
-              itemBuilder: (context, index) {
-                return _quotationItem(index);
-              },
-            ),
-          ),
-          SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: false,
-            header: WaterDropHeader(),
-            controller: _refreshController,
-            onRefresh: _onRefresh,
-            child: ListView.builder(
-              itemCount: this.dataList.length,
-              itemBuilder: (context, index) {
-                return _quotationItem(index);
-              },
-            ),
-          ),
-        ],
+        children: this.createTabView(),
       ),
     );
   }
