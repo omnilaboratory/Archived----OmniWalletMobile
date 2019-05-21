@@ -77,7 +77,8 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
         this.dataList =[];
       }
     }
-    setState(() {});
+    priceSortAsc = true;
+    sortByPrice();
     onTouchTab = false;
   }
 
@@ -118,13 +119,16 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
 
   // Exchanges
   Widget _showExchange() {
-    return TabBar(
-        controller: _tabController,
-        labelColor: Colors.blue,
-        labelPadding: EdgeInsets.only(bottom: 3),
-        indicatorSize: TabBarIndicatorSize.label,
-        unselectedLabelColor: Colors.grey,
-        tabs: this.createTabBarHeader()
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: TabBar(
+          controller: _tabController,
+          labelColor: Colors.blue,
+          labelPadding: EdgeInsets.only(bottom: 3),
+          indicatorSize: TabBarIndicatorSize.label,
+          unselectedLabelColor: Colors.grey,
+          tabs: this.createTabBarHeader()
+      ),
     );
   }
 
@@ -148,6 +152,9 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     return list;
   }
 
+  bool nameSortAsc = true;
+  bool priceSortAsc = true;
+  bool degreeSortAsc = true;
   // Quotation title.
   Widget _showTitle() {
     return Row(
@@ -157,7 +164,25 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
           child: Text(WalletLocalizations.of(context).marketPageAll),
           textColor: Colors.grey,
           onPressed: () {
-            // TODO: select assets that want to show.
+            if(this.dataList!=null){
+              nameSortAsc = !nameSortAsc;
+              this.dataList.sort((node1,node2){
+                String base1 = node1['base'];
+                String base2 = node2['base'];
+                if(base1.compareTo(base2)==0){
+                  return 0;
+                }
+                if(base1.compareTo(base2)>0){
+                  return nameSortAsc?1:-1;
+                }
+                if(base1.compareTo(base2)<0){
+                  return nameSortAsc?-1:1;
+                }
+              });
+              setState(() {
+
+              });
+            }
           },
         ),
 
@@ -165,7 +190,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
           child: Text(WalletLocalizations.of(context).marketPagePrice),
           textColor: Colors.grey,
           onPressed: () {
-            // TODO: Assets amount and value.
+            this.sortByPrice();
           },
         ),
 
@@ -173,7 +198,25 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
           child: Text(WalletLocalizations.of(context).marketPageChange),
           textColor: Colors.grey,
           onPressed: () {
-            // TODO: Quote change.
+            if(this.dataList!=null){
+              degreeSortAsc = !degreeSortAsc;
+              this.dataList.sort((node1,node2){
+                num base1 = node1['degree'];
+                num base2 = node2['degree'];
+                if(base1.compareTo(base2)==0){
+                  return 0;
+                }
+                if(base1.compareTo(base2)>0){
+                  return degreeSortAsc?1:-1;
+                }
+                if(base1.compareTo(base2)<0){
+                  return degreeSortAsc?-1:1;
+                }
+              });
+              setState(() {
+
+              });
+            }
           },
         ),
       ],
@@ -197,15 +240,15 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
       splashColor: Colors.blue[100],
       highlightColor: Colors.blue[100],
 
-      onTap: () {
-        // Show detail page.
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MarketDetail(),
-          ),
-        );
-      },
+//      onTap: () {
+//        // Show detail page.
+//        Navigator.push(
+//          context,
+//          MaterialPageRoute(
+//            builder: (context) => MarketDetail(),
+//          ),
+//        );
+//      },
 
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -239,18 +282,18 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
                         overflow: TextOverflow.ellipsis,
                       ),
 
-//                      Expanded(
-//                        child: AutoSizeText( // Trade pair second part
-//                          ' / '+data['currency'],
-//                          style: TextStyle(
-//                            fontFamily: 'Arial',
-//                            fontSize: 13,
-//                          ),
-//                          minFontSize: 10,
-//                          maxLines: 1,
-//                          overflow: TextOverflow.ellipsis,
-//                        ),
-//                      ),
+                      Expanded(
+                        child: AutoSizeText( // Trade pair second part
+                          ' / '+data['currency'],
+                          style: TextStyle(
+                            fontFamily: 'Arial',
+                            fontSize: 13,
+                          ),
+                          minFontSize: 10,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
 
@@ -318,5 +361,27 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
         ),
       ),
     );
+  }
+
+  void sortByPrice() {
+    if(this.dataList!=null){
+      priceSortAsc = !priceSortAsc;
+      this.dataList.sort((node1,node2){
+        num base1 = node1['close'];
+        num base2 = node2['close'];
+        if(base1.compareTo(base2)==0){
+          return 0;
+        }
+        if(base1.compareTo(base2)>0){
+          return priceSortAsc?1:-1;
+        }
+        if(base1.compareTo(base2)<0){
+          return priceSortAsc?-1:1;
+        }
+      });
+      setState(() {
+
+      });
+    }
   }
 }
