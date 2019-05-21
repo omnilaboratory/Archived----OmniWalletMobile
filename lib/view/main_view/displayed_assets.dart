@@ -38,7 +38,7 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
     Future data = NetConfig.get(context, NetConfig.getPopularAssetList);
 
     data.then((data) {
-      if (data != null) {
+      if (data!=null&&(data!=408&&data!=600&&data!=404)) {
         _assetList = data;
         _assetData = widget.address_data.accountInfoes;
 
@@ -168,8 +168,8 @@ class _DisplayedAssetsState extends State<DisplayedAssets> {
             'assetName': node['assetName'].toString(),
           });
 
-          response.then((val) {
-            if (val != null) {
+          response.then((data) {
+            if (data!=null&&(data!=408&&data!=600&&data!=404)) {
               if (!isFound) {
                 AccountInfo info = AccountInfo();
                 info.name = node['assetName'];

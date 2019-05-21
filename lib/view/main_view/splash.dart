@@ -99,7 +99,7 @@ class _SplashState extends State<Splash> {
   _checkVersion() async {
 
     // Invoke api.
-    var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5,);
+    var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5);
 
     if(data!=null&&(data==408||data==600||data==404)){
       refreshOpacity = 1;
@@ -259,7 +259,7 @@ class _SplashState extends State<Splash> {
     );
     // Tools.loadingAnimation(context);
     data.then((data) {
-      if (data != null) {
+      if (data!=null&&(data!=408&&data!=600&&data!=404)) {
         // print('==> --. DATA | ${DateTime.now()}');
         String user_mnemonic = share.get(KeyConfig.user_mnemonic);
         var words = user_mnemonic.split(' ');

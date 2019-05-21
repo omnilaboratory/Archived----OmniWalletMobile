@@ -255,8 +255,8 @@ class _AddressManageState extends State<AddressManage> {
         'addressName': _nameController.text.trim(),
       });
 
-      response.then((val) {
-        if (val != null) {
+      response.then((data) {
+        if (data!=null&&(data!=408&&data!=600&&data!=404)) {
           setState(() {
             widget.data.name = _nameController.text.trim(); // change locally data.
             // Navigator.of(context).pop(); // Pop loading
@@ -336,8 +336,8 @@ class _AddressManageState extends State<AddressManage> {
               'visible': _isAddressDisplay.toString(),
             });
 
-            response.then((val) {
-              if (val != null) {
+            response.then((data) {
+              if (data!=null&&(data!=408&&data!=600&&data!=404)) {
                 widget.data.visible = _isAddressDisplay;
                 setState(() {});
               }

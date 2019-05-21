@@ -193,8 +193,6 @@ class NetConfig{
     if(response.statusCode==404){
       return response.statusCode;
     }
-
-
   }
 
   static uploadImageFunc(File imageFile,{@required Function callback,Function errorCallback}) async{

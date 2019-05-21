@@ -406,7 +406,7 @@ class _CreateAccountState extends State<CreateAccount> {
       );
 
       data.then((data) {
-        if(data != null) {
+        if(data!=null&&(data!=408&&data!=600&&data!=404)) {
           GlobalInfo.userInfo.userId   = _mnemonic_md5;
           GlobalInfo.userInfo.mnemonic = _mnemonic;
           GlobalInfo.userInfo.pinCode  = _pinCode_md5;
