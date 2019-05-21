@@ -101,7 +101,7 @@ class _SplashState extends State<Splash> {
     // Invoke api.
     var data = await NetConfig.get(context,NetConfig.getNewestVersion,timeOut: 5,);
 
-    if(data!=null&&(data==408||data==600)){
+    if(data!=null&&(data==408||data==600||data==404)){
       refreshOpacity = 1;
       setState(() {});
       return;
