@@ -259,7 +259,7 @@ class _AddressManageState extends State<AddressManage> {
         if (val != null) {
           setState(() {
             widget.data.name = _nameController.text.trim(); // change locally data.
-            Navigator.of(context).pop(); // Pop loading
+            // Navigator.of(context).pop(); // Pop loading
             Navigator.of(context).pop(); // Pop dialog
           });
         }

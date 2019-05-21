@@ -63,7 +63,7 @@ class _AboutState extends State<About> {
               ),
               SizedBox(height: 10),
               Text(
-                'v1.0.0 Beta 4',
+                'v1.0.0 Beta',
                 style: TextStyle(
                   color: Colors.grey,
                 ),
