@@ -194,7 +194,7 @@ class _SplashState extends State<Splash> {
     // Go to App Store for iOS.
     if (Platform.isIOS) {
 //      url = 'https://www.baidu.com/'; // temp code
-      Tools.showToast('Please go to TestFlight App for update version testing.');
+      Tools.showToast('Please go to TestFlight App for update version testing.',toastLength: Toast.LENGTH_LONG);
       return;
     }
 
