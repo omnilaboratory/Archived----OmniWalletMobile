@@ -184,8 +184,12 @@ class _SplashState extends State<Splash> {
   /// Upgrade to newer version
   void _upgradeNewerVersion(data) async {
 
+    String path =  data['path'];
     // APK install file download url for Android.
-    var url = NetConfig.imageHost + data['path'];
+    var url = path;
+    if((path.startsWith('http')||path.startsWith('wwww'))==false){
+      url = NetConfig.imageHost + data['path'];
+    }
 
     // Go to App Store for iOS.
     if (Platform.isIOS) {
