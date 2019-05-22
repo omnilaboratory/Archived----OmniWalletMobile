@@ -19,7 +19,7 @@ class  GlobalInfo{
   static String dataEncodeString= 'P@ssw)2d!UPRETSCLIENT';
 
   ///当前版本号
-  static int currVersionCode = 3;
+  static int currVersionCode = 4;
 
   static AssetToUSDRateInfo usdRateInfo = AssetToUSDRateInfo();
 
