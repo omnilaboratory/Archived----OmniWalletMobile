@@ -256,7 +256,7 @@ class _SplashState extends State<Splash> {
   void _getUserInfo(SharedPreferences share) {
     Future data = NetConfig.get(
         context, NetConfig.getUserInfo,
-        errorCallback: () {
+        errorCallback: (msg) {
           this.userNotExistGoToWelcome(share);
         }
     );
@@ -277,8 +277,6 @@ class _SplashState extends State<Splash> {
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
-      }else{
-        this.userNotExistGoToWelcome(share);
       }
     });
   }
