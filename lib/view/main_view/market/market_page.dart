@@ -22,8 +22,8 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
   List dataList = null;
   Map<int,Object> dataMap = Map();
   List<String> exchanges=[
-    'Bitfinex',
     'Binance',
+    'Bitfinex',
   ];
   RefreshController _refreshController;
   TabController _tabController;
@@ -93,6 +93,8 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
   void dispose() {
     _tabController.dispose();
     _refreshController.dispose();
+    this.dataList.clear();
+    this.dataMap.clear();
     super.dispose();
   }
 

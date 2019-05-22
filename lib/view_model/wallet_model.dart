@@ -56,11 +56,10 @@ class WalletModel extends Model{
   DateTime _loadLastTime  = null;
   List<WalletInfo> getWalletInfoes(BuildContext context) {
     if(this._walletInfoes==null){
-      this._walletInfoes = [];
-      Future future = NetConfig.get(context,NetConfig.addressList);
+      Future future = NetConfig.get(context,NetConfig.addressList,timeOut: 10);
       future.then((data){
         if(NetConfig.checkData(data)){
-
+          this._walletInfoes = [];
           _loadLastTime = DateTime.now();
 
           double btcRate = GlobalInfo.usdRateInfo.btcs[0];
@@ -127,10 +126,12 @@ class WalletModel extends Model{
                 notifyListeners();
               }
             });
-
           }else{
             notifyListeners();
           }
+        }else {
+          this._walletInfoes = [];
+          notifyListeners();
         }
       });
     }
@@ -164,6 +165,7 @@ class WalletModel extends Model{
       if(propertyId>0){
         url  = NetConfig.getOmniTransactionsByAddress+'?address='+address+'&assetId='+propertyId.toString();
       }
+
       Future future = NetConfig.get(context,url);
       future.then((data){
         if(NetConfig.checkData(data)){
@@ -198,6 +200,10 @@ class WalletModel extends Model{
                 )
             );
           }
+          notifyListeners();
+          return tradeInfoes;
+        }else if(data>400){
+          tradeInfoes = [];
           notifyListeners();
           return tradeInfoes;
         }

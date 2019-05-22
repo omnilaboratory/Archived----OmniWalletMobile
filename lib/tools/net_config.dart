@@ -145,7 +145,10 @@ class NetConfig{
         response =  await http.post(url,headers: header, body: data).timeout(Duration(seconds: timeOut));
       }
     } on TimeoutException{
-      print('TimeoutException');
+      Tools.showToast('timeout, check your network');
+      if(errorCallback!=null){
+        errorCallback();
+      }
       return 408;
     } on Exception {
       Tools.showToast('check your network');
