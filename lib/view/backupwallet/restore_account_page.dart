@@ -276,7 +276,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
               }
           );
           result.then((data){
-            if(data!=null&&(data!=408&&data!=600&&data!=404)){
+            if(NetConfig.checkData(data)){
               GlobalInfo.userInfo.userId = userId;
               GlobalInfo.userInfo.faceUrl = data['faceUrl'];
               GlobalInfo.userInfo.nickname = data['nickname'];

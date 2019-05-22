@@ -111,6 +111,13 @@ class NetConfig{
     return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut);
   }
 
+  static bool checkData(data){
+    if(data!=null&&(data!=408&&data!=600&&data!=404)){
+      return true;
+    }
+    return false;
+  }
+
   static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
 
     Map<String, String> header = new Map();
@@ -182,7 +189,7 @@ class NetConfig{
           );
         }
       });
-      Tools.showToast('user not exist',toastLength: Toast.LENGTH_LONG);
+      Tools.showToast('user logout, please login',toastLength: Toast.LENGTH_LONG);
 
     } else{
       Tools.showToast('server is sleep, please wait');

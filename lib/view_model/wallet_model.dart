@@ -59,7 +59,7 @@ class WalletModel extends Model{
       this._walletInfoes = [];
       Future future = NetConfig.get(context,NetConfig.addressList);
       future.then((data){
-        if(data!=null&&(data!=408&&data!=600&&data!=404)){
+        if(NetConfig.checkData(data)){
 
           _loadLastTime = DateTime.now();
 
@@ -122,7 +122,7 @@ class WalletModel extends Model{
             );
             Future result = NetConfig.post(context,NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
-              if(data!=null&&(data!=408&&data!=600&&data!=404)){
+              if(NetConfig.checkData(data)){
                 this.addWalletInfo(info);
                 notifyListeners();
               }
@@ -166,7 +166,7 @@ class WalletModel extends Model{
       }
       Future future = NetConfig.get(context,url);
       future.then((data){
-        if(data!=null&&(data!=408&&data!=600&&data!=404)){
+        if(NetConfig.checkData(data)){
           tradeInfoes = [];
           List dataList = data['list'];
           for(int i=0;i<dataList.length;i++){

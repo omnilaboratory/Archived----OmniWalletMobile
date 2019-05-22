@@ -259,7 +259,7 @@ class _SplashState extends State<Splash> {
     );
     // Tools.loadingAnimation(context);
     data.then((data) {
-      if (data!=null&&(data!=408&&data!=600&&data!=404)) {
+      if (NetConfig.checkData(data)) {
         // print('==> --. DATA | ${DateTime.now()}');
         String user_mnemonic = share.get(KeyConfig.user_mnemonic);
         var words = user_mnemonic.split(' ');

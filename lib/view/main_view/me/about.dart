@@ -174,7 +174,7 @@ class _AboutState extends State<About> {
       }
     );
 
-    if (data!=null&&(data!=408&&data!=600&&data!=404)) {
+    if (NetConfig.checkData(data)) {
       // If has a newer version, then show dialog.
       if (data['code'] > GlobalInfo.currVersionCode) {
         _hasNewerVersion(data);

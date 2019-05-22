@@ -35,7 +35,7 @@ class UserUsualAddressModel extends Model{
     if(_usualAddressList==null){
       Future future = NetConfig.get(context,NetConfig.transferAddressList);
       future.then((data){
-        if(data!=null&&(data!=408&&data!=600&&data!=404)){
+        if(NetConfig.checkData(data)){
           _usualAddressList = [];
           List list = data ;
           for(int i=0;i<list.length;i++){
@@ -53,7 +53,7 @@ class UserUsualAddressModel extends Model{
     if(info!=null){
       Future future = NetConfig.post(context,NetConfig.createTransferAddress,{'id':info.id==null?'':info.id.toString(),'address':info.address,'note':info.note,'nickname':info.name});
       future.then((data){
-        if(data!=null&&(data!=408&&data!=600&&data!=404)){
+        if(NetConfig.checkData(data)){
           _usualAddressList = null;
           notifyListeners();
         }
@@ -64,7 +64,7 @@ class UserUsualAddressModel extends Model{
   delAddress(BuildContext context, int index){
     Future future = NetConfig.get(context,NetConfig.delAddress+'?id='+index.toString());
     future.then((data){
-      if(data!=null&&(data!=408&&data!=600&&data!=404)){
+      if(NetConfig.checkData(data)){
         _usualAddressList = null;
         notifyListeners();
       }

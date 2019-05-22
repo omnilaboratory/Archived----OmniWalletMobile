@@ -151,7 +151,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
       });
 
       response.then((data) {
-        if (data!=null&&(data!=408&&data!=600&&data!=404)) {
+        if (NetConfig.checkData(data)) {
           setState(() {
             GlobalInfo.userInfo.nickname = _nickNameController.text; // change locally data.
             Navigator.of(context).pop();

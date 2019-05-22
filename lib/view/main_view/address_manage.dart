@@ -256,7 +256,7 @@ class _AddressManageState extends State<AddressManage> {
       });
 
       response.then((data) {
-        if (data!=null&&(data!=408&&data!=600&&data!=404)) {
+        if (NetConfig.checkData(data)) {
           setState(() {
             widget.data.name = _nameController.text.trim(); // change locally data.
             // Navigator.of(context).pop(); // Pop loading
@@ -337,7 +337,7 @@ class _AddressManageState extends State<AddressManage> {
             });
 
             response.then((data) {
-              if (data!=null&&(data!=408&&data!=600&&data!=404)) {
+              if (NetConfig.checkData(data)) {
                 widget.data.visible = _isAddressDisplay;
                 setState(() {});
               }
