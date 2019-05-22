@@ -61,7 +61,7 @@ dependencies:
   # QR.Flutter is a Flutter library for simple and fast QR code rendering via a Widget or custom painter.
   qr_flutter: ^2.0.0+51
   #------------------------
-  flutter_webview_plugin: ^0.3.5
+#  flutter_webview_plugin: ^0.3.5
 
   flutter_slidable: "^0.4.9"
 
@@ -71,7 +71,7 @@ dependencies:
 
   bitcoin_bip44: ^0.1.1
 
-  fluttertoast: ^3.0.4
+  fluttertoast: ^3.1.0
   #  Flutter plugin to encrypt, decrypt (RSA/ECB/PCSK1), verify and sign string with a public and a private key
   encrypt: ^3.0.0
 
