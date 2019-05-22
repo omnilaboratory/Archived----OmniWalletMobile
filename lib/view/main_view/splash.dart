@@ -242,19 +242,22 @@ class _SplashState extends State<Splash> {
     });
   }
 
+  void userNotExistGoToWelcome(SharedPreferences share){
+    share.clear();
+    GlobalInfo.clear();
+    print('==> user is not exist');
+    // show welcome page
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => WelcomePageOne()),
+          (route) => route == null,
+    );
+  }
   // 
   void _getUserInfo(SharedPreferences share) {
     Future data = NetConfig.get(
         context, NetConfig.getUserInfo,
         errorCallback: () {
-          share.clear();
-          GlobalInfo.clear();
-          print('==> user is not exist');
-          // show welcome page
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => WelcomePageOne()),
-                (route) => route == null,
-          );
+          this.userNotExistGoToWelcome(share);
         }
     );
     // Tools.loadingAnimation(context);
@@ -274,6 +277,8 @@ class _SplashState extends State<Splash> {
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.
         _hasBackup(share);
+      }else{
+        this.userNotExistGoToWelcome(share);
       }
     });
   }
