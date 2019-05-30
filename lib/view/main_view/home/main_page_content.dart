@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
@@ -77,12 +79,10 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
             }
           }
 
-
-
           return SmartRefresher(
             enablePullDown: true,
             enablePullUp: false,
-            header: WaterDropHeader(),
+            header: ClassicHeader(),
             controller: _refreshController,
             onRefresh: _onRefresh,
             child: ListView.builder(
