@@ -112,17 +112,24 @@ class _AddressManageState extends State<AddressManage> {
 
   ///
   Widget _bodyTitle() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: AutoSizeText(
-        widget.data.address,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
-        minFontSize: 9,
-        maxLines: 1,
-        style: TextStyle(
-          color: Colors.blue,
-          fontSize: 16,
+    return InkWell(
+      onTap: () {
+        Tools.copyToClipboard(widget.data.address);
+        Tools.showToast(WalletLocalizations.of(context).wallet_receive_page_tips_copy);
+      },
+
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: AutoSizeText(
+          widget.data.address,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          minFontSize: 9,
+          maxLines: 1,
+          style: TextStyle(
+            color: Colors.blue,
+            fontSize: 16,
+          ),
         ),
       ),
     );
