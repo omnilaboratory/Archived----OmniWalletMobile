@@ -230,6 +230,12 @@ class WalletModel extends Model{
 
 
   String _configAssetLogoUrl(int assetId){
+    for(int i=0;i<GlobalInfo.defaultAssetInfoes.length;i++){
+      var node = GlobalInfo.defaultAssetInfoes[i];
+      if(node.assetId==assetId&&node.url!=null&&node.url.isNotEmpty){
+        return NetConfig.imageHost + node.url;
+      }
+    }
     switch(assetId){
       case 0:
         return 'coin_logo_BTC';

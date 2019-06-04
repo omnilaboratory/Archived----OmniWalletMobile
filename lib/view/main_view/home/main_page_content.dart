@@ -211,7 +211,10 @@ class _BodyContentWidgetState extends State<BodyContentWidget> with SingleTicker
               margin: EdgeInsets.all(6),
               child: Row(
                 children: <Widget>[
+                  accountInfo.iconUrl.contains('image/wallet')?
+                  Tools.networkImage(accountInfo.iconUrl,defaultImage: Tools.imagePath('coin_logo_OMN'),width: 25,height: 25):
                   Image.asset(Tools.imagePath(accountInfo.iconUrl),width: 25,height: 25,),
+
                   Container(
                     margin: EdgeInsets.only(left: 16),
                       child: AutoSizeText('${accountInfo.name}',style: TextStyle(fontSize: 15),minFontSize: 12,)
