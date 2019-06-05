@@ -233,7 +233,7 @@ class WalletModel extends Model{
     for(int i=0;i<GlobalInfo.defaultAssetInfoes.length;i++){
       var node = GlobalInfo.defaultAssetInfoes[i];
       if(node.assetId==assetId&&node.url!=null&&node.url.isNotEmpty){
-        return NetConfig.imageHost + node.url;
+        return node.url;
       }
     }
     switch(assetId){
