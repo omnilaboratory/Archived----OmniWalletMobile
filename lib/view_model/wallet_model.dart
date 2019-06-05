@@ -181,7 +181,11 @@ class WalletModel extends Model{
                 txValue = double.parse(currData['txValue']);
              }
 
-            int time = currData['time']*1000;
+            int time = 0;
+            if (currData['time'] != null) {
+              time = currData['time'] * 1000;
+            }
+
             int confirmAmount = currData['confirmAmount'];
             if(isSend){
               txValue = 0-txValue;
