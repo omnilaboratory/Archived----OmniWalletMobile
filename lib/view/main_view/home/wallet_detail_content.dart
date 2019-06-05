@@ -205,7 +205,7 @@ class _WalletDetailContentState extends State<WalletDetailContent> with SingleTi
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Padding(
+                  tradeInfo.tradeDate!=0??Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: AutoSizeText(
                         DateFormat('yyyy.MM.dd').format(tradeInfo.tradeDate),
