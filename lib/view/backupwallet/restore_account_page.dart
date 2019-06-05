@@ -47,22 +47,28 @@ class _RestoreAccountState extends State<RestoreAccount> {
   @override
   Widget build(BuildContext context) {
     canToucn =true;
-    return Scaffold(
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-      appBar: AppBar(title: Text(WalletLocalizations.of(context).restore_account_title),),
-      body: Builder(
-        builder: (BuildContext context){
-            return FormKeyboardActions(
-                actions: _keyboardActions(),
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.only(left: 20,right: 20,top: 10),
-                    child:  Form(
-                      key: _formKey,
-                      child: this.buildBody(context)
-                    )
-                )
-            );
-        },
+    return WillPopScope(
+      onWillPop: (){
+        FocusScope.of(context).requestFocus(new FocusNode());
+        Navigator.pop(context);
+      },
+      child: Scaffold(
+        backgroundColor: AppCustomColor.themeBackgroudColor,
+        appBar: AppBar(title: Text(WalletLocalizations.of(context).restore_account_title),),
+        body: Builder(
+          builder: (BuildContext context){
+              return FormKeyboardActions(
+                  actions: _keyboardActions(),
+                  child: SingleChildScrollView(
+                      padding: EdgeInsets.only(left: 20,right: 20,top: 10),
+                      child:  Form(
+                        key: _formKey,
+                        child: this.buildBody(context)
+                      )
+                  )
+              );
+          },
+        ),
       ),
     );
   }

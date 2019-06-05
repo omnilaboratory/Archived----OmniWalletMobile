@@ -113,7 +113,6 @@ class Tools{
   static Widget networkImage(String url,
     {String defaultImage = 'assets/omni-logo.png', double width = 90, double height = 90} ) {
 
-    print(url);
     if (url == null) {
       return Image.asset(defaultImage, width: width, height: height,);
     } else {
