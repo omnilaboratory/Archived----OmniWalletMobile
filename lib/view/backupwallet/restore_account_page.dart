@@ -53,6 +53,7 @@ class _RestoreAccountState extends State<RestoreAccount> {
         Navigator.pop(context);
         return Future.value(false);
       },
+
       child: Scaffold(
         backgroundColor: AppCustomColor.themeBackgroudColor,
         appBar: AppBar(title: Text(WalletLocalizations.of(context).restore_account_title),),
