@@ -289,9 +289,9 @@ class _AddressManageState extends State<AddressManage> {
           }
 
           // name max length = 10
-          if (_nameController.text.trim().length > 10) {
-            _nameController.text = _nameController.text.substring(0, 10);
-          }
+          // if (_nameController.text.trim().length > 10) {
+          //   _nameController.text = _nameController.text.substring(0, 10);
+          // }
 
           setState(() { });
         },
@@ -301,6 +301,7 @@ class _AddressManageState extends State<AddressManage> {
           child: TextFormField(
             controller:  _nameController,
             focusNode:   _nodeText,
+            maxLength: 10,
             // autofocus: true,
             validator: (val) => _validate(val),
             decoration: InputDecoration(

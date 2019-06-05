@@ -141,9 +141,9 @@ class _CreateAccountState extends State<CreateAccount> {
         _nickNameHasFocus = false;
       } else {
         _nickNameHasFocus = true;
-        if (_nickNameController.text.trim().length > 12) {
-          _nickNameController.text = _nickNameController.text.substring(0, 12);
-        }
+        // if (_nickNameController.text.trim().length > 12) {
+        //   _nickNameController.text = _nickNameController.text.substring(0, 12);
+        // }
       }
     }
 
@@ -153,9 +153,9 @@ class _CreateAccountState extends State<CreateAccount> {
         _pinCodeHasFocus = false;
       } else {
         _pinCodeHasFocus = true;
-        if (_pinCodeController.text.trim().length > 6) {
-          _pinCodeController.text = _pinCodeController.text.substring(0, 6);
-        }
+        // if (_pinCodeController.text.trim().length > 6) {
+        //   _pinCodeController.text = _pinCodeController.text.substring(0, 6);
+        // }
       }
     }
 
@@ -165,9 +165,9 @@ class _CreateAccountState extends State<CreateAccount> {
         _repeatPinCodeHasFocus = false;
       } else {
         _repeatPinCodeHasFocus = true;
-        if (_repeatPinCodeController.text.trim().length > 6) {
-          _repeatPinCodeController.text = _repeatPinCodeController.text.substring(0, 6);
-        }
+        // if (_repeatPinCodeController.text.trim().length > 6) {
+        //   _repeatPinCodeController.text = _repeatPinCodeController.text.substring(0, 6);
+        // }
       }
     }
 
@@ -276,7 +276,7 @@ class _CreateAccountState extends State<CreateAccount> {
         focusNode:   _node,
         obscureText: _textField == 1 ? false : true,
         keyboardType: _textField == 1 ? null : TextInputType.number,
-        // maxLength: _textField == 1 ? 18 : 6,
+        maxLength: _textField == 1 ? 12 : 6,
         decoration: _inputDecoration(_iconName, _hintText, 
           _hasFocus, _helperText, _controller),
         validator: (val) => _validate(val, _textField),
