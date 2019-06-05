@@ -287,6 +287,12 @@ class _AddressManageState extends State<AddressManage> {
           } else {
             _hasClearIcon = true;
           }
+
+          // name max length = 10
+          if (_nameController.text.trim().length > 10) {
+            _nameController.text = _nameController.text.substring(0, 10);
+          }
+
           setState(() { });
         },
         
