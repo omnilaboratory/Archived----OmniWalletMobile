@@ -231,6 +231,15 @@ class WalletLocalizations{
       'unlockPageAppTips' : 'PIN码不正确',
 
       'me_about_app_upgrade_log_title' : '版本日志',
+
+      'flashPayMainPageAppBarTitle' : '快速支付',
+      'flashPayMainPageAppBarAction' : '交易记录',
+      'flashPayMainPageBalance' : '余额',
+      'flashPayMainPageFrozen' : '冻结',
+      'flashPayMainPageDeposit' : '充值',
+      'flashPayMainPageWithdrawal' : '提现',
+      'flashPayMainPageFlashPay' : '快速支付',
+      'flashPayMainPageFlashReceive' : '快速收款',
     },
 
     'en': {
@@ -483,8 +492,27 @@ class WalletLocalizations{
       'unlockPageAppTips' : 'PIN Code is incorrect.',
 
       'me_about_app_upgrade_log_title' : 'Version History',
+      
+      'flashPayMainPageAppBarTitle' : 'Flash Payment',
+      'flashPayMainPageAppBarAction' : 'Transactions',
+      'flashPayMainPageBalance' : 'Balance',
+      'flashPayMainPageFrozen' : 'Frozen',
+      'flashPayMainPageDeposit' : 'Deposit',
+      'flashPayMainPageWithdrawal' : 'Withdrawal',
+      'flashPayMainPageFlashPay' : 'Flash Pay',
+      'flashPayMainPageFlashReceive' : 'Flash Receive',
     }
   };
+
+  // flash pay main page
+  get flashPayMainPageAppBarTitle => _localizedValues[locale.languageCode]['flashPayMainPageAppBarTitle'];
+  get flashPayMainPageAppBarAction => _localizedValues[locale.languageCode]['flashPayMainPageAppBarAction'];
+  get flashPayMainPageBalance => _localizedValues[locale.languageCode]['flashPayMainPageBalance'];
+  get flashPayMainPageFrozen => _localizedValues[locale.languageCode]['flashPayMainPageFrozen'];
+  get flashPayMainPageDeposit => _localizedValues[locale.languageCode]['flashPayMainPageDeposit'];
+  get flashPayMainPageWithdrawal => _localizedValues[locale.languageCode]['flashPayMainPageWithdrawal'];
+  get flashPayMainPageFlashPay => _localizedValues[locale.languageCode]['flashPayMainPageFlashPay'];
+  get flashPayMainPageFlashReceive => _localizedValues[locale.languageCode]['flashPayMainPageFlashReceive'];
 
   // unlock page
   get unlockPageAppBarTitle => _localizedValues[locale.languageCode]['unlockPageAppBarTitle'];

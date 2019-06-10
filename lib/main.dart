@@ -7,6 +7,7 @@ import 'package:wallet_app/l10n/chinese_local.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_main.dart';
 import 'package:wallet_app/view/main_view/address_manage.dart';
 import 'package:wallet_app/view/main_view/displayed_assets.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
@@ -93,7 +94,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UpdateNickName.tag: (context)      => UpdateNickName(),
     SelectCurrency.tag: (context)      => SelectCurrency(),
     SelectTheme.tag: (context)         => SelectTheme(),
-    AppUpgradeLogPage.tag: (context)         => AppUpgradeLogPage(),
+    AppUpgradeLogPage.tag: (context)   => AppUpgradeLogPage(),
+    FlashPayMain.tag: (context)        => FlashPayMain(),
   };
 
   Brightness brightness = Brightness.light;
