@@ -63,9 +63,6 @@ class _UnlockState extends State<Unlock> {
     _nodePin.removeListener(_listener);
     super.dispose();
   }
-
-
-
   
   @override
   Widget build(BuildContext context) {

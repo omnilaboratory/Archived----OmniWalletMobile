@@ -3,9 +3,8 @@
 /// [time] 2019-6-10
 
 import 'package:flutter/material.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'package:wallet_app/tools/Tools.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_deposit.dart';
 import 'package:wallet_app/view/flash_pay/flash_pay_receive.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -39,10 +38,22 @@ class _FlashPayMainState extends State<FlashPayMain> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Text(
+                  'USDT',
+                  style: TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+              )
+            ),
             _balanceOfUSDT(),
             _frozenOfUSDT(),
+            _scan(),
             _depositAndWithdrawal(),
-            _receieveAndPay(),
+            _collectAndTransfer(),
           ],
         ),
       ),
@@ -60,11 +71,9 @@ class _FlashPayMainState extends State<FlashPayMain> {
           Text(
             '0.00000000',
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 20,
             ),
           ),
-          SizedBox(width: 20),
-          Text('USDT'),
         ],
       ),
     );
@@ -73,7 +82,7 @@ class _FlashPayMainState extends State<FlashPayMain> {
   /// USDT Frozen
   Widget _frozenOfUSDT() {
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
         children: <Widget>[
           Text(WalletLocalizations.of(context).flashPayMainPageFrozen),
@@ -84,8 +93,28 @@ class _FlashPayMainState extends State<FlashPayMain> {
               fontSize: 16,
             ),
           ),
-          SizedBox(width: 20),
-          Text('USDT'),
+        ],
+      ),
+    );
+  }
+
+  /// Buttons
+  Widget _scan() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 60, bottom: 30),
+      child: Row(
+        children: <Widget>[
+          CustomRaiseButton( // Scan button.
+            context: context,
+            title: WalletLocalizations.of(context).flashPayMainPageScan,
+            titleColor: Colors.white,
+            leftIconName: 'icon_back',
+            color: AppCustomColor.btnConfirm,
+            callback: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => FlashPayReceive()));
+            },
+          ),
         ],
       ),
     );
@@ -105,7 +134,7 @@ class _FlashPayMainState extends State<FlashPayMain> {
             color: AppCustomColor.btnConfirm,
             callback: () {
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FlashPayReceive()));
+                MaterialPageRoute(builder: (context) => FlashPayDeposit()));
             },
           ),
 
@@ -127,7 +156,7 @@ class _FlashPayMainState extends State<FlashPayMain> {
   }
 
   /// Buttons
-  Widget _receieveAndPay() {
+  Widget _collectAndTransfer() {
     return Padding(
       padding: const EdgeInsets.all(30.0),
       child: Row(

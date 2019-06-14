@@ -233,13 +233,22 @@ class WalletLocalizations{
       'me_about_app_upgrade_log_title' : '版本日志',
 
       'flashPayMainPageAppBarTitle' : '快速支付',
-      'flashPayMainPageAppBarAction' : '交易记录',
+      'flashPayMainPageAppBarAction' : '记录',
       'flashPayMainPageBalance' : '余额',
       'flashPayMainPageFrozen' : '冻结',
+      'flashPayMainPageScan' : '扫一扫',
       'flashPayMainPageDeposit' : '充值',
       'flashPayMainPageWithdrawal' : '提现',
-      'flashPayMainPageFlashPay' : '快速支付',
-      'flashPayMainPageFlashReceive' : '快速收款',
+      'flashPayMainPageFlashPay' : '转账',
+      'flashPayMainPageFlashReceive' : '收款',
+
+      'flashPayDepositPageInputTitle' : '充值金额',
+      'flashPayDepositPageRemark_1' : '矿工费: ',
+      'flashPayDepositPageRemark_2' : '预计到账时间: 20 ~ 30 分钟',
+      
+      'flashPayPaymentMethodPageAppBarTitle' : '充值方式',
+      'flashPayPaymentMethodPageMethod_1' : '钱包地址',
+      'flashPayPaymentMethodPageMethod_2' : '交易所、其它钱包',
     },
 
     'en': {
@@ -494,21 +503,41 @@ class WalletLocalizations{
       'me_about_app_upgrade_log_title' : 'Version History',
       
       'flashPayMainPageAppBarTitle' : 'Flash Payment',
-      'flashPayMainPageAppBarAction' : 'Transactions',
+      'flashPayMainPageAppBarAction' : 'Records',
       'flashPayMainPageBalance' : 'Balance',
       'flashPayMainPageFrozen' : 'Frozen',
+      'flashPayMainPageScan' : 'Scan',
       'flashPayMainPageDeposit' : 'Deposit',
       'flashPayMainPageWithdrawal' : 'Withdrawal',
-      'flashPayMainPageFlashPay' : 'Flash Pay',
-      'flashPayMainPageFlashReceive' : 'Flash Receive',
+      'flashPayMainPageFlashPay' : 'Transfer',
+      'flashPayMainPageFlashReceive' : 'Collect',
+
+      'flashPayDepositPageInputTitle' : 'Deposit Amount',
+      'flashPayDepositPageRemark_1' : 'Miner Fee: ',
+      'flashPayDepositPageRemark_2' : 'Expected arrival: 20 ~ 30 mins',
+
+      'flashPayPaymentMethodPageAppBarTitle' : 'Payment Method',
+      'flashPayPaymentMethodPageMethod_1' : 'Wallet Address',
+      'flashPayPaymentMethodPageMethod_2' : 'From Third-Part. Like Exchanges, Other Wallets.',
     }
   };
+
+  // flash pay Payment Method page
+  get flashPayPaymentMethodPageAppBarTitle => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageAppBarTitle'];
+  get flashPayPaymentMethodPageMethod_1 => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageMethod_1'];
+  get flashPayPaymentMethodPageMethod_2 => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageMethod_2'];
+
+  // flash pay deposit page
+  get flashPayDepositPageInputTitle => _localizedValues[locale.languageCode]['flashPayDepositPageInputTitle'];
+  get flashPayDepositPageRemark_1 => _localizedValues[locale.languageCode]['flashPayDepositPageRemark_1'];
+  get flashPayDepositPageRemark_2 => _localizedValues[locale.languageCode]['flashPayDepositPageRemark_2'];
 
   // flash pay main page
   get flashPayMainPageAppBarTitle => _localizedValues[locale.languageCode]['flashPayMainPageAppBarTitle'];
   get flashPayMainPageAppBarAction => _localizedValues[locale.languageCode]['flashPayMainPageAppBarAction'];
   get flashPayMainPageBalance => _localizedValues[locale.languageCode]['flashPayMainPageBalance'];
   get flashPayMainPageFrozen => _localizedValues[locale.languageCode]['flashPayMainPageFrozen'];
+  get flashPayMainPageScan => _localizedValues[locale.languageCode]['flashPayMainPageScan'];
   get flashPayMainPageDeposit => _localizedValues[locale.languageCode]['flashPayMainPageDeposit'];
   get flashPayMainPageWithdrawal => _localizedValues[locale.languageCode]['flashPayMainPageWithdrawal'];
   get flashPayMainPageFlashPay => _localizedValues[locale.languageCode]['flashPayMainPageFlashPay'];
