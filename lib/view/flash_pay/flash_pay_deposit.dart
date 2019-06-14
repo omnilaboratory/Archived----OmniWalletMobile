@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_payment_method.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -62,6 +63,7 @@ class _FlashPayDepositState extends State<FlashPayDeposit> {
         actions: <Widget>[
           FlatButton(
             child: Text(WalletLocalizations.of(context).flashPayMainPageAppBarAction),
+            textColor: Colors.blue,
             onPressed: () {
               // Navigator.of(context).pop();
             },
@@ -110,9 +112,9 @@ class _FlashPayDepositState extends State<FlashPayDeposit> {
       child: ListTile(
         // leading: Image.asset(Tools.imagePath('icon_chinese'), width: 24, height: 24),
         // leading: Icon(Icons.account_balance_wallet),
-        leading: CircleAvatar( // Icon
-          backgroundImage: AssetImage(Tools.imagePath('icon_chinese')),
-        ),
+        // leading: CircleAvatar( // Icon
+        //   backgroundImage: AssetImage(Tools.imagePath('icon_chinese')),
+        // ),
 
         title: Text( // address name
           'Address A',
@@ -142,12 +144,12 @@ class _FlashPayDepositState extends State<FlashPayDeposit> {
 
         // onTap: () { Navigator.of(context).pushNamed(AddressManage.tag); },
         onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => AddressManage(data: walletData),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FlashPayPaymentMethod(),
+            ),
+          );
         },
       ),
     );

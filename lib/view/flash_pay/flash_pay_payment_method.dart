@@ -42,7 +42,7 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
 
       body: SafeArea(
         child: ListView(
-          children: _paymentMethodList(model),
+          children: _walletPaymentMethodList(model),
         ),
       )
     );
@@ -50,10 +50,58 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
 
   ///-----------
   /// 6-14 New Add
+  
+  ///
+  Widget _title_1() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+      child: Text(
+        WalletLocalizations.of(context).flashPayPaymentMethodPageMethod_1,
+        style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+  
+  ///
+  Widget _title_2() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, top: 50, bottom: 10),
+      child: Text(
+        WalletLocalizations.of(context).flashPayPaymentMethodPageMethod_2,
+        style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+
+  ///
+  Widget _thirdPartPaymentMethod() {
+    return Ink(
+      color: AppCustomColor.themeBackgroudColor,
+      child: ListTile(
+        // leading: CircleAvatar( // Icon
+        //   backgroundImage: AssetImage(Tools.imagePath('icon_chinese')),
+        // ),
+
+        title: Text(WalletLocalizations.of(context).flashPayPaymentMethodPageThirdPart),
+        trailing: Icon(Icons.keyboard_arrow_right),
+
+        // onTap: () { Navigator.of(context).pushNamed(AddressManage.tag); },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FlashPayPaymentMethod(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   /// Build list data.
   /// [item] is list tile content.
   /// [setPaymentMethod] is currently selected language.
-  Widget _onePaymentMethod(BuildContext context, String item, String setPaymentMethod) {
+  Widget _oneWalletPaymentMethod(BuildContext context, String item, String setPaymentMethod) {
 
     bool isSelected;
     if (item == setPaymentMethod) {
@@ -63,11 +111,11 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
     }
 
     return Ink(
-      // color: AppCustomColor.themeBackgroudColor,
+      color: AppCustomColor.themeBackgroudColor,
       child: ListTile(
-        leading: CircleAvatar( // Icon
-          backgroundImage: AssetImage(Tools.imagePath('icon_chinese')),
-        ),
+        // leading: CircleAvatar( // Icon
+        //   backgroundImage: AssetImage(Tools.imagePath('icon_chinese')),
+        // ),
 
         title: Text( // address name
           'Address A',
@@ -172,7 +220,7 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
   }
 
   // Build language list
-  List<Widget> _paymentMethodList(MainStateModel model) {
+  List<Widget> _walletPaymentMethodList(MainStateModel model) {
     
     String setLanguage = model.getSelectedLanguage;
     
@@ -186,11 +234,17 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
       setLanguage = strClickItem;
     }
 
-    // _list.clear();
+    // Wallet payment method.
+    _list.add(_title_1());
+
     for (int i = 0; i < items.length; i++) {
-      _list.add(_onePaymentMethod(context, items[i], setLanguage));
+      _list.add(_oneWalletPaymentMethod(context, items[i], setLanguage));
       _list.add(Divider(height: 0, indent: 15));
     }
+
+    // Third-Part Payment method.
+    _list.add(_title_2());
+    _list.add(_thirdPartPaymentMethod());
 
     return _list;
   }

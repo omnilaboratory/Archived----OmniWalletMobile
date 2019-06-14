@@ -249,6 +249,7 @@ class WalletLocalizations{
       'flashPayPaymentMethodPageAppBarTitle' : '充值方式',
       'flashPayPaymentMethodPageMethod_1' : '钱包地址',
       'flashPayPaymentMethodPageMethod_2' : '交易所、其它钱包',
+      'flashPayPaymentMethodPageThirdPart' : '第三方充值',
     },
 
     'en': {
@@ -519,6 +520,7 @@ class WalletLocalizations{
       'flashPayPaymentMethodPageAppBarTitle' : 'Payment Method',
       'flashPayPaymentMethodPageMethod_1' : 'Wallet Address',
       'flashPayPaymentMethodPageMethod_2' : 'From Third-Part. Like Exchanges, Other Wallets.',
+      'flashPayPaymentMethodPageThirdPart' : 'Deposit from Third-Part',
     }
   };
 
@@ -526,6 +528,7 @@ class WalletLocalizations{
   get flashPayPaymentMethodPageAppBarTitle => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageAppBarTitle'];
   get flashPayPaymentMethodPageMethod_1 => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageMethod_1'];
   get flashPayPaymentMethodPageMethod_2 => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageMethod_2'];
+  get flashPayPaymentMethodPageThirdPart => _localizedValues[locale.languageCode]['flashPayPaymentMethodPageThirdPart'];
 
   // flash pay deposit page
   get flashPayDepositPageInputTitle => _localizedValues[locale.languageCode]['flashPayDepositPageInputTitle'];
