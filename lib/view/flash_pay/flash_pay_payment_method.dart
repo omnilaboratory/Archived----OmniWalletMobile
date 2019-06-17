@@ -8,6 +8,7 @@ import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_receive.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
@@ -90,7 +91,7 @@ class _FlashPayPaymentMethodState extends State<FlashPayPaymentMethod> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FlashPayPaymentMethod(),
+              builder: (context) => FlashPayReceive(),
             ),
           );
         },
