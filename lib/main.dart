@@ -7,7 +7,6 @@ import 'package:wallet_app/l10n/chinese_local.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_index.dart';
 import 'package:wallet_app/view/backupwallet/backup_wallet_words.dart';
-import 'package:wallet_app/view/flash_pay/flash_pay_main.dart';
 import 'package:wallet_app/view/main_view/address_manage.dart';
 import 'package:wallet_app/view/main_view/displayed_assets.dart';
 import 'package:wallet_app/view/main_view/home/send_confirm_page.dart';
@@ -24,6 +23,8 @@ import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+
+import 'view/flash_pay/flash_pay_lib.dart';
 
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -96,6 +97,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     SelectTheme.tag: (context)         => SelectTheme(),
     AppUpgradeLogPage.tag: (context)   => AppUpgradeLogPage(),
     FlashPayMain.tag: (context)        => FlashPayMain(),
+    FPFrinedList.tag: (context)        => FPFrinedList(),
   };
 
   Brightness brightness = Brightness.light;

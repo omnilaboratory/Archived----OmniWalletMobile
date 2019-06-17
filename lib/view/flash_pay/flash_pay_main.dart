@@ -10,6 +10,8 @@ import 'package:wallet_app/view/flash_pay/flash_pay_user_register.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
+import 'flash_pay_lib.dart';
+
 class FlashPayMain extends StatefulWidget {
   static String tag = "FlashPayMain";
 
@@ -64,7 +66,7 @@ class _FlashPayMainState extends State<FlashPayMain> {
               ),
               _balanceOfUSDT(),
               _frozenOfUSDT(),
-              _scan(),
+              _scanAndFriends(),
               _depositAndWithdrawal(),
               _collectAndTransfer(),
             ],
@@ -114,7 +116,7 @@ class _FlashPayMainState extends State<FlashPayMain> {
   }
 
   /// Buttons
-  Widget _scan() {
+  Widget _scanAndFriends() {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30, top: 60, bottom: 30),
       child: Row(
@@ -128,6 +130,17 @@ class _FlashPayMainState extends State<FlashPayMain> {
             callback: () {
               // Navigator.push(context,
               //   MaterialPageRoute(builder: (context) => FlashPayReceive()));
+            },
+          ),
+          SizedBox(width: 30),
+          CustomRaiseButton( // Friends button.
+            context: context,
+            title: WalletLocalizations.of(context).flashPayMainPageFriends,
+            titleColor: Colors.white,
+            rightIconName: 'icon_next',
+            color: AppCustomColor.btnConfirm,
+            callback: () {
+              Navigator.pushNamed(context, FPFrinedList.tag);
             },
           ),
         ],

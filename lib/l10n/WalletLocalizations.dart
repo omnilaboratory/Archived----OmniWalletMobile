@@ -237,6 +237,7 @@ class WalletLocalizations{
       'flashPayMainPageBalance' : '余额',
       'flashPayMainPageFrozen' : '冻结',
       'flashPayMainPageScan' : '扫一扫',
+      'flashPayMainPageFriends' : '好友',
       'flashPayMainPageDeposit' : '充值',
       'flashPayMainPageWithdrawal' : '提现',
       'flashPayMainPageFlashPay' : '转账',
@@ -512,6 +513,7 @@ class WalletLocalizations{
       'flashPayMainPageBalance' : 'Balance',
       'flashPayMainPageFrozen' : 'Frozen',
       'flashPayMainPageScan' : 'Scan',
+      'flashPayMainPageFriends' : 'Friends',
       'flashPayMainPageDeposit' : 'Deposit',
       'flashPayMainPageWithdrawal' : 'Withdrawal',
       'flashPayMainPageFlashPay' : 'Transfer',
@@ -549,6 +551,7 @@ class WalletLocalizations{
   get flashPayMainPageBalance => _localizedValues[locale.languageCode]['flashPayMainPageBalance'];
   get flashPayMainPageFrozen => _localizedValues[locale.languageCode]['flashPayMainPageFrozen'];
   get flashPayMainPageScan => _localizedValues[locale.languageCode]['flashPayMainPageScan'];
+  get flashPayMainPageFriends => _localizedValues[locale.languageCode]['flashPayMainPageFriends'];
   get flashPayMainPageDeposit => _localizedValues[locale.languageCode]['flashPayMainPageDeposit'];
   get flashPayMainPageWithdrawal => _localizedValues[locale.languageCode]['flashPayMainPageWithdrawal'];
   get flashPayMainPageFlashPay => _localizedValues[locale.languageCode]['flashPayMainPageFlashPay'];
