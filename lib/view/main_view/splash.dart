@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
+import 'package:wallet_app/model/user_info.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/key_config.dart';
 import 'package:wallet_app/tools/net_config.dart';
@@ -273,6 +274,17 @@ class _SplashState extends State<Splash> {
 
         GlobalInfo.userInfo.nickname = data['nickname'];
         GlobalInfo.userInfo.faceUrl = data['faceUrl'];
+
+        if(data["fpUserInfo"]!=null&&data["fpUserInfo"]["username"]!=null){
+          FPUserInfo fpUserInfo = FPUserInfo();
+          fpUserInfo.hyperUsername =data["fpUserInfo"]["username"];
+          List list = data["fpUserInfo"]["addresses"];
+          fpUserInfo.addresses = [];
+          for(int i=0;i<list.length;i++){
+            fpUserInfo.addresses.add(list[i]);
+          }
+          GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+        }
         GlobalInfo.userInfo.init(context,null);
         // print('==> GET DATA | ${DateTime.now()}');
         // check if has finished to back up mnimonic.

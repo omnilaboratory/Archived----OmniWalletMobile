@@ -13,6 +13,7 @@ class UserInfo{
   String loginToken;
   String faceUrl;
   String nickname;
+  FPUserInfo fpUserInfo;
   UserInfo({
     this.userId,
     this.faceUrl,
@@ -63,4 +64,10 @@ class UserInfo{
       }
     });
   }
+}
+
+
+class FPUserInfo{
+  String hyperUsername;
+  List<String> addresses;
 }

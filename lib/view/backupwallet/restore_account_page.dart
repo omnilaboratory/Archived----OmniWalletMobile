@@ -5,6 +5,7 @@ import 'package:bip39/bip39.dart' as bip39;
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wallet_app/model/user_info.dart';
 import 'package:wallet_app/view/main_view/main_page.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
@@ -283,6 +284,17 @@ class _RestoreAccountState extends State<RestoreAccount> {
               GlobalInfo.userInfo.faceUrl = data['faceUrl'];
               GlobalInfo.userInfo.nickname = data['nickname'];
               GlobalInfo.userInfo.loginToken = data['token'];
+              if(data["fpUserInfo"]!=null&&data["fpUserInfo"]["username"]!=null){
+                FPUserInfo fpUserInfo = FPUserInfo();
+                fpUserInfo.hyperUsername =data["fpUserInfo"]["username"];
+                List list = data["fpUserInfo"]["addresses"];
+                fpUserInfo.addresses = [];
+                for(int i=0;i<list.length;i++){
+                  fpUserInfo.addresses.add(list[i]);
+                }
+                GlobalInfo.userInfo.fpUserInfo = fpUserInfo;
+              }
+
               Tools.saveStringKeyValue(KeyConfig.user_login_token, GlobalInfo.userInfo.loginToken);
 
               Tools.saveStringKeyValue(KeyConfig.user_pinCode_md5, _pinCode_new_md5);
