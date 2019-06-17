@@ -16,8 +16,12 @@ class NetConfig{
 //  static String apiHost='http://192.168.0.103:8080/api/';
 //  static String apiHost='http://172.21.100.248:8080/api/';
 
-  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
-  // static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
+//生产环境
+//  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
+//测试环境
+//   static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
+//开发环境
+   static String apiHost='http://62.234.169.68:8080/walletClientDev/api/';
   static String imageHost='http://62.234.169.68:8080';
 
   /// 创建新用户
