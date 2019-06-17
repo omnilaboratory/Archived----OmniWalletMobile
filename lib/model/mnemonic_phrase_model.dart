@@ -39,7 +39,7 @@ class MnemonicPhrase{
       });
     }
     if(hdWallet==null){
-      hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
+      hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed,network: testnet);
     }
     return hdWallet.derivePath("m/44'/0'/0'/0/"+index.toString());
   }

@@ -101,8 +101,12 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
   void dispose() {
     _tabController.dispose();
     _refreshController.dispose();
-    this.dataList.clear();
-    this.dataMap.clear();
+    if(this.dataList!=null){
+      this.dataList.clear();
+    }
+    if(this.dataMap!=null){
+      this.dataMap.clear();
+    }
     super.dispose();
   }
 

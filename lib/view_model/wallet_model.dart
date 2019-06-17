@@ -206,7 +206,7 @@ class WalletModel extends Model{
           }
           notifyListeners();
           return tradeInfoes;
-        }else if(data>400){
+        }else if(data==null||data>400){
           tradeInfoes = [];
           notifyListeners();
           return tradeInfoes;

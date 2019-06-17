@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/view/flash_pay/flash_pay_deposit.dart';
 import 'package:wallet_app/view/flash_pay/flash_pay_receive.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_user_register.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
@@ -18,46 +19,60 @@ class FlashPayMain extends StatefulWidget {
 
 class _FlashPayMainState extends State<FlashPayMain> {
 
+  MainStateModel stateModel = null;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppCustomColor.themeBackgroudColor,
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(WalletLocalizations.of(context).flashPayMainPageAppBarTitle),
-        actions: <Widget>[
-          FlatButton(
-            child: Text(WalletLocalizations.of(context).flashPayMainPageAppBarAction),
-            onPressed: () {
-              // Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
+    stateModel = MainStateModel().of(context);
 
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: Text(
-                  'USDT',
-                  style: TextStyle(
-                    fontSize: 22,
-                  ),
-                ),
-              )
+    print("FlashPayMain begin");
+    return ScopedModelDescendant<MainStateModel>(builder: (context, child, model)
+    {
+      if(GlobalInfo.userInfo.fpUserInfo==null){
+        return FPUserRegister();
+      }
+      print("FlashPayMain go next page");
+
+      return Scaffold(
+        backgroundColor: AppCustomColor.themeBackgroudColor,
+        appBar: AppBar(
+          elevation: 0,
+          title: Text(WalletLocalizations.of(context).flashPayMainPageAppBarTitle),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(WalletLocalizations.of(context).flashPayMainPageAppBarAction),
+              onPressed: () {
+                // Navigator.of(context).pop();
+              },
             ),
-            _balanceOfUSDT(),
-            _frozenOfUSDT(),
-            _scan(),
-            _depositAndWithdrawal(),
-            _collectAndTransfer(),
           ],
         ),
-      ),
-    );
+
+        body: SafeArea(
+          child: Column(
+            children: <Widget>[
+              Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Text(
+                      'USDT',
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
+                    ),
+                  )
+              ),
+              _balanceOfUSDT(),
+              _frozenOfUSDT(),
+              _scan(),
+              _depositAndWithdrawal(),
+              _collectAndTransfer(),
+            ],
+          ),
+        ),
+      );
+    });
+
   }
 
   /// USDT Balance

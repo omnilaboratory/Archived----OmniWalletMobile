@@ -242,6 +242,10 @@ class WalletLocalizations{
       'flashPayMainPageFlashPay' : '转账',
       'flashPayMainPageFlashReceive' : '收款',
 
+      'flashPayUserRegisterTitle' : '快速支付帐号',
+      'flashPayUserRegisterInputTitle1' : '邮箱帐号',
+      'flashPayUserRegisterBtnName1' : '创建帐号',
+
       'flashPayDepositPageInputTitle' : '充值金额',
       'flashPayDepositPageRemark_1' : '矿工费: ',
       'flashPayDepositPageRemark_2' : '预计到账时间: 20 ~ 30 分钟',
@@ -513,6 +517,10 @@ class WalletLocalizations{
       'flashPayMainPageFlashPay' : 'Transfer',
       'flashPayMainPageFlashReceive' : 'Collect',
 
+      'flashPayUserRegisterTitle' : 'Flash Pay Account',
+      'flashPayUserRegisterInputTitle1' : 'Account',
+      'flashPayUserRegisterBtnName1' : 'Create Account',
+
       'flashPayDepositPageInputTitle' : 'Deposit Amount',
       'flashPayDepositPageRemark_1' : 'Miner Fee: ',
       'flashPayDepositPageRemark_2' : 'Expected arrival: 20 ~ 30 mins',
@@ -545,6 +553,10 @@ class WalletLocalizations{
   get flashPayMainPageWithdrawal => _localizedValues[locale.languageCode]['flashPayMainPageWithdrawal'];
   get flashPayMainPageFlashPay => _localizedValues[locale.languageCode]['flashPayMainPageFlashPay'];
   get flashPayMainPageFlashReceive => _localizedValues[locale.languageCode]['flashPayMainPageFlashReceive'];
+
+  get flashPayUserRegisterTitle => _localizedValues[locale.languageCode]['flashPayUserRegisterTitle'];
+  get flashPayUserRegisterInputTitle1 => _localizedValues[locale.languageCode]['flashPayUserRegisterInputTitle1'];
+  get flashPayUserRegisterBtnName1 => _localizedValues[locale.languageCode]['flashPayUserRegisterBtnName1'];
 
   // unlock page
   get unlockPageAppBarTitle => _localizedValues[locale.languageCode]['unlockPageAppBarTitle'];
