@@ -1,26 +1,26 @@
-/// FlashPayReceive app.
+/// FlashPayCollect app.
 /// [author] Kevin Zhang
 /// [time] 2019-6-10
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/Tools.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 
-class FlashPayReceive extends StatefulWidget {
+class FlashPayCollect extends StatefulWidget {
 
   /// 1:Deposit 2:Flash Receive
   // final int parentID;
   // FlashPayReceive({Key key, @required this.parentID}) : super(key: key);
 
   @override
-  _FlashPayReceiveState createState() => _FlashPayReceiveState();
+  _FlashPayCollectState createState() => _FlashPayCollectState();
 }
 
-class _FlashPayReceiveState extends State<FlashPayReceive> {
+class _FlashPayCollectState extends State<FlashPayCollect> {
   // WalletInfo walletInfo;
 
   // final key = new GlobalKey<ScaffoldState>();
@@ -31,7 +31,8 @@ class _FlashPayReceiveState extends State<FlashPayReceive> {
     return Scaffold(
       // key: this.key,
       backgroundColor: AppCustomColor.themeBackgroudColor,
-      appBar: AppBar(title: Text(WalletLocalizations.of(context).flashPayMainPageDeposit),),
+      // appBar: AppBar(title: Text(WalletLocalizations.of(context).flashPayMainPageDeposit),),
+      appBar: AppBar(title: Text('Collect')),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -39,7 +40,6 @@ class _FlashPayReceiveState extends State<FlashPayReceive> {
             _showQR(),
             _omniAddress(),
             _copyAndShare(),
-            _refreshOmniAddress(),
           ],
         ),
       ),
@@ -52,7 +52,7 @@ class _FlashPayReceiveState extends State<FlashPayReceive> {
       padding: const EdgeInsets.only(left: 15, top: 40),
       child: Text(
         // WalletLocalizations.of(context).flashPayPaymentMethodPageMethod_1,
-        'Use Third-Part Scan to pay me',
+        'Use OmniWallet Scan to pay me',
         style: TextStyle(color: Colors.grey),
       ),
     );
@@ -124,40 +124,8 @@ class _FlashPayReceiveState extends State<FlashPayReceive> {
   }
 
   ///
-  Widget _refreshOmniAddress() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30),
-      child: Row(
-        children: <Widget>[
-          CustomRaiseButton(
-            context: context,
-            callback: () {
-              // _copyAddress();
-            },
-            title: WalletLocalizations.of(context).common_tips_refresh,
-            titleColor: Colors.blue,
-            leftIconName: 'icon_copy',
-            color: AppCustomColor.btnCancel,
-          ),
-        ],
-      ),
-    );
-  }
-
-  ///
   void _copyAddress() {
     Tools.copyToClipboard('address for Flash Pay User');  // To be done.
     Tools.showToast(WalletLocalizations.of(context).wallet_receive_page_tips_copy);
   }
-
-  ///
-  // showTips(String content){
-  //   this.key.currentState.hideCurrentSnackBar();
-  //   this.key.currentState.showSnackBar(
-  //       SnackBar(
-  //         content: Text(content),
-  //         duration: Duration(seconds: 1,milliseconds: 200),
-  //       ),
-  //   );
-  // }
 }

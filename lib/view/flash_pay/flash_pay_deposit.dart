@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
-import 'package:wallet_app/view/flash_pay/flash_pay_payment_method.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_lib.dart';
 
 class FlashPayDeposit extends StatefulWidget {
   static String tag = "FlashPayDeposit";

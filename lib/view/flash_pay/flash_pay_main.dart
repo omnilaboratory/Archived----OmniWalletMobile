@@ -4,11 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
-import 'package:wallet_app/view/flash_pay/flash_pay_deposit.dart';
-import 'package:wallet_app/view/flash_pay/flash_pay_receive.dart';
-import 'package:wallet_app/view/flash_pay/flash_pay_user_register.dart';
 import 'package:wallet_app/view/widgets/custom_raise_button_widget.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_lib.dart';
 
 import 'flash_pay_lib.dart';
 
@@ -189,22 +187,21 @@ class _FlashPayMainState extends State<FlashPayMain> {
       padding: const EdgeInsets.all(30.0),
       child: Row(
         children: <Widget>[
-          CustomRaiseButton( // Deposit button.
+          CustomRaiseButton( // Collect button.
             context: context,
-            // flex: 2,
             title: WalletLocalizations.of(context).flashPayMainPageFlashReceive,
             titleColor: Colors.white,
             leftIconName: 'icon_back',
             color: AppCustomColor.btnConfirm,
             callback: () {
-              // Navigator.pop(context);
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => FlashPayCollect()));
             },
           ),
 
           SizedBox(width: 30),
           CustomRaiseButton( // Withdrawal button.
             context: context,
-            // flex: 3,
             title: WalletLocalizations.of(context).flashPayMainPageFlashPay,
             titleColor: Colors.white,
             rightIconName: 'icon_next',
