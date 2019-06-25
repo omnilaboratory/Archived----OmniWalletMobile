@@ -119,6 +119,7 @@ class WalletModel extends Model{
                 note: '',
                 accountInfoes: []
             );
+
             Future result = NetConfig.post(context,NetConfig.createAddress, {'address':wallet.address,'addressName':defaultName,'addressIndex':addressIndex.toString()});
             result.then((data){
               if(NetConfig.checkData(data)){
