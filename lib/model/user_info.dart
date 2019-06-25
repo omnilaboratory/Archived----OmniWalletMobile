@@ -70,4 +70,6 @@ class UserInfo{
 class FPUserInfo{
   String hyperUsername;
   List<String> addresses;
+
+  FPUserInfo({this.hyperUsername,this.addresses});
 }
