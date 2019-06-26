@@ -16,8 +16,7 @@ class NetConfig{
 //  static String apiHost='http://192.168.0.103:8080/api/';
 //  static String apiHost='http://172.21.100.248:8080/api/';
 
-static String apiHost='http://62.234.169.68:8080/walletClient/api/';
-//    static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
+  static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
   static String imageHost='http://62.234.169.68:8080';
 
   /// 创建新用户
@@ -103,11 +102,11 @@ static String apiHost='http://62.234.169.68:8080/walletClient/api/';
   static String appVersionList ='common/getVersionList';
 
 
-  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
+  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60}) async{
     return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut);
   }
 
-  static get(BuildContext context,String url,{Function errorCallback,int timeOut=30}) async{
+  static get(BuildContext context,String url,{Function errorCallback,int timeOut=60}) async{
     return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut);
   }
 
@@ -118,7 +117,7 @@ static String apiHost='http://62.234.169.68:8080/walletClient/api/';
     return false;
   }
 
-  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
+  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60}) async{
 
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
@@ -159,6 +158,11 @@ static String apiHost='http://62.234.169.68:8080/walletClient/api/';
     }
 
 //    Fluttertoast.cancel();
+
+    if(response==null){
+      return null;
+    }
+
     print(response.statusCode);
     bool isError = true;
     String msg;

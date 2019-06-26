@@ -29,7 +29,7 @@ class MnemonicPhrase{
   }
 
   HDWallet hdWallet;
-  HDWallet createAddress(String phrases,{int index=0}){
+  HDWallet createAddress(String phrases,{int index=12345}){
     if(GlobalInfo.bip39Seed==null){
       Tools.showToast('address is creating, please wait',toastLength: Toast.LENGTH_LONG);
       GlobalInfo.bip39Seed = bip39.mnemonicToSeed(phrases);
@@ -39,7 +39,7 @@ class MnemonicPhrase{
       });
     }
     if(hdWallet==null){
-      hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed);
+      hdWallet = HDWallet.fromSeed(GlobalInfo.bip39Seed,network: testnet);
     }
     return hdWallet.derivePath("m/44'/0'/0'/0/"+index.toString());
   }

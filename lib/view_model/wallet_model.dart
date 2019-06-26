@@ -56,7 +56,7 @@ class WalletModel extends Model{
   DateTime _loadLastTime  = null;
   List<WalletInfo> getWalletInfoes(BuildContext context) {
     if(this._walletInfoes==null){
-      Future future = NetConfig.get(context,NetConfig.addressList,timeOut: 10);
+      Future future = NetConfig.get(context,NetConfig.addressList);
       future.then((data){
         if(NetConfig.checkData(data)){
           this._walletInfoes = [];
@@ -107,7 +107,7 @@ class WalletModel extends Model{
             _walletInfoes.add(info);
           }
           if(_walletInfoes.length==0){
-            int addressIndex = 0;
+            int addressIndex = 12345;
             String defaultName = 'name0';
             HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
             WalletInfo info = WalletInfo(
@@ -207,7 +207,7 @@ class WalletModel extends Model{
           }
           notifyListeners();
           return tradeInfoes;
-        }else if(data>400){
+        }else if(data==null || data>400){
           tradeInfoes = [];
           notifyListeners();
           return tradeInfoes;
