@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,8 @@ import 'package:wallet_app/view/welcome/create_account.dart';
 import 'package:wallet_app/view/welcome/select_language.dart';
 import 'package:wallet_app/view_model/main_model.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
+
+import 'package:bip39/bip39.dart' as bip39;
 
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -64,6 +67,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+
+
+
 
   // Create the model.
   MainStateModel mainStateModel = MainStateModel();
@@ -190,6 +196,31 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+
+    String mnemonic  = "admit glad merge wool melody wagon absurd antenna cricket clap moment universe";
+    print(mnemonic);
+    var seed = bip39.mnemonicToSeed(mnemonic,salt: "mnemonic123456");
+    print(seed);
+    var seed1 = bip39.mnemonicToSeedHex(mnemonic,salt: "mnemonic123456");
+    bip39.generateMnemonic();
+    print(seed1);
+    HDWallet hdWallet= HDWallet.fromSeed(seed,network: testnet);
+    hdWallet =  hdWallet.derivePath("m/44'/1'/0'/0/0");
+    print(hdWallet.address);
+    print(hdWallet.wif);
+
+    HDWallet hdWallet2= HDWallet.fromSeed(seed);
+    hdWallet2 =  hdWallet2.derivePath("m/44'/0'/0'/0/1");
+    print(hdWallet2.address);
+
+    hdWallet2= HDWallet.fromSeed(seed);
+    hdWallet2 =  hdWallet2.derivePath("m/44'/0'/0'/0/2");
+    print(hdWallet2.address);
+
+    hdWallet2= HDWallet.fromSeed(seed);
+    hdWallet2 =  hdWallet2.derivePath("m/44'/0'/0'/0/3");
+    print(hdWallet2.address);
+
     return _buildApp();
   }
 

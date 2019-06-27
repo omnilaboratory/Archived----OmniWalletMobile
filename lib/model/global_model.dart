@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:bip39/bip39.dart' as bip39;
-import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_app/model/user_info.dart';
 import 'package:wallet_app/tools/Tools.dart';
@@ -114,6 +112,7 @@ class  GlobalInfo{
       final data = message[0] as String;
       final send = message[1] as SendPort;
       //返回结果
+
       var seed = bip39.mnemonicToSeed(data.toString());
 
       send.send(seed);
