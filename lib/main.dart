@@ -193,10 +193,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   ///----------------------
   
-
-  @override
-  Widget build(BuildContext context) {
-
+  /// Test for Salt.
+  _testSalt() {
     String mnemonic  = "admit glad merge wool melody wagon absurd antenna cricket clap moment universe";
     print(mnemonic);
     var seed = bip39.mnemonicToSeed(mnemonic,salt: "mnemonic123456");
@@ -220,7 +218,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     hdWallet2= HDWallet.fromSeed(seed);
     hdWallet2 =  hdWallet2.derivePath("m/44'/0'/0'/0/3");
     print(hdWallet2.address);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return _buildApp();
   }
 
