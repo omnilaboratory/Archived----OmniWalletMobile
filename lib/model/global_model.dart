@@ -82,7 +82,8 @@ class  GlobalInfo{
         share.setString(KeyConfig.user_mnemonicSeed,Tools.encryptAes(GlobalInfo.bip39Seed.toString()));
 
         print('seed init finish ${DateTime.now()}');
-        callback();
+        if(callback!=null)
+          callback();
       }
     });
   }

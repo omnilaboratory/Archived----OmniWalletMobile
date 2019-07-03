@@ -197,9 +197,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   _testSalt() {
     String mnemonic  = "admit glad merge wool melody wagon absurd antenna cricket clap moment universe";
     print(mnemonic);
-    var seed = bip39.mnemonicToSeed(mnemonic,salt: "mnemonic123456");
+    var seed = bip39.mnemonicToSeed(mnemonic);
     print(seed);
-    var seed1 = bip39.mnemonicToSeedHex(mnemonic,salt: "mnemonic123456");
+    var seed1 = bip39.mnemonicToSeedHex(mnemonic);
     bip39.generateMnemonic();
     print(seed1);
     HDWallet hdWallet= HDWallet.fromSeed(seed,network: testnet);
