@@ -8,7 +8,7 @@ OmniWalletMobile is a new type of mobile wallet, providing Bitcoin&Omnilayer use
 It currently supports Bitcoin and OMNI, and all OmniProtocol created tokens. In addition, and most importantly, its trustless security mechanism grantees the safty of uers' assets. 
 
 # Clone the repo
----
+```
 git clone https://github.com/LightningOnOmnilayer/OmniWalletMobile.git
 cd LightningOnOmnilayer/OmniWalletMobile
----
+```
