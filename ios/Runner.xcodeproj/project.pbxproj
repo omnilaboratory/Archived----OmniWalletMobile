@@ -292,7 +292,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${PODS_ROOT}/../.symlinks/flutter/ios/Flutter.framework",
+				"${PODS_ROOT}/../.symlinks/flutter/ios-release/Flutter.framework",
 				"${BUILT_PRODUCTS_DIR}/flutter_image_compress/flutter_image_compress.framework",
 				"${BUILT_PRODUCTS_DIR}/fluttertoast/fluttertoast.framework",
 				"${BUILT_PRODUCTS_DIR}/image_picker/image_picker.framework",
@@ -433,7 +433,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TRACK_WIDGET_CREATION = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -571,7 +570,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TRACK_WIDGET_CREATION = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -601,7 +599,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TRACK_WIDGET_CREATION = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
