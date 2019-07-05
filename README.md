@@ -1,5 +1,5 @@
 # OmniWalletMobile
-Native Mobile wallet for Omnilayer assets， released on Android and IOS.
+Native Mobile wallet for Omnilayer assets, released on Android and IOS.
 
 # What is OmniWalletMobile
 
