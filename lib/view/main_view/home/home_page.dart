@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         width: MediaQuery.of(context).size.width,
         child: TextFormField(
           maxLines: 1,
-          maxLength: 10,
+          maxLength: 20,
           validator: (val){
             if(val==null||val.length==0){
               return WalletLocalizations.of(context).createNewAddress_WrongAddress;
