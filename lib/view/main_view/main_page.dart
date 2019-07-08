@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     pages
       ..add(HomePage())
       ..add(MarketPage())
-      ..add(FlashPayMain())
+//      ..add(FlashPayMain())
       ..add(UserCenter());
   }
 
@@ -54,12 +54,12 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
               title: Text(
                 WalletLocalizations.of(context).buttom_tab2_name,
               )),
-          BottomNavigationBarItem(
-              icon: Image.asset(Tools.imagePath('nav_dex_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
-              activeIcon: Image.asset(Tools.imagePath('nav_dex_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
-              title: Text(
-                WalletLocalizations.of(context).buttom_tab3_name,
-              )),
+//          BottomNavigationBarItem(
+//              icon: Image.asset(Tools.imagePath('nav_dex_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+//              activeIcon: Image.asset(Tools.imagePath('nav_dex_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
+//              title: Text(
+//                WalletLocalizations.of(context).buttom_tab3_name,
+//              )),
           BottomNavigationBarItem(
               icon: Image.asset(Tools.imagePath('nav_my_off'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
               activeIcon: Image.asset(Tools.imagePath('nav_my_on'+(GlobalInfo.colorTheme==KeyConfig.light?'':'_deep')),width: 24,height: 24,),
