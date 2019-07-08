@@ -432,11 +432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = "";
-=======
-				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_Dev;
->>>>>>> master
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -573,11 +569,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = "";
-=======
-				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_Dev;
->>>>>>> master
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -606,11 +598,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.lunarx.omniwallet-testnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
 				PROVISIONING_PROFILE_SPECIFIER = "";
-=======
-				PROVISIONING_PROFILE_SPECIFIER = OmniWallet_AppStore;
->>>>>>> master
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
