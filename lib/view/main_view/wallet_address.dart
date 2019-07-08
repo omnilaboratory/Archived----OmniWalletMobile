@@ -24,6 +24,11 @@ class _WalletAddressState extends State<WalletAddress> {
   @override
   Widget build(BuildContext context) {
 
+    if (stateModel == null) {
+      stateModel = MainStateModel().of(context);
+      _walletInfoes = stateModel.getWalletInfoes(context);
+    }
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -31,25 +36,35 @@ class _WalletAddressState extends State<WalletAddress> {
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: 10),
-          child: ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            children: _addressList(),
-          ),
-        ),
+        child: getContent(),
       ),
     );
+  }
+
+  Widget getContent(){
+    if(this._walletInfoes==null){
+      return Center(child: GestureDetector(
+        child: Text("Data is loading, Reresh"),
+        onTap: (){
+          setState(() {});
+        },
+      )
+      );
+    }else{
+      return SingleChildScrollView(
+        padding: EdgeInsets.only(top: 10),
+        child: ListView(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          children: _addressList(),
+        ),
+      );
+    }
   }
 
   /// wallet address list
   List<Widget> _addressList() {
 
-    if (stateModel == null) {
-      stateModel = MainStateModel().of(context);
-      _walletInfoes = stateModel.getWalletInfoes(context);
-    }
     print('==> address amount = ${_walletInfoes.length}');
 
     // list tile
