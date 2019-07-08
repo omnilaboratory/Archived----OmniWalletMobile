@@ -176,6 +176,7 @@ class _HomePageState extends State<HomePage> {
 
   createAddressAgain(String addressName ,int addressIndex){
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: addressIndex);
+    print(wallet.address);
     WalletInfo info = WalletInfo(name: addressName,visible: true,address: wallet.address,addressIndex: addressIndex, totalLegalTender: 0,note: '',accountInfoes: []);
     Future result = NetConfig.post(
         context,

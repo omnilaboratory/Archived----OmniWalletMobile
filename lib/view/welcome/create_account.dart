@@ -276,7 +276,7 @@ class _CreateAccountState extends State<CreateAccount> {
         focusNode:   _node,
         obscureText: _textField == 1 ? false : true,
         keyboardType: _textField == 1 ? null : TextInputType.number,
-        maxLength: _textField == 1 ? 12 : 6,
+        maxLength: _textField == 1 ? 30 : 6,
         decoration: _inputDecoration(_iconName, _hintText, 
           _hasFocus, _helperText, _controller),
         validator: (val) => _validate(val, _textField),

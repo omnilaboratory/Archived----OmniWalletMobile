@@ -119,7 +119,7 @@ class _UpdateNickNameState extends State<UpdateNickName> {
         child: TextFormField(
           controller:  _nickNameController,
           focusNode:   _nodeNickName,
-          maxLength: 12,
+          maxLength: 30,
           autofocus: true,
           validator: (val) => _validate(val),
           decoration: InputDecoration(

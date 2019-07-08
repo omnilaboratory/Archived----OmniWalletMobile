@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/tools/app_data_setting.dart';
+import 'package:wallet_app/view/flash_pay/flash_pay_main.dart';
 import 'package:wallet_app/view/main_view/home/home_page.dart';
 import 'package:wallet_app/view/main_view/market/market_page.dart';
 import 'package:wallet_app/view/main_view/my_page.dart';
-import 'package:wallet_app/view/main_view/omni_page.dart';
 import 'package:wallet_app/view_model/state_lib.dart';
 
 class MainPage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> with SingleTickerProviderStateMixin
     pages
       ..add(HomePage())
       ..add(MarketPage())
-      ..add(OmniPage())
+      ..add(FlashPayMain())
       ..add(UserCenter());
   }
 

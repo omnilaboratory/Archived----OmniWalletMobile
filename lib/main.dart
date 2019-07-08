@@ -99,7 +99,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     UpdateNickName.tag: (context)      => UpdateNickName(),
     SelectCurrency.tag: (context)      => SelectCurrency(),
     SelectTheme.tag: (context)         => SelectTheme(),
-    AppUpgradeLogPage.tag: (context)         => AppUpgradeLogPage(),
+    AppUpgradeLogPage.tag: (context)   => AppUpgradeLogPage(),
+    // FlashPayMain.tag: (context)        => FlashPayMain(),
+    // FPFrinedList.tag: (context)        => FPFrinedList(),
   };
 
   Brightness brightness = Brightness.light;
