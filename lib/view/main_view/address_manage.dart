@@ -301,7 +301,7 @@ class _AddressManageState extends State<AddressManage> {
           child: TextFormField(
             controller:  _nameController,
             focusNode:   _nodeText,
-            maxLength: 10,
+            maxLength: 20,
             // autofocus: true,
             validator: (val) => _validate(val),
             decoration: InputDecoration(
