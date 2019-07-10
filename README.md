@@ -3,9 +3,10 @@ Native Mobile wallet for Omnilayer assets, released on Android and IOS.
 
 # What is OmniWalletMobile
 
-OmniWalletMobile is a new type of mobile wallet, providing Bitcoin&Omnilayer users with an unrivaled blend of security and ease-of-use. It is completely open source including standard backend services and mobile side app written in Dart(Flutter framework initialted by Google).
+OmniWalletMobile is a new type of mobile wallet, which currently supports Bitcoin and all OmniProtocol created tokens, providing Bitcoin&Omnilayer users with a ease-of-use and unrivaled blend of security. The trustless security mechanism it uses has been applied to multiple successful business solutions by LunarX team in the past years. 
 
-It currently supports Bitcoin and OMNI, and all OmniProtocol created tokens. In addition, and most importantly, its trustless security mechanism grantees the safty of uers' assets. 
+The wallet is completely open source, which includes a set of standard backend services, written in java/golang, and a mobile side app written in Dart(Flutter framework initiated by Google).
+
 
 # Clone the repo
 ```
