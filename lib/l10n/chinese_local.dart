@@ -129,6 +129,10 @@ class ChineseCupertinoLocalizations implements CupertinoLocalizations {
     await localizaltions.init();
     return SynchronousFuture<CupertinoLocalizations>(localizaltions);
   }
+
+  @override
+  // TODO: implement todayLabel
+  String get todayLabel => null;
 }
 
 class _ChineseDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
