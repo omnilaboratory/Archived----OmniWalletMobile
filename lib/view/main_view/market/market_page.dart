@@ -58,7 +58,7 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
     if(this.dataMap.containsKey(currTabIndex)){
        this.dataList = this.dataMap[currTabIndex];
     }else{
-      if(this.dataList!=null){
+      if(this.dataList!=null&&this.mounted){
         setState(() {
           this.dataList = null;
         });
@@ -89,9 +89,9 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
   void _onRefresh(){
     this.dataMap.remove(this._tabController.index);
     this.dataList = null;
-    setState(() {
-
-    });
+    if (this.mounted) {
+      setState(() {});
+    }
     this._loadDataFromServer(this._tabController.index,callback: (){
       _refreshController.refreshCompleted();
     });
@@ -193,9 +193,9 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
                   return nameSortAsc?-1:1;
                 }
               });
-              setState(() {
-
-              });
+              if (this.mounted) {
+                setState(() {});
+              }
             }
           },
         ),
@@ -227,9 +227,9 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
                   return degreeSortAsc?-1:1;
                 }
               });
-              setState(() {
-
-              });
+              if (this.mounted) {
+                setState(() {});
+              }
             }
           },
         ),
@@ -393,9 +393,9 @@ class _MarketPageState extends State<MarketPage> with SingleTickerProviderStateM
           return priceSortAsc?-1:1;
         }
       });
-      setState(() {
-
-      });
+      if (this.mounted) {
+        setState(() {});
+      }
     }
   }
 }
