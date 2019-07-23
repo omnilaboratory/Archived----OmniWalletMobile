@@ -16,12 +16,7 @@ class NetConfig{
 //  static String apiHost='http://192.168.0.103:8080/api/';
 //  static String apiHost='http://172.21.100.248:8080/api/';
 
-//生产环境
-//  static String apiHost='http://62.234.169.68:8080/walletClient/api/';
-//测试环境
-//   static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
-//开发环境
-   static String apiHost='http://62.234.169.68:8080/walletClientDev/api/';
+  static String apiHost='http://62.234.169.68:8080/walletClientTest/api/';
   static String imageHost='http://62.234.169.68:8080';
 
   /// 创建新用户
@@ -107,12 +102,12 @@ class NetConfig{
   static String appVersionList ='common/getVersionList';
 
 
-  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
-    return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut);
+  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60,bool showToast =true}) async{
+    return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut,showToast: showToast);
   }
 
-  static get(BuildContext context,String url,{Function errorCallback,int timeOut=30}) async{
-    return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut);
+  static get(BuildContext context,String url,{Function errorCallback,int timeOut=60,bool showToast =true}) async{
+    return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut,showToast: showToast);
   }
 
   static bool checkData(data){
@@ -122,7 +117,7 @@ class NetConfig{
     return false;
   }
 
-  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=30}) async{
+  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60,bool showToast =true}) async{
 
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
@@ -177,7 +172,7 @@ class NetConfig{
       }
       if(status==0){
         msg = result['msg'];
-        if(msg!=null&&msg.length>0){
+        if(msg!=null&&msg.length>0&&showToast){
           Tools.showToast(msg,toastLength:Toast.LENGTH_LONG);
         }
       }

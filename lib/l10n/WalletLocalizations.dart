@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WalletLocalizations{
-  
+
   final Locale locale;
   WalletLocalizations(this.locale);
 
@@ -15,7 +15,7 @@ class WalletLocalizations{
       'backup_index_btn': '立即备份',
       'backup_index_tips_title': '请立即备份您的钱包!',
       'backup_index_tips': '注意：请备份你的钱包账户，Omniwallet 不会访问你的账户、不能恢复私钥、'
-        '重置密码。你自己控制自己的钱包和资产安全。',
+          '重置密码。你自己控制自己的钱包和资产安全。',
       'backup_index_prompt_tips': '任何人得到你的助记词将能获得你的资产。\n请抄写在纸上妥善保管。',
       'backup_index_prompt_title': '不要截屏',
       'backup_words_title': '备份助记词',
@@ -187,7 +187,7 @@ class WalletLocalizations{
 
       'languagePageAppBarTitle' : '多语言',
       'languagePageSaveButton' : '保存',
-      
+
       'createAccountPageAppBarTitle' : '创建新账号',
       'createAccountPageTooltip_1' : '昵称',
       'createAccountPageTooltip_2' : 'PIN码',
@@ -250,7 +250,7 @@ class WalletLocalizations{
       'flashPayDepositPageInputTitle' : '充值金额',
       'flashPayDepositPageRemark_1' : '矿工费: ',
       'flashPayDepositPageRemark_2' : '预计到账时间: 20 ~ 30 分钟',
-      
+
       'flashPayPaymentMethodPageAppBarTitle' : '充值方式',
       'flashPayPaymentMethodPageMethod_1' : '钱包地址',
       'flashPayPaymentMethodPageMethod_2' : '交易所、其它钱包',
@@ -265,26 +265,26 @@ class WalletLocalizations{
       'backup_index_btn': 'Back Up Now!',
       'backup_index_tips_title': 'Back up your wallet now!',
       'backup_index_tips': 'Notice: please back up your wallet, Omni will never visit your '
-        'account, can not restore your private key or reset your password. You will manage '
-        'your wallet on your own, and make sure the safety of your asset.',
+          'account, can not restore your private key or reset your password. You will manage '
+          'your wallet on your own, and make sure the safety of your asset.',
       'backup_index_prompt_tips': 'Anyone who gets access to your Mnemonic Phrase will have '
-        'access to your assets. Please copy it onto paper and store securely for safekeeping.',
+          'access to your assets. Please copy it onto paper and store securely for safekeeping.',
       'backup_index_prompt_title': "Do Not Use Screenshots!",
       'backup_words_title': 'Back Up Mnemonic Phrase',
       'backup_words_next': 'Next',
       'backup_words_content': "Write down or copy these words in the right order and save "
-        "them somewhere safe.",
+          "them somewhere safe.",
       'backup_words_warn': "Never share recovery phrase with anyone, store it securely!",
 
       'backup_words_order_title': 'Confirm mnemonic words',
       'backup_words_order_content': 'Click the following 12-word phrase in exact sequence, '
-        'to make sure you have a correct backup.',
+          'to make sure you have a correct backup.',
       'backup_words_order_error': 'Invalid order. Try again!',
       'backup_words_order_finish': 'Finish',
 
       'restore_account_title': 'Restore Account',
       'restore_account_tips': 'Notice: after importing account by Mnemonic Phrase, you can '
-        'reset PIN for safety concerns.',
+          'reset PIN for safety concerns.',
       'restore_account_phrase_title': 'Input Mnemonic words',
       'restore_account_resetPIN': 'Reset PIN',
       'restore_account_tip_pin': 'New PIN',
@@ -322,8 +322,8 @@ class WalletLocalizations{
           "a certain device or browser. It is needed in order to ensure that your secret "
           "mnemonic phrase is not saved in storage.",
       'welcomePageTwoContentFour' : "If you forget your PIN code, you can contact our customer "
-        "service staff. If you lose your mnemonic phrase, however, you will have no way to access "
-        "your account.",
+          "service staff. If you lose your mnemonic phrase, however, you will have no way to access "
+          "your account.",
       'welcomePageTwoContentFive' : "You cannot change your mnemonic phrase. If you "
           "accidentally sent it to someone or suspect that scammers have taken it over, "
           "then create a new Omniwallet immediately and transfer your funds to it.",
@@ -415,7 +415,7 @@ class WalletLocalizations{
       'userInfoPageButton' : 'Logout Current Identity',
 
       'userInfoPageDeleteMsg' : "All wallet data will be removed, "
-        "make sure all data have been backed up already!",
+          "make sure all data have been backed up already!",
 
       'appVersionTitle' : 'New version',
       'appVersionContent1' : 'Has a newer version, you should update.',
@@ -507,7 +507,7 @@ class WalletLocalizations{
       'unlockPageAppTips' : 'PIN Code is incorrect.',
 
       'me_about_app_upgrade_log_title' : 'Version History',
-      
+
       'flashPayMainPageAppBarTitle' : 'Flash Payment',
       'flashPayMainPageAppBarAction' : 'Records',
       'flashPayMainPageBalance' : 'Balance',
@@ -576,7 +576,7 @@ class WalletLocalizations{
   // Update Nick Name
   get updateNickNamePageAppBarTitle => _localizedValues[locale.languageCode]['updateNickNamePageAppBarTitle'];
   get updateNickNamePageEditTips => _localizedValues[locale.languageCode]['updateNickNamePageEditTips'];
-  
+
   // Displayed Assets
   get displayedAssetsPageAppBarTitle => _localizedValues[locale.languageCode]['displayedAssetsPageAppBarTitle'];
   get displayedAssetsPageTitle_1 => _localizedValues[locale.languageCode]['displayedAssetsPageTitle_1'];

@@ -180,6 +180,9 @@ class WalletModel extends Model{
             }else{
                 txValue = double.parse(currData['txValue']);
              }
+            if(txValue==null){
+              txValue = 0;
+            }
 
             int time = 0;
             if (currData['time'] != null) {
@@ -187,6 +190,7 @@ class WalletModel extends Model{
             }
 
             int confirmAmount = currData['confirmAmount'];
+
             if(isSend){
               txValue = 0-txValue;
             }
