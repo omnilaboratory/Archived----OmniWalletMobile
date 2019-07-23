@@ -102,12 +102,12 @@ class NetConfig{
   static String appVersionList ='common/getVersionList';
 
 
-  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60}) async{
-    return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut);
+  static post(BuildContext context,String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60,bool showToast =true}) async{
+    return _sendData(context,"post", url, data,errorCallback: errorCallback,timeOut: timeOut,showToast: showToast);
   }
 
-  static get(BuildContext context,String url,{Function errorCallback,int timeOut=60}) async{
-    return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut);
+  static get(BuildContext context,String url,{Function errorCallback,int timeOut=60,bool showToast =true}) async{
+    return _sendData(context,"get", url,null,errorCallback: errorCallback,timeOut: timeOut,showToast: showToast);
   }
 
   static bool checkData(data){
@@ -117,7 +117,7 @@ class NetConfig{
     return false;
   }
 
-  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60}) async{
+  static _sendData(BuildContext context,String reqType, String url,Map<String, String> data,{Function errorCallback=null,int timeOut=60,bool showToast =true}) async{
 
     Map<String, String> header = new Map();
     if(url.startsWith('common')==false){
@@ -177,7 +177,7 @@ class NetConfig{
       }
       if(status==0){
         msg = result['msg'];
-        if(msg!=null&&msg.length>0){
+        if(msg!=null&&msg.length>0&&showToast){
           Tools.showToast(msg,toastLength:Toast.LENGTH_LONG);
         }
       }

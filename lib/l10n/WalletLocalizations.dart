@@ -163,6 +163,10 @@ class WalletLocalizations{
       'wallet_send_page_to' : '转到',
       'wallet_send_page_input_address_hint' : '请输入地址',
       'wallet_send_page_input_address_error' : '地址为空',
+
+      'wallet_send_confirm_page_dialog_title' : "转账结果",
+      'wallet_send_confirm_page_dialog_btn_ok' : '知道了',
+
       'wallet_send_page_title_amount' : '数量',
       'wallet_send_page_title_balance' : '余额',
       'wallet_send_page_input_amount' : '请输入数量',
@@ -438,6 +442,9 @@ class WalletLocalizations{
       'wallet_send_page_to' : 'To',
       'wallet_send_page_input_address_hint' : 'please input address',
       'wallet_send_page_input_address_error' : 'empty address',
+
+      'wallet_send_confirm_page_dialog_title' : 'Send Result',
+      'wallet_send_confirm_page_dialog_btn_ok' : 'I Know',
 
       'wallet_send_page_title_amount' : 'Amount',
       'wallet_send_page_title_balance' : 'Balance',
@@ -793,6 +800,10 @@ class WalletLocalizations{
   String get wallet_send_page_to => _localizedValues[locale.languageCode]['wallet_send_page_to'];
   String get wallet_send_page_input_address_hint => _localizedValues[locale.languageCode]['wallet_send_page_input_address_hint'];
   String get wallet_send_page_input_address_error => _localizedValues[locale.languageCode]['wallet_send_page_input_address_error'];
+
+  String get wallet_send_confirm_page_dialog_title => _localizedValues[locale.languageCode]['wallet_send_confirm_page_dialog_title'];
+  String get wallet_send_confirm_page_dialog_btn_ok => _localizedValues[locale.languageCode]['wallet_send_confirm_page_dialog_btn_ok'];
+
   String get wallet_send_page_title_amount => _localizedValues[locale.languageCode]['wallet_send_page_title_amount'];
   String get wallet_send_page_title_balance => _localizedValues[locale.languageCode]['wallet_send_page_title_balance'];
   String get wallet_send_page_input_amount => _localizedValues[locale.languageCode]['wallet_send_page_input_amount'];

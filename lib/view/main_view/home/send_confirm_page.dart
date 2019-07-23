@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:wallet_app/l10n/WalletLocalizations.dart';
 import 'package:wallet_app/main.dart';
 import 'package:wallet_app/model/global_model.dart';
@@ -106,7 +107,7 @@ class SendConfirm extends StatelessWidget {
               callback: (){
                 routeObserver.navigator.push(
                   MaterialPageRoute(
-                      builder: (BuildContext context) {
+                      builder: (_) {
                         return Unlock(parentID: 12,callback: (){
                           Navigator.of(context).pop();
                           this.transfer(context);
@@ -125,6 +126,7 @@ class SendConfirm extends StatelessWidget {
     );
   }
   transfer(BuildContext context){
+    loadingAnimation(context);
     print(accountInfo.propertyId);
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
     //btc send
@@ -137,12 +139,15 @@ class SendConfirm extends StatelessWidget {
           'toBitCoinAddress':_sendInfo.toAddress,
           'amount':_sendInfo.amount.toString(),
           'minerFee':_sendInfo.minerFee.toString(),
-      });
+         },
+         showToast: false,
+          errorCallback: (msg){
+            this.showResult(context,content: msg);
+          }
+      );
       future.then((data){
-        print(data);
         if(NetConfig.checkData(data)){
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
+          this.showResult(context);
         }
       });
     }else{
@@ -155,13 +160,51 @@ class SendConfirm extends StatelessWidget {
             'toBitCoinAddress':_sendInfo.toAddress,
             'amount':_sendInfo.amount.toString(),
             'minerFee':_sendInfo.minerFee.toString(),
-      });
+          },
+          showToast: false,
+          errorCallback: (msg){
+            this.showResult(context,content: msg);
+          }
+      );
       future.then((data){
         if(NetConfig.checkData(data)){
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
+          this.showResult(context);
         }
       });
     }
   }
+
+  loadingAnimation(BuildContext context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,  // user must tap button to dismiss dialog.
+        builder: (_){
+          return Center(child:CircularProgressIndicator());
+        }
+    );
+  }
+
+  // show send result
+  showResult(BuildContext context,{String content = null}){
+    Navigator.of(context).pop();
+    if(content==null||content.length==0){
+      content = "Send success";
+    }
+
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(WalletLocalizations.of(context).wallet_send_confirm_page_dialog_title),
+          content: Text((content)),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text(WalletLocalizations.of(context).wallet_send_confirm_page_dialog_btn_ok),
+              onPressed: () {
+                Navigator.pop(_);
+              },
+            ),
+          ],
+        ));
+  }
+
 }
