@@ -201,6 +201,11 @@ class SendConfirm extends StatelessWidget {
               child: new Text(WalletLocalizations.of(context).wallet_send_confirm_page_dialog_btn_ok),
               onPressed: () {
                 Navigator.pop(_);
+                if(isSuccess)
+                {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                }
               },
             ),
           ],
