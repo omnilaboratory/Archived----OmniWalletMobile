@@ -130,6 +130,7 @@ class SendConfirm extends StatelessWidget {
     print(accountInfo.propertyId);
     HDWallet wallet = MnemonicPhrase.getInstance().createAddress(GlobalInfo.userInfo.mnemonic,index: walletInfo.addressIndex);
     //btc send
+
     if(accountInfo.propertyId==0){
       Future future = NetConfig.post(
          context,
@@ -205,7 +206,7 @@ class SendConfirm extends StatelessWidget {
                 if(isSuccess){
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  this.stateModel.setTradeInfoes(null);
                 }
               },
             ),
