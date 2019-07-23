@@ -193,6 +193,7 @@ class SendConfirm extends StatelessWidget {
 
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (_) => AlertDialog(
           title: Text(WalletLocalizations.of(context).wallet_send_confirm_page_dialog_title),
           content: Text((content)),
@@ -205,6 +206,7 @@ class SendConfirm extends StatelessWidget {
                 {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
+                  this.stateModel.setTradeInfoes(null);
                 }
               },
             ),

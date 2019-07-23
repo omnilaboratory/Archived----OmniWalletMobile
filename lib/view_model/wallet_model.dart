@@ -157,6 +157,11 @@ class WalletModel extends Model{
     notifyListeners();
   }
 
+  void setTradeInfoes(List<TradeInfo> tradeInfoes){
+    this.tradeInfoes = tradeInfoes;
+    notifyListeners();
+  }
+
   List<TradeInfo> tradeInfoes = null;
   List<TradeInfo> getTradeInfoes(BuildContext context, String address,{int propertyId=0}){
     print('getTradeInfoes1111');
