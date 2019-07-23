@@ -163,7 +163,7 @@ class SendConfirm extends StatelessWidget {
           },
           showToast: false,
           errorCallback: (msg){
-            this.showResult(context,content: msg);
+            this.showResult(context,content: msg,isSuccess: false);
           }
       );
       future.then((data){
@@ -185,7 +185,7 @@ class SendConfirm extends StatelessWidget {
   }
 
   // show send result
-  showResult(BuildContext context,{String content = null}){
+  showResult(BuildContext context,{String content = null,bool isSuccess=true}){
     Navigator.of(context).pop();
     if(content==null||content.length==0){
       content = "Send success";
