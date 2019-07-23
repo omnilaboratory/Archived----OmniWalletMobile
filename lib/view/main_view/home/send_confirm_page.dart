@@ -204,6 +204,7 @@ class SendConfirm extends StatelessWidget {
                 if(isSuccess){
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                 }
               },
             ),
